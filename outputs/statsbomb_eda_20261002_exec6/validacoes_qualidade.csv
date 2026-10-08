@@ -1,0 +1,8 @@
+verificacao,resultado,valor
+IDs de evento únicos,True,1313773 / 1313773
+match_id eventos no manifesto,True,380
+escalações match_id no manifesto,True,380
+xG presente entre finalizações,True,100.0% (9908/9908)
+fim de passe presente entre passes,True,100.0% (368619/368619)
+localização inicial presente entre eventos,True,99.4%
+índices duplicados dentro da partida,True,0
