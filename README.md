@@ -1,83 +1,79 @@
 # ManagerAI
 
-MVP local de apoio à preparação pré-jogo com dados históricos StatsBomb Open Data.
-Produz indicadores auditáveis, hipóteses condicionais, relatório JSON e apresentação
-em português. Não requer rede, API, LLM, GPU ou modelo treinado.
+Apoio à preparação pré-jogo de futebol com dados históricos StatsBomb Open Data.
+O sistema calcula indicadores auditáveis e hipóteses condicionais, com relatórios
+JSON/Markdown e interface Streamlit. A análise usa arquivos locais, sem API ou GPU.
 
-Recorte de demonstração: **Premier League 2015/16**, 380 partidas e 20 clubes.
-O inventário também mostra outras temporadas locais, cuja adequação deve ser auditada
-antes de ampliar a demonstração. Os JSONs brutos e a EDA original são preservados.
+A V3 está implementada como extensão opcional: 26 indicadores de progressão,
+finalização e pressão espacial, sequências, atletas/formações históricos e dois
+gráficos. Os recortes validados são Premier League 2015/16 e La Liga 2020/21.
+A V3 preserva os campos legados e acrescenta `tactical_v3` no schema 1.1.0;
+sem a extensão, o JSON continua no schema 1.0.0.
 
-## V2.2 e V3: cobertura, padrões e visualizações
+## Instalação
 
-A prévia mostra o histórico disponível antes de analisar. Amostra insuficiente
-recebe aviso e não gera conclusões comparativas. A extensão V3 acrescenta
-26 indicadores de progressão, finalizações por zonas e pressão espacial,
-sequências e participação histórica, com dois gráficos e hipóteses rastreáveis.
-Formações registradas são descritivas; não há escalação sugerida ou treinamento.
-
-```bash
-MPLCONFIGDIR=/tmp/managerai-mpl venv/bin/python -m streamlit run streamlit_app.py
-```
-
-Abra **http://localhost:8501** e marque **Incluir análise tática por eventos (V3)**.
-O ambiente virtual atual já tem as dependências; para um ambiente novo, instale
-`requirements-v3.txt`. A CLI anterior e o JSON V1/V2 permanecem disponíveis.
-
-- [Tutorial V3: interface, demonstração e todos os testes](docs/TUTORIAL_V3.md)
-- [Entrega, validação, limitações e próximos passos](docs/RELATORIO_FINAL_V2_2_V3.md)
-- [Relatório V3 City × Arsenal](outputs/v3_demo_city_arsenal/report.md)
-- [Relatório V3 Real Madrid × Barcelona — amostra insuficiente](outputs/v3_demo_real_madrid_barcelona/report.md)
-- [Auditoria de viabilidade dos dados](docs/V3_DATA_FEASIBILITY.md)
-- [Conferência independente de métricas](docs/V3_METRICS_CHECK.md)
-- [Contrato e fórmulas V3](docs/REPORT_SCHEMA_V3.md)
-- [Correções da V2.2](docs/CHANGELOG_V2_2.md)
-
-## V2: interface e relatório para a comissão técnica
-
-A interface permite escolher equipes por nome, partida histórica ou data livre e
-cenário manual; o relatório apresenta observações com números, oito indicadores
-priorizados e ajustes condicionais para avaliação em treino/vídeo. Os detalhes
-técnicos continuam disponíveis, e o JSON preserva o contrato da V1.
-
-O Streamlit é opcional e fica separado do núcleo:
+Requer Python 3.12+. Na raiz do checkout, crie o ambiente **somente se ainda não
+existir** e instale a aplicação com UI e gráficos:
 
 ```bash
-venv/bin/python -m pip install -r requirements-ui.txt
-venv/bin/python -m streamlit run streamlit_app.py
+python3 -m venv venv
+venv/bin/python -m pip install -r requirements.txt
 ```
 
-Abra **http://localhost:8501**. Após iniciar o aplicativo, toda a seleção e o download
-dos relatórios acontecem no navegador, sem digitar IDs ou comandos de análise.
+Se o ambiente já existe, execute apenas a instalação necessária. `requirements.txt`
+seleciona `.[v3]`; versões e extras `ui`, `v3`, `dev` e `eda` são definidos no
+`pyproject.toml`. O núcleo pode ser usado sem dependências externas via
+`PYTHONPATH=src`; EDA e ferramentas de desenvolvimento são opcionais. Dependências
+de treinamento/fine-tuning ainda não foram escolhidas.
 
-- [Tutorial da interface e testes V2](docs/TUTORIAL_V2.md)
-- [Mudanças, verificações e próximos passos](CHANGELOG_V2.md)
-- [Novo relatório Manchester City × Arsenal](outputs/v2_city_arsenal/report.md)
-- [JSON técnico correspondente](outputs/v2_city_arsenal/report.json)
+O dataset é provisionado separadamente em `open-data/data/`; um clone novo do
+ManagerAI não o inclui. Preserve a revisão dos dados e consulte as condições em
+`open-data/README.md` e `open-data/LICENSE.pdf`. Nunca escreva resultados nos brutos.
 
-## CLI e testes do núcleo
-
-Requisito do núcleo V1/V2: **Python 3.12+**, apenas biblioteca padrão. A CLI `--v3` acrescenta gráficos e usa Matplotlib. O `requirements.txt`
-existente pertence ao ambiente ampliado da EDA e não precisa ser instalado para o MVP.
+## Executar
 
 ```bash
-PYTHONPATH=src python3 -B -m unittest discover -s tests -v
-PYTHONPATH=src python3 -B -m managerai teams --competition-id 2 --season-id 27
-PYTHONPATH=src python3 -B -m managerai analyze --competition-id 2 --season-id 27 --team-id 36 --opponent-id 1 --target-match-id 3754314 --output-dir outputs/minha_primeira_analise
+MPLCONFIGDIR=/tmp/managerai-mpl venv/bin/python -B -m streamlit run streamlit_app.py
 ```
 
-O último comando exige um diretório de saída **novo**. Abra `report.md` para leitura
-e `report.json` para métricas, partidas-fonte, dispersão, denominadores e hashes.
+Abra http://localhost:8501, selecione equipes, referência e janela; confira a
+cobertura e marque **Incluir análise tática por eventos (V3)** antes de analisar.
+Para outra raiz de dados, configure `MANAGERAI_DATA_ROOT`.
 
-- [Tutorial completo: execução, testes e diagnóstico](docs/TUTORIAL_TESTES.md)
-- [Dicionário de dados e qualidade](docs/data_dictionary.md)
-- [Definições das métricas e diferenças em relação à EDA](docs/metrics.md)
-- [Regras das hipóteses](docs/tactical_rules.md)
-- [Arquitetura e contrato do relatório](docs/architecture.md)
-- [Avaliação e decisão sobre aprendizado de máquina](docs/evaluation.md)
-- [Especificação do produto](SPEC_MVP_ANALISE_TATICA_STATSBOMB.md)
-- [EDA original](outputs/statsbomb_eda_20261002_exec6/RELATORIO.md)
+Pela CLI, escolha um diretório de saída novo:
 
-Formações, escalações, disponibilidade presente e eficácia causal não são inferidas.
-Fonte dos dados: StatsBomb Open Data; consulte `open-data/README.md` e
-`open-data/LICENSE.pdf`, inclusive as condições de atribuição ao compartilhar análises.
+```bash
+MPLCONFIGDIR=/tmp/managerai-mpl PYTHONPATH=src venv/bin/python -B -m managerai analyze --competition-id 2 --season-id 27 --team-id 36 --opponent-id 1 --target-match-id 3754314 --v3 --output-dir /tmp/managerai-city-v3-01
+```
+
+A CLI também oferece `catalog`, `teams`, `matches` e `audit`. Retire `--v3` para o
+contrato legado; use a opção global `--data-root` antes do subcomando para mudar os
+dados. Os resultados incluem fontes, hashes, amostras e denominadores.
+
+## Validar
+
+```bash
+PYTHONPATH=src python3 -B -S -m unittest discover -s tests -v
+MANAGERAI_RUN_LOCAL_TESTS=1 MPLCONFIGDIR=/tmp/managerai-mpl PYTHONPATH=src venv/bin/python -B -m unittest discover -s tests -v
+PYTHONPATH=src venv/bin/python -B outputs/v22_v3_validation/check_metrics.py
+```
+
+O primeiro comando valida sem pacotes opcionais; o segundo inclui dados reais,
+UI e gráficos quando provisionados. Os testes criam fixtures temporárias, preservam
+os brutos e conferem a fixture congelada. Pulos não são testes aprovados.
+
+- [Estado atual, arquitetura, métricas, contratos e procedimentos](docs/CURRENT_VERSION.md)
+- [Pendências, decisões e resultados reais de validação](docs/PENDING.md)
+- [Exemplo V3 City × Arsenal](outputs/v3_demo_city_arsenal/report.md)
+- [Exemplo V3 Real × Barcelona: amostra insuficiente](outputs/v3_demo_real_madrid_barcelona/report.md)
+
+## Limites e próximos passos
+
+Hipóteses são regras exploratórias para revisar em vídeo/treino; não demonstram
+eficácia causal. xG não é probabilidade de vitória; pressão registrada não comprova
+sucesso. Amostras insuficientes geram avisos e abstenção. Contexto manual não altera
+os cálculos; formações e atletas históricos não comprovam disponibilidade atual.
+
+Modelo especializado de IA, fine-tuning, integração LLM e recomendações de
+escalação **não estão implementados**. Exigem tarefa, dados/rótulos e avaliação
+independentes, preservando o núcleo determinístico como baseline.

@@ -98,7 +98,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
         return 0
     except ImportError as exc:
-        print(f"Erro: dependência opcional ausente ({exc.name}). Para gráficos V3, instale requirements-v3.txt no ambiente virtual.", file=sys.stderr)
+        print(f"Erro: dependência opcional ausente ({exc.name}). Para gráficos V3, execute python -m pip install '.[v3]' na raiz, usando o Python do ambiente virtual.", file=sys.stderr)
         return 2
     except (DataError, ValueError, OSError, KeyError, TypeError) as exc:
         print(f"Erro: {exc}", file=sys.stderr)

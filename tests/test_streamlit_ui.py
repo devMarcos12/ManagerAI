@@ -45,7 +45,7 @@ class AdapterTests(LocalFixture):
         self.assertIn("diferentes", friendly_error(ctx.exception))
 
 
-@unittest.skipUnless(HAS_STREAMLIT, "Interface opcional: instale requirements-ui.txt no Python usado pelos testes")
+@unittest.skipUnless(HAS_STREAMLIT, "Interface opcional: instale '.[ui]' no Python usado pelos testes")
 class StreamlitTests(LocalFixture):
     def setUp(self):
         super().setUp()

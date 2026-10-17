@@ -79,7 +79,7 @@ class V3Integration(LocalFixture):
         with self.assertRaises(DataError):
             extend_report(self.root, old)
 
-    @unittest.skipUnless(importlib.util.find_spec("matplotlib"), "Visualizações opcionais: requirements-v3.txt")
+    @unittest.skipUnless(importlib.util.find_spec("matplotlib"), "Visualizações opcionais: instale '.[v3]' no Python usado pelos testes")
     def test_cli_writes_new_artifacts_and_refuses_overwrite(self):
         output = self.root.parent / 'new-report'
         args = ['--data-root', str(self.root), 'analyze', '--competition-id', '2', '--season-id', '27',

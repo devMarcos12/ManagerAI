@@ -6,15 +6,30 @@ build-backend = "setuptools.build_meta"
 name = "managerai"
 version = "0.1.0"
 description = "Apoio histórico e auditável à preparação pré-jogo"
+readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
 
 [project.optional-dependencies]
-ui = ["streamlit>=1.65,<2"]
-v3 = ["streamlit>=1.65,<2", "matplotlib>=3.8,<4"]
+# Pins diretos já usados no ambiente validado; transitivas não estão congeladas.
+ui = ["streamlit==1.65.0"]
+v3 = ["streamlit==1.65.0", "matplotlib==3.11.2"]
+# unittest é da biblioteca padrão; os opcionais abaixo habilitam toda a suíte UI/V3.
+dev = ["streamlit==1.65.0", "matplotlib==3.11.2"]
+eda = [
+    "pandas==3.0.5",
+    "numpy==2.5.2",
+    "pyarrow==25.0.1",
+    "matplotlib==3.11.2",
+    "seaborn==0.13.2",
+    "nbformat==5.11.1",
+    "pillow==12.3.0",
+]
+# Fine-tuning: nenhuma dependência escolhida até definir tarefa/modelo/avaliação.
 
 [project.scripts]
 managerai = "managerai.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["managerai*"]
