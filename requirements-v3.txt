@@ -1,0 +1,2 @@
+-r requirements-ui.txt
+matplotlib==3.11.2

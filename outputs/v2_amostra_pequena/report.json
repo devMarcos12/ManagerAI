@@ -1,0 +1,1765 @@
+{
+  "metadata": {
+    "competition_id": 2,
+    "season_id": 27,
+    "competition": "Premier League",
+    "season": "2015/2016",
+    "team": "Manchester City",
+    "opponent": "Arsenal",
+    "cutoff_date": "2016-05-08T17:00:00.000",
+    "target_match_id": 3754314,
+    "formal_home_team_id": 36,
+    "matches_requested_team": 2,
+    "matches_requested_opponent": 2,
+    "matches_analyzed_team": 2,
+    "matches_analyzed_opponent": 2,
+    "data_fingerprint": "9604b216c34837427071d88ded59d65130bbbde226b4c7dde1165231351113d6",
+    "software_version": "0.1.0"
+  },
+  "request": {
+    "competition_id": 2,
+    "season_id": 27,
+    "team_id": 36,
+    "opponent_id": 1,
+    "cutoff_date": null,
+    "target_match_id": 3754314,
+    "recent_matches_window": 2,
+    "venue": "desconhecido",
+    "match_context": "regular",
+    "strategic_objective": "equilibrado",
+    "unavailable_player_ids": [],
+    "notes": ""
+  },
+  "team_profile": {
+    "team_id": 36,
+    "team_name": "Manchester City",
+    "match_ids": [
+      3754307,
+      3754320
+    ],
+    "period_start": "2016-04-23",
+    "period_end": "2016-05-01",
+    "sample_status": "insuficiente",
+    "metrics": {
+      "xg_for": {
+        "metric_id": "xg_for",
+        "value": 1.8652200887500001,
+        "unit": "xG/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 3.7304401775000002,
+        "denominator": 2,
+        "median": 1.8652200887500001,
+        "standard_deviation": 1.5688699504316184,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 2.9745786695,
+            "numerator": 2.9745786695,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 0.7558615080000001,
+            "numerator": 0.7558615080000001,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_against": {
+        "metric_id": "xg_against",
+        "value": 2.0285574165000004,
+        "unit": "xG/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 4.057114833000001,
+        "denominator": 2,
+        "median": 2.0285574165000004,
+        "standard_deviation": 1.4216985033195233,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 1.023264764,
+            "numerator": 1.023264764,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 3.0338500690000005,
+            "numerator": 3.0338500690000005,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_for": {
+        "metric_id": "shots_for",
+        "value": 8.5,
+        "unit": "eventos/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 17,
+        "denominator": 2,
+        "median": 8.5,
+        "standard_deviation": 3.5355339059327378,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 6,
+            "numerator": 6,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_against": {
+        "metric_id": "shots_against",
+        "value": 14.5,
+        "unit": "eventos/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 29,
+        "denominator": 2,
+        "median": 14.5,
+        "standard_deviation": 0.7071067811865476,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 14,
+            "numerator": 14,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 15,
+            "numerator": 15,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_per_shot": {
+        "metric_id": "xg_per_shot",
+        "value": 0.21943765750000002,
+        "unit": "xG/chute",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 3.7304401775000002,
+        "denominator": 17,
+        "median": 0.1981965803409091,
+        "standard_deviation": 0.1021340259525191,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 0.2704162426818182,
+            "numerator": 2.9745786695,
+            "denominator": 11
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 0.12597691800000002,
+            "numerator": 0.7558615080000001,
+            "denominator": 6
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy": {
+        "metric_id": "pass_accuracy",
+        "value": 83.36252189141857,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 952,
+        "denominator": 1142,
+        "median": 83.31987987765086,
+        "standard_deviation": 0.6621943462804621,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 82.85163776493256,
+            "numerator": 430,
+            "denominator": 519
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 83.78812199036918,
+            "numerator": 522,
+            "denominator": 623
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_under_pressure": {
+        "metric_id": "pass_accuracy_under_pressure",
+        "value": 74.8663101604278,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 140,
+        "denominator": 187,
+        "median": 74.61309523809524,
+        "standard_deviation": 1.8098566423227114,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 73.33333333333333,
+            "numerator": 55,
+            "denominator": 75
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 75.89285714285714,
+            "numerator": 85,
+            "denominator": 112
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_explicit_no_pressure": {
+        "metric_id": "pass_accuracy_explicit_no_pressure",
+        "value": null,
+        "unit": "%",
+        "sample_size": 0,
+        "match_ids": [],
+        "numerator": null,
+        "denominator": null,
+        "median": null,
+        "standard_deviation": null,
+        "per_match": [],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_unmarked_pressure": {
+        "metric_id": "pass_accuracy_unmarked_pressure",
+        "value": 85.0261780104712,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 812,
+        "denominator": 955,
+        "median": 84.98902522875125,
+        "standard_deviation": 0.7489190931010049,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 84.45945945945945,
+            "numerator": 375,
+            "denominator": 444
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 85.51859099804305,
+            "numerator": 437,
+            "denominator": 511
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_entries": {
+        "metric_id": "final_third_entries",
+        "value": 46.81238325633662,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 100,
+        "denominator": 192.25682124999997,
+        "median": 46.81896196517195,
+        "standard_deviation": 13.28690414908077,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 37.423701940381264,
+            "numerator": 40,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 56.21422198996264,
+            "numerator": 60,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_attempts": {
+        "metric_id": "final_third_attempts",
+        "value": 60.38797440067423,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 129,
+        "denominator": 192.25682124999997,
+        "median": 60.392920826499235,
+        "standard_deviation": 9.99021045958868,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 53.328775265043305,
+            "numerator": 57,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 67.45706638795517,
+            "numerator": 72,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "box_entries": {
+        "metric_id": "box_entries",
+        "value": 15.916210307154449,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 34,
+        "denominator": 192.25682124999997,
+        "median": 15.912284656939523,
+        "standard_deviation": 7.928567661834726,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 21.518628615719226,
+            "numerator": 23,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 10.305940698159818,
+            "numerator": 11,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressures": {
+        "metric_id": "pressures",
+        "value": 150.26775025284053,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 321,
+        "denominator": 192.25682124999997,
+        "median": 150.28585226015866,
+        "standard_deviation": 36.560310261783094,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 124.4338089517677,
+            "numerator": 133,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 176.1378955685496,
+            "numerator": 188,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressure_high_share": {
+        "metric_id": "pressure_high_share",
+        "value": 17.757009345794394,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 57,
+        "denominator": 321,
+        "median": 18.129099344104944,
+        "standard_deviation": 3.0711804685993864,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 20.30075187969925,
+            "numerator": 27,
+            "denominator": 133
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 15.957446808510639,
+            "numerator": 30,
+            "denominator": 188
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "counterpressures": {
+        "metric_id": "counterpressures",
+        "value": 36.51365893994256,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 78,
+        "denominator": 192.25682124999997,
+        "median": 36.52088817495121,
+        "standard_deviation": 14.600760580120342,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 26.196591358266886,
+            "numerator": 28,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 46.845184991635534,
+            "numerator": 50,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "recoveries": {
+        "metric_id": "recoveries",
+        "value": 50.089250084280174,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 107,
+        "denominator": 192.25682124999997,
+        "median": 50.08894685532418,
+        "standard_deviation": 0.6124262639142695,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 50.52199761951471,
+            "numerator": 54,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 49.65589609113366,
+            "numerator": 53,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "interceptions": {
+        "metric_id": "interceptions",
+        "value": 11.234971981520788,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 24,
+        "denominator": 192.25682124999997,
+        "median": 11.23891094402299,
+        "standard_deviation": 7.955454257596394,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 5.61355529105719,
+            "numerator": 6,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 16.86426659698879,
+            "numerator": 18,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "duel_tackles": {
+        "metric_id": "duel_tackles",
+        "value": 19.19307713509801,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 41,
+        "denominator": 192.25682124999997,
+        "median": 19.198003362969907,
+        "standard_deviation": 9.949417003950291,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 12.16270313062391,
+            "numerator": 13,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 26.2333035953159,
+            "numerator": 28,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_low_y": {
+        "metric_id": "lane_low_y",
+        "value": 32.828529555447,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 1344,
+        "denominator": 4094,
+        "median": 32.77362717846391,
+        "standard_deviation": 0.9404534054460018,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 32.108626198083066,
+            "numerator": 603,
+            "denominator": 1878
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 33.438628158844764,
+            "numerator": 741,
+            "denominator": 2216
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_central": {
+        "metric_id": "lane_central",
+        "value": 30.972154372252078,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 1268,
+        "denominator": 4094,
+        "median": 31.07913019073213,
+        "standard_deviation": 1.8324483987450804,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 32.37486687965921,
+            "numerator": 608,
+            "denominator": 1878
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 29.783393501805055,
+            "numerator": 660,
+            "denominator": 2216
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_high_y": {
+        "metric_id": "lane_high_y",
+        "value": 36.19931607230093,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3754307,
+          3754320
+        ],
+        "numerator": 1482,
+        "denominator": 4094,
+        "median": 36.147242630803945,
+        "standard_deviation": 0.8919949932990812,
+        "per_match": [
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 35.51650692225772,
+            "numerator": 667,
+            "denominator": 1878
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 36.77797833935018,
+            "numerator": 815,
+            "denominator": 2216
+          }
+        ],
+        "formula_version": "1.0.0"
+      }
+    },
+    "quality": {
+      "locations_missing": 38
+    }
+  },
+  "opponent_profile": {
+    "team_id": 1,
+    "team_name": "Arsenal",
+    "match_ids": [
+      3753990,
+      3754184
+    ],
+    "period_start": "2016-04-24",
+    "period_end": "2016-04-30",
+    "sample_status": "insuficiente",
+    "metrics": {
+      "xg_for": {
+        "metric_id": "xg_for",
+        "value": 1.0763980995,
+        "unit": "xG/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 2.152796199,
+        "denominator": 2,
+        "median": 1.0763980995,
+        "standard_deviation": 0.3701191849141031,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 1.338111885,
+            "numerator": 1.338111885,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 0.814684314,
+            "numerator": 0.814684314,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_against": {
+        "metric_id": "xg_against",
+        "value": 0.658523371,
+        "unit": "xG/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 1.317046742,
+        "denominator": 2,
+        "median": 0.658523371,
+        "standard_deviation": 0.2216900377294561,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 0.501764842,
+            "numerator": 0.501764842,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 0.8152819,
+            "numerator": 0.8152819,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_for": {
+        "metric_id": "shots_for",
+        "value": 17.0,
+        "unit": "eventos/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 34,
+        "denominator": 2,
+        "median": 17.0,
+        "standard_deviation": 4.242640687119285,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 20,
+            "numerator": 20,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 14,
+            "numerator": 14,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_against": {
+        "metric_id": "shots_against",
+        "value": 12.0,
+        "unit": "eventos/jogo",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 24,
+        "denominator": 2,
+        "median": 12.0,
+        "standard_deviation": 0.0,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 12,
+            "numerator": 12,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 12,
+            "numerator": 12,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_per_shot": {
+        "metric_id": "xg_per_shot",
+        "value": 0.06331753526470588,
+        "unit": "xG/chute",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 2.152796199,
+        "denominator": 34,
+        "median": 0.06254866548214286,
+        "standard_deviation": 0.006161627753797074,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 0.06690559425,
+            "numerator": 1.338111885,
+            "denominator": 20
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 0.058191736714285715,
+            "numerator": 0.814684314,
+            "denominator": 14
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy": {
+        "metric_id": "pass_accuracy",
+        "value": 82.90479499652537,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 1193,
+        "denominator": 1439,
+        "median": 82.87715058959985,
+        "standard_deviation": 1.4425087689661011,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 81.85714285714286,
+            "numerator": 573,
+            "denominator": 700
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 83.89715832205684,
+            "numerator": 620,
+            "denominator": 739
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_under_pressure": {
+        "metric_id": "pass_accuracy_under_pressure",
+        "value": 71.61290322580645,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 111,
+        "denominator": 155,
+        "median": 72.02141900937082,
+        "standard_deviation": 8.140720640166402,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 66.26506024096386,
+            "numerator": 55,
+            "denominator": 83
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 77.77777777777777,
+            "numerator": 56,
+            "denominator": 72
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_explicit_no_pressure": {
+        "metric_id": "pass_accuracy_explicit_no_pressure",
+        "value": null,
+        "unit": "%",
+        "sample_size": 0,
+        "match_ids": [],
+        "numerator": null,
+        "denominator": null,
+        "median": null,
+        "standard_deviation": null,
+        "per_match": [],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_unmarked_pressure": {
+        "metric_id": "pass_accuracy_unmarked_pressure",
+        "value": 84.26791277258567,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 1082,
+        "denominator": 1284,
+        "median": 84.25617013211385,
+        "standard_deviation": 0.4264575242941788,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 83.9546191247974,
+            "numerator": 518,
+            "denominator": 617
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 84.55772113943029,
+            "numerator": 564,
+            "denominator": 667
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_entries": {
+        "metric_id": "final_third_entries",
+        "value": 66.81277607903546,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 143,
+        "denominator": 192.62782891666666,
+        "median": 66.78796575003233,
+        "standard_deviation": 3.738887098821968,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 64.14417332836442,
+            "numerator": 68,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 69.43175817170024,
+            "numerator": 75,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_attempts": {
+        "metric_id": "final_third_attempts",
+        "value": 86.90333112378038,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 186,
+        "denominator": 192.62782891666666,
+        "median": 86.91098506305627,
+        "standard_deviation": 1.1534395537536497,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 87.72658999320427,
+            "numerator": 93,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 86.09538013290829,
+            "numerator": 93,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "box_entries": {
+        "metric_id": "box_entries",
+        "value": 26.164443779202696,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 56,
+        "denominator": 192.62782891666666,
+        "median": 26.17551813651316,
+        "standard_deviation": 1.6688924871019546,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 27.355603331214233,
+            "numerator": 29,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 24.995432941812084,
+            "numerator": 27,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressures": {
+        "metric_id": "pressures",
+        "value": 125.68277458224152,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 269,
+        "denominator": 192.62782891666666,
+        "median": 125.40005081528076,
+        "standard_deviation": 42.6061357222081,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 95.27296332595301,
+            "numerator": 101,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 155.5271383046085,
+            "numerator": 168,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressure_high_share": {
+        "metric_id": "pressure_high_share",
+        "value": 23.79182156133829,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 64,
+        "denominator": 269,
+        "median": 22.996228194247998,
+        "standard_deviation": 4.517348837848995,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 19.801980198019802,
+            "numerator": 20,
+            "denominator": 101
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 26.19047619047619,
+            "numerator": 44,
+            "denominator": 168
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "counterpressures": {
+        "metric_id": "counterpressures",
+        "value": 36.44333240674661,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 78,
+        "denominator": 192.62782891666666,
+        "median": 36.39392245030437,
+        "standard_deviation": 7.446021722321353,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 31.128789997588612,
+            "numerator": 33,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 41.65905490302014,
+            "numerator": 45,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "recoveries": {
+        "metric_id": "recoveries",
+        "value": 52.796109768748295,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 113,
+        "denominator": 192.62782891666666,
+        "median": 52.822684606323115,
+        "standard_deviation": 4.004796443822907,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 55.65450332902206,
+            "numerator": 59,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 49.99086588362417,
+            "numerator": 54,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "interceptions": {
+        "metric_id": "interceptions",
+        "value": 12.614999679258442,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 27,
+        "denominator": 192.62782891666666,
+        "median": 12.550336143818814,
+        "standard_deviation": 9.744717951501864,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 5.659779999561565,
+            "numerator": 6,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 19.440892288076064,
+            "numerator": 21,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "duel_tackles": {
+        "metric_id": "duel_tackles",
+        "value": 12.614999679258442,
+        "unit": "eventos/90",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 27,
+        "denominator": 192.62782891666666,
+        "median": 12.567876034789741,
+        "standard_deviation": 7.101477224719507,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 7.546373332748754,
+            "numerator": 8,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 17.589378736830728,
+            "numerator": 19,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_low_y": {
+        "metric_id": "lane_low_y",
+        "value": 35.765957446808514,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 1681,
+        "denominator": 4700,
+        "median": 35.74926344644164,
+        "standard_deviation": 0.7205308060177101,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 35.23977122745271,
+            "numerator": 801,
+            "denominator": 2273
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 36.25875566543057,
+            "numerator": 880,
+            "denominator": 2427
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_central": {
+        "metric_id": "lane_central",
+        "value": 36.91489361702128,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 1735,
+        "denominator": 4700,
+        "median": 36.91897557377581,
+        "standard_deviation": 0.1761815937365654,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 37.04355477342719,
+            "numerator": 842,
+            "denominator": 2273
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 36.79439637412443,
+            "numerator": 893,
+            "denominator": 2427
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_high_y": {
+        "metric_id": "lane_high_y",
+        "value": 27.319148936170212,
+        "unit": "%",
+        "sample_size": 2,
+        "match_ids": [
+          3753990,
+          3754184
+        ],
+        "numerator": 1284,
+        "denominator": 4700,
+        "median": 27.33176097978255,
+        "standard_deviation": 0.5443492122811473,
+        "per_match": [
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 27.716673999120104,
+            "numerator": 630,
+            "denominator": 2273
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 26.946847960444995,
+            "numerator": 654,
+            "denominator": 2427
+          }
+        ],
+        "formula_version": "1.0.0"
+      }
+    },
+    "quality": {
+      "locations_missing": 41
+    }
+  },
+  "comparison": [
+    {
+      "metric_id": "xg_for",
+      "label": "xG a favor",
+      "unit": "xG/jogo",
+      "team_value": 1.8652200887500001,
+      "opponent_value": 1.0763980995,
+      "difference_team_minus_opponent": 0.7888219892500001,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.xg_for",
+        "opponent_profile.metrics.xg_for"
+      ]
+    },
+    {
+      "metric_id": "xg_against",
+      "label": "xG contra",
+      "unit": "xG/jogo",
+      "team_value": 2.0285574165000004,
+      "opponent_value": 0.658523371,
+      "difference_team_minus_opponent": 1.3700340455000004,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.xg_against",
+        "opponent_profile.metrics.xg_against"
+      ]
+    },
+    {
+      "metric_id": "shots_for",
+      "label": "Finalizações a favor",
+      "unit": "eventos/jogo",
+      "team_value": 8.5,
+      "opponent_value": 17.0,
+      "difference_team_minus_opponent": -8.5,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.shots_for",
+        "opponent_profile.metrics.shots_for"
+      ]
+    },
+    {
+      "metric_id": "shots_against",
+      "label": "Finalizações contra",
+      "unit": "eventos/jogo",
+      "team_value": 14.5,
+      "opponent_value": 12.0,
+      "difference_team_minus_opponent": 2.5,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.shots_against",
+        "opponent_profile.metrics.shots_against"
+      ]
+    },
+    {
+      "metric_id": "xg_per_shot",
+      "label": "xG por chute",
+      "unit": "xG/chute",
+      "team_value": 0.21943765750000002,
+      "opponent_value": 0.06331753526470588,
+      "difference_team_minus_opponent": 0.15612012223529415,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.xg_per_shot",
+        "opponent_profile.metrics.xg_per_shot"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy",
+      "label": "Acerto de passe",
+      "unit": "%",
+      "team_value": 83.36252189141857,
+      "opponent_value": 82.90479499652537,
+      "difference_team_minus_opponent": 0.45772689489319873,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy",
+        "opponent_profile.metrics.pass_accuracy"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy_under_pressure",
+      "label": "Acerto com pressão marcada",
+      "unit": "%",
+      "team_value": 74.8663101604278,
+      "opponent_value": 71.61290322580645,
+      "difference_team_minus_opponent": 3.2534069346213528,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy_under_pressure",
+        "opponent_profile.metrics.pass_accuracy_under_pressure"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy_explicit_no_pressure",
+      "label": "Acerto com ausência explícita de pressão",
+      "unit": "%",
+      "team_value": null,
+      "opponent_value": null,
+      "difference_team_minus_opponent": null,
+      "team_sample_size": 0,
+      "opponent_sample_size": 0,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy_explicit_no_pressure",
+        "opponent_profile.metrics.pass_accuracy_explicit_no_pressure"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy_unmarked_pressure",
+      "label": "Acerto com pressão não marcada",
+      "unit": "%",
+      "team_value": 85.0261780104712,
+      "opponent_value": 84.26791277258567,
+      "difference_team_minus_opponent": 0.7582652378855244,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy_unmarked_pressure",
+        "opponent_profile.metrics.pass_accuracy_unmarked_pressure"
+      ]
+    },
+    {
+      "metric_id": "final_third_entries",
+      "label": "Entradas no terço final por passe completo/condução",
+      "unit": "eventos/90",
+      "team_value": 46.81238325633662,
+      "opponent_value": 66.81277607903546,
+      "difference_team_minus_opponent": -20.000392822698842,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.final_third_entries",
+        "opponent_profile.metrics.final_third_entries"
+      ]
+    },
+    {
+      "metric_id": "final_third_attempts",
+      "label": "Tentativas de entrada no terço final",
+      "unit": "eventos/90",
+      "team_value": 60.38797440067423,
+      "opponent_value": 86.90333112378038,
+      "difference_team_minus_opponent": -26.515356723106144,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.final_third_attempts",
+        "opponent_profile.metrics.final_third_attempts"
+      ]
+    },
+    {
+      "metric_id": "box_entries",
+      "label": "Entradas na área por passe completo/condução",
+      "unit": "eventos/90",
+      "team_value": 15.916210307154449,
+      "opponent_value": 26.164443779202696,
+      "difference_team_minus_opponent": -10.248233472048247,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.box_entries",
+        "opponent_profile.metrics.box_entries"
+      ]
+    },
+    {
+      "metric_id": "pressures",
+      "label": "Eventos de pressão",
+      "unit": "eventos/90",
+      "team_value": 150.26775025284053,
+      "opponent_value": 125.68277458224152,
+      "difference_team_minus_opponent": 24.584975670599007,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.pressures",
+        "opponent_profile.metrics.pressures"
+      ]
+    },
+    {
+      "metric_id": "pressure_high_share",
+      "label": "Pressões no terço ofensivo",
+      "unit": "%",
+      "team_value": 17.757009345794394,
+      "opponent_value": 23.79182156133829,
+      "difference_team_minus_opponent": -6.034812215543894,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.pressure_high_share",
+        "opponent_profile.metrics.pressure_high_share"
+      ]
+    },
+    {
+      "metric_id": "counterpressures",
+      "label": "Pressure com contrapressão marcada",
+      "unit": "eventos/90",
+      "team_value": 36.51365893994256,
+      "opponent_value": 36.44333240674661,
+      "difference_team_minus_opponent": 0.07032653319594573,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.counterpressures",
+        "opponent_profile.metrics.counterpressures"
+      ]
+    },
+    {
+      "metric_id": "recoveries",
+      "label": "Eventos de recuperação",
+      "unit": "eventos/90",
+      "team_value": 50.089250084280174,
+      "opponent_value": 52.796109768748295,
+      "difference_team_minus_opponent": -2.706859684468121,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.recoveries",
+        "opponent_profile.metrics.recoveries"
+      ]
+    },
+    {
+      "metric_id": "interceptions",
+      "label": "Eventos de interceptação",
+      "unit": "eventos/90",
+      "team_value": 11.234971981520788,
+      "opponent_value": 12.614999679258442,
+      "difference_team_minus_opponent": -1.3800276977376544,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.interceptions",
+        "opponent_profile.metrics.interceptions"
+      ]
+    },
+    {
+      "metric_id": "duel_tackles",
+      "label": "Duelos do tipo Tackle",
+      "unit": "eventos/90",
+      "team_value": 19.19307713509801,
+      "opponent_value": 12.614999679258442,
+      "difference_team_minus_opponent": 6.578077455839569,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.duel_tackles",
+        "opponent_profile.metrics.duel_tackles"
+      ]
+    },
+    {
+      "metric_id": "lane_low_y",
+      "label": "Ações localizadas em y menor que 80/3",
+      "unit": "%",
+      "team_value": 32.828529555447,
+      "opponent_value": 35.765957446808514,
+      "difference_team_minus_opponent": -2.9374278913615157,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.lane_low_y",
+        "opponent_profile.metrics.lane_low_y"
+      ]
+    },
+    {
+      "metric_id": "lane_central",
+      "label": "Ações localizadas no corredor central",
+      "unit": "%",
+      "team_value": 30.972154372252078,
+      "opponent_value": 36.91489361702128,
+      "difference_team_minus_opponent": -5.9427392447692,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.lane_central",
+        "opponent_profile.metrics.lane_central"
+      ]
+    },
+    {
+      "metric_id": "lane_high_y",
+      "label": "Ações localizadas em y maior ou igual a 160/3",
+      "unit": "%",
+      "team_value": 36.19931607230093,
+      "opponent_value": 27.319148936170212,
+      "difference_team_minus_opponent": 8.88016713613072,
+      "team_sample_size": 2,
+      "opponent_sample_size": 2,
+      "evidence_metrics": [
+        "team_profile.metrics.lane_high_y",
+        "opponent_profile.metrics.lane_high_y"
+      ]
+    }
+  ],
+  "key_findings": [
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: xg a favor.",
+      "metric_id": "xg_for",
+      "team_value": 1.8652200887500001,
+      "opponent_value": 1.0763980995,
+      "unit": "xG/jogo",
+      "evidence_metrics": [
+        "team_profile.metrics.xg_for",
+        "opponent_profile.metrics.xg_for"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    },
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: xg contra.",
+      "metric_id": "xg_against",
+      "team_value": 2.0285574165000004,
+      "opponent_value": 0.658523371,
+      "unit": "xG/jogo",
+      "evidence_metrics": [
+        "team_profile.metrics.xg_against",
+        "opponent_profile.metrics.xg_against"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    },
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: entradas no terço final por passe completo/condução.",
+      "metric_id": "final_third_entries",
+      "team_value": 46.81238325633662,
+      "opponent_value": 66.81277607903546,
+      "unit": "eventos/90",
+      "evidence_metrics": [
+        "team_profile.metrics.final_third_entries",
+        "opponent_profile.metrics.final_third_entries"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    },
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: eventos de pressão.",
+      "metric_id": "pressures",
+      "team_value": 150.26775025284053,
+      "opponent_value": 125.68277458224152,
+      "unit": "eventos/90",
+      "evidence_metrics": [
+        "team_profile.metrics.pressures",
+        "opponent_profile.metrics.pressures"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    }
+  ],
+  "tactical_hypotheses": [],
+  "formation_options": [],
+  "lineup_options": [],
+  "data_gaps": [
+    "Adversário: amostra insuficiente (2 jogos; mínimo operacional 5).",
+    "Adversário: locations_missing=41; consultar metodologia e dicionário de dados.",
+    "Adversário: pass_accuracy_explicit_no_pressure calculável em 0/2 jogos.",
+    "Ausência de marcação under_pressure é mantida separada de False explícito.",
+    "Equipe: amostra insuficiente (2 jogos; mínimo operacional 5).",
+    "Equipe: locations_missing=38; consultar metodologia e dicionário de dados.",
+    "Equipe: pass_accuracy_explicit_no_pressure calculável em 0/2 jogos.",
+    "Eventos não equivalem a tracking; a análise não usa dados 360 nem posicionamento integral sem bola.",
+    "Formação e escalação: não suportado pelos dados atuais; formações registradas não comprovam adequação tática ou disponibilidade.",
+    "Nenhuma hipótese emitida: amostra ou evidências não satisfazem as regras documentadas.",
+    "Não há inferência de lesões, suspensões, rivalidade, importância competitiva ou mando real.",
+    "Orientação preservada como registrada; corredores usam intervalos de y, sem inferir esquerda/direita tática."
+  ],
+  "methodology": {
+    "baseline": "Determinístico e descritivo; sem treinamento ou inferência causal.",
+    "formula_version": "1.0.0",
+    "rules_version": "1.0.0",
+    "minimum_sample_matches": 5,
+    "sample_policy": "Menos de 5 jogos: insuficiente. A partir de 5: evidência limitada, sem confiança probabilística.",
+    "temporal_policy": "Somente datas anteriores ao corte; mesmo dia excluído conservadoramente. Nunca lê eventos ou escalações do alvo.",
+    "window_policy": "Últimas N partidas agendadas anteriores; ausência de eventos não amplia a janela.",
+    "exposure": "Soma do maior timestamp + duration em cada período 1 e 2, em minutos; proxy de exposição observada, inclui acréscimos.",
+    "aggregation": "Médias por jogo para contagens/xG; taxas por 90 e proporções agregadas por soma dos numeradores/denominadores. Mediana e DP entre jogos válidos.",
+    "coordinates": "Plano StatsBomb 120×80, não metros. Coordenadas inválidas excluídas só dos cálculos espaciais.",
+    "context_policy": "Contexto e notas são declarações do treinador, não fatos verificados nem fatores causais.",
+    "player_policy": "Indisponibilidade manual validada nas escalações anteriores da janela; isso não comprova vínculo/aptidão atual.",
+    "sources": [
+      {
+        "path": "competitions.json",
+        "sha256": "e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa"
+      },
+      {
+        "path": "events/3753990.json",
+        "sha256": "4dfb4e608a5526a30a91e4ae9bc934721b8fa9c9f210549ff25315ba3b718211"
+      },
+      {
+        "path": "events/3754184.json",
+        "sha256": "db78f1180fc60d0e7948f2c85a1acd3f8ba2da7f207a9730ddd9a90afead293e"
+      },
+      {
+        "path": "events/3754307.json",
+        "sha256": "59ce55189c6142381cae6137920dd38d5413f200e242809b97e1b41ebfa52a9f"
+      },
+      {
+        "path": "events/3754320.json",
+        "sha256": "25cfdf00febef482adf8b678724e1c04c907d9ac632ae2b502056e1719ca7177"
+      },
+      {
+        "path": "lineups/3753990.json",
+        "sha256": "9a4905f0428eac212e6d837a85118c96de93c41a702eae01c326ce49f8d316cd"
+      },
+      {
+        "path": "lineups/3754184.json",
+        "sha256": "dc7c56094680ba9b4db0580b2466d9b2d80d1333f0e092cbd5baea68dd3154af"
+      },
+      {
+        "path": "lineups/3754307.json",
+        "sha256": "7359715452bbffa7cea83e5d496453caa3bf266fe3435c2093349e15e060ae4f"
+      },
+      {
+        "path": "lineups/3754320.json",
+        "sha256": "c65eb55098a7ac820c12d1da0686b0e19669694af3233aa144bf92020e7c1407"
+      },
+      {
+        "path": "matches/2/27.json",
+        "sha256": "e07d6d360b30e0cd17f9aeea0db1502d2a5666d298f1b44b83a2d2f21ba3d21b"
+      }
+    ],
+    "attribution": "Fonte: StatsBomb Open Data; consultar README e LICENSE.pdf do conjunto local.",
+    "reporter": "Template determinístico em português; nenhuma chamada a LLM."
+  },
+  "schema_version": "1.0.0"
+}

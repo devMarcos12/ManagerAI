@@ -1,0 +1,4508 @@
+{
+  "metadata": {
+    "competition_id": 2,
+    "season_id": 27,
+    "competition": "Premier League",
+    "season": "2015/2016",
+    "team": "Manchester City",
+    "opponent": "Arsenal",
+    "cutoff_date": "2016-05-08",
+    "target_match_id": null,
+    "formal_home_team_id": null,
+    "matches_requested_team": 10,
+    "matches_requested_opponent": 10,
+    "matches_analyzed_team": 10,
+    "matches_analyzed_opponent": 10,
+    "data_fingerprint": "a35bcbeb3d42705618b1c4463f32ceb6383f19a73699ab6cd3662096db40c915",
+    "software_version": "0.1.0"
+  },
+  "request": {
+    "competition_id": 2,
+    "season_id": 27,
+    "team_id": 36,
+    "opponent_id": 1,
+    "cutoff_date": "2016-05-08",
+    "target_match_id": null,
+    "recent_matches_window": 10,
+    "venue": "casa",
+    "match_context": "regular",
+    "strategic_objective": "proteger vantagem",
+    "unavailable_player_ids": [],
+    "notes": "Cenário manual de treino, não verificado."
+  },
+  "team_profile": {
+    "team_id": 36,
+    "team_name": "Manchester City",
+    "match_ids": [
+      3753991,
+      3754249,
+      3754313,
+      3754124,
+      3754144,
+      3754035,
+      3754322,
+      3754206,
+      3754307,
+      3754320
+    ],
+    "period_start": "2016-03-02",
+    "period_end": "2016-05-01",
+    "sample_status": "limitada",
+    "metrics": {
+      "xg_for": {
+        "metric_id": "xg_for",
+        "value": 1.5803163624,
+        "unit": "xG/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 15.803163624,
+        "denominator": 10,
+        "median": 1.3706164945,
+        "standard_deviation": 1.0752368798585972,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 0.208402952,
+            "numerator": 0.208402952,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 3.2599375489999995,
+            "numerator": 3.2599375489999995,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 0.775856722,
+            "numerator": 0.775856722,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 1.965376267,
+            "numerator": 1.965376267,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 0.7706947195,
+            "numerator": 0.7706947195,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 2.088062234,
+            "numerator": 2.088062234,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 2.3260039010000004,
+            "numerator": 2.3260039010000004,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 0.678389102,
+            "numerator": 0.678389102,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 2.9745786695,
+            "numerator": 2.9745786695,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 0.7558615080000001,
+            "numerator": 0.7558615080000001,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_against": {
+        "metric_id": "xg_against",
+        "value": 1.03104694822,
+        "unit": "xG/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 10.3104694822,
+        "denominator": 10,
+        "median": 1.0042097265,
+        "standard_deviation": 0.7818954800578815,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 1.1228887092,
+            "numerator": 1.1228887092,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 0.452063477,
+            "numerator": 0.452063477,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 0.217737854,
+            "numerator": 0.217737854,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 0.524006822,
+            "numerator": 0.524006822,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 1.1447689720000003,
+            "numerator": 1.1447689720000003,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 1.204284599,
+            "numerator": 1.204284599,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 0.9851546889999999,
+            "numerator": 0.9851546889999999,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 0.602449527,
+            "numerator": 0.602449527,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 1.023264764,
+            "numerator": 1.023264764,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 3.0338500690000005,
+            "numerator": 3.0338500690000005,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_for": {
+        "metric_id": "shots_for",
+        "value": 13.3,
+        "unit": "eventos/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 133,
+        "denominator": 10,
+        "median": 12.5,
+        "standard_deviation": 6.464432603785802,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 4,
+            "numerator": 4,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 22,
+            "numerator": 22,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 15,
+            "numerator": 15,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 25,
+            "numerator": 25,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 15,
+            "numerator": 15,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 13,
+            "numerator": 13,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 12,
+            "numerator": 12,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 10,
+            "numerator": 10,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 6,
+            "numerator": 6,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_against": {
+        "metric_id": "shots_against",
+        "value": 9.4,
+        "unit": "eventos/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 94,
+        "denominator": 10,
+        "median": 11.0,
+        "standard_deviation": 4.427188724235731,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 3,
+            "numerator": 3,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 5,
+            "numerator": 5,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 5,
+            "numerator": 5,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 13,
+            "numerator": 13,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 12,
+            "numerator": 12,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 5,
+            "numerator": 5,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 14,
+            "numerator": 14,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 15,
+            "numerator": 15,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_per_shot": {
+        "metric_id": "xg_per_shot",
+        "value": 0.11882077912781955,
+        "unit": "xG/chute",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 15.803163624,
+        "denominator": 133,
+        "median": 0.10229598434,
+        "standard_deviation": 0.07376417604149212,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 0.052100738,
+            "numerator": 0.208402952,
+            "denominator": 4
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 0.14817897949999997,
+            "numerator": 3.2599375489999995,
+            "denominator": 22
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 0.05172378146666667,
+            "numerator": 0.775856722,
+            "denominator": 15
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 0.07861505067999999,
+            "numerator": 1.965376267,
+            "denominator": 25
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 0.05137964796666667,
+            "numerator": 0.7706947195,
+            "denominator": 15
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 0.16062017184615385,
+            "numerator": 2.088062234,
+            "denominator": 13
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 0.1938336584166667,
+            "numerator": 2.3260039010000004,
+            "denominator": 12
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 0.0678389102,
+            "numerator": 0.678389102,
+            "denominator": 10
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 0.2704162426818182,
+            "numerator": 2.9745786695,
+            "denominator": 11
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 0.12597691800000002,
+            "numerator": 0.7558615080000001,
+            "denominator": 6
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy": {
+        "metric_id": "pass_accuracy",
+        "value": 81.93333333333334,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 4916,
+        "denominator": 6000,
+        "median": 82.49952353725939,
+        "standard_deviation": 4.602967098466474,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 74.70355731225297,
+            "numerator": 378,
+            "denominator": 506
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 89.19860627177701,
+            "numerator": 768,
+            "denominator": 861
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 82.27272727272727,
+            "numerator": 543,
+            "denominator": 660
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 81.203007518797,
+            "numerator": 432,
+            "denominator": 532
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 82.32323232323232,
+            "numerator": 489,
+            "denominator": 594
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 82.67581475128645,
+            "numerator": 482,
+            "denominator": 583
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 82.72727272727273,
+            "numerator": 455,
+            "denominator": 550
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 72.9020979020979,
+            "numerator": 417,
+            "denominator": 572
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 82.85163776493256,
+            "numerator": 430,
+            "denominator": 519
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 83.78812199036918,
+            "numerator": 522,
+            "denominator": 623
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_under_pressure": {
+        "metric_id": "pass_accuracy_under_pressure",
+        "value": 74.71153846153847,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 777,
+        "denominator": 1040,
+        "median": 75.44635544635544,
+        "standard_deviation": 5.571852626973764,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 75.13513513513513,
+            "numerator": 139,
+            "denominator": 185
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 82.3529411764706,
+            "numerator": 112,
+            "denominator": 136
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 74.4186046511628,
+            "numerator": 32,
+            "denominator": 43
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 81.3953488372093,
+            "numerator": 105,
+            "denominator": 129
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 70.65217391304348,
+            "numerator": 65,
+            "denominator": 92
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 75.75757575757575,
+            "numerator": 25,
+            "denominator": 33
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 76.74418604651163,
+            "numerator": 66,
+            "denominator": 86
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 62.41610738255034,
+            "numerator": 93,
+            "denominator": 149
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 73.33333333333333,
+            "numerator": 55,
+            "denominator": 75
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 75.89285714285714,
+            "numerator": 85,
+            "denominator": 112
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_explicit_no_pressure": {
+        "metric_id": "pass_accuracy_explicit_no_pressure",
+        "value": null,
+        "unit": "%",
+        "sample_size": 0,
+        "match_ids": [],
+        "numerator": null,
+        "denominator": null,
+        "median": null,
+        "standard_deviation": null,
+        "per_match": [],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_unmarked_pressure": {
+        "metric_id": "pass_accuracy_unmarked_pressure",
+        "value": 83.4475806451613,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 4139,
+        "denominator": 4960,
+        "median": 83.4635579937304,
+        "standard_deviation": 4.51967129301061,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 74.45482866043614,
+            "numerator": 239,
+            "denominator": 321
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 90.48275862068965,
+            "numerator": 656,
+            "denominator": 725
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 82.82009724473258,
+            "numerator": 511,
+            "denominator": 617
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 81.14143920595534,
+            "numerator": 327,
+            "denominator": 403
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 84.4621513944223,
+            "numerator": 424,
+            "denominator": 502
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 83.0909090909091,
+            "numerator": 457,
+            "denominator": 550
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 83.83620689655173,
+            "numerator": 389,
+            "denominator": 464
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 76.59574468085107,
+            "numerator": 324,
+            "denominator": 423
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 84.45945945945945,
+            "numerator": 375,
+            "denominator": 444
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 85.51859099804305,
+            "numerator": 437,
+            "denominator": 511
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_entries": {
+        "metric_id": "final_third_entries",
+        "value": 59.89573717562335,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 638,
+        "denominator": 958.6658868833333,
+        "median": 55.16127997158913,
+        "standard_deviation": 18.390883536748746,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 52.288815246362184,
+            "numerator": 55,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 97.53067488464714,
+            "numerator": 102,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 85.08696816049154,
+            "numerator": 90,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 62.72130746633041,
+            "numerator": 69,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 61.740360500381875,
+            "numerator": 65,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 54.108337953215624,
+            "numerator": 58,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 48.13000764417768,
+            "numerator": 51,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 44.61854244717557,
+            "numerator": 48,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 37.423701940381264,
+            "numerator": 40,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 56.21422198996264,
+            "numerator": 60,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_attempts": {
+        "metric_id": "final_third_attempts",
+        "value": 78.29630847095592,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 834,
+        "denominator": 958.6658868833333,
+        "median": 77.44792885207156,
+        "standard_deviation": 16.465543998028412,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 77.95787000366725,
+            "numerator": 82,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 107.09250575569098,
+            "numerator": 112,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 103.99518330726744,
+            "numerator": 110,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 79.08338767493835,
+            "numerator": 87,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 76.93798770047587,
+            "numerator": 81,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 72.76638552328998,
+            "numerator": 78,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 65.11706916565215,
+            "numerator": 69,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 79.94155521785623,
+            "numerator": 86,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 53.328775265043305,
+            "numerator": 57,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 67.45706638795517,
+            "numerator": 72,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "box_entries": {
+        "metric_id": "box_entries",
+        "value": 19.43325641905021,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 207,
+        "denominator": 958.6658868833333,
+        "median": 17.949323451382064,
+        "standard_deviation": 7.703270006315258,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 13.309880244528557,
+            "numerator": 14,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 32.51022496154905,
+            "numerator": 34,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 20.799036661453485,
+            "numerator": 22,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 30.90615150514832,
+            "numerator": 34,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 22.796440800141,
+            "numerator": 24,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 14.926438056059483,
+            "numerator": 16,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 15.099610241310645,
+            "numerator": 16,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 12.084188579443383,
+            "numerator": 13,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 21.518628615719226,
+            "numerator": 23,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 10.305940698159818,
+            "numerator": 11,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressures": {
+        "metric_id": "pressures",
+        "value": 143.26159079937497,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 1526,
+        "denominator": 958.6658868833333,
+        "median": 143.15615944456513,
+        "standard_deviation": 32.82590420150546,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 186.3383234233998,
+            "numerator": 196,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 133.86563219461374,
+            "numerator": 140,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 120.06716618202694,
+            "numerator": 127,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 168.16582436624822,
+            "numerator": 185,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 113.98220400070501,
+            "numerator": 120,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 84.89411644383831,
+            "numerator": 91,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 171.75806649490858,
+            "numerator": 182,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 152.44668669451653,
+            "numerator": 164,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 124.4338089517677,
+            "numerator": 133,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 176.1378955685496,
+            "numerator": 188,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressure_high_share": {
+        "metric_id": "pressure_high_share",
+        "value": 22.542595019659238,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 344,
+        "denominator": 1526,
+        "median": 20.98010098010098,
+        "standard_deviation": 6.862031665388057,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 15.816326530612244,
+            "numerator": 31,
+            "denominator": 196
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 37.857142857142854,
+            "numerator": 53,
+            "denominator": 140
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 30.708661417322833,
+            "numerator": 39,
+            "denominator": 127
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 21.08108108108108,
+            "numerator": 39,
+            "denominator": 185
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 27.5,
+            "numerator": 33,
+            "denominator": 120
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 20.87912087912088,
+            "numerator": 19,
+            "denominator": 91
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 20.87912087912088,
+            "numerator": 38,
+            "denominator": 182
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 21.341463414634145,
+            "numerator": 35,
+            "denominator": 164
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 20.30075187969925,
+            "numerator": 27,
+            "denominator": 133
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 15.957446808510639,
+            "numerator": 30,
+            "denominator": 188
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "counterpressures": {
+        "metric_id": "counterpressures",
+        "value": 35.76845746694749,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 381,
+        "denominator": 958.6658868833333,
+        "median": 33.57337577648684,
+        "standard_deviation": 9.321625400072362,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 46.58458085584995,
+            "numerator": 49,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 34.42259113575782,
+            "numerator": 36,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 32.143965749519026,
+            "numerator": 34,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 32.72416041721586,
+            "numerator": 36,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 25.645995900158624,
+            "numerator": 27,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 23.32255946259294,
+            "numerator": 25,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 45.298830723931935,
+            "numerator": 48,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 44.61854244717557,
+            "numerator": 48,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 26.196591358266886,
+            "numerator": 28,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 46.845184991635534,
+            "numerator": 50,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "recoveries": {
+        "metric_id": "recoveries",
+        "value": 51.822017117467226,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 552,
+        "denominator": 958.6658868833333,
+        "median": 51.04329889257272,
+        "standard_deviation": 9.871148955515503,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 56.09163817337034,
+            "numerator": 59,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 55.45861905205426,
+            "numerator": 58,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 71.85121755774841,
+            "numerator": 76,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 41.81420497755361,
+            "numerator": 46,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 34.1946612002115,
+            "numerator": 36,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 56.90704508872678,
+            "numerator": 61,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 50.96118456442343,
+            "numerator": 54,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 51.12541322072201,
+            "numerator": 55,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 50.52199761951471,
+            "numerator": 54,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 49.65589609113366,
+            "numerator": 53,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "interceptions": {
+        "metric_id": "interceptions",
+        "value": 18.306690829540052,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 195,
+        "denominator": 958.6658868833333,
+        "median": 17.099178544676693,
+        "standard_deviation": 7.568860889702834,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 26.619760489057114,
+            "numerator": 28,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 17.21129556787891,
+            "numerator": 18,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 18.9082151467759,
+            "numerator": 20,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 13.63506684050661,
+            "numerator": 15,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 32.294957800199754,
+            "numerator": 34,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 12.12773092054833,
+            "numerator": 13,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 16.987061521474477,
+            "numerator": 18,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 23.238824191237274,
+            "numerator": 25,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 5.61355529105719,
+            "numerator": 6,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 16.86426659698879,
+            "numerator": 18,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "duel_tackles": {
+        "metric_id": "duel_tackles",
+        "value": 19.43325641905021,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 207,
+        "denominator": 958.6658868833333,
+        "median": 20.94797588700132,
+        "standard_deviation": 5.80015670068242,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 23.767643293800994,
+            "numerator": 25,
+            "denominator": 94.66651666666667
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 20.07984482919206,
+            "numerator": 21,
+            "denominator": 94.12423333333332
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 13.235750602743128,
+            "numerator": 14,
+            "denominator": 95.19671666666666
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 21.816106944810578,
+            "numerator": 24,
+            "denominator": 99.00941563333332
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 25.645995900158624,
+            "numerator": 27,
+            "denominator": 94.75163333333333
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 11.194828542044613,
+            "numerator": 12,
+            "denominator": 96.47311666666668
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 16.04333588139256,
+            "numerator": 17,
+            "denominator": 95.36670000000001
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 24.168377158886766,
+            "numerator": 26,
+            "denominator": 96.82073333333334
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 12.16270313062391,
+            "numerator": 13,
+            "denominator": 96.19572124999999
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 26.2333035953159,
+            "numerator": 28,
+            "denominator": 96.0611
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_low_y": {
+        "metric_id": "lane_low_y",
+        "value": 34.60928869890976,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 7206,
+        "denominator": 20821,
+        "median": 34.66944242559033,
+        "standard_deviation": 4.5547703698843875,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 37.684989429175474,
+            "numerator": 713,
+            "denominator": 1892
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 35.9002566923359,
+            "numerator": 979,
+            "denominator": 2727
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 38.833693304535636,
+            "numerator": 899,
+            "denominator": 2315
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 25.144356955380577,
+            "numerator": 479,
+            "denominator": 1905
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 31.07707509881423,
+            "numerator": 629,
+            "denominator": 2024
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 40.89750127485976,
+            "numerator": 802,
+            "denominator": 1961
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 32.82520325203252,
+            "numerator": 646,
+            "denominator": 1968
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 36.950904392764855,
+            "numerator": 715,
+            "denominator": 1935
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 32.108626198083066,
+            "numerator": 603,
+            "denominator": 1878
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 33.438628158844764,
+            "numerator": 741,
+            "denominator": 2216
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_central": {
+        "metric_id": "lane_central",
+        "value": 29.62874021420681,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 6169,
+        "denominator": 20821,
+        "median": 29.448932172068837,
+        "standard_deviation": 3.0771066164403114,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 26.004228329809724,
+            "numerator": 492,
+            "denominator": 1892
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 27.942794279427943,
+            "numerator": 762,
+            "denominator": 2727
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 29.114470842332615,
+            "numerator": 674,
+            "denominator": 2315
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 28.818897637795274,
+            "numerator": 549,
+            "denominator": 1905
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 33.99209486166008,
+            "numerator": 688,
+            "denominator": 2024
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 24.528301886792452,
+            "numerator": 481,
+            "denominator": 1961
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 33.38414634146341,
+            "numerator": 657,
+            "denominator": 1968
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 30.90439276485788,
+            "numerator": 598,
+            "denominator": 1935
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 32.37486687965921,
+            "numerator": 608,
+            "denominator": 1878
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 29.783393501805055,
+            "numerator": 660,
+            "denominator": 2216
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_high_y": {
+        "metric_id": "lane_high_y",
+        "value": 35.761971086883435,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3753991,
+          3754249,
+          3754313,
+          3754124,
+          3754144,
+          3754035,
+          3754322,
+          3754206,
+          3754307,
+          3754320
+        ],
+        "numerator": 7446,
+        "denominator": 20821,
+        "median": 35.2236684808917,
+        "standard_deviation": 3.9428284617998566,
+        "per_match": [
+          {
+            "match_id": 3753991,
+            "match_date": "2016-03-02",
+            "value": 36.3107822410148,
+            "numerator": 687,
+            "denominator": 1892
+          },
+          {
+            "match_id": 3754249,
+            "match_date": "2016-03-05",
+            "value": 36.156949028236156,
+            "numerator": 986,
+            "denominator": 2727
+          },
+          {
+            "match_id": 3754313,
+            "match_date": "2016-03-12",
+            "value": 32.05183585313175,
+            "numerator": 742,
+            "denominator": 2315
+          },
+          {
+            "match_id": 3754124,
+            "match_date": "2016-03-20",
+            "value": 46.036745406824146,
+            "numerator": 877,
+            "denominator": 1905
+          },
+          {
+            "match_id": 3754144,
+            "match_date": "2016-04-02",
+            "value": 34.930830039525695,
+            "numerator": 707,
+            "denominator": 2024
+          },
+          {
+            "match_id": 3754035,
+            "match_date": "2016-04-09",
+            "value": 34.57419683834778,
+            "numerator": 678,
+            "denominator": 1961
+          },
+          {
+            "match_id": 3754322,
+            "match_date": "2016-04-16",
+            "value": 33.790650406504064,
+            "numerator": 665,
+            "denominator": 1968
+          },
+          {
+            "match_id": 3754206,
+            "match_date": "2016-04-19",
+            "value": 32.144702842377264,
+            "numerator": 622,
+            "denominator": 1935
+          },
+          {
+            "match_id": 3754307,
+            "match_date": "2016-04-23",
+            "value": 35.51650692225772,
+            "numerator": 667,
+            "denominator": 1878
+          },
+          {
+            "match_id": 3754320,
+            "match_date": "2016-05-01",
+            "value": 36.77797833935018,
+            "numerator": 815,
+            "denominator": 2216
+          }
+        ],
+        "formula_version": "1.0.0"
+      }
+    },
+    "quality": {
+      "locations_missing": 195
+    }
+  },
+  "opponent_profile": {
+    "team_id": 1,
+    "team_name": "Arsenal",
+    "match_ids": [
+      3754239,
+      3753976,
+      3754318,
+      3753980,
+      3754118,
+      3754241,
+      3754009,
+      3754284,
+      3753990,
+      3754184
+    ],
+    "period_start": "2016-02-28",
+    "period_end": "2016-04-30",
+    "sample_status": "limitada",
+    "metrics": {
+      "xg_for": {
+        "metric_id": "xg_for",
+        "value": 1.4952288791400001,
+        "unit": "xG/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 14.952288791400001,
+        "denominator": 10,
+        "median": 1.386062069,
+        "standard_deviation": 0.5368029902462953,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 1.4340122530000001,
+            "numerator": 1.4340122530000001,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 1.327473657,
+            "numerator": 1.327473657,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 0.7327627854000002,
+            "numerator": 0.7327627854000002,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 1.8303701920000002,
+            "numerator": 1.8303701920000002,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 2.576715334,
+            "numerator": 2.576715334,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 1.8430335740000003,
+            "numerator": 1.8430335740000003,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 1.7365538980000002,
+            "numerator": 1.7365538980000002,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 1.318570899,
+            "numerator": 1.318570899,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 1.338111885,
+            "numerator": 1.338111885,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 0.814684314,
+            "numerator": 0.814684314,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_against": {
+        "metric_id": "xg_against",
+        "value": 0.74554460632,
+        "unit": "xG/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 7.4554460632,
+        "denominator": 10,
+        "median": 0.61793532375,
+        "standard_deviation": 0.3593749884037844,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 0.44531712599999995,
+            "numerator": 0.44531712599999995,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 1.17405024,
+            "numerator": 1.17405024,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 1.248720347,
+            "numerator": 1.248720347,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 0.458830763,
+            "numerator": 0.458830763,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 0.43205721699999994,
+            "numerator": 0.43205721699999994,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 1.2577559600000003,
+            "numerator": 1.2577559600000003,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 0.3875618627,
+            "numerator": 0.3875618627,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 0.7341058054999999,
+            "numerator": 0.7341058054999999,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 0.501764842,
+            "numerator": 0.501764842,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 0.8152819,
+            "numerator": 0.8152819,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_for": {
+        "metric_id": "shots_for",
+        "value": 15.3,
+        "unit": "eventos/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 153,
+        "denominator": 10,
+        "median": 15.0,
+        "standard_deviation": 3.8600518131237567,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 13,
+            "numerator": 13,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 17,
+            "numerator": 17,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 19,
+            "numerator": 19,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 21,
+            "numerator": 21,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 16,
+            "numerator": 16,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 20,
+            "numerator": 20,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 14,
+            "numerator": 14,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "shots_against": {
+        "metric_id": "shots_against",
+        "value": 11.4,
+        "unit": "eventos/jogo",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 114,
+        "denominator": 10,
+        "median": 9.5,
+        "standard_deviation": 5.758086101783783,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 7,
+            "numerator": 7,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 11,
+            "numerator": 11,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 25,
+            "numerator": 25,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 8,
+            "numerator": 8,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 7,
+            "numerator": 7,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 17,
+            "numerator": 17,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 7,
+            "numerator": 7,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 8,
+            "numerator": 8,
+            "denominator": 1
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 12,
+            "numerator": 12,
+            "denominator": 1
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 12,
+            "numerator": 12,
+            "denominator": 1
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "xg_per_shot": {
+        "metric_id": "xg_per_shot",
+        "value": 0.09772737772156863,
+        "unit": "xG/chute",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 14.952288791400001,
+        "denominator": 153,
+        "median": 0.08255186197470238,
+        "standard_deviation": 0.041326928888578106,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 0.11030863484615386,
+            "numerator": 1.4340122530000001,
+            "denominator": 13
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 0.07808668570588236,
+            "numerator": 1.327473657,
+            "denominator": 17
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 0.0666147986727273,
+            "numerator": 0.7327627854000002,
+            "denominator": 11
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 0.1663972901818182,
+            "numerator": 1.8303701920000002,
+            "denominator": 11
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 0.1356165965263158,
+            "numerator": 2.576715334,
+            "denominator": 19
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 0.16754850672727276,
+            "numerator": 1.8430335740000003,
+            "denominator": 11
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 0.08269304276190477,
+            "numerator": 1.7365538980000002,
+            "denominator": 21
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 0.0824106811875,
+            "numerator": 1.318570899,
+            "denominator": 16
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 0.06690559425,
+            "numerator": 1.338111885,
+            "denominator": 20
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 0.058191736714285715,
+            "numerator": 0.814684314,
+            "denominator": 14
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy": {
+        "metric_id": "pass_accuracy",
+        "value": 83.78794883649253,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 5437,
+        "denominator": 6489,
+        "median": 84.0206512331005,
+        "standard_deviation": 5.257611420160841,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 84.14414414414415,
+            "numerator": 467,
+            "denominator": 555
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 84.55772113943029,
+            "numerator": 564,
+            "denominator": 667
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 70.95238095238095,
+            "numerator": 298,
+            "denominator": 420
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 77.75510204081633,
+            "numerator": 381,
+            "denominator": 490
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 87.8293601003764,
+            "numerator": 700,
+            "denominator": 797
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 83.01886792452831,
+            "numerator": 484,
+            "denominator": 583
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 87.01799485861183,
+            "numerator": 677,
+            "denominator": 778
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 88.55263157894737,
+            "numerator": 673,
+            "denominator": 760
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 81.85714285714286,
+            "numerator": 573,
+            "denominator": 700
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 83.89715832205684,
+            "numerator": 620,
+            "denominator": 739
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_under_pressure": {
+        "metric_id": "pass_accuracy_under_pressure",
+        "value": 76.41509433962264,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 648,
+        "denominator": 848,
+        "median": 78.17460317460316,
+        "standard_deviation": 7.094489085179495,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 73.6842105263158,
+            "numerator": 42,
+            "denominator": 57
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 84.44444444444444,
+            "numerator": 76,
+            "denominator": 90
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 66.05504587155963,
+            "numerator": 72,
+            "denominator": 109
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 71.9298245614035,
+            "numerator": 82,
+            "denominator": 114
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 84.48275862068965,
+            "numerator": 49,
+            "denominator": 58
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 78.57142857142857,
+            "numerator": 33,
+            "denominator": 42
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 79.66101694915254,
+            "numerator": 94,
+            "denominator": 118
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 84.76190476190476,
+            "numerator": 89,
+            "denominator": 105
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 66.26506024096386,
+            "numerator": 55,
+            "denominator": 83
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 77.77777777777777,
+            "numerator": 56,
+            "denominator": 72
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_explicit_no_pressure": {
+        "metric_id": "pass_accuracy_explicit_no_pressure",
+        "value": null,
+        "unit": "%",
+        "sample_size": 0,
+        "match_ids": [],
+        "numerator": null,
+        "denominator": null,
+        "median": null,
+        "standard_deviation": null,
+        "per_match": [],
+        "formula_version": "1.0.0"
+      },
+      "pass_accuracy_unmarked_pressure": {
+        "metric_id": "pass_accuracy_unmarked_pressure",
+        "value": 84.89629498315901,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 4789,
+        "denominator": 5641,
+        "median": 84.56655554371861,
+        "standard_deviation": 4.869806475904777,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 85.34136546184739,
+            "numerator": 425,
+            "denominator": 498
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 84.57538994800693,
+            "numerator": 488,
+            "denominator": 577
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 72.66881028938907,
+            "numerator": 226,
+            "denominator": 311
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 79.52127659574468,
+            "numerator": 299,
+            "denominator": 376
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 88.09201623815967,
+            "numerator": 651,
+            "denominator": 739
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 83.3641404805915,
+            "numerator": 451,
+            "denominator": 541
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 88.33333333333333,
+            "numerator": 583,
+            "denominator": 660
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 89.16030534351145,
+            "numerator": 584,
+            "denominator": 655
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 83.9546191247974,
+            "numerator": 518,
+            "denominator": 617
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 84.55772113943029,
+            "numerator": 564,
+            "denominator": 667
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_entries": {
+        "metric_id": "final_third_entries",
+        "value": 63.53547909105061,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 677,
+        "denominator": 958.9917455833333,
+        "median": 66.78796575003233,
+        "standard_deviation": 11.715029444787437,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 54.37590338497679,
+            "numerator": 59,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 69.99327718893173,
+            "numerator": 75,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 40.66234441005715,
+            "numerator": 43,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 56.19900135762217,
+            "numerator": 60,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 71.98070412001834,
+            "numerator": 76,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 56.25538137415576,
+            "numerator": 60,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 81.32171149487066,
+            "numerator": 87,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 71.06969133771443,
+            "numerator": 74,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 64.14417332836442,
+            "numerator": 68,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 69.43175817170024,
+            "numerator": 75,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "final_third_attempts": {
+        "metric_id": "final_third_attempts",
+        "value": 81.64825230312265,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 870,
+        "denominator": 958.9917455833333,
+        "median": 84.70666370097602,
+        "standard_deviation": 7.978123979580639,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 78.33816589361064,
+            "numerator": 85,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 85.85842001842292,
+            "numerator": 92,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 70.92269373847178,
+            "numerator": 75,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 71.18540171965476,
+            "numerator": 76,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 87.134536566338,
+            "numerator": 92,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 72.19440609683322,
+            "numerator": 77,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 93.47323160329961,
+            "numerator": 100,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 83.55490738352913,
+            "numerator": 87,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 87.72658999320427,
+            "numerator": 93,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 86.09538013290829,
+            "numerator": 93,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "box_entries": {
+        "metric_id": "box_entries",
+        "value": 22.52365580775797,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 240,
+        "denominator": 958.9917455833333,
+        "median": 25.11660273735149,
+        "standard_deviation": 5.6763304230191975,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 14.746007697620824,
+            "numerator": 16,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 26.130823483867843,
+            "numerator": 28,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 13.238902831181397,
+            "numerator": 14,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 17.79635042991369,
+            "numerator": 19,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 28.41343583684935,
+            "numerator": 30,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 19.689383480954515,
+            "numerator": 21,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 25.237772532890894,
+            "numerator": 27,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 27.851635794509708,
+            "numerator": 29,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 27.355603331214233,
+            "numerator": 29,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 24.995432941812084,
+            "numerator": 27,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressures": {
+        "metric_id": "pressures",
+        "value": 127.07095818210122,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 1354,
+        "denominator": 958.9917455833333,
+        "median": 124.69039754112384,
+        "standard_deviation": 42.66043740311343,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 97.69230099673796,
+            "numerator": 106,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 184.78225177877974,
+            "numerator": 198,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 143.73665930996947,
+            "numerator": 152,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 178.90015432176392,
+            "numerator": 191,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 56.8268716736987,
+            "numerator": 60,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 93.75896895692627,
+            "numerator": 100,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 157.03502909354333,
+            "numerator": 168,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 105.6441357722782,
+            "numerator": 110,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 95.27296332595301,
+            "numerator": 101,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 155.5271383046085,
+            "numerator": 168,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "pressure_high_share": {
+        "metric_id": "pressure_high_share",
+        "value": 23.042836041358935,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 312,
+        "denominator": 1354,
+        "median": 21.791958905462806,
+        "standard_deviation": 5.12741743849852,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 22.641509433962263,
+            "numerator": 24,
+            "denominator": 106
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 19.696969696969695,
+            "numerator": 39,
+            "denominator": 198
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 17.763157894736842,
+            "numerator": 27,
+            "denominator": 152
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 20.94240837696335,
+            "numerator": 40,
+            "denominator": 191
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 16.666666666666668,
+            "numerator": 10,
+            "denominator": 60
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 23.0,
+            "numerator": 23,
+            "denominator": 100
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 34.523809523809526,
+            "numerator": 58,
+            "denominator": 168
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 24.545454545454547,
+            "numerator": 27,
+            "denominator": 110
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 19.801980198019802,
+            "numerator": 20,
+            "denominator": 101
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 26.19047619047619,
+            "numerator": 44,
+            "denominator": 168
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "counterpressures": {
+        "metric_id": "counterpressures",
+        "value": 35.380909331353145,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 377,
+        "denominator": 958.9917455833333,
+        "median": 31.019120372140407,
+        "standard_deviation": 14.111127412775542,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 18.432509622026032,
+            "numerator": 20,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 50.39515957603084,
+            "numerator": 54,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 55.79251907426446,
+            "numerator": 59,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 30.909450746692197,
+            "numerator": 33,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 19.889405085794543,
+            "numerator": 21,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 25.314921618370093,
+            "numerator": 27,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 54.21447432991377,
+            "numerator": 58,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 25.930833325922833,
+            "numerator": 27,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 31.128789997588612,
+            "numerator": 33,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 41.65905490302014,
+            "numerator": 45,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "recoveries": {
+        "metric_id": "recoveries",
+        "value": 52.836742582365574,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 563,
+        "denominator": 958.9917455833333,
+        "median": 53.416301631065636,
+        "standard_deviation": 5.7574213329670245,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 57.14077982828069,
+            "numerator": 62,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 56.9278654469978,
+            "numerator": 61,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 62.41197048985516,
+            "numerator": 66,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 52.452401267114034,
+            "numerator": 56,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 47.35572639474891,
+            "numerator": 50,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 54.38020199501724,
+            "numerator": 58,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 49.54081274974879,
+            "numerator": 53,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 42.257654308911285,
+            "numerator": 44,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 55.65450332902206,
+            "numerator": 59,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 49.99086588362417,
+            "numerator": 54,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "interceptions": {
+        "metric_id": "interceptions",
+        "value": 16.141953328893212,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 172,
+        "denominator": 958.9917455833333,
+        "median": 17.20971348505369,
+        "standard_deviation": 6.116733546300431,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 15.667633178722125,
+            "numerator": 17,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 13.065411741933922,
+            "numerator": 14,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 15.130174664207312,
+            "numerator": 16,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 27.16285065618405,
+            "numerator": 29,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 18.942290557899565,
+            "numerator": 20,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 18.751793791385253,
+            "numerator": 20,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 8.412590844296965,
+            "numerator": 9,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 19.208024685868764,
+            "numerator": 20,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 5.659779999561565,
+            "numerator": 6,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 19.440892288076064,
+            "numerator": 21,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "duel_tackles": {
+        "metric_id": "duel_tackles",
+        "value": 17.174287553415454,
+        "unit": "eventos/90",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 183,
+        "denominator": 958.9917455833333,
+        "median": 16.7642017297541,
+        "standard_deviation": 6.865222407018843,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 15.667633178722125,
+            "numerator": 17,
+            "denominator": 97.65355
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 26.130823483867843,
+            "numerator": 28,
+            "denominator": 96.43783333333334
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 27.423441578875753,
+            "numerator": 29,
+            "denominator": 95.17405000000001
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 23.416250565675906,
+            "numerator": 25,
+            "denominator": 96.08711666666666
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 10.41825980684476,
+            "numerator": 11,
+            "denominator": 95.02546666666667
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 15.939024722677466,
+            "numerator": 17,
+            "denominator": 95.99081666666666
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 17.759914004626925,
+            "numerator": 19,
+            "denominator": 96.28425
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 9.604012342934382,
+            "numerator": 10,
+            "denominator": 93.71083333333333
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 7.546373332748754,
+            "numerator": 8,
+            "denominator": 95.41006895000001
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 17.589378736830728,
+            "numerator": 19,
+            "denominator": 97.21775996666666
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_low_y": {
+        "metric_id": "lane_low_y",
+        "value": 32.29715011798874,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 7117,
+        "denominator": 22036,
+        "median": 32.6147305801355,
+        "standard_deviation": 3.143103859299463,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 33.36693548387097,
+            "numerator": 662,
+            "denominator": 1984
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 35.748373101952275,
+            "numerator": 824,
+            "denominator": 2305
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 31.93916349809886,
+            "numerator": 504,
+            "denominator": 1578
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 32.02866593164278,
+            "numerator": 581,
+            "denominator": 1814
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 27.40170247263883,
+            "numerator": 676,
+            "denominator": 2467
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 33.20079522862823,
+            "numerator": 668,
+            "denominator": 2012
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 27.178899082568808,
+            "numerator": 711,
+            "denominator": 2616
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 31.640625,
+            "numerator": 810,
+            "denominator": 2560
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 35.23977122745271,
+            "numerator": 801,
+            "denominator": 2273
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 36.25875566543057,
+            "numerator": 880,
+            "denominator": 2427
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_central": {
+        "metric_id": "lane_central",
+        "value": 33.263750226901436,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 7330,
+        "denominator": 22036,
+        "median": 33.11093836135612,
+        "standard_deviation": 3.1853710145695144,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 28.326612903225808,
+            "numerator": 562,
+            "denominator": 1984
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 31.887201735357916,
+            "numerator": 735,
+            "denominator": 2305
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 28.453738910012675,
+            "numerator": 449,
+            "denominator": 1578
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 32.74531422271224,
+            "numerator": 594,
+            "denominator": 1814
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 30.9687880016214,
+            "numerator": 764,
+            "denominator": 2467
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 36.083499005964214,
+            "numerator": 726,
+            "denominator": 2012
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 34.70948012232416,
+            "numerator": 908,
+            "denominator": 2616
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 33.4765625,
+            "numerator": 857,
+            "denominator": 2560
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 37.04355477342719,
+            "numerator": 842,
+            "denominator": 2273
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 36.79439637412443,
+            "numerator": 893,
+            "denominator": 2427
+          }
+        ],
+        "formula_version": "1.0.0"
+      },
+      "lane_high_y": {
+        "metric_id": "lane_high_y",
+        "value": 34.43909965510982,
+        "unit": "%",
+        "sample_size": 10,
+        "match_ids": [
+          3754239,
+          3753976,
+          3754318,
+          3753980,
+          3754118,
+          3754241,
+          3754009,
+          3754284,
+          3753990,
+          3754184
+        ],
+        "numerator": 7589,
+        "denominator": 22036,
+        "median": 35.05441617282249,
+        "standard_deviation": 5.022597150915211,
+        "per_match": [
+          {
+            "match_id": 3754239,
+            "match_date": "2016-02-28",
+            "value": 38.306451612903224,
+            "numerator": 760,
+            "denominator": 1984
+          },
+          {
+            "match_id": 3753976,
+            "match_date": "2016-03-02",
+            "value": 32.364425162689805,
+            "numerator": 746,
+            "denominator": 2305
+          },
+          {
+            "match_id": 3754318,
+            "match_date": "2016-03-05",
+            "value": 39.60709759188847,
+            "numerator": 625,
+            "denominator": 1578
+          },
+          {
+            "match_id": 3753980,
+            "match_date": "2016-03-19",
+            "value": 35.226019845644984,
+            "numerator": 639,
+            "denominator": 1814
+          },
+          {
+            "match_id": 3754118,
+            "match_date": "2016-04-02",
+            "value": 41.62950952573976,
+            "numerator": 1027,
+            "denominator": 2467
+          },
+          {
+            "match_id": 3754241,
+            "match_date": "2016-04-09",
+            "value": 30.715705765407556,
+            "numerator": 618,
+            "denominator": 2012
+          },
+          {
+            "match_id": 3754009,
+            "match_date": "2016-04-17",
+            "value": 38.11162079510704,
+            "numerator": 997,
+            "denominator": 2616
+          },
+          {
+            "match_id": 3754284,
+            "match_date": "2016-04-21",
+            "value": 34.8828125,
+            "numerator": 893,
+            "denominator": 2560
+          },
+          {
+            "match_id": 3753990,
+            "match_date": "2016-04-24",
+            "value": 27.716673999120104,
+            "numerator": 630,
+            "denominator": 2273
+          },
+          {
+            "match_id": 3754184,
+            "match_date": "2016-04-30",
+            "value": 26.946847960444995,
+            "numerator": 654,
+            "denominator": 2427
+          }
+        ],
+        "formula_version": "1.0.0"
+      }
+    },
+    "quality": {
+      "locations_missing": 204
+    }
+  },
+  "comparison": [
+    {
+      "metric_id": "xg_for",
+      "label": "xG a favor",
+      "unit": "xG/jogo",
+      "team_value": 1.5803163624,
+      "opponent_value": 1.4952288791400001,
+      "difference_team_minus_opponent": 0.08508748325999993,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.xg_for",
+        "opponent_profile.metrics.xg_for"
+      ]
+    },
+    {
+      "metric_id": "xg_against",
+      "label": "xG contra",
+      "unit": "xG/jogo",
+      "team_value": 1.03104694822,
+      "opponent_value": 0.74554460632,
+      "difference_team_minus_opponent": 0.2855023419,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.xg_against",
+        "opponent_profile.metrics.xg_against"
+      ]
+    },
+    {
+      "metric_id": "shots_for",
+      "label": "Finalizações a favor",
+      "unit": "eventos/jogo",
+      "team_value": 13.3,
+      "opponent_value": 15.3,
+      "difference_team_minus_opponent": -2.0,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.shots_for",
+        "opponent_profile.metrics.shots_for"
+      ]
+    },
+    {
+      "metric_id": "shots_against",
+      "label": "Finalizações contra",
+      "unit": "eventos/jogo",
+      "team_value": 9.4,
+      "opponent_value": 11.4,
+      "difference_team_minus_opponent": -2.0,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.shots_against",
+        "opponent_profile.metrics.shots_against"
+      ]
+    },
+    {
+      "metric_id": "xg_per_shot",
+      "label": "xG por chute",
+      "unit": "xG/chute",
+      "team_value": 0.11882077912781955,
+      "opponent_value": 0.09772737772156863,
+      "difference_team_minus_opponent": 0.02109340140625092,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.xg_per_shot",
+        "opponent_profile.metrics.xg_per_shot"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy",
+      "label": "Acerto de passe",
+      "unit": "%",
+      "team_value": 81.93333333333334,
+      "opponent_value": 83.78794883649253,
+      "difference_team_minus_opponent": -1.854615503159195,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy",
+        "opponent_profile.metrics.pass_accuracy"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy_under_pressure",
+      "label": "Acerto com pressão marcada",
+      "unit": "%",
+      "team_value": 74.71153846153847,
+      "opponent_value": 76.41509433962264,
+      "difference_team_minus_opponent": -1.703555878084174,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy_under_pressure",
+        "opponent_profile.metrics.pass_accuracy_under_pressure"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy_explicit_no_pressure",
+      "label": "Acerto com ausência explícita de pressão",
+      "unit": "%",
+      "team_value": null,
+      "opponent_value": null,
+      "difference_team_minus_opponent": null,
+      "team_sample_size": 0,
+      "opponent_sample_size": 0,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy_explicit_no_pressure",
+        "opponent_profile.metrics.pass_accuracy_explicit_no_pressure"
+      ]
+    },
+    {
+      "metric_id": "pass_accuracy_unmarked_pressure",
+      "label": "Acerto com pressão não marcada",
+      "unit": "%",
+      "team_value": 83.4475806451613,
+      "opponent_value": 84.89629498315901,
+      "difference_team_minus_opponent": -1.448714337997714,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.pass_accuracy_unmarked_pressure",
+        "opponent_profile.metrics.pass_accuracy_unmarked_pressure"
+      ]
+    },
+    {
+      "metric_id": "final_third_entries",
+      "label": "Entradas no terço final por passe completo/condução",
+      "unit": "eventos/90",
+      "team_value": 59.89573717562335,
+      "opponent_value": 63.53547909105061,
+      "difference_team_minus_opponent": -3.6397419154272583,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.final_third_entries",
+        "opponent_profile.metrics.final_third_entries"
+      ]
+    },
+    {
+      "metric_id": "final_third_attempts",
+      "label": "Tentativas de entrada no terço final",
+      "unit": "eventos/90",
+      "team_value": 78.29630847095592,
+      "opponent_value": 81.64825230312265,
+      "difference_team_minus_opponent": -3.351943832166725,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.final_third_attempts",
+        "opponent_profile.metrics.final_third_attempts"
+      ]
+    },
+    {
+      "metric_id": "box_entries",
+      "label": "Entradas na área por passe completo/condução",
+      "unit": "eventos/90",
+      "team_value": 19.43325641905021,
+      "opponent_value": 22.52365580775797,
+      "difference_team_minus_opponent": -3.090399388707759,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.box_entries",
+        "opponent_profile.metrics.box_entries"
+      ]
+    },
+    {
+      "metric_id": "pressures",
+      "label": "Eventos de pressão",
+      "unit": "eventos/90",
+      "team_value": 143.26159079937497,
+      "opponent_value": 127.07095818210122,
+      "difference_team_minus_opponent": 16.19063261727375,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.pressures",
+        "opponent_profile.metrics.pressures"
+      ]
+    },
+    {
+      "metric_id": "pressure_high_share",
+      "label": "Pressões no terço ofensivo",
+      "unit": "%",
+      "team_value": 22.542595019659238,
+      "opponent_value": 23.042836041358935,
+      "difference_team_minus_opponent": -0.5002410216996971,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.pressure_high_share",
+        "opponent_profile.metrics.pressure_high_share"
+      ]
+    },
+    {
+      "metric_id": "counterpressures",
+      "label": "Pressure com contrapressão marcada",
+      "unit": "eventos/90",
+      "team_value": 35.76845746694749,
+      "opponent_value": 35.380909331353145,
+      "difference_team_minus_opponent": 0.38754813559434353,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.counterpressures",
+        "opponent_profile.metrics.counterpressures"
+      ]
+    },
+    {
+      "metric_id": "recoveries",
+      "label": "Eventos de recuperação",
+      "unit": "eventos/90",
+      "team_value": 51.822017117467226,
+      "opponent_value": 52.836742582365574,
+      "difference_team_minus_opponent": -1.0147254648983477,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.recoveries",
+        "opponent_profile.metrics.recoveries"
+      ]
+    },
+    {
+      "metric_id": "interceptions",
+      "label": "Eventos de interceptação",
+      "unit": "eventos/90",
+      "team_value": 18.306690829540052,
+      "opponent_value": 16.141953328893212,
+      "difference_team_minus_opponent": 2.16473750064684,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.interceptions",
+        "opponent_profile.metrics.interceptions"
+      ]
+    },
+    {
+      "metric_id": "duel_tackles",
+      "label": "Duelos do tipo Tackle",
+      "unit": "eventos/90",
+      "team_value": 19.43325641905021,
+      "opponent_value": 17.174287553415454,
+      "difference_team_minus_opponent": 2.258968865634756,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.duel_tackles",
+        "opponent_profile.metrics.duel_tackles"
+      ]
+    },
+    {
+      "metric_id": "lane_low_y",
+      "label": "Ações localizadas em y menor que 80/3",
+      "unit": "%",
+      "team_value": 34.60928869890976,
+      "opponent_value": 32.29715011798874,
+      "difference_team_minus_opponent": 2.3121385809210153,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.lane_low_y",
+        "opponent_profile.metrics.lane_low_y"
+      ]
+    },
+    {
+      "metric_id": "lane_central",
+      "label": "Ações localizadas no corredor central",
+      "unit": "%",
+      "team_value": 29.62874021420681,
+      "opponent_value": 33.263750226901436,
+      "difference_team_minus_opponent": -3.635010012694625,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.lane_central",
+        "opponent_profile.metrics.lane_central"
+      ]
+    },
+    {
+      "metric_id": "lane_high_y",
+      "label": "Ações localizadas em y maior ou igual a 160/3",
+      "unit": "%",
+      "team_value": 35.761971086883435,
+      "opponent_value": 34.43909965510982,
+      "difference_team_minus_opponent": 1.3228714317736134,
+      "team_sample_size": 10,
+      "opponent_sample_size": 10,
+      "evidence_metrics": [
+        "team_profile.metrics.lane_high_y",
+        "opponent_profile.metrics.lane_high_y"
+      ]
+    }
+  ],
+  "key_findings": [
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: xg a favor.",
+      "metric_id": "xg_for",
+      "team_value": 1.5803163624,
+      "opponent_value": 1.4952288791400001,
+      "unit": "xG/jogo",
+      "evidence_metrics": [
+        "team_profile.metrics.xg_for",
+        "opponent_profile.metrics.xg_for"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    },
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: xg contra.",
+      "metric_id": "xg_against",
+      "team_value": 1.03104694822,
+      "opponent_value": 0.74554460632,
+      "unit": "xG/jogo",
+      "evidence_metrics": [
+        "team_profile.metrics.xg_against",
+        "opponent_profile.metrics.xg_against"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    },
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: entradas no terço final por passe completo/condução.",
+      "metric_id": "final_third_entries",
+      "team_value": 59.89573717562335,
+      "opponent_value": 63.53547909105061,
+      "unit": "eventos/90",
+      "evidence_metrics": [
+        "team_profile.metrics.final_third_entries",
+        "opponent_profile.metrics.final_third_entries"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    },
+    {
+      "kind": "observação",
+      "description": "Comparação descritiva: eventos de pressão.",
+      "metric_id": "pressures",
+      "team_value": 143.26159079937497,
+      "opponent_value": 127.07095818210122,
+      "unit": "eventos/90",
+      "evidence_metrics": [
+        "team_profile.metrics.pressures",
+        "opponent_profile.metrics.pressures"
+      ],
+      "limitations": [
+        "Janelas podem ter adversários e datas distintos; diferença não implica superioridade tática."
+      ]
+    }
+  ],
+  "tactical_hypotheses": [
+    {
+      "rule_id": "R01_PROGRESSAO",
+      "recommendation": "Investigar a proteção das zonas de chegada do adversário e ensaiar respostas às entradas no terço final.",
+      "condition": "Há entradas observadas por passe completo/condução no histórico do adversário e comparação disponível com o próprio time.",
+      "evidence_metrics": [
+        "opponent_profile.metrics.final_third_entries",
+        "team_profile.metrics.final_third_entries"
+      ],
+      "limitations": [
+        "Regra exploratória sem validação causal ou de eficácia.",
+        "Histórico observado não garante repetição do comportamento no jogo-alvo."
+      ],
+      "risks": [
+        "Recuar o bloco pode conceder território e reduzir opções de saída."
+      ],
+      "preconditions": [
+        "Revisar sequências em vídeo antes de escolher altura de bloco ou corredores prioritários.",
+        "Confirmar em treino a capacidade de cobertura dos atletas disponíveis."
+      ],
+      "confidence_level": "limitada"
+    },
+    {
+      "rule_id": "R03_CHANCES",
+      "recommendation": "Investigar a proteção da área e dos espaços de finalização antes de definir ajustes defensivos.",
+      "condition": "O adversário criou chances com xG positivo; há histórico de xG concedido do próprio time para comparação.",
+      "evidence_metrics": [
+        "opponent_profile.metrics.xg_for",
+        "team_profile.metrics.xg_against"
+      ],
+      "limitations": [
+        "Regra exploratória sem validação causal ou de eficácia.",
+        "Histórico observado não garante repetição do comportamento no jogo-alvo."
+      ],
+      "risks": [
+        "Priorizar a proteção da área pode aumentar a liberdade adversária em outras zonas."
+      ],
+      "preconditions": [
+        "Inspecionar localização e contexto dos chutes nas partidas-fonte; a média de xG não identifica sozinha uma vulnerabilidade espacial."
+      ],
+      "confidence_level": "limitada"
+    }
+  ],
+  "formation_options": [],
+  "lineup_options": [],
+  "data_gaps": [
+    "Adversário: locations_missing=204; consultar metodologia e dicionário de dados.",
+    "Adversário: pass_accuracy_explicit_no_pressure calculável em 0/10 jogos.",
+    "Ausência de marcação under_pressure é mantida separada de False explícito.",
+    "Equipe: locations_missing=195; consultar metodologia e dicionário de dados.",
+    "Equipe: pass_accuracy_explicit_no_pressure calculável em 0/10 jogos.",
+    "Eventos não equivalem a tracking; a análise não usa dados 360 nem posicionamento integral sem bola.",
+    "Formação e escalação: não suportado pelos dados atuais; formações registradas não comprovam adequação tática ou disponibilidade.",
+    "Não há inferência de lesões, suspensões, rivalidade, importância competitiva ou mando real.",
+    "Orientação preservada como registrada; corredores usam intervalos de y, sem inferir esquerda/direita tática."
+  ],
+  "methodology": {
+    "baseline": "Determinístico e descritivo; sem treinamento ou inferência causal.",
+    "formula_version": "1.0.0",
+    "rules_version": "1.0.0",
+    "minimum_sample_matches": 5,
+    "sample_policy": "Menos de 5 jogos: insuficiente. A partir de 5: evidência limitada, sem confiança probabilística.",
+    "temporal_policy": "Somente datas anteriores ao corte; mesmo dia excluído conservadoramente. Nunca lê eventos ou escalações do alvo.",
+    "window_policy": "Últimas N partidas agendadas anteriores; ausência de eventos não amplia a janela.",
+    "exposure": "Soma do maior timestamp + duration em cada período 1 e 2, em minutos; proxy de exposição observada, inclui acréscimos.",
+    "aggregation": "Médias por jogo para contagens/xG; taxas por 90 e proporções agregadas por soma dos numeradores/denominadores. Mediana e DP entre jogos válidos.",
+    "coordinates": "Plano StatsBomb 120×80, não metros. Coordenadas inválidas excluídas só dos cálculos espaciais.",
+    "context_policy": "Contexto e notas são declarações do treinador, não fatos verificados nem fatores causais.",
+    "player_policy": "Indisponibilidade manual validada nas escalações anteriores da janela; isso não comprova vínculo/aptidão atual.",
+    "sources": [
+      {
+        "path": "competitions.json",
+        "sha256": "e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa"
+      },
+      {
+        "path": "events/3753976.json",
+        "sha256": "ec00f689a110ec3a9ee59c554abc7957ae2b274558c17eb951acad7d2a94674a"
+      },
+      {
+        "path": "events/3753980.json",
+        "sha256": "1dcd8a1ec5bc6cbf30ae271516c7a5cc64ba2513d6a4259a093943ece09b3384"
+      },
+      {
+        "path": "events/3753990.json",
+        "sha256": "4dfb4e608a5526a30a91e4ae9bc934721b8fa9c9f210549ff25315ba3b718211"
+      },
+      {
+        "path": "events/3753991.json",
+        "sha256": "e716c1d55f3425a1ef4642c6e2214d912d40faeb9370ae009f8deb190265885a"
+      },
+      {
+        "path": "events/3754009.json",
+        "sha256": "cc9d93ae3ce1495d1ac09ab5c5d94e5d159f29af3f84fe6e8a10c5c8b59f1ef8"
+      },
+      {
+        "path": "events/3754035.json",
+        "sha256": "375f06644d10c4632563f2df027e906a629152394529a5ab0760b5c86cff0b6e"
+      },
+      {
+        "path": "events/3754118.json",
+        "sha256": "39384f2d52dc10cabc788ce412942c7f5e818992d75b86370b5a442de5ac1d52"
+      },
+      {
+        "path": "events/3754124.json",
+        "sha256": "fb4b272d39325079a99890a200849d486b06250e3d24b31410f6c7341b0ae09a"
+      },
+      {
+        "path": "events/3754144.json",
+        "sha256": "0da13fb6a1201c89f05bc7d0c05c44cb42dc82e2f75f9d39fea2f875aa3fc0be"
+      },
+      {
+        "path": "events/3754184.json",
+        "sha256": "db78f1180fc60d0e7948f2c85a1acd3f8ba2da7f207a9730ddd9a90afead293e"
+      },
+      {
+        "path": "events/3754206.json",
+        "sha256": "a6d9ff6e9377dd09a52ac24ac128a78636d303b3c28b810541ee6329d4d85d59"
+      },
+      {
+        "path": "events/3754239.json",
+        "sha256": "2b7e51ee47c19c6cc8dac0a02b18a712b6418940c725ab9103b1434edb727960"
+      },
+      {
+        "path": "events/3754241.json",
+        "sha256": "495714752c5ce749ad9e0ac7b4084d2e55ffa156e6d462c6b608f7f5c85524db"
+      },
+      {
+        "path": "events/3754249.json",
+        "sha256": "b412164aee7c134829e6530c98eb87f44eec4dc8a850120cb88627fa03438cc2"
+      },
+      {
+        "path": "events/3754284.json",
+        "sha256": "fdb393d6c757164bed69c7a6fe0f3bd32cca83e2d0632600e822e5228dba1616"
+      },
+      {
+        "path": "events/3754307.json",
+        "sha256": "59ce55189c6142381cae6137920dd38d5413f200e242809b97e1b41ebfa52a9f"
+      },
+      {
+        "path": "events/3754313.json",
+        "sha256": "7b5d5a4c4c0a9693efded419e0b769e1b7706ecb687e6705035a777587b4dfff"
+      },
+      {
+        "path": "events/3754318.json",
+        "sha256": "d6c7d6c723d7b747d41376c5d92719613f3206b798c12f3e737202e95ba72c63"
+      },
+      {
+        "path": "events/3754320.json",
+        "sha256": "25cfdf00febef482adf8b678724e1c04c907d9ac632ae2b502056e1719ca7177"
+      },
+      {
+        "path": "events/3754322.json",
+        "sha256": "b3af0a2777c34ec1267b3eae41e9159c692d77ae99931f90ab765d0ba3558c27"
+      },
+      {
+        "path": "lineups/3753976.json",
+        "sha256": "c9fb8c0a732a612a1f1e04a2f43c721330ce2bbe8308b2c4eb1485af0a69a7ab"
+      },
+      {
+        "path": "lineups/3753980.json",
+        "sha256": "690d2163bf453e8b845b6da37b0231fd2651115caed5365c2c2443fd9521cf21"
+      },
+      {
+        "path": "lineups/3753990.json",
+        "sha256": "9a4905f0428eac212e6d837a85118c96de93c41a702eae01c326ce49f8d316cd"
+      },
+      {
+        "path": "lineups/3753991.json",
+        "sha256": "db20fbf8fb3104f7f3e17a0fa61909996edd559aa524767e011914cf99282aed"
+      },
+      {
+        "path": "lineups/3754009.json",
+        "sha256": "31701dc8e49224d2e10d479c5eaa1080344be5d75b58335d327dd75bebbff02f"
+      },
+      {
+        "path": "lineups/3754035.json",
+        "sha256": "e1f5258ef3f5a1172c56cbf913a29bbe07ac8fcfa0c29773654d4726e6e6a64b"
+      },
+      {
+        "path": "lineups/3754118.json",
+        "sha256": "edd830ed147b4874cb6ed72fe2e9023dec9ffc2e38782724f3cdfbbf34e66456"
+      },
+      {
+        "path": "lineups/3754124.json",
+        "sha256": "e01c052c6d4b422b5aceba2cf58a19c0a4c7c9c3b3b18c45f8d1d4c79b035656"
+      },
+      {
+        "path": "lineups/3754144.json",
+        "sha256": "2907505bc736523fb242b05f5589aefb67dbe1fededb0de67f19e73e1df328f2"
+      },
+      {
+        "path": "lineups/3754184.json",
+        "sha256": "dc7c56094680ba9b4db0580b2466d9b2d80d1333f0e092cbd5baea68dd3154af"
+      },
+      {
+        "path": "lineups/3754206.json",
+        "sha256": "20927ef68d85a170b283dbe7c38de6419fba80e6a9757263725d28381c1c12c5"
+      },
+      {
+        "path": "lineups/3754239.json",
+        "sha256": "ad0c8257f52b3eeab8c4cb708e1437114773e0e7d1cc828518e86aafa8eab196"
+      },
+      {
+        "path": "lineups/3754241.json",
+        "sha256": "c0efe57bf9b43cfd2f5f9ae3979ad3b85bb218fc209ca6e94b09009cb3d47026"
+      },
+      {
+        "path": "lineups/3754249.json",
+        "sha256": "8ac3f79414a62dd275d63896980283e796012810c0eead7f191b8ec8744e2d34"
+      },
+      {
+        "path": "lineups/3754284.json",
+        "sha256": "f3f512ef067cdddaabda837b5ca30e3a90703efd2bff6f77765efc9a7a270014"
+      },
+      {
+        "path": "lineups/3754307.json",
+        "sha256": "7359715452bbffa7cea83e5d496453caa3bf266fe3435c2093349e15e060ae4f"
+      },
+      {
+        "path": "lineups/3754313.json",
+        "sha256": "0d0594282f3b694d2ffa6b0198747b4cce0381a3b5588db5dc2da11f68ee30cd"
+      },
+      {
+        "path": "lineups/3754318.json",
+        "sha256": "0038a20803e532419ad1a12fd457c816202690bb3e424af0fee59e6861ec0660"
+      },
+      {
+        "path": "lineups/3754320.json",
+        "sha256": "c65eb55098a7ac820c12d1da0686b0e19669694af3233aa144bf92020e7c1407"
+      },
+      {
+        "path": "lineups/3754322.json",
+        "sha256": "10c34e094621022075462847f77d52ef8a83aac4363b623afd55dd0e9095e95c"
+      },
+      {
+        "path": "matches/2/27.json",
+        "sha256": "e07d6d360b30e0cd17f9aeea0db1502d2a5666d298f1b44b83a2d2f21ba3d21b"
+      }
+    ],
+    "attribution": "Fonte: StatsBomb Open Data; consultar README e LICENSE.pdf do conjunto local.",
+    "reporter": "Template determinístico em português; nenhuma chamada a LLM."
+  },
+  "schema_version": "1.0.0"
+}

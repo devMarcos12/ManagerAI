@@ -1,0 +1,77 @@
+{
+  "source": "events/3754136.json",
+  "events": [
+    {
+      "id": "8305b984-c386-4abf-ac75-8590d6001b86",
+      "index": 1181,
+      "period": 1,
+      "timestamp": "00:32:09.994",
+      "minute": 32,
+      "second": 9,
+      "type": {
+        "id": 41,
+        "name": "Referee Ball-Drop"
+      },
+      "possession": 74,
+      "possession_team": {
+        "id": 37,
+        "name": "Newcastle United"
+      },
+      "play_pattern": {
+        "id": 5,
+        "name": "Other"
+      },
+      "off_camera": true,
+      "team": {
+        "id": 37,
+        "name": "Newcastle United"
+      },
+      "location": [
+        111.2,
+        38.2
+      ],
+      "duration": 0.0
+    },
+    {
+      "id": "9a2d2d6b-797c-48e8-80d7-f1cb174c58cd",
+      "index": 1182,
+      "period": 1,
+      "timestamp": "00:32:12.320",
+      "minute": 32,
+      "second": 12,
+      "type": {
+        "id": 42,
+        "name": "Ball Receipt*"
+      },
+      "possession": 73,
+      "possession_team": {
+        "id": 59,
+        "name": "Aston Villa"
+      },
+      "play_pattern": {
+        "id": 1,
+        "name": "Regular Play"
+      },
+      "team": {
+        "id": 59,
+        "name": "Aston Villa"
+      },
+      "player": {
+        "id": 24380,
+        "name": "Tetchi Jores Charlemagne Ulrich Okore"
+      },
+      "position": {
+        "id": 3,
+        "name": "Right Center Back"
+      },
+      "location": [
+        25.0,
+        58.0
+      ],
+      "related_events": [
+        "8ebdf719-f7fe-4a91-a172-6c7fc5ea577d"
+      ]
+    }
+  ],
+  "warning": "Possession ID decreases while event index and timestamp increase. Split contiguous blocks; do not order by possession ID."
+}

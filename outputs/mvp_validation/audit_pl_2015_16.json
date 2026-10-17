@@ -1,0 +1,16 @@
+{
+  "competition_id": 2,
+  "season_id": 27,
+  "matches_catalogued": 380,
+  "matches_checked": 380,
+  "missing_event_match_ids": [],
+  "quality": {
+    "locations_missing": 8077,
+    "events_read": 1313773,
+    "locations_invalid": 3,
+    "durations_invalid": 2
+  },
+  "data_fingerprint": "6521caf9fd531aae4212965e613e5f3b5e0bb64a4b54c280a3c9f9b1a2609fee",
+  "status": "com_lacunas",
+  "scope": "Checagens estruturais e de campos usados pelo baseline; não certifica semântica tática nem completude comercial."
+}

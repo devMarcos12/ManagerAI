@@ -1,0 +1,78 @@
+[
+  {
+    "path": "src/managerai/coverage.py",
+    "change": "new",
+    "sha256": "3943a6a18fe6e7858367356bcca72a7133eed694b23d0ea0fb5d3286c9842574",
+    "note": "Criado pelo subagente; snapshot de comparação do código foi feito após iniciar a frente de cobertura."
+  },
+  {
+    "path": "src/managerai/cli.py",
+    "change": "modified",
+    "sha256": "423041b937b1e0f1b50877b6e115771707d66c938343991a677f19c2953b6f60"
+  },
+  {
+    "path": "src/managerai/pipeline.py",
+    "change": "modified",
+    "sha256": "000dea544f81fd863a1eaccffd2794e1ba908659608cebfec0a264b5909cc32d"
+  },
+  {
+    "path": "src/managerai/presentation/coach_report.py",
+    "change": "modified",
+    "sha256": "1b8209357d213faf51fa3cdad2b60afc3e3c18c3b55a4b173c6fd012916cc894"
+  },
+  {
+    "path": "src/managerai/presentation/terminology.py",
+    "change": "modified",
+    "sha256": "d9e339eb952b0467320f9caa57ddb750a6755b18f5786f1b17050793667e8748"
+  },
+  {
+    "path": "src/managerai/report_renderer.py",
+    "change": "modified",
+    "sha256": "c978b718c137a8745e93518db096bf41a03b0abb778a7fe66904caa375d3d4e8"
+  },
+  {
+    "path": "src/managerai/streamlit_ui.py",
+    "change": "modified",
+    "sha256": "1d3eba70c25badc86436b4f1ace7e7d822882d34a3452bfb43da3385c8a37a07"
+  },
+  {
+    "path": "src/managerai/v3_features.py",
+    "change": "new",
+    "sha256": "a6fe66092873bef1472fbbb1d4a5d35c78d3380463984a809fe251776e65b9e0"
+  },
+  {
+    "path": "src/managerai/v3_history.py",
+    "change": "new",
+    "sha256": "cabbd9d510a18550f0780d8781b3e3ad3905039623147fd189ee14ba8e849e2e"
+  },
+  {
+    "path": "src/managerai/v3_pipeline.py",
+    "change": "new",
+    "sha256": "74990aa3feba8aaaa315ad9cde3360c6c0f5dd1f809f9e7e27f5cd02406451aa"
+  },
+  {
+    "path": "src/managerai/v3_plots.py",
+    "change": "new",
+    "sha256": "a856af7c87afe9b0874873997af34af569a5ba930ed4e9c1f7e824003dc844a8"
+  },
+  {
+    "path": "src/managerai/v3_presentation.py",
+    "change": "new",
+    "sha256": "06b0fa866dff515935348ba0458a00fb3656acd632eae5786d9fe08d96cafe87"
+  },
+  {
+    "path": "src/managerai/v3_rules.py",
+    "change": "new",
+    "sha256": "4c9c2c96fa212aadd121dd093c8f0be9977e9f12eec1a82be086912628993c69"
+  },
+  {
+    "path": "src/managerai/v3_schema.py",
+    "change": "new",
+    "sha256": "3ba2940b60fa0937f9989cd808d5618759590e114d7bf97aeeabc58b7a9e1157"
+  },
+  {
+    "path": "src/managerai/v3_sequences.py",
+    "change": "new",
+    "sha256": "eb4a78e362d87cfa854aeb85a86c743ccb40e1e529a26ef0098cf10945cc32f2"
+  }
+]

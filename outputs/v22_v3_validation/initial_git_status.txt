@@ -1,0 +1,24 @@
+ M README.md
+?? .streamlit/
+?? CHANGELOG_V2.md
+?? SPEC_MVP_ANALISE_TATICA_STATSBOMB.md
+?? SPEC_V2_2_E_V3_MANAGERAI_EXECUCAO_AUTONOMA.md
+?? SPEC_V2_MANAGERAI_RELATORIO_INTERFACE.md
+?? docs/
+?? open-data/
+?? outputs/meu_primeiro_teste/
+?? outputs/mvp_demo_amostra_pequena/
+?? outputs/mvp_demo_city_arsenal/
+?? outputs/mvp_demo_data_livre/
+?? outputs/mvp_demo_sem_historico/
+?? outputs/mvp_validation/
+?? outputs/v2_amostra_pequena/
+?? outputs/v2_city_arsenal/
+?? outputs/v2_demo_city_arsenal/
+?? outputs/v2_sem_historico/
+?? outputs/v2_validation/
+?? pyproject.toml
+?? requirements-ui.txt
+?? src/managerai/
+?? streamlit_app.py
+?? tests/

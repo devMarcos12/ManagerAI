@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "managerai"
+version = "0.1.0"
+description = "Apoio histórico e auditável à preparação pré-jogo"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.65,<2"]
+v3 = ["streamlit>=1.65,<2", "matplotlib>=3.8,<4"]
+
+[project.scripts]
+managerai = "managerai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

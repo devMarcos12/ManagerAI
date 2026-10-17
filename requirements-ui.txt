@@ -1,0 +1,2 @@
+# Dependência opcional: o núcleo e a CLI continuam usando apenas Python padrão.
+streamlit==1.65.0

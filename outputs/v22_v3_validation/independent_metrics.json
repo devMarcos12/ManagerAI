@@ -1,0 +1,177 @@
+{
+  "formula_version": "3.0.0",
+  "metric_catalog_size": 26,
+  "scope": "Conferência independente de oito indicadores em dois jogos, não auditoria estatística de todas as partidas.",
+  "cases": [
+    {
+      "competition_id": 2,
+      "season_id": 27,
+      "team_id": 36,
+      "match_id": 3754320,
+      "match_date": "2016-05-01",
+      "cutoff_date": "2016-05-08",
+      "exposure_minutes": 96.0611,
+      "sources": [
+        {
+          "path": "matches/2/27.json",
+          "sha256": "e07d6d360b30e0cd17f9aeea0db1502d2a5666d298f1b44b83a2d2f21ba3d21b"
+        },
+        {
+          "path": "events/3754320.json",
+          "sha256": "25cfdf00febef482adf8b678724e1c04c907d9ac632ae2b502056e1719ca7177"
+        }
+      ],
+      "metrics": {
+        "progressive_passes": {
+          "numerator": 100,
+          "denominator": 96.0611,
+          "multiplier": 90,
+          "value": 93.69036998327107,
+          "v3_value": 93.69036998327107,
+          "passed": true
+        },
+        "final_third_pass_entries": {
+          "numerator": 41,
+          "denominator": 96.0611,
+          "multiplier": 90,
+          "value": 38.413051693141135,
+          "v3_value": 38.413051693141135,
+          "passed": true
+        },
+        "final_third_carry_entries": {
+          "numerator": 19,
+          "denominator": 96.0611,
+          "multiplier": 90,
+          "value": 17.801170296821503,
+          "v3_value": 17.801170296821503,
+          "passed": true
+        },
+        "shots_box_share": {
+          "numerator": 4,
+          "denominator": 6,
+          "multiplier": 100,
+          "value": 66.66666666666667,
+          "v3_value": 66.66666666666667,
+          "passed": true
+        },
+        "xg_box": {
+          "numerator": 0.664152418,
+          "denominator": 1,
+          "multiplier": 1,
+          "value": 0.664152418,
+          "v3_value": 0.664152418,
+          "passed": true
+        },
+        "xg_per_located_shot": {
+          "numerator": 0.755861508,
+          "denominator": 6,
+          "multiplier": 1,
+          "value": 0.125976918,
+          "v3_value": 0.12597691800000002,
+          "passed": true
+        },
+        "pressures_high_third": {
+          "numerator": 30,
+          "denominator": 96.0611,
+          "multiplier": 90,
+          "value": 28.10711099498132,
+          "v3_value": 28.10711099498132,
+          "passed": true
+        },
+        "pressures_high_third_share": {
+          "numerator": 30,
+          "denominator": 188,
+          "multiplier": 100,
+          "value": 15.957446808510639,
+          "v3_value": 15.957446808510639,
+          "passed": true
+        }
+      }
+    },
+    {
+      "competition_id": 11,
+      "season_id": 90,
+      "team_id": 220,
+      "match_id": 3773585,
+      "match_date": "2020-10-24",
+      "cutoff_date": "2021-04-10",
+      "exposure_minutes": 97.09986666666667,
+      "sources": [
+        {
+          "path": "matches/11/90.json",
+          "sha256": "37f6d9026f9ea9ce6c53ebbcc7a349bab42ed0cde9c2bbb15dfb94e664949ba9"
+        },
+        {
+          "path": "events/3773585.json",
+          "sha256": "c5454a57166c31e4ca4baf0ea756dfe1b0594e89e39a5fed971100568e1aed15"
+        }
+      ],
+      "metrics": {
+        "progressive_passes": {
+          "numerator": 108,
+          "denominator": 97.09986666666667,
+          "multiplier": 90,
+          "value": 100.10312406882811,
+          "v3_value": 100.10312406882811,
+          "passed": true
+        },
+        "final_third_pass_entries": {
+          "numerator": 34,
+          "denominator": 97.09986666666667,
+          "multiplier": 90,
+          "value": 31.51394646611255,
+          "v3_value": 31.51394646611255,
+          "passed": true
+        },
+        "final_third_carry_entries": {
+          "numerator": 20,
+          "denominator": 97.09986666666667,
+          "multiplier": 90,
+          "value": 18.5376155683015,
+          "v3_value": 18.5376155683015,
+          "passed": true
+        },
+        "shots_box_share": {
+          "numerator": 14,
+          "denominator": 16,
+          "multiplier": 100,
+          "value": 87.5,
+          "v3_value": 87.5,
+          "passed": true
+        },
+        "xg_box": {
+          "numerator": 2.838038508,
+          "denominator": 1,
+          "multiplier": 1,
+          "value": 2.838038508,
+          "v3_value": 2.838038508,
+          "passed": true
+        },
+        "xg_per_located_shot": {
+          "numerator": 2.900067952,
+          "denominator": 16,
+          "multiplier": 1,
+          "value": 0.181254247,
+          "v3_value": 0.18125424699999998,
+          "passed": true
+        },
+        "pressures_high_third": {
+          "numerator": 40,
+          "denominator": 97.09986666666667,
+          "multiplier": 90,
+          "value": 37.075231136603,
+          "v3_value": 37.075231136603,
+          "passed": true
+        },
+        "pressures_high_third_share": {
+          "numerator": 40,
+          "denominator": 198,
+          "multiplier": 100,
+          "value": 20.2020202020202,
+          "v3_value": 20.2020202020202,
+          "passed": true
+        }
+      }
+    }
+  ]
+}
