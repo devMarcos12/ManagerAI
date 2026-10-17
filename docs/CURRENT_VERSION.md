@@ -1,5 +1,7 @@
 # ManagerAI — estado operacional atual
 
+**Estado vigente: V4.3-C concluída como análise exploratória local; 228 testes e 16 comparações aprovados. Os registros anteriores de C não iniciada retratam o fechamento A/B e são superados pela seção C ao final. Não há novo teste independente nem motor tático aprendido integrado.**
+
 Verificado no código em 17/10/2026; HEAD de referência `13c50e5cc7e54e6f45487b89cdbe3994d621587f`. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
 
 ## 1. Produto e fronteiras
@@ -229,3 +231,47 @@ As definições operacionais dos dez contratos/guias B1 foram revisadas na Fase 
 Na Fase 3, os 29 arquivos históricos C foram removidos exclusivamente conforme o manifesto, após validar backup permanente, hashes e extração em pasta temporária nova. O acervo está em `/home/marcos-junior/ManagerAI-backups/`: `ManagerAI-history-13c50e5-20261017.tar.gz` preserva o início da Fase 2 e `ManagerAI-history-phase3-13c50e5-20261017.tar.gz` preserva exatamente os 29 arquivos antes da retirada. Os três documentos que tiveram destinos de links migrados estão preservados nos dois estados; nenhum resultado científico foi reescrito. Manifesto executado, checksums, resultados e recuperação seletiva estão em `PENDING.md`, §§4, 5 e 8. O backup local permanente não implica cópia externa redundante nem acesso automático de outros integrantes.
 
 Iniciar tarefas somente por `AGENTS.md`, este documento e `PENDING.md`; README é guia rápido. Consultar o acervo somente sob demanda, em extração separada, sem converter requisitos antigos em instruções vigentes. Código, testes, contratos, exemplos finais, fixture, verificadores, dados/EDA e snapshot de dependências EDA foram preservados. As funcionalidades e limitações descritas acima não mudaram com a limpeza; outras pendências não foram executadas.
+
+## 12. Robustez experimental V4.3-C
+
+Dados: **StatsBomb Open Data** — [fonte e termos na revisão utilizada](https://github.com/hudl/open-data/tree/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb). Atribuição com ícone da [organização oficial](https://github.com/statsbomb), verificado em 17/10/2026:
+
+![StatsBomb](https://avatars.githubusercontent.com/u/23416229?s=200&v=4)
+
+Análise offline concluída, sem alterar V3, V4.1, A/B, CLI, UI, schemas, dados ou EDA. O módulo `src/managerai/experiments/robustness.py` reutiliza dataset, contratos e solvers A/B; `robustness_diagnostics.py` calcula comparações pareadas e sensibilidades sem reajuste. Dois módulos novos de testes cobrem 37 casos; não há dependência nova nem alteração do pyproject nesta fase.
+
+**Protocolo:** sete meses completos de novembro/2015 a maio/2016, treinando somente em datas anteriores ao primeiro dia do mês. Esquema expansivo: mínimo 50 exemplos. Sensibilidade separada: últimos 90 dias de treino, mínimo 30. Cada mês exige 20 exemplos avaliáveis; esses limites são guardas operacionais, não poder estatístico. Todos os 14 meses/esquemas passaram. Os 330 exemplos A/B continuam válidos, com os mesmos 50 excluídos; 57 exemplos iniciais só treinam, e **273 partidas únicas** recebem previsão por esquema. São as mesmas partidas nos dois esquemas, não 546 observações independentes.
+
+Pesos, intercepto e scaler são reajustados somente no treino de cada origem e congelados durante o mês; features H5 incorporam somente jogos anteriores ao dia-alvo. Não se separam datas inteiras, não há shuffle/tuning, e validação/teste A/B não são reutilizados como confirmação independente. Todo o estudo C é exploratório pós-A/B; abril/maio contêm o teste já conhecido.
+
+Mantidos B0, B1, OLS e Ridge alpha=1. Controle adicional: média y somente do treino (intercepto). Ablações: somente média ofensiva própria ou somente concedida adversária; coluna removida é zerada antes de scaler/fit/previsão, sem imputar ausência. Não existe feature variável de mando ou grupo complementar no dataset. Todos os modelos avaliam os mesmos IDs, com truncamento `max(0,raw)`; nenhum truncamento ocorreu.
+
+Resultados agregados MAE / RMSE / viés (chutes por jogo; viés=predito−observado):
+
+| Modelo | Expansivo MAE | RMSE | Viés | Móvel90 MAE | RMSE | Viés |
+|---|---:|---:|---:|---:|---:|---:|
+| B0 | 4.384615 | 5.713822 | -1.971429 | 4.384615 | 5.713822 | -1.971429 |
+| B1 | 4.124176 | 5.396909 | -2.015751 | 4.124176 | 5.396909 | -2.015751 |
+| Média y do treino | 4.285490 | 5.588999 | -0.645782 | 4.285756 | 5.570507 | -0.476600 |
+| OLS | 3.994988 | 5.140741 | -0.973664 | 4.074797 | 5.167582 | -0.599850 |
+| Ridge α=1 | 3.995920 | 5.141355 | -0.968684 | 4.073650 | 5.167031 | -0.596517 |
+| OLS só próprio | 4.086623 | 5.320034 | -0.793357 | 4.150491 | 5.323408 | -0.502279 |
+| Ridge só próprio | 4.087036 | 5.320171 | -0.791468 | 4.149323 | 5.322771 | -0.501451 |
+| OLS só adversário | 4.196389 | 5.437409 | -0.751557 | 4.211645 | 5.429816 | -0.498321 |
+| Ridge só adversário | 4.196556 | 5.437791 | -0.750544 | 4.211514 | 5.429784 | -0.497933 |
+
+OLS reduz numericamente MAE frente a B1 em 3,1324% no expansivo e 1,1973% no móvel; Ridge em 3,1099% e 1,2251%. OLS/Ridge melhoram 6/7 meses no expansivo e 3/7 no móvel. São resultados exploratórios, sem escolha automática de vencedor: diferença OLS/Ridge inferior a 0,0012 chute/jogo nos agregados.
+
+As duas remoções pioraram MAE agregado, mas não todos os meses; não comprovam contribuição causal nem redundância estável. A vantagem móvel frente a B1 muda de sinal ao excluir fevereiro, maio ou os 14 maiores erros B1. Excluir um único jogo não muda o sinal agregado. Dados, janelas históricas e clubes compartilhados introduzem dependência: nenhum IC/p-valor IID é produzido. Quantis, exposições por equipe, meses e exclusões são diagnósticos descritivos sem refit; as exposições por equipe são sobrepostas. Detalhes, aceite e pendências em PENDING §15.
+
+Reprodução na raiz, exigindo os módulos A/B anteriores, dados locais na revisão registrada e NumPy 2.5.2 já disponível:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 venv/bin/python -B -m managerai.experiments.robustness --data-root open-data/data --reference-artifact outputs/runs/v43_ab_pl2015_16_20261017/run.json --output-dir outputs/runs/v43_c_nova_execucao
+```
+
+Destino obrigatoriamente novo; somente `outputs/runs/` dentro do checkout, ou temporário externo. Hash A/B fixo, reconstrução desde os brutos e igualdade do fingerprint impedem continuar silenciosamente diante de divergência. Um único `run.json` C referencia o manifesto A/B e guarda configuração, janelas, IDs, modelos/scalers, previsões, métricas e diagnósticos, sem copiar eventos ou o dataset inteiro. A segunda execução desde os brutos em `/tmp` reproduziu exatamente protocolo, referência e resultados, incluindo coeficientes/previsões. Contexto Git pode diferir e não é feature.
+
+Artefato local: `outputs/runs/v43_c_pl2015_16_20261017/run.json`. `.gitignore` protege `open-data/` e `outputs/runs/`; dados/artefatos permanecem no disco e não são publicados por Git. O A/B original está preservado. Publicação do delta C não inclui os módulos A/B/V4.1 preexistentes não rastreados: **um clone desse branch isolado não reproduz o experimento até esses pré-requisitos serem versionados separadamente com origem identificada**. Esse limite de publicação não foi contornado incluindo trabalho anterior no commit C.
+
+Validação: 228 testes completos aprovados, zero falhas/erros/pulos; 16 comparações independentes aprovadas. Sem site-packages: 185 aprovados/43 pulados. Nenhum treinamento complexo, fine-tuning, LLM, recomendação de escalação ou integração no motor tático. Não avançar automaticamente; primeiro obter dados independentes e critério útil pré-fixado. OLS pode continuar referência simples de pesquisa e Ridge controle; não há evidência suficiente para justificar maior complexidade ou superioridade esportiva.

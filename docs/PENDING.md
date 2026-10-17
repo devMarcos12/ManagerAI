@@ -1,5 +1,7 @@
 # ManagerAI — pendências e manifesto de limpeza
 
+**Estado vigente: V4.3-C concluída como análise exploratória local; 228 testes e 16 comparações aprovados. Os registros anteriores de C não iniciada retratam o fechamento A/B e são superados pela seção C ao final. Não há novo teste independente nem motor tático aprendido integrado.**
+
 Atualizado em 17/10/2026. Estado/contratos/comandos: [CURRENT_VERSION.md](CURRENT_VERSION.md). Regras: [AGENTS.md](../AGENTS.md). **Fase 1 concluída: os 29 arquivos do grupo A e os dois diretórios vazios autorizados foram removidos. Os grupos B (38 arquivos) e C (29 arquivos) permanecem intactos, aguardando nova aprovação.** README, código funcional, testes, dados e documentação das outras versões não foram alterados. Resultados desta execução na seção 6.
 
 ## 1. Prioridades, dependências e conclusão
@@ -389,3 +391,146 @@ Fixture mantida: `outputs/mvp_demo_city_arsenal/report.json`, SHA-256 `424389e2a
 ```
 
 As quatro exclusões rastreadas correspondem a A1. Os 25 caches ignorados e os dois diretórios vazios não aparecem no status; os cinco itens `??` já existiam no início, inclusive este documento, cuja edição não aparece como `M` por ainda não estar rastreado. `git diff --check` sem problemas. A Fase 1 está encerrada; próximas ações dos 38 condicionados são revisão da consolidação, autorização para migrar README/links, confirmação da configuração VSCode e transferência prévia dos PNGs históricos quando necessária, sempre com nova aprovação para a limpeza física.
+
+## 15. V4.3-C — robustez exploratória
+
+Dados: **StatsBomb Open Data** — [fonte e termos na revisão utilizada](https://github.com/hudl/open-data/tree/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb). Atribuição com ícone da [organização oficial](https://github.com/statsbomb), verificado em 17/10/2026:
+
+![StatsBomb](https://avatars.githubusercontent.com/u/23416229?s=200&v=4)
+
+### 15.1 Protocolo fixado antes dos novos resultados
+
+Autorização: robustez e ablação locais, regressões leves, testes, documentação e commits/push somente desta fase. A reprodução inicial desde os brutos confirmou igualdade de `protocol`, `dataset` e `results` com A/B. HEAD de entrada `09b73b75c74266347a2f924a67dc95d7c803720f`, branch `main`, remoto `git@github.com:devMarcos12/ManagerAI.git`; havia alterações locais anteriores em AGENTS/docs/pyproject e módulos V4.1/A/B não rastreados. Inventário e diferenças iniciais preservados em `/tmp/managerai-v43c-5nzibun9/baseline.json`. Não atribuir esses arquivos anteriores à C.
+
+Fixado antes da avaliação C: sete meses completos de **novembro/2015 a maio/2016**, treino expansivo com datas anteriores ao início de cada mês (mínimo 50 exemplos), avaliação com mínimo 20. Sensibilidade separada com treino móvel dos **90 dias anteriores** e mínimo 30, mesmos meses/alvos; nunca reunir os dois protocolos como partidas adicionais. Datas inteiras são indivisíveis, sem shuffle. Fronteiras não serão alteradas por desempenho; meses insuficientes serão registrados sem previsão substituta. Histórico das features continua prequential H5, estritamente anterior ao dia-alvo; pesos/scaler são congelados durante cada mês. Não há retreino intramês.
+
+Modelos: B0, B1, OLS e Ridge α=1 anteriores; controle adicional de média dos alvos somente do treino (intercepto). Ablação das regressões: apenas histórico próprio ou apenas concedido adversário, zerando a coluna removida antes do scaler/fit e da previsão; isso não imputa um dado ausente. Não existem grupos complementares nem feature variável de mando para remover. Nenhuma seleção de atributo ou hiperparâmetro decorrerá dessas análises. Comparações pareadas nos mesmos IDs, métricas MAE/RMSE/viés, distribuição e desempenho por mês/equipe. Equipes são grupos sobrepostos; suas contagens não se somam como amostra independente.
+
+Diagnósticos pré-fixados: excluir uma observação ou um mês por vez da avaliação **sem reajuste**; retirar simultaneamente para todos os modelos os `ceil(5% × n)` maiores erros absolutos B1, somente com n>=20, desempate data/ID. Essa remoção usa resultados observados e é apenas sensibilidade a outliers, nunca uma nova métrica principal ou estimativa prospectiva. Não calcular IC/p-valor: sete meses e 20 clubes compartilhados não sustentam aqui uma inferência confiável com dependência temporal/equipes. Relatar as diferenças descritivamente, inclusive resultados desfavoráveis.
+
+Todos os períodos já pertencem ao dataset visto na A/B. **Toda C é exploratória pós-A/B; abril/maio incluem o teste já conhecido. Não existe teste independente novo reservado.** Não escolher janelas, atributos ou arquitetura pelo antigo teste. Sem fine-tuning, redes, integração V4.1/LLM, novas temporadas ou alteração do runtime. Estado: CONCLUÍDA como análise exploratória; resultados e validação abaixo. Publicação do delta C não inclui trabalho anterior não rastreado.
+
+### 15.2 Janelas e resultados reais
+
+Todos os critérios pré-fixados foram mantidos. Cada linha usa um mês inteiro e os mesmos alvos nos dois esquemas. As features continuam H5; 90 dias é limite do conjunto de ajuste, não proibição de um exemplo de treino referenciar seu próprio histórico anterior ao começo desses 90 dias.
+
+| Mês avaliado | Treino expansivo | Treino móvel90 | Avaliação | Equipes avaliadas |
+|---|---:|---:|---:|---:|
+| 2015-11 | 57 | 57 | 33 | 20 |
+| 2015-12 | 90 | 90 | 50 | 20 |
+| 2016-01 | 140 | 120 | 40 | 20 |
+| 2016-02 | 180 | 120 | 38 | 20 |
+| 2016-03 | 218 | 128 | 35 | 20 |
+| 2016-04 | 253 | 113 | 49 | 20 |
+| 2016-05 | 302 | 122 | 28 | 20 |
+
+330 exemplos totais/50 excluídos preservados. Cada esquema avalia 273 partidas únicas (novembro a maio), sem adicionar os 57 exemplos iniciais usados só para treino à amostra de previsão. Os dois esquemas não formam 546 partidas independentes. Para todos os modelos, n=273 por esquema. Nenhum mês bloqueado ou previsão negativa truncada.
+
+| Esquema / modelo | MAE | RMSE | Viés | ΔMAE vs B1 | Δ% vs B1 | Meses com menor MAE que B1 |
+|---|---:|---:|---:|---:|---:|---:|
+| expanding / B0 | 4.384615 | 5.713822 | -1.971429 | 0.260440 | 6.3149% | 2/7 |
+| expanding / B1 | 4.124176 | 5.396909 | -2.015751 | 0.000000 | 0.0000% | 0/7 |
+| expanding / Média y do treino | 4.285490 | 5.588999 | -0.645782 | 0.161314 | 3.9114% | 4/7 |
+| expanding / OLS | 3.994988 | 5.140741 | -0.973664 | -0.129187 | -3.1324% | 6/7 |
+| expanding / Ridge α=1 | 3.995920 | 5.141355 | -0.968684 | -0.128256 | -3.1099% | 6/7 |
+| expanding / OLS só próprio | 4.086623 | 5.320034 | -0.793357 | -0.037553 | -0.9106% | 4/7 |
+| expanding / Ridge só próprio | 4.087036 | 5.320171 | -0.791468 | -0.037140 | -0.9005% | 4/7 |
+| expanding / OLS só adversário | 4.196389 | 5.437409 | -0.751557 | 0.072213 | 1.7510% | 3/7 |
+| expanding / Ridge só adversário | 4.196556 | 5.437791 | -0.750544 | 0.072380 | 1.7550% | 3/7 |
+| rolling90 / B0 | 4.384615 | 5.713822 | -1.971429 | 0.260440 | 6.3149% | 2/7 |
+| rolling90 / B1 | 4.124176 | 5.396909 | -2.015751 | 0.000000 | 0.0000% | 0/7 |
+| rolling90 / Média y do treino | 4.285756 | 5.570507 | -0.476600 | 0.161580 | 3.9179% | 3/7 |
+| rolling90 / OLS | 4.074797 | 5.167582 | -0.599850 | -0.049379 | -1.1973% | 3/7 |
+| rolling90 / Ridge α=1 | 4.073650 | 5.167031 | -0.596517 | -0.050526 | -1.2251% | 3/7 |
+| rolling90 / OLS só próprio | 4.150491 | 5.323408 | -0.502279 | 0.026315 | 0.6381% | 3/7 |
+| rolling90 / Ridge só próprio | 4.149323 | 5.322771 | -0.501451 | 0.025147 | 0.6097% | 3/7 |
+| rolling90 / OLS só adversário | 4.211645 | 5.429816 | -0.498321 | 0.087469 | 2.1209% | 3/7 |
+| rolling90 / Ridge só adversário | 4.211514 | 5.429784 | -0.497933 | 0.087339 | 2.1177% | 3/7 |
+
+MAE principal agregado pondera partidas (não média não ponderada dos sete MAEs). Viés=predito−observado. As métricas incluem distribuição assinada/absoluta e quantis lineares A/B. Não se selecionou esquema/atributo/alpha pelo desempenho. Os 6,63% A/B permanecem resultado numérico do teste conhecido; os percentuais acima pertencem a outro protocolo, sem provar reprodução independente desse ganho.
+
+MAE mensal, n nas janelas acima:
+
+| Esquema / mês | B0 | B1 | Média treino | OLS | Ridge |
+|---|---:|---:|---:|---:|---:|
+| expanding / 2015-11 | 4.703030 | 3.900000 | 4.451356 | 4.251419 | 4.255425 |
+| expanding / 2015-12 | 4.552000 | 4.004000 | 4.523111 | 3.991466 | 3.995278 |
+| expanding / 2016-01 | 3.425000 | 3.335000 | 3.758571 | 3.247075 | 3.249503 |
+| expanding / 2016-02 | 5.021053 | 5.126316 | 4.975439 | 4.683892 | 4.683108 |
+| expanding / 2016-03 | 3.908571 | 3.974286 | 3.963434 | 3.964090 | 3.962043 |
+| expanding / 2016-04 | 4.187755 | 3.816327 | 3.613132 | 3.601053 | 3.598987 |
+| expanding / 2016-05 | 5.157143 | 5.096429 | 5.061258 | 4.560572 | 4.561900 |
+| rolling90 / 2015-11 | 4.703030 | 3.900000 | 4.451356 | 4.251419 | 4.255425 |
+| rolling90 / 2015-12 | 4.552000 | 4.004000 | 4.523111 | 3.991466 | 3.995278 |
+| rolling90 / 2016-01 | 3.425000 | 3.335000 | 3.790833 | 3.343897 | 3.345329 |
+| rolling90 / 2016-02 | 5.021053 | 5.126316 | 4.975439 | 4.654400 | 4.651321 |
+| rolling90 / 2016-03 | 3.908571 | 3.974286 | 4.019196 | 4.186763 | 4.180794 |
+| rolling90 / 2016-04 | 4.187755 | 3.816327 | 3.646018 | 3.866076 | 3.859116 |
+| rolling90 / 2016-05 | 5.157143 | 5.096429 | 4.890515 | 4.498279 | 4.497351 |
+
+### 15.3 Ablação e interpretação
+
+Apenas dois grupos presentes foram removidos. Comparação pareada com o modelo completo, mesmas partidas/treino/alpha/scaler ajustado dentro de cada ablação:
+
+| Esquema / família | ΔMAE ao remover adversário (só próprio) | ΔMAE ao remover próprio (só adversário) | Meses em que completo melhora só próprio / só adversário |
+|---|---:|---:|---:|
+| expanding / OLS | 0.091634 | 0.201401 | 5/7 / 6/7 |
+| expanding / Ridge α=1 | 0.091116 | 0.200636 | 5/7 / 6/7 |
+| rolling90 / OLS | 0.075694 | 0.136848 | 5/7 / 6/7 |
+| rolling90 / Ridge α=1 | 0.075673 | 0.137864 | 5/7 / 6/7 |
+
+Nenhum grupo se mostrou removível sem perda agregada, mas a contribuição não é uniforme por mês. Isso não comprova causalidade, relevância independente de liga/época nem necessidade de preservar features futuras. O controle intercepto/média de treino piora o agregado frente ao completo e ao B1; nesse protocolo, o ganho completo não se resume a prever uma constante. Não há experimento que isole causalmente mando: todos os alvos são mandantes e seus históricos misturam mandos. Não eliminar automaticamente atributo nem adicionar novos grupos por esses resultados.
+
+### 15.4 Estabilidade, dependência e outliers
+
+OLS/Ridge têm diferenças agregadas inferiores a 0,0012 chute/jogo e sinais semelhantes: não há vencedor sustentado. Frente a B1, OLS ganha em 151/perde em122 jogos expansivos e ganha em142/perde em131 móveis; n=273 em cada, não ensaios independentes. Diferenças de MAE mensais OLS variam de -0,535856 a +0,351419 no expansivo e de -0,598149 a +0,351419 no móvel. Todos subestimam em média; reduzir viés não garante menor MAE em cada período.
+
+| Sensibilidade sem refit | ΔMAE OLS vs B1 expansivo | ΔMAE Ridge vs B1 expansivo | ΔMAE OLS vs B1 móvel | ΔMAE Ridge vs B1 móvel |
+|---|---:|---:|---:|---:|
+| Excluir 14 maiores erros B1, restam259 | -0.079228 | -0.078400 | 0.029758 | 0.028019 |
+| Excluir um mês: amplitude | -0.195271 a -0.078536 | -0.194762 a -0.077327 | -0.104489 a 0.018946 | -0.106344 a 0.018112 |
+| Excluir um jogo: amplitude | -0.137600 a -0.122179 | -0.136590 a -0.121257 | -0.066682 a -0.036008 | -0.067613 a -0.037223 |
+
+No móvel, retirar fevereiro ou maio inverte o sinal da diferença agregada contra B1; a remoção dos 14 outliers de referência também inverte. No expansivo, os sinais persistem nessas exclusões, mas não convertem sete blocos correlacionados em confirmação estatística. Excluir um único jogo não inverte os agregados. Essas exclusões foram pré-fixadas como diagnóstico, usam outcomes e não substituem a métrica principal nem estimam desempenho esperado após “limpar” dados.
+
+Exposição por clube: 20 clubes com 27–28 jogos avaliados, grupos sobrepostos. OLS/Ridge ficam numericamente abaixo de B1 em14 clubes no expansivo e12 no móvel; diferenças OLS por clube vão de -0,558906 a +0,191156 no expansivo e -0,558454 a +0,398974 no móvel. Isso descreve heterogeneidade, não generalização a clubes novos, ranking ou efeitos individuais. Cada jogo aparece em duas exposições; não somar seus Ns nem interpretar os grupos como independentes.
+
+Não foram calculados ICs ou p-valores: não foi estabelecido aqui um modelo adequado de dependência para sete blocos temporais e equipes/históricos compartilhados. Não usar bootstrap IID ou teste de eventos como se houvesse milhões de exemplos. A melhoria C é pequena, heterogênea e sensível ao protocolo; não demonstra superioridade preditiva generalizável, estratégia ideal nem utilidade causal para treinadores.
+
+### 15.5 Reprodução e validação
+
+Artefato único C local: `outputs/runs/v43_c_pl2015_16_20261017/run.json`, 3116613 bytes, SHA-256 `e0ff278ef9636e1d0d0cf0cf5b4dfbd6b3ef62fe0c452738cd66cadbbb391f50`. Protocolo `07e4a0ae2176d73c89e059f8e5d6a5a81aa727bccf49f61668d57bfc3c3e914d`. Referência A/B SHA-256 `29688df92f7e06aadb393eec5c8c469a3b9ef9d07732055f95401d33812889a5`; fingerprint do dataset `7b05d8df08b8f55388b9a5b73220dba7b33e77447c1d9fd39b8bc6bf988a99c5`. Python3.12.3/NumPy2.5.2 existentes; threads BLAS=1, nenhum pacote instalado. Hashes do código/pyproject, HEAD de execução, branch e fontes referenciadas estão no JSON. Não copiar novamente o dataset inteiro.
+
+Reprodução C desde os brutos, em `/tmp/managerai-v43c-5nzibun9/c_reproduction/run.json`: configuração/fingerprint, referência e resultados completos iguais ao original, incluindo janelas, scalers/coeficientes, previsões e sensibilidades. A/B também foi reproduzida antes da análise C: protocolo, dataset e resultados completos iguais. Não se compara contexto Git como resultado numérico; comandos e destinos novos em CURRENT_VERSION §12.
+
+| Validação real | Resultado |
+|---|---|
+| Suíte completa local/UI/V3/V4.1/A/B/C | **228 aprovados**, zero falhas/erros/pulos; 76,194s de suíte; 37 testes novos |
+| Sem site-packages (`-S`) | 228 descobertos, **185 aprovados/43 pulados** por dependências opcionais; zero falhas/erros; 7,351s |
+| Comparações independentes V3 | **16/16 aprovadas**; sem alteração dos verificadores |
+| Python/links | 59 arquivos AST válidos; 16 destinos Markdown locais existentes, zero quebrados |
+| Preservação | A/B, V4.1, núcleo, testes anteriores, pyproject, README e AGENTS sem alteração de conteúdo nesta fase; EDA e fixture preservadas |
+| Dados | Metadados de8.980 arquivos do clone preservados e clone limpo; SHA-256 das762 fontes do experimento reconferidos; não se afirma hash integral dos16GB |
+
+Suíte: `MANAGERAI_RUN_LOCAL_TESTS=1 PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg venv/bin/python -B -m unittest discover -s tests -v`, com TMPDIR/caches gráficos em temporários exclusivos. Verificação independente: `PYTHONPATH=src venv/bin/python -B outputs/v22_v3_validation/check_metrics.py`. Logs, inventários e cópias de reprodução ficam apenas em `/tmp/managerai-v43c-5nzibun9/`. Nenhum relatório Markdown novo, gráfico descartável, checkpoint ou dataset copiado foi criado na árvore operacional.
+
+### 15.6 Decisão e próximos passos
+
+**C concluída como estudo de robustez exploratório, sem exigir melhora de Ridge.** Recomenda-se manter OLS como referência simples de pesquisa e Ridge como controle, sem declarar vencedor; não há justificativa atual para redes, Transformers, modelos pré-treinados ou fine-tuning. B0/B1 e controle de média do treino devem continuar em futuras comparações.
+
+| Próximo passo | Dependência | Aceite / estado |
+|---|---|---|
+| Avaliação independente | Nova temporada comparável, autorização de uso e auditoria de schemas/cobertura/anotações | Pré-registrar alvo/features/alpha/janelas/margem útil antes de olhar seus erros; **não iniciado** |
+| Robustez estatística | Mais períodos e desenho adequado à dependência temporal/equipes | Definir método e cobertura antes do experimento; não reciclar este teste para tuning; **pendente** |
+| Utilidade prática | Professor/comissão define tolerância de erro, viés/custo/abstenção | Revisão humana separada de qualidade preditiva; nenhum ganho tático demonstrado |
+| Fine-tuning | Tarefa/representação e pesos compatíveis, licença, orçamento, dados/rótulos e ganho sobre modelos simples | **Sem evidência suficiente; não autorizado nem executado** |
+| Integração futura | Contrato quantitativo com proveniência/suficiência e avaliação independente satisfatória | Migração própria, sem forçar previsão em TacticalEngineOutput; **não iniciada** |
+| Publicação dos pré-requisitos anteriores | Módulos A/B/V4.1 e pyproject/docs anteriores estavam não rastreados/modificados antes da C | Versionar separadamente com origem identificada e escopo próprio; não incluídos silenciosamente nos commits C |
+
+A revisão local está validada, mas um clone do branch contendo somente o delta C não possui todos os pré-requisitos A/B/V4.1 anteriores. Esse limite é registrado em vez de atribuir trabalho preexistente à C. O artefato A/B contém linhas/dados derivados e permanece local; C também fica local, ignorada por Git. Compartilhamento dos artefatos/dados/pesos exige confirmação específica dos direitos; publicação de código não concede esses direitos. Nenhuma integração LLM, fine-tuning ou V4.4 foi iniciada.
+
+### 15.7 Arquivos e Git
+
+Modificados nesta fase: `.gitignore`, `docs/CURRENT_VERSION.md`, `docs/PENDING.md`. Criados: `src/managerai/experiments/robustness.py`, `src/managerai/experiments/robustness_diagnostics.py`, `tests/test_experimental_robustness.py`, `tests/test_robustness_diagnostics.py` e o único artefato C local/ignorado. **Nenhuma exclusão**; temporários da execução estão fora do checkout. `.gitignore` protege brutos e novos runs, sem ignorar outputs inteiro, fixtures ou exemplos congelados. Nenhum arquivo de venv, bruto, segredo ou checkpoint será adicionado.
+
+Branch de desenvolvimento: `feat/v4.3c-robustness`, separado de main. Remoto conferido: `git@github.com:devMarcos12/ManagerAI.git`; main remoto coincide com HEAD inicial `09b73b75c74266347a2f924a67dc95d7c803720f`. Commit de código C: `a1e3cd115ef75818c798694733becf683a8ae341` (`feat(experiments): add exploratory walk-forward robustness study`), contendo somente quatro Python novos e `.gitignore`. O commit documental contém somente status/seções C; seções/documentos preexistentes, módulos V4.1/A/B, pyproject e artefatos anteriores permanecerão fora desses commits. O índice dos documentos foi construído com HEAD + apenas a seção/status C, preservando as versões completas locais. Isso evita incluir alterações anteriores só porque compartilham o mesmo arquivo. Hashes dos commits e resultado efetivo do push serão informados na entrega; não há merge, PR, force-push ou reescrita.
