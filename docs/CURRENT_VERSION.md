@@ -1,6 +1,6 @@
 # ManagerAI — estado operacional atual
 
-**CORE-00: V4.1, A/B e C versionadas; instalação e 237 testes validados em checkout limpo. CI e integração Git registradas na seção CORE-00 ao final. O runtime do treinador permanece determinístico; regressões são experimentais.**
+**CORE-00: V4.1, A/B e C versionadas; instalação e 237 testes validados em checkout limpo. CI aprovada e integração Git rastreadas pelo [PR #10](https://github.com/devMarcos12/ManagerAI/pull/10) e pela seção CORE-00 ao final. O runtime do treinador permanece determinístico; regressões são experimentais.**
 
 Verificado no código em 17/10/2026; Ancestral publicado da integração `e91e55dd51081bd381f69097353ec86ca5bf7583`; HEADs anteriores nos registros de validação são históricos. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
 

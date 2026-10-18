@@ -18,7 +18,7 @@ Na V4.1, este documento foi corrigido a partir do estado antigo da Fase 1 para r
 | V4.2 | CONCLUÍDA | Inventário, amostragem, quatro tarefas, atributos/alvos, modelos/fine-tuning e protocolo documentados; 153 testes e 16 comparações, §13. Gates V4.3 no §12 |
 | V4.3-A/B | CONCLUÍDA | 330 exemplos/50 excluídos; baselines, OLS/Ridge e avaliação 198/65/67 reproduzidos; 191 testes e 16 comparações aprovados; §14 |
 | V4.3-C | CONCLUÍDA | Estudo exploratório, reprodução e 228 testes históricos no §15; pré-requisitos versionados na CORE-00 |
-| CORE-00 | VALIDAÇÃO E INTEGRAÇÃO | Instalação limpa, CI e publicação registradas no §16 |
+| CORE-00 | BASE CONSOLIDADA E VALIDADA | Instalação limpa e CI aprovadas; integração rastreada pelo PR #10, §16 |
 | DATA-01 | DECISÃO HUMANA | Provisionamento StatsBomb com revisão/licença/responsável e recuperação por outro integrante; dados e EDA mantidos |
 | ART-01 | IMPLEMENTADO NA C, CONFERIDO NA CORE-00 | `open-data/` e `outputs/runs/` ignorados; fixtures, exemplos finais e verificadores preservados/rastreados |
 | TEAM-01 / B4 | DECISÃO HUMANA | Responsáveis por contratos, dados/indicadores, UI e avaliação; confirmar uso compartilhado de `.vscode/settings.json` |
@@ -733,6 +733,6 @@ Reprodução A/B desde os brutos, por wheel instalado, sem usar o run histórico
 
 ### 16.4 Publicação, CI e pendências
 
-Publicação: branch `integration/core-00`, base main, [PR #10](https://github.com/devMarcos12/ManagerAI/pull/10). A primeira execução GitHub `39086601248` foi rejeitada na validação do workflow antes de executar testes: contexto `runner.temp` em env do job. Os diretórios foram corrigidos para caminhos /tmp válidos do runner Ubuntu; a execução seguinte será conferida antes de merge. Não fazer merge enquanto houver falha, conflito ou revisão obrigatória. Não apagar branches compartilhados. A autorização CORE-00 permite merge normal apenas com validações verdes e regras atendidas.
+Publicação: branch `integration/core-00`, base main, [PR #10](https://github.com/devMarcos12/ManagerAI/pull/10). A primeira execução GitHub `39086601248` foi rejeitada na validação do workflow antes de executar testes: contexto `runner.temp` em env do job. Os diretórios foram corrigidos para caminhos /tmp válidos do runner Ubuntu; a execução seguinte [39086750802](https://github.com/devMarcos12/ManagerAI/actions/runs/39086750802), no commit `db6c49d`, **passou nos dois perfis core/opcionais**. Alterações documentais posteriores também precisam dos checks verdes no head atual antes do merge normal. Esta revisão reúne todos os pré-requisitos antes ausentes. O PR rastreia o estado publicado e o merge em main; usar seus checks atuais como gate. Não fazer merge enquanto houver falha, conflito ou revisão obrigatória. Não apagar branches compartilhados. A autorização CORE-00 permite merge normal apenas com validações verdes e regras atendidas.
 
 Permanecem fora desta missão: teste esportivo independente em outra temporada, definição de ganho útil e avaliação por especialistas, licença para redistribuir dados/derivados/pesos, redundância externa dos backups e lock completo de transitivas. Fine-tuning, integração LLM, frontend de terceiros, novas fórmulas, planejamento definitivo do Core e roadmap de Issues não foram iniciados.
