@@ -25,8 +25,8 @@ jobs:
       PYTHONDONTWRITEBYTECODE: "1"
       MANAGERAI_RUN_LOCAL_TESTS: "0"
       MPLBACKEND: Agg
-      MPLCONFIGDIR: ${{ runner.temp }}/managerai-mpl
-      XDG_CACHE_HOME: ${{ runner.temp }}/managerai-cache
+      MPLCONFIGDIR: /tmp/managerai-mpl
+      XDG_CACHE_HOME: /tmp/managerai-cache
       OPENBLAS_NUM_THREADS: "1"
       OMP_NUM_THREADS: "1"
     steps:

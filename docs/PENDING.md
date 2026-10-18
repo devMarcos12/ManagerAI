@@ -733,6 +733,6 @@ Reprodução A/B desde os brutos, por wheel instalado, sem usar o run histórico
 
 ### 16.4 Publicação, CI e pendências
 
-Publicação em preparação: branch `integration/core-00`, base main; PR e checks serão registrados após validação local. Não fazer merge enquanto houver falha, conflito ou revisão obrigatória. Não apagar branches compartilhados. A autorização CORE-00 permite merge normal apenas com validações verdes e regras atendidas.
+Publicação: branch `integration/core-00`, base main, [PR #10](https://github.com/devMarcos12/ManagerAI/pull/10). A primeira execução GitHub `39086601248` foi rejeitada na validação do workflow antes de executar testes: contexto `runner.temp` em env do job. Os diretórios foram corrigidos para caminhos /tmp válidos do runner Ubuntu; a execução seguinte será conferida antes de merge. Não fazer merge enquanto houver falha, conflito ou revisão obrigatória. Não apagar branches compartilhados. A autorização CORE-00 permite merge normal apenas com validações verdes e regras atendidas.
 
 Permanecem fora desta missão: teste esportivo independente em outra temporada, definição de ganho útil e avaliação por especialistas, licença para redistribuir dados/derivados/pesos, redundância externa dos backups e lock completo de transitivas. Fine-tuning, integração LLM, frontend de terceiros, novas fórmulas, planejamento definitivo do Core e roadmap de Issues não foram iniciados.
