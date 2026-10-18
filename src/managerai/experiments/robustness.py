@@ -19,12 +19,55 @@ import platform
 
 from .dataset import FEATURE_NAMES, SupervisedDataset, build_dataset, digest
 from .models import _date, _pair, fit_regressions
+from .paths import execution_code_hashes, project_root
 from .robustness_diagnostics import paired_comparison, stability_diagnostics
 from .runner import _git, _period
 
 REFERENCE_SHA256 = "29688df92f7e06aadb393eec5c8c469a3b9ef9d07732055f95401d33812889a5"
+REFERENCE_PROTOCOL = "36e230673236e7ec9ca73d6a0dc00cf6fda48f5c21600cd53006ec458c06b8bb"
+REFERENCE_DATASET = "7b05d8df08b8f55388b9a5b73220dba7b33e77447c1d9fd39b8bc6bf988a99c5"
+REFERENCE_RESULTS = "8875cafd996379f643c0064bd8c470846a27f4ad97dec4eb64b6d8fa788b1c94"
 MODEL_IDS = ("historical_mean", "combined_means", "training_mean", "linear", "ridge",
              "linear_home_only", "ridge_home_only", "linear_away_only", "ridge_away_only")
+
+
+def numerical_signature(value):
+    """Assinatura com oito casas decimais para ruído numérico de BLAS.
+
+    Não altera previsões ou métricas armazenadas. A assinatura inclui todos os
+    resultados, IDs e evidências, e só ignora precisão inferior à registrada
+    por essa regra. Metadados Git/ambiente ficam fora de results na A/B.
+    """
+    if isinstance(value, float):
+        if not math.isfinite(value):
+            raise ValueError("Resultado não finito na referência.")
+        return round(value, 8)
+    if isinstance(value, list):
+        return [numerical_signature(v) for v in value]
+    if isinstance(value, dict):
+        return {k: numerical_signature(v) for k, v in value.items()}
+    return value
+
+
+def validate_reference(payload: bytes) -> dict:
+    """Aceita A/B reconstruída com ciência congelada e metadados novos.
+
+    O hash binário histórico continua registrado, mas não pode ser exigido de
+    um novo clone: HEAD, caminhos e ambiente mudam legitimamente. Protocolo e
+    dataset são exatos; resultados completos são conferidos a oito casas.
+    """
+    try:
+        ab = json.loads(payload, parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
+        if (digest(ab["protocol"]) != ab["protocol_fingerprint"]
+                or digest(ab["dataset"]) != ab["dataset_fingerprint"]):
+            raise ValueError("Fingerprint A/B inválido.")
+        if (ab["protocol_fingerprint"] != REFERENCE_PROTOCOL
+                or ab["dataset_fingerprint"] != REFERENCE_DATASET
+                or digest(numerical_signature(ab["results"])) != REFERENCE_RESULTS):
+            raise ValueError("Ciência da referência A/B diverge da versão congelada.")
+    except (KeyError, TypeError, json.JSONDecodeError) as exc:
+        raise ValueError("Referência A/B incompleta ou inválida.") from exc
+    return ab
 
 
 @dataclass(frozen=True)
@@ -182,7 +225,7 @@ def protocol() -> dict:
 def run_robustness(data_root: str | Path, reference_artifact: str | Path, output_dir: str | Path) -> Path:
     """Reconstrói os brutos e referencia A/B; escreve um JSON em diretório novo."""
     root, reference, output = Path(data_root).resolve(), Path(reference_artifact).resolve(), Path(output_dir).resolve()
-    project = Path(__file__).resolve().parents[3]
+    project = project_root()
     protected_data = root.parent if (root.parent / ".git").exists() else root
     if (output.exists() or output == protected_data or output.is_relative_to(protected_data)
             or output == reference.parent or output.is_relative_to(reference.parent)
@@ -190,11 +233,7 @@ def run_robustness(data_root: str | Path, reference_artifact: str | Path, output
         raise ValueError("Resultado exige diretório novo fora dos dados e artefatos anteriores.")
     raw_reference = reference.read_bytes()
     reference_hash = sha256(raw_reference).hexdigest()
-    if reference_hash != REFERENCE_SHA256:
-        raise ValueError("Artefato A/B diferente da referência congelada; investigar sem avaliar.")
-    ab = json.loads(raw_reference, parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
-    if digest(ab["dataset"]) != ab["dataset_fingerprint"] or digest(ab["protocol"]) != ab["protocol_fingerprint"]:
-        raise ValueError("Fingerprint A/B inválido.")
+    ab = validate_reference(raw_reference)
     # Fixar o protocolo antes da leitura dos novos erros.
     configuration = protocol()
     dataset = build_dataset(root)
@@ -202,10 +241,11 @@ def run_robustness(data_root: str | Path, reference_artifact: str | Path, output
     if dataset_fingerprint != ab["dataset_fingerprint"]:
         raise ValueError("Dataset reconstruído diverge da referência A/B; interromper análise.")
     results = evaluate_robustness(dataset)
-    code_hashes = {str(p.relative_to(project)): sha256(p.read_bytes()).hexdigest()
-                   for p in sorted((project / "src" / "managerai").rglob("*.py"))}
+    code_hashes = execution_code_hashes()
     artifact = {"artifact_version": "4.3-c.1", "protocol": configuration, "protocol_fingerprint": digest(configuration),
         "reference": {"artifact": str(reference.relative_to(project)) if reference.is_relative_to(project) else str(reference), "sha256": reference_hash,
+                      "historical_artifact_sha256": REFERENCE_SHA256,
+                      "validation": "protocolo/dataset exatos; assinatura de todos resultados arredondados a oito casas",
                       "dataset_fingerprint": dataset_fingerprint, "protocol_fingerprint": ab["protocol_fingerprint"],
                       "sources": len(dataset.source_hashes), "dataset_examples": len(dataset.examples), "excluded": len(dataset.excluded)},
         "results": results, "reproduction": {"code_head": _git(project, "rev-parse", "HEAD"),

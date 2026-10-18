@@ -15,6 +15,7 @@ import subprocess
 from .dataset import (FEATURE_NAMES, TASK_ID, TASK_VERSION, WINDOW, Example,
                       QuantitativePrediction, SupervisedDataset, build_dataset, digest)
 from .models import evaluate_predictions, fit_regressions
+from .paths import execution_code_hashes, project_root
 
 TRAIN_END = "2016-02-06"
 VALIDATION_END = "2016-04-03"
@@ -131,7 +132,7 @@ def _git(path, *args):
 def run_experiment(data_root: str | Path, output_dir: str | Path) -> Path:
     """Cria somente run.json em destino novo; nunca publica ou sobrescreve."""
     data_root, output_dir = Path(data_root).resolve(), Path(output_dir).resolve()
-    project = Path(__file__).resolve().parents[3]
+    project = project_root()
     data_protected = data_root.parent if (data_root.parent / ".git").exists() else data_root
     protected = (data_protected, project / "src", project / "tests", project / "docs",
                  project / "scripts", project / "outputs" / "statsbomb_eda_20261002_exec6",
@@ -153,8 +154,7 @@ def run_experiment(data_root: str | Path, output_dir: str | Path) -> Path:
                 "minimum_partition_sizes": {"train": 30, "validation": 10, "test": 20}}
     dataset = build_dataset(data_root)
     result = evaluate_dataset(dataset)
-    code_hashes = {str(p.relative_to(project)): sha256(p.read_bytes()).hexdigest()
-                   for p in sorted((project / "src" / "managerai").rglob("*.py"))}
+    code_hashes = execution_code_hashes()
     artifact = {"artifact_version": "1.0.0", "protocol": protocol, "protocol_fingerprint": digest(protocol),
                 "dataset": dataset.to_dict(), "dataset_fingerprint": digest(dataset.to_dict()), "results": result,
                 "reproduction": {"code_head": _git(project, "rev-parse", "HEAD"),
