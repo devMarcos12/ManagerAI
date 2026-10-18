@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados locais externos e resultados de pesquisa: não publicar por git add amplo.
+/open-data/
+# Artefatos A/B e C permanecem no disco; reprodução por módulos experimentais.
+# Compartilhamento de dados/derivados exige análise de direitos própria.
+/outputs/runs/

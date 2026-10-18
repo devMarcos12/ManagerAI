@@ -16,6 +16,8 @@ ui = ["streamlit==1.65.0"]
 v3 = ["streamlit==1.65.0", "matplotlib==3.11.2"]
 # unittest é da biblioteca padrão; os opcionais abaixo habilitam toda a suíte UI/V3.
 dev = ["streamlit==1.65.0", "matplotlib==3.11.2"]
+# Experimento quantitativo opt-in; não altera dependências do núcleo/UI/V3.
+experiments = ["numpy==2.5.2"]
 eda = [
     "pandas==3.0.5",
     "numpy==2.5.2",

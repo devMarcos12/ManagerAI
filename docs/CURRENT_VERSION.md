@@ -1,6 +1,8 @@
 # ManagerAI — estado operacional atual
 
-Verificado no código em 17/10/2026; HEAD de referência `13c50e5cc7e54e6f45487b89cdbe3994d621587f`. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
+**CORE-00: V4.1, A/B e C versionadas; instalação e 237 testes validados em checkout limpo. CI aprovada e integração Git rastreadas pelo [PR #10](https://github.com/devMarcos12/ManagerAI/pull/10) e pela seção CORE-00 ao final. O runtime do treinador permanece determinístico; regressões são experimentais.**
+
+Verificado no código em 17/10/2026; Ancestral publicado da integração `e91e55dd51081bd381f69097353ec86ca5bf7583`; HEADs anteriores nos registros de validação são históricos. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
 
 ## 1. Produto e fronteiras
 
@@ -14,7 +16,10 @@ ManagerAI apoia preparação pré-jogo de futebol usando histórico local StatsB
 | 26 indicadores V3, três agregados de sequências e dois gráficos | Implementado opt-in |
 | Atletas e formações registrados em jogos anteriores | Implementado como exploração histórica; sem ranking/minutos presumidos |
 | Hipóteses táticas condicionais | Implementadas por regras heurísticas; eficácia esportiva não validada |
-| Motor/modelo especializado de IA, fine-tuning, treinamento, integração LLM | **Não implementados**; dependem de tarefa, dados/rótulos e avaliação |
+| Infraestrutura de motores V4.1 | Contratos tipados, snapshot imutável, adaptador determinístico e seleção/comparação explícita pela API Python; §9 |
+| Regressões experimentais pré-jogo V4.3-A/B | Dataset e avaliação offline implementados; OLS e Ridge ajustadas para prever chutes; §11 |
+| Robustez V4.3-C | Walk-forward e ablações offline implementados; sem confirmação independente de superioridade; §12 |
+| Motor de IA especializado integrado ao runtime, fine-tuning e LLM | **Não implementados**; experimento quantitativo permanece separado |
 | Recomendações de escalação, formação ideal, substituições e disponibilidade | **Não implementadas** |
 | Tracking/360 analítico, previsão de vitória, odds, eficácia causal | **Não implementados** |
 
@@ -50,6 +55,7 @@ Todos os módulos abaixo ficam em `src/managerai/`; nomes V3 indicam módulos at
 | `v3_features.py`, `v3_rules.py` | 26 indicadores e duas hipóteses condicionais |
 | `v3_sequences.py`, `v3_history.py` | Blocos contíguos, participação e formações históricas |
 | `v3_presentation.py`, `v3_plots.py` | Exibição V3, mapa de chutes e barras de entradas por passe/condução |
+| `tactical_engine_schema.py`, `tactical_engines.py` | Contratos V4.1 separados, evidências imutáveis, validação e adaptação/seleção de motores sobre relatório já calculado |
 
 `streamlit_app.py` adiciona `src/` ao caminho e chama a UI. O pipeline importa V3 somente quando solicitada; Matplotlib é importado dentro das funções de plotagem. Regras V3 dependem da política de suficiência em `presentation/coach_report.py`; apresentação e cálculo ainda compartilham helpers. A separação futura entre cálculos determinísticos e IA deve preservar essas responsabilidades e evidências, sem atribuir ao núcleo uma dependência LLM inexistente.
 
@@ -65,6 +71,7 @@ Python `>=3.12`; `pyproject.toml` é a definição canônica. O núcleo mantém 
 | `python -m pip install '.[ui]'` | Streamlit 1.65.0 |
 | `python -m pip install '.[v3]'` ou `-r requirements.txt` | Streamlit 1.65.0 e Matplotlib 3.11.2; UI e gráficos CLI |
 | `python -m pip install '.[dev]'` | Mesmos opcionais UI/V3 para executar a suíte completa; `unittest` é padrão |
+| `python -m pip install '.[experiments]'` | NumPy 2.5.2, regressões e avaliação experimental |
 | `python -m pip install '.[eda]'` | pandas 3.0.5, numpy 2.5.2, pyarrow 25.0.1, matplotlib 3.11.2, seaborn 0.13.2, nbformat 5.11.1 e Pillow 12.3.0 |
 
 Os comandos são para uma instalação necessária/autorizada, usando o Python do ambiente escolhido; não recriar o `venv` funcional. O snapshot EDA original está em `docs/history/requirements-eda-20261017.txt`, com bytes preservados, fora da configuração operacional. Não instalar esse snapshot para executar a aplicação. O gerador Word usa pandas/Pillow e XML/ZIP padrão, sem `python-docx`. Os antigos arquivos de dependências UI/V3 foram removidos depois de migrar seus consumidores para os extras. Nenhum pacote de futuro fine-tuning/modelo/LLM é exigido; grupo de treinamento instalável depende de tarefa/modelo/avaliação ainda não definidos.
@@ -211,6 +218,7 @@ PYTHONPATH=src venv/bin/python -B outputs/v22_v3_validation/check_metrics.py
 | `test_v3_features.py`, `test_v3_rules.py` | Métricas, limites geométricos, denominadores, referências, nulos e abstenção |
 | `test_v3_sequences.py`, `test_v3_history.py` | Blocos, temporalidade, atletas/formações e associação verificável |
 | `test_v3_integration.py`, `test_v3_presentation.py`, `test_v3_ui.py` | Schema aditivo, integridade entre leituras, CLI/figuras e UI V3 |
+| `test_tactical_engines.py` | V4.1: adaptação real/sintética, validação temporal/estrutural, isolamento, abstenção, seleção e compatibilidade dos três relatórios preservados |
 
 Antes/depois de limpeza aprovada: conferir imports, caminhos, links, hashes, fixture congelada, mesmos campos legados com V3, hipóteses rastreáveis e recusa de sobrescrita. Cenários: City 10/10; Real 1/10; primeira data n=0; janela 1; campo ausente; V3 desativada e recorte não auditado. Conferência independente cobre oito métricas em dois jogos, não auditoria estatística total. Streamlit AppTest não substitui revisão humana de navegador/acessibilidade.
 
@@ -222,10 +230,208 @@ Antes de ML/fine-tuning: definir tarefa/alvo, rótulos, avaliadores/concordânci
 
 Documentos operacionais: `AGENTS.md` (regras), este arquivo (estado/contratos/procedimentos) e `PENDING.md` (prioridades/status/decisões). README permanece porta de entrada. Após fase concluída, atualizar estado e pendências com evidências reais; proposta não equivale a implementação.
 
-Não carregar automaticamente `open-data/`, `venv/`, caches, Parquets, notebook/outputs EDA ou JSONs V3 extensos. Consultar catálogo, código/testes da tarefa e trechos específicos. Temporários em `/tmp/managerai-*`; resultados duráveis em novo diretório explicitamente escolhido. Não existe ainda política `.gitignore` para novas execuções: `*.log` oculta inclusive evidências de validação; não adicionar regra ampla para `outputs/`.
+Não carregar automaticamente `open-data/`, `venv/`, caches, Parquets, notebook/outputs EDA ou JSONs V3 extensos. Consultar catálogo, código/testes da tarefa e trechos específicos. Temporários em `/tmp/managerai-*`; resultados duráveis em novo diretório explicitamente escolhido. A política atual ignora `open-data/` e `outputs/runs/`, sem ignorar outputs inteiro. `*.log` também oculta evidências locais; não confundir arquivos ignorados com evidências versionadas.
 
 As definições operacionais dos dez contratos/guias B1 foram revisadas na Fase 2 e consolidadas aqui, incluindo campos dos dados, diagnóstico, reprodução e protocolo de avaliação. Os dez documentos e os 27 exemplos redundantes B2/B3 foram removidos após migrar os consumidores, conforme `PENDING.md`; os dois requirements paralelos também saíram.
 
-Na Fase 3, os 29 arquivos históricos C foram removidos exclusivamente conforme o manifesto, após validar backup permanente, hashes e extração em pasta temporária nova. O acervo está em `/home/marcos-junior/ManagerAI-backups/`: `ManagerAI-history-13c50e5-20261017.tar.gz` preserva o início da Fase 2 e `ManagerAI-history-phase3-13c50e5-20261017.tar.gz` preserva exatamente os 29 arquivos antes da retirada. Os três documentos que tiveram destinos de links migrados estão preservados nos dois estados; nenhum resultado científico foi reescrito. Manifesto executado, checksums, resultados e recuperação seletiva estão em `PENDING.md`, §§4, 5 e 8. O backup local permanente não implica cópia externa redundante nem acesso automático de outros integrantes.
+Na Fase 3, os 29 arquivos históricos C foram removidos exclusivamente conforme o manifesto, após validar backup permanente, hashes e extração em pasta temporária nova. O acervo está em `/home/marcos-junior/ManagerAI-backups/`: `ManagerAI-history-13c50e5-20261017.tar.gz` preserva o início da Fase 2 e `ManagerAI-history-phase3-13c50e5-20261017.tar.gz` preserva exatamente os 29 arquivos antes da retirada. Os três documentos que tiveram destinos de links migrados estão preservados nos dois estados; nenhum resultado científico foi reescrito. Manifestos históricos, checksums e recuperação seletiva estão descritos em `PENDING.md`, §2; validação V4.1 no §6. O backup local permanente não implica cópia externa redundante nem acesso automático de outros integrantes.
 
 Iniciar tarefas somente por `AGENTS.md`, este documento e `PENDING.md`; README é guia rápido. Consultar o acervo somente sob demanda, em extração separada, sem converter requisitos antigos em instruções vigentes. Código, testes, contratos, exemplos finais, fixture, verificadores, dados/EDA e snapshot de dependências EDA foram preservados. As funcionalidades e limitações descritas acima não mudaram com a limpeza; outras pendências não foram executadas.
+
+## 9. Infraestrutura de motores V4.1
+
+Implementada em dois módulos novos, somente com biblioteca padrão; HEAD de entrada `09b73b75c74266347a2f924a67dc95d7c803720f`. A camada recebe `AnalysisReport`/`AnalysisReportV3` **já calculado**, sem alterar o pipeline, os schemas 1.0.0/1.1.0, indicadores, regras, CLI ou Streamlit. A V4.1 não introduziu treinamento, modelo especializado, fine-tuning, LLM ou recomendação de escalação. As regressões posteriores da V4.3-A/B estão separadas no §11. `4.1.0` identifica o contrato/adaptador, não substitui as versões legadas de software/fórmulas/regras.
+
+```text
+pipeline.analyze → relatório legado intacto → build_engine_input
+  → TacticalEngineInput imutável, sem hipóteses baseline
+  → TacticalEngine.analyze → TacticalEngineOutput separado
+       ↑ DeterministicEngine copia hipóteses reais do relatório
+compare_engines: seleção explícita, mesma entrada, nenhuma classificação de mérito
+```
+
+| Contrato / API | Conteúdo e significado |
+|---|---|
+| `TacticalEngineInput` | `AnalysisRequest` original (IDs, alvo ou corte livre e contexto declarado), data do corte, perfis calculados, qualidade/lacunas e proveniência. `profiles` reutiliza `TeamProfile`/campos `MetricEvidence`; V3 acrescenta indicadores e três métricas agregadas de sequências. Sem eventos brutos, placar do alvo, roster, sequências extensas ou hipóteses geradas |
+| `provenance` | Schema/software/fórmulas/regras de origem, políticas temporal/janela, fontes relativas e SHA-256, fingerprint legado; V3 mantém suas fontes/fingerprint e versões próprias |
+| `input_fingerprint` | SHA-256 canônico de toda a entrada, incluindo contexto, indicadores e proveniência. Diferente do fingerprint legado, que identifica somente o mapa de fontes |
+| `sufficiency` | Reutiliza `coverage.report_sufficiency`: mínimo operacional de cinco partidas calculáveis em cada métrica central das duas equipes; não confiança estatística |
+| `EngineHypothesis` | ID/origem, ação e condição já existentes, referências de evidência, riscos, limitações e pré-condições. `title`/`observation` opcionais preservam esses campos V3; ausência significa que a fonte não os forneceu. Não há campo de probabilidade nem confiança inventada |
+| `TacticalEngineOutput` | Motor/versão, fingerprint da entrada, proveniência, suficiência e estado `hypotheses`, `no_hypotheses` ou `abstained`, hipóteses e limitações. `.validate_for(inputs)` confere vínculo, evidências calculáveis e amostras |
+| `TacticalEngine` | `Protocol` com `engine_id`, `engine_version` e `analyze(inputs)`. Futuras implementações são fornecidas explicitamente ao registro local de `compare_engines`, sem editar o pipeline legado |
+
+`profiles`/`provenance` são cópias recursivas de leitura: objetos viram mappings imutáveis e arrays viram tuplas. `.to_dict()` devolve cópia serializável; não usar `dataclasses.asdict` no snapshot com mappings imutáveis. Não há timestamp/seed aleatória ou escrita em disco na infraestrutura. O adaptador é vinculado ao fingerprint de uma análise e copia as hipóteses existentes, sem reexecutar regras/indicadores nem reler fontes. A entrada oferecida a futuros motores não inclui as hipóteses baseline, evitando que virem rótulos/atributos por acidente.
+
+Exemplo na raiz, com dados previamente provisionados (reutilizar um relatório existente quando disponível):
+
+```python
+from managerai.pipeline import analyze
+from managerai.report_schema import AnalysisRequest
+from managerai.tactical_engines import build_engine_input, compare_engines, DeterministicEngine
+
+request = AnalysisRequest(2, 27, 36, 1, target_match_id=3754314)
+report = analyze("open-data/data", request, include_v3=True)
+inputs = build_engine_input(report)
+baseline = DeterministicEngine(report)
+output = baseline.analyze(inputs)
+# Alternativa com seleção explícita; o único motor incluído é o determinístico:
+outputs = compare_engines(report, engine_ids=("deterministic",))
+payload = outputs[0].to_dict()  # resultado separado; report.to_json() não muda
+```
+
+Um motor futuro deverá implementar o protocolo e ser passado em `engines=(motor,)`, com seu ID em `engine_ids`. O ID `deterministic` é reservado. ID desconhecido lança `EngineUnavailableError` antes de executar motores; erros de execução/contrato são propagados, sem fallback silencioso. Saídas precisam identificar motor/versão corretos, a mesma entrada/proveniência e referências válidas. Esse mecanismo prepara a comparação controlada, mas **não implementa benchmark esportivo, modelo ou ranking automático**.
+
+Diferença de suficiência preservada: regras legadas podem emitir hipóteses com suas métricas elegíveis mesmo quando faltam métricas centrais. O adaptador se abstém nesse caso, seguindo a política existente da apresentação. As hipóteses brutas e demais campos continuam no JSON legado, sem alteração. `no_hypotheses` significa evidência central disponível sem hipótese emitida; `abstained` significa abstenção, também permitida a futuros motores quando a evidência central é suficiente mas suas próprias exigências falham. Nenhum dos estados equivale a "nenhum risco tático".
+
+Validação estrutural: IDs/equipes/janela, amostras por métrica/partida, valores finitos, datas anteriores ao dia inteiro do corte, alvo ausente, fontes/fingerprints e cobertura V3 compatíveis. Calendário inteiro continua fonte legítima; seu hash não expõe placar futuro como atributo. Escalações de partidas selecionadas sem eventos podem constar das fontes pela validação manual de indisponíveis. O contrato não reabre o calendário para certificar esses casos, não comprova a data de disponibilidade de revisões StatsBomb nem demonstra integridade contra um produtor malicioso; recebe relatórios do pipeline confiável. Fine-tuning sequencial poderá exigir outro contrato de tarefa/eventos, sem ampliar silenciosamente os schemas legados.
+
+Testes históricos V4.1 estão no §6 de `PENDING.md`; V4.2 nos §§7–13, A/B no §14, C no §15 e CORE-00 no §16. Previsão estatística permanece separada da utilidade de recomendações.
+
+## 10. Disponibilidade e limitações dos dados confirmadas na V4.2
+
+Estudo de viabilidade documental concluído, sem treinamento, novo pipeline de atributos, alterações de contratos ou ampliação dos recortes V3. Inventário detalhado, amostragem, comparação de tarefas/modelos, protocolo e condições V4.3 estão em `PENDING.md`. Na V4.2 nenhum treinamento foi executado; as regressões experimentais posteriores estão no §11. O runtime continua sem modelo aprendido integrado, fine-tuning ou LLM.
+
+Inventário atual conferido por `data_inventory.inventory`/`load_season`, lendo catálogo e 80 calendários, sem abrir integralmente os eventos: **24 competições, 80 pares e 3.961 partidas**, entre 24/06/1958 e 27/07/2025. Arquivos de eventos/escalações estão presentes para todas as partidas catalogadas; 426 têm arquivo 360 (10,75%). Há 4.235 arquivos de eventos e 4.235 de escalações, com 274 IDs não vinculados ao catálogo em cada conjunto. Presença não certifica integridade dos conteúdos, calculabilidade de indicadores ou adequação científica. Os pares incluem masculino, feminino e juvenil, clubes/seleções e versões de anotação distintas; não constituem corpus homogêneo por quantidade de eventos.
+
+| Recorte atual | Distribuição e limite confirmado |
+|---|---|
+| PL 2015/16 `(2,27)` | 380 jogos, 20 equipes com 38 cada. Até 330 alvos com cinco jogos anteriores de ambas as equipes, ou 280 com dez, estritamente antes do dia-alvo. São tetos do calendário/presença, não contagem de exemplos com todas as features/labels certificadas nem independência estatística |
+| La Liga 2020/21 `(11,90)` | 35 jogos: Barcelona em todos, 17 adversários em dois e Elche em um; 19 equipes. Nenhum alvo com cinco anteriores de ambas. O recorte sustenta o caso de abstenção, não um experimento bilateral equivalente à PL |
+
+Amostra determinística de 12 jogos (quatro posições cronológicas em PL2015/16, LaLiga2020/21 e WSL2018/19): `match_features` passou nas 12 partidas; contagens diretas de Shot nos períodos1/2 coincidiram por equipe com o núcleo. Nos 43.962 eventos amostrados, 270 chutes tinham xG/localização válidos; 12.382 passes tinham destino válido. Havia 1.941 passes com pressão True, nenhum False explícito e 10.441 sem marcação, que permanecem distintos de False. Isso não valida integralmente outros jogos nem certifica semântica de eficácia tática.
+
+Dois arquivos 360 amostrados tinham frames vinculados por UUID, mas não em todos os eventos: 3.914/4.342 e 3.853/4.205, com 6–21 e 3–22 jogadores por frame. As chaves observadas são `event_uuid`, `freeze_frame`, `visible_area`, e jogadores com `actor`, `keeper`, `location`, `teammate`. Não representam tracking contínuo com velocidades e cobertura garantida de todos os atletas. A V3 continua sem consumir 360.
+
+Foram consultados os metadados dos sete Parquets finais da EDA e somente colunas selecionadas da tabela de 760 linhas equipe/partida (380 grupos). Os 1.313.773 eventos EDA não foram carregados para o estudo. Contagens de linhas e ausência de nulos de chutes/xG nessa tabela são evidência histórica, não rótulos atuais certificados automaticamente: definições/exposição/agregações da EDA diferem do núcleo. Dados originais, lotes, scripts e resultados foram preservados.
+
+Metadados locais incluem `data_version` 1.0.2/1.0.3/1.1.0, diferentes campos de fidelidade e objetos vazios. `match_date` é data de realização; `last_updated` pode ser anos posterior e não prova publicação original. Um backtest neste snapshot pode excluir partidas futuras, mas não reconstruir integralmente a base disponível naquele dia. Proveniência exige commit/hash e explicitação dessa limitação, além de corte temporal; não usar placar, eventos ou formação executada do alvo como features pré-jogo.
+
+O PDF local `open-data/LICENSE.pdf` (User Agreement, atualização indicada 08/09/2023) contém restrições de distribuição/reprodução/fornecimento e exploração comercial (cláusulas1.2/7), além de atribuição com logo (1.4); README também pede atribuição StatsBomb. Não presumir permissões irrestritas de dataset derivado/pesos a partir de licenças de algoritmos. O responsável precisa confirmar a finalidade e autorizações aplicáveis; fontes e lacunas estão em `PENDING.md`, §7.6.
+
+Os snapshots V4.1 preservam agregados e evidências por partida, mas excluem formações/atletas detalhados e `formal_home_team_id`; `request.venue` é declaração manual. A saída V4.1 contém hipóteses/abstenção, sem campo numérico de previsão. Esse limite deve orientar futuros contratos de tarefa/scorer separados; nenhum contrato ou comportamento foi alterado nesta fase.
+
+## 11. Experimento supervisionado V4.3-A/B
+
+Implementação offline opt-in em `src/managerai/experiments/`, fora do pipeline, CLI pública, UI, schemas JSON e adaptador tático V4.1. Há regressões efetivamente ajustadas no experimento; isso não implementa um motor de estratégia ideal, integração LLM, fine-tuning ou escalação. Recorte fixo PL2015/16 `(2,27)`, tarefa `pl_home_shots_pre_match`, versão `4.3-ab.1`. As versões legadas permanecem inalteradas.
+
+| Arquivo / contrato | Responsabilidade |
+|---|---|
+| `experiments/dataset.py` | Reutiliza `load_season`, `LocalData`, `temporal.select_history` e validação/contagem `match_features`; nenhuma fórmula legada foi modificada |
+| `Fixture` | Somente ID, data, mandante/visitante. O calendário é sanitizado, removendo placares e demais campos pós-jogo antes da seleção de históricos |
+| `HistoricalEvidence` / `FeatureRow` | Cinco jogos estritamente anteriores de cada equipe, datas, contagens, qualidade e hashes das fontes. `values` tem exatamente dois números; a quantidade de jogos é registrada pelas cinco evidências de cada lado, validada no contrato |
+| `build_pre_match_features` | Função pura que recebe somente Fixture e as duas tuplas históricas; não recebe loader, eventos, placar, y ou cache de labels |
+| `ObservedLabel` / `Example` / `SupervisedDataset` | y e suas fontes separados de X; uma linha por partida; excluídos com motivos, fontes/hashes e auditoria completa do recorte. Todas as features são congeladas antes da segunda passagem de labels |
+| `QuantitativePrediction` | Contrato próprio: tarefa/versão, modelo, partida/data, previsão finita não negativa, fingerprint/fontes dos atributos, suficiência e limitações. Não reutiliza `TacticalEngineOutput`; não produz preenchimento para insuficiência |
+| `experiments/models.py` | B0/B1 são regras no avaliador; OLS/Ridge usam NumPy sob demanda. OLS `lstsq` com intercepto; Ridge alpha1 fixo, intercepto não penalizado; z-score populacional ajustado só no treino, constantes com escala1 |
+| `experiments/runner.py` | Limites temporais fixos, avaliação sem tuning, métricas/distribuições, previsões por partida e um único `run.json`; entrada separada por `python -m`, sem editar a CLI legada |
+
+**Features:** média de `shots_for` do mandante nos últimos cinco jogos e média de `shots_against` do visitante nos últimos cinco, independentemente do mando histórico desses clubes. Não usa chutes no alvo, xG, times como números ordinais, dezenas de atributos ou dados da partida-alvo. Janela exata5, sem reposição de arquivos faltantes; todo o dia-alvo é excluído. Empates do calendário sanitizado usam `(match_date,match_id)`, sem alegar ordem intradiária verificada. Mando formal define qual clube é o mandante do exemplo, não é uma escalação nem um efeito causal estimado.
+
+**Alvo:** contagem de eventos com `type.id=16` e `type.name='Shot'` do mandante nos períodos1/2, incluindo acréscimos, todos os outcomes e pênaltis regulamentares. Prorrogação/disputa de pênaltis e tipos distintos, como Own Goal Against, não viram Shot. IDs/índices duplicados, incoerência ID/nome, marca explícita de cancelamento ou fluxo inválido bloqueiam, sem deduplicar/corrigir silenciosamente. Zero só após fluxo íntegro sem Shot. A ausência de marca de cancelamento não prova decisões VAR/anulação: mede-se a contagem registrada pelo fornecedor. Escalação ausente não invalida automaticamente contagem coletiva, mas fica registrada; nunca se inventa disponibilidade de atletas.
+
+Construção real: 380 partidas auditadas, 1.313.773 IDs únicos, 9.908 chutes dos dois times; **330 exemplos válidos e 50 excluídos por histórico insuficiente**, 762 fontes SHA-256 (catálogo, calendário,380eventos,380escalações). Duas durações e três coordenadas inválidas e8.077 localizações ausentes ficam na qualidade; não são denominador/entrada do alvo de contagem e não foram corrigidas no bruto. São relevantes para outras análises, sem impedir a contagem validada por tipo/ID. A nova leitura é construção/auditoria específica do dataset, não reexecução dos geradores EDA.
+
+Divisão por datas fixadas antes dos resultados, retomando os blocos propostos na V4.2 com a janela agora **cinco**, conforme autorização atual:
+
+| Partição | Datas-alvo | Exemplos | Equipes |
+|---|---|---:|---:|
+| Treino | 19/09/2015–06/02/2016 |198|20|
+| Validação | 07/02/2016–03/04/2016 |65|20|
+| Teste | 09/04/2016–17/05/2016 |67|20|
+
+São blocos de dias inteiros, não meses/rodadas completas nem múltiplas temporadas; não há partidas elegíveis no intervalo entre validação e teste. Não houve escolha de fronteiras pelo erro. Pesos e scaler usam somente198 jogos do treino; validação é apenas avaliação, sem ajuste, seleção de features, tuning ou refit. Histórico prequential incorpora jogos já passados para confrontos posteriores de validação/teste; isso não atualiza pesos/transformadores. Não se embaralha nem se separam equipes/eventos do mesmo jogo entre partições.
+
+B0 prevê média histórica própria; B1 média50/50 própria/ofensiva e adversária/concedida. Todas as previsões seguem `max(0,raw)`, sem arredondar para inteiro; nessa execução nenhuma foi truncada. MAE principal, RMSE, viés `predito−observado` e quantis de erros assinados/absolutos; métricas mensais descritivas só com n>=10. Resultados reais e diferenças contra ambos baselines estão no §14 de PENDING. Nenhum intervalo IID foi calculado e nenhuma superioridade estatística/esportiva foi demonstrada.
+
+**Dependências:** extra canônico `experiments` no `pyproject.toml` contém somente `numpy==2.5.2`, já disponível no venv; nenhuma instalação ocorreu. Núcleo/CLI/UI/V3 continuam com as dependências anteriores. Para outro ambiente, a instalação opcional `.[experiments]` é separada dos extras UI/V3/EDA e deve ser feita somente quando necessária/autorizada.
+
+Execução na raiz, com destino **novo** (o artefato original é preservado):
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 venv/bin/python -B -m managerai.experiments.runner --data-root open-data/data --output-dir outputs/runs/v43_ab_nova_execucao
+```
+
+Dentro do checkout só são aceitos destinos novos sob `outputs/runs/`; dados, código, docs, testes e saídas protegidas são recusados antes de construir/treinar. É possível reproduzir em pasta temporária nova fora do checkout. Cada execução escreve somente um `run.json`, com dataset/exclusões, protocolo/versões, fonte/hashes, IDs/datas/contagens dos conjuntos, coeficientes/scaler, erros/previsões e contexto Git. Não cria CSV, pickle de modelo ou Markdown operacional paralelo. HEAD sozinho não identifica fontes locais não commitadas: hashes do código e pyproject também são registrados. Metadados de execução, como status Git, podem diferir; dataset, protocolo, coeficientes, métricas e previsões foram reproduzidos exatamente nesta máquina/versões.
+
+Artefato original: `outputs/runs/v43_ab_pl2015_16_20261017/run.json`. Experimento de pesquisa local não comercial, sem publicação/redistribuição; termos StatsBomb continuam aplicáveis a dados/derivados. A data original de disponibilidade das anotações não é reconstruída. Uma temporada/67 jogos de teste e clubes compartilhados limitam generalização; menor erro de chutes não demonstra melhor decisão tática. No encerramento A/B, C ainda não havia sido iniciada; implementação e resultados posteriores no §12.
+
+## 12. Robustez experimental V4.3-C
+
+Dados: **StatsBomb Open Data** — [fonte e termos na revisão utilizada](https://github.com/hudl/open-data/tree/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb). Atribuição com ícone da [organização oficial](https://github.com/statsbomb), verificado em 17/10/2026:
+
+![StatsBomb](https://avatars.githubusercontent.com/u/23416229?s=200&v=4)
+
+Análise offline concluída, sem alterar V3, V4.1, A/B, CLI, UI, schemas, dados ou EDA. O módulo `src/managerai/experiments/robustness.py` reutiliza dataset, contratos e solvers A/B; `robustness_diagnostics.py` calcula comparações pareadas e sensibilidades sem reajuste. Dois módulos novos de testes cobrem 37 casos; não há dependência nova nem alteração do pyproject nesta fase.
+
+**Protocolo:** sete meses completos de novembro/2015 a maio/2016, treinando somente em datas anteriores ao primeiro dia do mês. Esquema expansivo: mínimo 50 exemplos. Sensibilidade separada: últimos 90 dias de treino, mínimo 30. Cada mês exige 20 exemplos avaliáveis; esses limites são guardas operacionais, não poder estatístico. Todos os 14 meses/esquemas passaram. Os 330 exemplos A/B continuam válidos, com os mesmos 50 excluídos; 57 exemplos iniciais só treinam, e **273 partidas únicas** recebem previsão por esquema. São as mesmas partidas nos dois esquemas, não 546 observações independentes.
+
+Pesos, intercepto e scaler são reajustados somente no treino de cada origem e congelados durante o mês; features H5 incorporam somente jogos anteriores ao dia-alvo. Não se separam datas inteiras, não há shuffle/tuning, e validação/teste A/B não são reutilizados como confirmação independente. Todo o estudo C é exploratório pós-A/B; abril/maio contêm o teste já conhecido.
+
+Mantidos B0, B1, OLS e Ridge alpha=1. Controle adicional: média y somente do treino (intercepto). Ablações: somente média ofensiva própria ou somente concedida adversária; coluna removida é zerada antes de scaler/fit/previsão, sem imputar ausência. Não existe feature variável de mando ou grupo complementar no dataset. Todos os modelos avaliam os mesmos IDs, com truncamento `max(0,raw)`; nenhum truncamento ocorreu.
+
+Resultados agregados MAE / RMSE / viés (chutes por jogo; viés=predito−observado):
+
+| Modelo | Expansivo MAE | RMSE | Viés | Móvel90 MAE | RMSE | Viés |
+|---|---:|---:|---:|---:|---:|---:|
+| B0 | 4.384615 | 5.713822 | -1.971429 | 4.384615 | 5.713822 | -1.971429 |
+| B1 | 4.124176 | 5.396909 | -2.015751 | 4.124176 | 5.396909 | -2.015751 |
+| Média y do treino | 4.285490 | 5.588999 | -0.645782 | 4.285756 | 5.570507 | -0.476600 |
+| OLS | 3.994988 | 5.140741 | -0.973664 | 4.074797 | 5.167582 | -0.599850 |
+| Ridge α=1 | 3.995920 | 5.141355 | -0.968684 | 4.073650 | 5.167031 | -0.596517 |
+| OLS só próprio | 4.086623 | 5.320034 | -0.793357 | 4.150491 | 5.323408 | -0.502279 |
+| Ridge só próprio | 4.087036 | 5.320171 | -0.791468 | 4.149323 | 5.322771 | -0.501451 |
+| OLS só adversário | 4.196389 | 5.437409 | -0.751557 | 4.211645 | 5.429816 | -0.498321 |
+| Ridge só adversário | 4.196556 | 5.437791 | -0.750544 | 4.211514 | 5.429784 | -0.497933 |
+
+OLS reduz numericamente MAE frente a B1 em 3,1324% no expansivo e 1,1973% no móvel; Ridge em 3,1099% e 1,2251%. OLS/Ridge melhoram 6/7 meses no expansivo e 3/7 no móvel. São resultados exploratórios, sem escolha automática de vencedor: diferença OLS/Ridge inferior a 0,0012 chute/jogo nos agregados.
+
+As duas remoções pioraram MAE agregado, mas não todos os meses; não comprovam contribuição causal nem redundância estável. A vantagem móvel frente a B1 muda de sinal ao excluir fevereiro, maio ou os 14 maiores erros B1. Excluir um único jogo não muda o sinal agregado. Dados, janelas históricas e clubes compartilhados introduzem dependência: nenhum IC/p-valor IID é produzido. Quantis, exposições por equipe, meses e exclusões são diagnósticos descritivos sem refit; as exposições por equipe são sobrepostas. Detalhes, aceite e pendências em PENDING §15.
+
+Reprodução na raiz, exigindo os módulos A/B anteriores, dados locais na revisão registrada e NumPy 2.5.2 já disponível:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 venv/bin/python -B -m managerai.experiments.robustness --data-root open-data/data --reference-artifact outputs/runs/v43_ab_pl2015_16_20261017/run.json --output-dir outputs/runs/v43_c_nova_execucao
+```
+
+Destino obrigatoriamente novo; somente `outputs/runs/` dentro do checkout, ou temporário externo. Reconstrução dos brutos e fingerprints congelados impedem continuar silenciosamente diante de divergência. CORE-00 permite novos metadados A/B sem exigir o hash binário histórico; verifica todos os resultados conforme §13. Um único `run.json` C referencia o manifesto A/B e guarda configuração, janelas, IDs, modelos/scalers, previsões, métricas e diagnósticos, sem copiar eventos ou o dataset inteiro. A segunda execução desde os brutos em `/tmp` reproduziu exatamente protocolo, referência e resultados, incluindo coeficientes/previsões. Contexto Git pode diferir e não é feature.
+
+Artefato local: `outputs/runs/v43_c_pl2015_16_20261017/run.json`. `.gitignore` protege `open-data/` e `outputs/runs/`; dados/artefatos permanecem no disco e não são publicados por Git. O A/B original está preservado. O delta C original não incluía seus pré-requisitos locais. **CORE-00 resolveu esse bloqueio**, versionando-os em commits próprios com origem identificada. O clone da integração contém todos os módulos; os dados são externos e o artefato A/B pode ser reconstruído, conforme §13.
+
+Validação: 228 testes completos aprovados, zero falhas/erros/pulos; 16 comparações independentes aprovadas. Sem site-packages: 185 aprovados/43 pulados. Nenhum treinamento complexo, fine-tuning, LLM, recomendação de escalação ou integração no motor tático. Não avançar automaticamente; primeiro obter dados independentes e critério útil pré-fixado. OLS pode continuar referência simples de pesquisa e Ridge controle; não há evidência suficiente para justificar maior complexidade ou superioridade esportiva.
+
+## 13. CORE-00 — instalação, versionamento e integração
+
+V4.1, A/B, C e testes correspondentes estão versionados. Os commits C `a1e3cd1`/`e91e55d` foram preservados como ancestrais; integração em `integration/core-00`, a partir de `e91e55d`. Os nove pré-requisitos locais foram conferidos contra inventários e hashes das sessões anteriores e incluídos separadamente: V4.1 em `d59ba93`, A/B e extra NumPy em `d075d33`. Não houve inclusão de trabalho preexistente de origem desconhecida. Os registros documentais V4.1/V4.2/A/B que permaneciam locais também foram consolidados, sem atribuir seus resultados históricos à CORE-00.
+
+Um checkout limpo foi clonado em `/tmp/managerai-core00-ftkm4jw5/checkout`. Dois ambientes novos, sem herdar site-packages do venv funcional, instalaram `python -m pip install .` e `python -m pip install -r requirements.txt '.[experiments]'`. Imports foram verificados com `-I` a partir do wheel instalado, sem PYTHONPATH original. `pip check` passou nos dois ambientes; versões diretas existentes foram mantidas. O ambiente funcional original não foi alterado. Não existe lock completo de transitivas; as versões resolvidas desta validação ficaram registradas em temporário, não como novo requirements paralelo.
+
+A validação instalada inicialmente encontrou um erro real: os runners confundiam `site-packages` com a raiz do checkout. `experiments/paths.py` agora encontra o checkout pelo `pyproject.toml` de ManagerAI no diretório de execução/ancestrais, com fallback apenas para layout src. Execute os experimentos dentro do checkout. A proveniência usa os bytes do pacote efetivamente executado, inclusive quando instalado, com chaves `src/managerai/...`; Git/pyproject continuam identificando o checkout. Não houve alteração em features, labels, fórmulas ou modelos.
+
+A C também dependia do SHA binário de um A/B histórico não distribuído. Agora aceita A/B reconstruída: protocolo e dataset precisam dos fingerprints congelados exatos; todos os resultados, inclusive previsões/coeficientes/evidências, precisam da assinatura congelada com floats arredondados a oito casas. Essa regra só calcula a assinatura, não arredonda ou modifica resultados armazenados; metadados de ambiente/Git podem variar. O SHA histórico e o novo SHA da referência continuam registrados. Nove testes novos cobrem instalação, proveniência, alterações relevantes de resultados, protocolo/dataset modificados e referência reconstruída. A primeira falha instalada (228 descobertos, um erro e43 pulos) foi corrigida na causa, sem relaxar o teste de proteção de destinos.
+
+Resultados em checkout limpo, com código instalado:
+
+| Execução | Descobertos | Aprovados | Pulados | Falhas/erros |
+|---|---:|---:|---:|---:|
+| Núcleo instalado, sem opcionais | 237 | 194 | 43 | 0 |
+| Biblioteca padrão, `-S`/src | 237 | 194 | 43 | 0 |
+| UI/V3/NumPy, sem dados | 237 | 227 | 10 | 0 |
+| Completa com dados externos | 237 | 237 | 0 | 0 |
+| Verificação independente com dados | 16 | 16 | 0 | 0 |
+
+A CI em [ci.yml](../.github/workflows/ci.yml) executa os perfis core/opcionais em Python3.12/Ubuntu24.04 para PRs e pushes em main. Actions oficiais são fixadas por SHA, permissões somente leitura; verifica wheel/imports, CLI, pip check e contratos pelos testes portáveis. Não recebe StatsBomb nem tenta esconder a ausência dos dez testes reais: esses são validação separada. Não há credenciais, infraestrutura paga ou novas Issues do roadmap.
+
+Provisionamento: obter externamente StatsBomb Open Data, conferir `README.md`/`LICENSE.pdf`, atribuição e revisão `4b73468fc5b0f1950f9f66fada70ad3a4f9327cb`, com raiz em `open-data/data/` ou caminho explícito no experimento. Um clone ManagerAI não baixa/redistribui esses dados. Na validação local, somente um symlink ignorado em /tmp referenciou o clone existente. Fixtures congeladas e exemplos finais necessários aos testes permanecem no Git. Fonte/fixture/EDA originais foram preservados; não se executaram geradores EDA.
+
+Reprodução completa a partir do clone e wheel, sem copiar os JSONs de runs históricos:
+
+```bash
+python -m pip install -r requirements.txt '.[experiments]'
+python -I -B -m unittest discover -s tests -v
+MANAGERAI_RUN_LOCAL_TESTS=1 python -I -B -m unittest discover -s tests -v
+python -I -B outputs/v22_v3_validation/check_metrics.py
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -I -B -m managerai.experiments.runner --data-root open-data/data --output-dir outputs/runs/repro_ab
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -I -B -m managerai.experiments.robustness --data-root open-data/data --reference-artifact outputs/runs/repro_ab/run.json --output-dir outputs/runs/repro_c
+```
+
+Usar destinos novos. Runs/metadata de execução variam legitimamente; números científicos, protocolo e dados permanecem verificáveis. Todos os módulos estão no clone; dados e runs grandes continuam externos/ignorados. Ciência observacional da C e limites de uma temporada/273 partidas permanecem os do §12. Publicação/CI/PR corrente e comparação da reprodução estão em PENDING §16; nenhuma nova funcionalidade de Core, LLM, fine-tuning ou integração frontend foi implementada.

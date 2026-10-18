@@ -1,0 +1,59 @@
+name: ManagerAI CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  portable:
+    name: Python 3.12 / ${{ matrix.profile }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [core, optionals]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      MANAGERAI_RUN_LOCAL_TESTS: "0"
+      MPLBACKEND: Agg
+      MPLCONFIGDIR: /tmp/managerai-mpl
+      XDG_CACHE_HOME: /tmp/managerai-cache
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements.txt
+      - name: Install core wheel
+        if: matrix.profile == 'core'
+        run: python -m pip install .
+      - name: Install application and experimental dependencies
+        if: matrix.profile == 'optionals'
+        run: python -m pip install -r requirements.txt '.[experiments]'
+      - name: Check installed imports and contracts
+        run: |
+          python -I -c "from pathlib import Path; import sys, managerai; from managerai.tactical_engines import DeterministicEngine; from managerai.experiments.robustness import fixed_windows; assert Path(managerai.__file__).is_relative_to(sys.prefix); assert len(fixed_windows()) == 14"
+          python -I -m managerai --help
+          python -m pip check
+      - name: Verify optional imports
+        if: matrix.profile == 'optionals'
+        run: python -I -c "import numpy, streamlit, matplotlib"
+      - name: Run portable tests against installed package
+        run: python -I -B -m unittest discover -s tests -v
+      - name: Verify standard-library source execution
+        if: matrix.profile == 'core'
+        run: PYTHONPATH=src python -B -S -m unittest discover -s tests -v
