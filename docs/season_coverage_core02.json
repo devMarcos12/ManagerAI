@@ -1,0 +1,4911 @@
+{
+  "audit_date": "2026-10-25",
+  "candidate_priority": [
+    {
+      "competition_id": 11,
+      "season_id": 27
+    },
+    {
+      "competition_id": 12,
+      "season_id": 27
+    },
+    {
+      "competition_id": 7,
+      "season_id": 27
+    }
+  ],
+  "contract_sha256": "0d51127113eca3b5c43a6610b04da78e0b7ce1d3579498fadf6db9584a663341",
+  "fingerprint": "a646c8d6a4259c00598378a258e3babcd546e86cf548d8a5a7047e0667bbeae3",
+  "global_orphan_ids": {
+    "events": [
+      "3890259",
+      "3890261",
+      "3890262",
+      "3890263",
+      "3890264",
+      "3890265",
+      "3890266",
+      "3890267",
+      "3890268",
+      "3890269",
+      "3890270",
+      "3890271",
+      "3890272",
+      "3890274",
+      "3890275",
+      "3890276",
+      "3890277",
+      "3890279",
+      "3890280",
+      "3890281",
+      "3890282",
+      "3890283",
+      "3890284",
+      "3890285",
+      "3890286",
+      "3890287",
+      "3890289",
+      "3890290",
+      "3890291",
+      "3890292",
+      "3890293",
+      "3890294",
+      "3890295",
+      "3890296",
+      "3890297",
+      "3890298",
+      "3890299",
+      "3890300",
+      "3890302",
+      "3890303",
+      "3890304",
+      "3890305",
+      "3890306",
+      "3890307",
+      "3890308",
+      "3890309",
+      "3890310",
+      "3890311",
+      "3890313",
+      "3890314",
+      "3890316",
+      "3890317",
+      "3890318",
+      "3890319",
+      "3890320",
+      "3890321",
+      "3890322",
+      "3890323",
+      "3890324",
+      "3890325",
+      "3890326",
+      "3890327",
+      "3890328",
+      "3890329",
+      "3890331",
+      "3890332",
+      "3890333",
+      "3890334",
+      "3890335",
+      "3890336",
+      "3890338",
+      "3890339",
+      "3890340",
+      "3890341",
+      "3890342",
+      "3890343",
+      "3890344",
+      "3890345",
+      "3890347",
+      "3890348",
+      "3890349",
+      "3890351",
+      "3890352",
+      "3890353",
+      "3890354",
+      "3890355",
+      "3890356",
+      "3890357",
+      "3890358",
+      "3890360",
+      "3890361",
+      "3890362",
+      "3890363",
+      "3890364",
+      "3890365",
+      "3890366",
+      "3890367",
+      "3890368",
+      "3890369",
+      "3890371",
+      "3890372",
+      "3890373",
+      "3890374",
+      "3890375",
+      "3890376",
+      "3890377",
+      "3890378",
+      "3890379",
+      "3890380",
+      "3890381",
+      "3890383",
+      "3890384",
+      "3890385",
+      "3890386",
+      "3890387",
+      "3890388",
+      "3890389",
+      "3890391",
+      "3890392",
+      "3890393",
+      "3890394",
+      "3890396",
+      "3890397",
+      "3890398",
+      "3890399",
+      "3890400",
+      "3890401",
+      "3890402",
+      "3890403",
+      "3890404",
+      "3890405",
+      "3890406",
+      "3890407",
+      "3890408",
+      "3890410",
+      "3890411",
+      "3890412",
+      "3890413",
+      "3890414",
+      "3890416",
+      "3890417",
+      "3890418",
+      "3890419",
+      "3890420",
+      "3890421",
+      "3890422",
+      "3890423",
+      "3890424",
+      "3890425",
+      "3890426",
+      "3890428",
+      "3890429",
+      "3890430",
+      "3890432",
+      "3890433",
+      "3890434",
+      "3890435",
+      "3890436",
+      "3890437",
+      "3890438",
+      "3890439",
+      "3890440",
+      "3890441",
+      "3890442",
+      "3890443",
+      "3890445",
+      "3890446",
+      "3890447",
+      "3890448",
+      "3890449",
+      "3890450",
+      "3890451",
+      "3890452",
+      "3890453",
+      "3890454",
+      "3890455",
+      "3890457",
+      "3890458",
+      "3890459",
+      "3890460",
+      "3890461",
+      "3890462",
+      "3890464",
+      "3890465",
+      "3890466",
+      "3890467",
+      "3890468",
+      "3890469",
+      "3890470",
+      "3890471",
+      "3890473",
+      "3890474",
+      "3890475",
+      "3890476",
+      "3890478",
+      "3890479",
+      "3890480",
+      "3890481",
+      "3890482",
+      "3890483",
+      "3890484",
+      "3890485",
+      "3890486",
+      "3890487",
+      "3890488",
+      "3890489",
+      "3890490",
+      "3890491",
+      "3890493",
+      "3890494",
+      "3890495",
+      "3890496",
+      "3890497",
+      "3890498",
+      "3890499",
+      "3890501",
+      "3890503",
+      "3890504",
+      "3890505",
+      "3890506",
+      "3890507",
+      "3890508",
+      "3890509",
+      "3890510",
+      "3890511",
+      "3890512",
+      "3890513",
+      "3890514",
+      "3890515",
+      "3890516",
+      "3890517",
+      "3890518",
+      "3890520",
+      "3890522",
+      "3890523",
+      "3890524",
+      "3890525",
+      "3890526",
+      "3890527",
+      "3890528",
+      "3890529",
+      "3890530",
+      "3890531",
+      "3890532",
+      "3890533",
+      "3890535",
+      "3890536",
+      "3890537",
+      "3890538",
+      "3890539",
+      "3890541",
+      "3890542",
+      "3890543",
+      "3890544",
+      "3890545",
+      "3890546",
+      "3890547",
+      "3890548",
+      "3890549",
+      "3890551",
+      "3890552",
+      "3890553",
+      "3890554",
+      "3890555",
+      "3890556",
+      "3890557",
+      "3890558",
+      "3890559",
+      "3890560",
+      "3890561",
+      "3890562",
+      "3890564",
+      "69143",
+      "7298"
+    ],
+    "lineups": [
+      "3890259",
+      "3890261",
+      "3890262",
+      "3890263",
+      "3890264",
+      "3890265",
+      "3890266",
+      "3890267",
+      "3890268",
+      "3890269",
+      "3890270",
+      "3890271",
+      "3890272",
+      "3890274",
+      "3890275",
+      "3890276",
+      "3890277",
+      "3890279",
+      "3890280",
+      "3890281",
+      "3890282",
+      "3890283",
+      "3890284",
+      "3890285",
+      "3890286",
+      "3890287",
+      "3890289",
+      "3890290",
+      "3890291",
+      "3890292",
+      "3890293",
+      "3890294",
+      "3890295",
+      "3890296",
+      "3890297",
+      "3890298",
+      "3890299",
+      "3890300",
+      "3890302",
+      "3890303",
+      "3890304",
+      "3890305",
+      "3890306",
+      "3890307",
+      "3890308",
+      "3890309",
+      "3890310",
+      "3890311",
+      "3890313",
+      "3890314",
+      "3890316",
+      "3890317",
+      "3890318",
+      "3890319",
+      "3890320",
+      "3890321",
+      "3890322",
+      "3890323",
+      "3890324",
+      "3890325",
+      "3890326",
+      "3890327",
+      "3890328",
+      "3890329",
+      "3890331",
+      "3890332",
+      "3890333",
+      "3890334",
+      "3890335",
+      "3890336",
+      "3890338",
+      "3890339",
+      "3890340",
+      "3890341",
+      "3890342",
+      "3890343",
+      "3890344",
+      "3890345",
+      "3890347",
+      "3890348",
+      "3890349",
+      "3890351",
+      "3890352",
+      "3890353",
+      "3890354",
+      "3890355",
+      "3890356",
+      "3890357",
+      "3890358",
+      "3890360",
+      "3890361",
+      "3890362",
+      "3890363",
+      "3890364",
+      "3890365",
+      "3890366",
+      "3890367",
+      "3890368",
+      "3890369",
+      "3890371",
+      "3890372",
+      "3890373",
+      "3890374",
+      "3890375",
+      "3890376",
+      "3890377",
+      "3890378",
+      "3890379",
+      "3890380",
+      "3890381",
+      "3890383",
+      "3890384",
+      "3890385",
+      "3890386",
+      "3890387",
+      "3890388",
+      "3890389",
+      "3890391",
+      "3890392",
+      "3890393",
+      "3890394",
+      "3890396",
+      "3890397",
+      "3890398",
+      "3890399",
+      "3890400",
+      "3890401",
+      "3890402",
+      "3890403",
+      "3890404",
+      "3890405",
+      "3890406",
+      "3890407",
+      "3890408",
+      "3890410",
+      "3890411",
+      "3890412",
+      "3890413",
+      "3890414",
+      "3890416",
+      "3890417",
+      "3890418",
+      "3890419",
+      "3890420",
+      "3890421",
+      "3890422",
+      "3890423",
+      "3890424",
+      "3890425",
+      "3890426",
+      "3890428",
+      "3890429",
+      "3890430",
+      "3890432",
+      "3890433",
+      "3890434",
+      "3890435",
+      "3890436",
+      "3890437",
+      "3890438",
+      "3890439",
+      "3890440",
+      "3890441",
+      "3890442",
+      "3890443",
+      "3890445",
+      "3890446",
+      "3890447",
+      "3890448",
+      "3890449",
+      "3890450",
+      "3890451",
+      "3890452",
+      "3890453",
+      "3890454",
+      "3890455",
+      "3890457",
+      "3890458",
+      "3890459",
+      "3890460",
+      "3890461",
+      "3890462",
+      "3890464",
+      "3890465",
+      "3890466",
+      "3890467",
+      "3890468",
+      "3890469",
+      "3890470",
+      "3890471",
+      "3890473",
+      "3890474",
+      "3890475",
+      "3890476",
+      "3890478",
+      "3890479",
+      "3890480",
+      "3890481",
+      "3890482",
+      "3890483",
+      "3890484",
+      "3890485",
+      "3890486",
+      "3890487",
+      "3890488",
+      "3890489",
+      "3890490",
+      "3890491",
+      "3890493",
+      "3890494",
+      "3890495",
+      "3890496",
+      "3890497",
+      "3890498",
+      "3890499",
+      "3890501",
+      "3890503",
+      "3890504",
+      "3890505",
+      "3890506",
+      "3890507",
+      "3890508",
+      "3890509",
+      "3890510",
+      "3890511",
+      "3890512",
+      "3890513",
+      "3890514",
+      "3890515",
+      "3890516",
+      "3890517",
+      "3890518",
+      "3890520",
+      "3890522",
+      "3890523",
+      "3890524",
+      "3890525",
+      "3890526",
+      "3890527",
+      "3890528",
+      "3890529",
+      "3890530",
+      "3890531",
+      "3890532",
+      "3890533",
+      "3890535",
+      "3890536",
+      "3890537",
+      "3890538",
+      "3890539",
+      "3890541",
+      "3890542",
+      "3890543",
+      "3890544",
+      "3890545",
+      "3890546",
+      "3890547",
+      "3890548",
+      "3890549",
+      "3890551",
+      "3890552",
+      "3890553",
+      "3890554",
+      "3890555",
+      "3890556",
+      "3890557",
+      "3890558",
+      "3890559",
+      "3890560",
+      "3890561",
+      "3890562",
+      "3890564",
+      "69143",
+      "7298"
+    ],
+    "three-sixty": []
+  },
+  "protocol_version": "core-02.1",
+  "rows": [
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 280,
+        "h5_calculable": null,
+        "h5_calendar": 330
+      },
+      "calendar_sha256_expected": "e07d6d360b30e0cd17f9aeea0db1502d2a5666d298f1b44b83a2d2f21ba3d21b",
+      "calendar_sha256_observed": "200578468364bff85d5d2f2f74e7bc7fcb28548986070e96e7a6f0336fd82d75",
+      "competition": "Premier League",
+      "competition_id": 2,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": true,
+      "files": {
+        "events_missing": 0,
+        "events_present": 380,
+        "lineups_missing": 0,
+        "lineups_present": 380,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2015-08-08",
+      "last_date": "2016-05-17",
+      "matches": 380,
+      "matches_per_team": {
+        "maximum": 38,
+        "median": 38.0,
+        "minimum": 38
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Par já permitido na V3 anterior; esta matriz não reavalia nem revoga esse estado.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "2e02bc74ee4e2839ba511def0423c730ac74e3a5a24b05dd037d847a1dac59e8",
+      "season": "2015/2016",
+      "season_id": 27,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "bb4dda2763385050725507de76719f11d506b14a66148c7348950a02eadfcf35",
+      "calendar_sha256_observed": "79f0b38393d709b666966bfe963e31f46676c80a82913a9fdfd80aa266f2fca3",
+      "competition": "Premier League",
+      "competition_id": 2,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 38,
+        "lineups_missing": 0,
+        "lineups_present": 38,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2003-08-16",
+      "last_date": "2004-05-15",
+      "matches": 38,
+      "matches_per_team": {
+        "maximum": 38,
+        "median": 2.0,
+        "minimum": 2
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "157ecbfa8d9f0f541fe6d82cbe5167b5ff914d1700b8b74447e76345a567ae91",
+      "season": "2003/2004",
+      "season_id": 44,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 276,
+        "h5_calculable": null,
+        "h5_calendar": 327
+      },
+      "calendar_sha256_expected": "733c7cf47bd7a19d9acae5add722c32b404664d949377057a280bd0b0f0d2464",
+      "calendar_sha256_observed": "dfb3f46c86b3fe6b89d77145a38379179985a89c6bef4f5f088ba8144e3943e3",
+      "competition": "Ligue 1",
+      "competition_id": 7,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 377,
+        "lineups_missing": 0,
+        "lineups_present": 377,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2015-08-07",
+      "last_date": "2016-05-14",
+      "matches": 377,
+      "matches_per_team": {
+        "maximum": 38,
+        "median": 38.0,
+        "minimum": 37
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        },
+        {
+          "data_version": "ausente",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "ba8db9215821cf2f958a989771c325a60152d1c5c6d263df46c96dff3197fe1e",
+      "season": "2015/2016",
+      "season_id": 27,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "a3b2c322f18a621305720bbf79d68f581441de8657ca53b33901fcf867bf0c0f",
+      "calendar_sha256_observed": "389bf2aac374b1e5eb290e16ef6564f58d3f172c104d5246c490141d3b78a005",
+      "competition": "Ligue 1",
+      "competition_id": 7,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 26,
+        "lineups_missing": 0,
+        "lineups_present": 26,
+        "related_orphans": null,
+        "three_sixty_present": 26
+      },
+      "first_date": "2021-08-29",
+      "last_date": "2022-05-21",
+      "matches": 26,
+      "matches_per_team": {
+        "maximum": 26,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "58d65ff617834d69c16aa1995a1da2d0033e52f478c8d46da84fcc78e0df5369",
+      "season": "2021/2022",
+      "season_id": 108,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 18,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "8cab2c24952ef2668d57bb7de6c2ba93227a38fba3a3dcd9d425e5749f515f8a",
+      "calendar_sha256_observed": "7ab69f55c99edf3d0ac1a701ad7d623519d855e566791e7d05883a0b8e7974f2",
+      "competition": "Ligue 1",
+      "competition_id": 7,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 32,
+        "lineups_missing": 0,
+        "lineups_present": 32,
+        "related_orphans": null,
+        "three_sixty_present": 32
+      },
+      "first_date": "2022-08-06",
+      "last_date": "2023-06-03",
+      "matches": 32,
+      "matches_per_team": {
+        "maximum": 32,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "5b5b8825fb95dcbf04d11c64265028efdd636414025a563d4dfda914a04c34b7",
+      "season": "2022/2023",
+      "season_id": 235,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "1fd6519dc64f268e40395a2e65c82f1feb9974c2705253a2af2c37aa34a5655d",
+      "calendar_sha256_observed": "f57f995b308cb143c1e15b63b741685b5659139b9fce261319421a05974d941b",
+      "competition": "1. Bundesliga",
+      "competition_id": 9,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 34,
+        "lineups_missing": 0,
+        "lineups_present": 34,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2015-08-15",
+      "last_date": "2016-05-14",
+      "matches": 34,
+      "matches_per_team": {
+        "maximum": 34,
+        "median": 2.0,
+        "minimum": 2
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "685357aef2790a5db416d39701981a60f85e33f47f9a89240ad5b09393028e20",
+      "season": "2015/2016",
+      "season_id": 27,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 18,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "13dff90f126d9f73da410ae3292b2773744657d3ba968a2b7a9c02135033581c",
+      "calendar_sha256_observed": "61864113780fa1e218043690369234ae2bdfc205bb63d6ef2ed1ffb3c316f7aa",
+      "competition": "1. Bundesliga",
+      "competition_id": 9,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 34,
+        "lineups_missing": 0,
+        "lineups_present": 34,
+        "related_orphans": null,
+        "three_sixty_present": 34
+      },
+      "first_date": "2023-08-19",
+      "last_date": "2024-05-18",
+      "matches": 34,
+      "matches_per_team": {
+        "maximum": 34,
+        "median": 2.0,
+        "minimum": 2
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "632a11232f00ee38a1e321796653d3299c180359286764b1810d76b5fabba1a1",
+      "season": "2023/2024",
+      "season_id": 281,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 18,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "ac2b71812837bfabc08d538faee5dae6ae4cfbc4c03e2b8867d2d31a9eb379ac",
+      "calendar_sha256_observed": "9d7713e29b31427ba2bacfff7a646ba0336df8aaabeef3bed9aaaa14913bcdc7",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 36,
+        "lineups_missing": 0,
+        "lineups_present": 36,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2017-08-20",
+      "last_date": "2018-05-20",
+      "matches": 36,
+      "matches_per_team": {
+        "maximum": 36,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        },
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "37a910262c90feeca91d1c67b65351defb1e7abe993d51a5fd27185a708fcdd6",
+      "season": "2017/2018",
+      "season_id": 1,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "f34be8ff144e889af756082410c9357dcadd380aa13f8ec85a1b344411f8722c",
+      "calendar_sha256_observed": "cfd09d0d2820970d097994d4271a0c46605459adbe6c5f9d5e3553cebf7b2e2c",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 34,
+        "lineups_missing": 0,
+        "lineups_present": 34,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2016-08-20",
+      "last_date": "2017-05-21",
+      "matches": 34,
+      "matches_per_team": {
+        "maximum": 34,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "aa555a2586f8ac7fcc664bbf803b48b0d7b837060f0ae19d9a6959ed892c1dff",
+      "season": "2016/2017",
+      "season_id": 2,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "5406a8517de316b3b8ccf225a7f77f6ce48b4fa6a3aa4385aa7bf4651ce84706",
+      "calendar_sha256_observed": "c7260d7d6fca9d0f57ba9a0e72a33c70fec6ff1a58d5852921ab90d3cf2a88cd",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 34,
+        "lineups_missing": 0,
+        "lineups_present": 34,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2018-08-18",
+      "last_date": "2019-05-19",
+      "matches": 34,
+      "matches_per_team": {
+        "maximum": 34,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        },
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "7ced9e5332fc296d7f4e23509bdaff182064b658d5c8a9f6e67593b08200ddd1",
+      "season": "2018/2019",
+      "season_id": 4,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "cdaadea54f8f6adc114b736482b8f65d24ffd8ae11eb4a0824dbbb947e698c77",
+      "calendar_sha256_observed": "98e74e72f15ea7de024302ffdf2c55d697f1796b9a4d59ca09e6960d739a4181",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 35,
+        "lineups_missing": 0,
+        "lineups_present": 35,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2009-09-12",
+      "last_date": "2010-05-16",
+      "matches": 35,
+      "matches_per_team": {
+        "maximum": 35,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "38cdb6f12f3561cd4e987d39adc978e3a318e2226a10bef516aafe30280af0c1",
+      "season": "2009/2010",
+      "season_id": 21,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "b2333589ea2a9ba1b8d74d129f54c4706fd3e2b56847c01a9a18301df027867c",
+      "calendar_sha256_observed": "3f3628113ba10522e75e9eaac0ce9faa6c6e7cdbde7bbeb63557a2c446f9ea92",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 33,
+        "lineups_missing": 0,
+        "lineups_present": 33,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2010-08-29",
+      "last_date": "2011-05-11",
+      "matches": 33,
+      "matches_per_team": {
+        "maximum": 33,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "dda89a57e9968fa495d055e5a53849a5856b4220c98f5d657592dd5f201e0931",
+      "season": "2010/2011",
+      "season_id": 22,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "cd25028cbd799dee2ef76fd11b79865d950374b0c938cd36d0641c73987f5490",
+      "calendar_sha256_observed": "7df2e1d134e09618df9684bce782177b9897a1f150789068cdd71233ff8e0481",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 37,
+        "lineups_missing": 0,
+        "lineups_present": 37,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2011-08-29",
+      "last_date": "2012-05-12",
+      "matches": 37,
+      "matches_per_team": {
+        "maximum": 37,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "57d783a4baafceadb22eaf4bbfdd6a45d60420d56d45a1139f881b4c1271bab3",
+      "season": "2011/2012",
+      "season_id": 23,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "ffe52aa5b2daaefd8f1a8a480575ef0caa4998c4eb61792f404a99720c87f0a2",
+      "calendar_sha256_observed": "21d2a7b1b14388a6d207aae9328d30d417eac786da09d9feb6615acdd1d82f87",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 32,
+        "lineups_missing": 0,
+        "lineups_present": 32,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2012-08-19",
+      "last_date": "2013-05-12",
+      "matches": 32,
+      "matches_per_team": {
+        "maximum": 32,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "7121408dee498ab5946e812b6bb2da7f1e732a554de05921c61ff75739cdc806",
+      "season": "2012/2013",
+      "season_id": 24,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "cb8a0255157fef62e30d6bcdd9d42973d77fc865f901454a47d435a9200fb551",
+      "calendar_sha256_observed": "533af728594bf37422d518e245e6a6c9c457d4743a05e8dec13d318edc081f2b",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 31,
+        "lineups_missing": 0,
+        "lineups_present": 31,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2013-08-18",
+      "last_date": "2014-05-17",
+      "matches": 31,
+      "matches_per_team": {
+        "maximum": 31,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "603b3943a49ce1cfd89504abce63fd2bf8437aee46bef4f9f2627cc256f19b4c",
+      "season": "2013/2014",
+      "season_id": 25,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "cbb307c273c20f3401ae5a18dcddb34cb76a4ee910503f947025a92df3412c4b",
+      "calendar_sha256_observed": "5b8a8a9f7b3335ea15f0798c32adda8d84b74b254f2588de0838dba3478edf75",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 38,
+        "lineups_missing": 0,
+        "lineups_present": 38,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2014-08-24",
+      "last_date": "2015-05-23",
+      "matches": 38,
+      "matches_per_team": {
+        "maximum": 38,
+        "median": 2.0,
+        "minimum": 2
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "e39cf5c81a3a98a8d96959d879bf79e1dce763898edc9b3643e03040bd954917",
+      "season": "2014/2015",
+      "season_id": 26,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 280,
+        "h5_calculable": null,
+        "h5_calendar": 330
+      },
+      "calendar_sha256_expected": "4e2074c633559f3b88e9593a752d8d15d9d9ba0d6c8a25316a68ec6526b4d14b",
+      "calendar_sha256_observed": "da7341824396b21f0bb74128b94be02c61c58aa9e8a4eb844b695e97572dba30",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 380,
+        "lineups_missing": 0,
+        "lineups_present": 380,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2015-08-21",
+      "last_date": "2016-05-15",
+      "matches": 380,
+      "matches_per_team": {
+        "maximum": 38,
+        "median": 38.0,
+        "minimum": 38
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "115c7455a011f67ec3b2f21eb384c13ba680866b533a14f511e7b39fa25e52e3",
+      "season": "2015/2016",
+      "season_id": 27,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "eea8a3631fbd162d3fa0acfe004260407fcff5d03de3552650d97c9f4add5b4e",
+      "calendar_sha256_observed": "34612485d2695eb1b39901aeaadbcc4283b04ac28db6fb8bab62b3315c31699e",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 7,
+        "lineups_missing": 0,
+        "lineups_present": 7,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2004-10-16",
+      "last_date": "2005-05-01",
+      "matches": 7,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 1,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "72cccd49925a1fc704d6f36d3e06aee1c07d10c31f4293465e9eacac5ea3002a",
+      "season": "2004/2005",
+      "season_id": 37,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 7,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "be447aac4d614dc022488207f133a36bacaa13595ab09cb710190cf300780a68",
+      "calendar_sha256_observed": "94a1a3311fbd3760afb922d5ed0964e34bd05ad48f759e0e6dfb769a02e3ebad",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 17,
+        "lineups_missing": 0,
+        "lineups_present": 17,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2005-10-01",
+      "last_date": "2006-02-25",
+      "matches": 17,
+      "matches_per_team": {
+        "maximum": 17,
+        "median": 1,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "2125ec02043b3515c8b83384cdb207114fd96dcc01b245429074c6f5abaa7bed",
+      "season": "2005/2006",
+      "season_id": 38,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 17,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "e8f2580376cb588a62c296564a41ad3a8f88580606fd85720426dee0af68bd56",
+      "calendar_sha256_observed": "05a989db1754ac34f210d2f2836d5057ebe19daccd60eef51fcba5c89df086fa",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 26,
+        "lineups_missing": 0,
+        "lineups_present": 26,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2006-08-28",
+      "last_date": "2007-06-17",
+      "matches": 26,
+      "matches_per_team": {
+        "maximum": 26,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "7f4f9e3ba160529e04c6c5af8eb3674a02874a1d5d6fa0a065a9351852006b18",
+      "season": "2006/2007",
+      "season_id": 39,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "fc03587c12dffc5952b915dcf920a5556148f6deac5062466a9a3a41fedcbe8e",
+      "calendar_sha256_observed": "eb02661781e9da3dd25488a0d6f65d654c444e51ff73533723fda6c4a2fd70fe",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 27,
+        "lineups_missing": 0,
+        "lineups_present": 27,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2007-08-26",
+      "last_date": "2008-05-17",
+      "matches": 27,
+      "matches_per_team": {
+        "maximum": 27,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "8d40bbdb96c02fc519c4eb71cdbc5fe196d7abf840b99471b32e5e599880fd6f",
+      "season": "2007/2008",
+      "season_id": 40,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "1b13d9d1ca35b0024ec8a2b4b2d03dd4820952ecb12f37111a9b0081753b9345",
+      "calendar_sha256_observed": "191ed02411453730dce7d70a59638ecba1978bfad055ed157f372583fa0ad300",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 31,
+        "lineups_missing": 0,
+        "lineups_present": 31,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2008-08-31",
+      "last_date": "2009-05-10",
+      "matches": 31,
+      "matches_per_team": {
+        "maximum": 31,
+        "median": 2,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "c86f32d327e960fa40d8775d1e1415c2d63abde069c41bd16f4f24f0c494ed4d",
+      "season": "2008/2009",
+      "season_id": 41,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 19,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "1002d78125854dc9c9e0fb4450cd2605213b1a3c93797f7a722d77de42cedc8b",
+      "calendar_sha256_observed": "60c3e3eab388757a82d7d65539dc885bfa3bc732684a9e4aecb486c88c42ccf3",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 33,
+        "lineups_missing": 0,
+        "lineups_present": 33,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2019-09-21",
+      "last_date": "2020-07-19",
+      "matches": 33,
+      "matches_per_team": {
+        "maximum": 33,
+        "median": 2.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "a8afdbb66b12a037cd31ea990193338982d2ecc6da58cfaacec8ccd6a6f44da1",
+      "season": "2019/2020",
+      "season_id": 42,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "37f6d9026f9ea9ce6c53ebbcc7a349bab42ed0cde9c2bbb15dfb94e664949ba9",
+      "calendar_sha256_observed": "cd25290c50fc492e766cdaf75724c46fcce6784cdc51a87feef6ce15f123726e",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": true,
+      "files": {
+        "events_missing": 0,
+        "events_present": 35,
+        "lineups_missing": 0,
+        "lineups_present": 35,
+        "related_orphans": null,
+        "three_sixty_present": 35
+      },
+      "first_date": "2020-09-27",
+      "last_date": "2021-05-16",
+      "matches": 35,
+      "matches_per_team": {
+        "maximum": 35,
+        "median": 2,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Par já permitido na V3 anterior; esta matriz não reavalia nem revoga esse estado.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "fda4ffde7a71c2fe7c46a7acf6f19938a41df63fe27c7d5c08aa75778f26d491",
+      "season": "2020/2021",
+      "season_id": 90,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 19,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "b27b46f4554ba92bf7ddda20a9724495e218e5ab3628bc0f2cbfd9f1cc5ba63e",
+      "calendar_sha256_observed": "7a19440d3888ac8924e836bda6191396299f3b32ad6e61df5809aa8c51f57877",
+      "competition": "La Liga",
+      "competition_id": 11,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1974-02-17",
+      "last_date": "1974-02-17",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "d4b3723caf804f40f30477105fe815da843319d27b95b876bf459f5db9ab8787",
+      "season": "1973/1974",
+      "season_id": 278,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 280,
+        "h5_calculable": null,
+        "h5_calendar": 330
+      },
+      "calendar_sha256_expected": "613cd3cc70699ba613cb1b3c27b4c8a01b0b5fa28415e09c928d020208905c7a",
+      "calendar_sha256_observed": "ebdbd2af4f6cde3742780deeccd2ba4bfbd05d47e7ed84539a70238e393439a4",
+      "competition": "Serie A",
+      "competition_id": 12,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 380,
+        "lineups_missing": 0,
+        "lineups_present": 380,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2015-08-22",
+      "last_date": "2016-05-15",
+      "matches": 380,
+      "matches_per_team": {
+        "maximum": 38,
+        "median": 38.0,
+        "minimum": 38
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        },
+        {
+          "data_version": "ausente",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "e0ad10b2d7116824b0bf340f3e98b39a29ddd0bcec06dabb06951dcf186ed75f",
+      "season": "2015/2016",
+      "season_id": 27,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 20,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "87281e46919ec41d383a864a0d1f767507542fc77c221135cd7569263dc60f29",
+      "calendar_sha256_observed": "86101d8d2bc87933f29c44d60e8a685dd907d4afa05a8f38d3fa94c28bcb8089",
+      "competition": "Serie A",
+      "competition_id": 12,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1986-11-09",
+      "last_date": "1986-11-09",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "56772fcff29ad8239b4bc9fe9b81d86a884badeffe09e02ef85ff138f4adfbeb",
+      "season": "1986/1987",
+      "season_id": 86,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "53bb99a0f603816cea50986e255fb51841376c6c655a57de44642541b46c495a",
+      "calendar_sha256_observed": "b7b84465fc87fc0e8ef5c686015361de84983716c013539a8de6156c0eca980d",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2018-05-26",
+      "last_date": "2018-05-26",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "cbb98bd06257f04ad82fcff26c8d8f0d854a0211fdc2fc5a9b11e7793ac4a6b5",
+      "season": "2017/2018",
+      "season_id": 1,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "9d7191d1758c5ec56ed8947bbf30b7fa03797fb2015ead77bd1f7a36c0c53b03",
+      "calendar_sha256_observed": "a4717b1f527ac8b44af2448a2abcb4710777c6d7e4c1586c4dc82c0e3fc51221",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2017-06-03",
+      "last_date": "2017-06-03",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "e7b5afef2994bdd69d45eb07c5beec6a734fd40e29d53e7c84d2783367feff6d",
+      "season": "2016/2017",
+      "season_id": 2,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "eb1f3c0872ce01094f0378e5d80c9782164964d82917a23ae76a93e9c0b0da8e",
+      "calendar_sha256_observed": "263bbbd93d079392e93d6a9acdc4a18470a960449248255a2404fa80da19cd2b",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2019-06-01",
+      "last_date": "2019-06-01",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "cd93272bbe926f7e8226ef5640486587f4082efd11266db1fb70796f937f10e4",
+      "season": "2018/2019",
+      "season_id": 4,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "cae41a65afc48072d9ed1fb4c7f15afe710713be303a0bdedfd1ee75714789f1",
+      "calendar_sha256_observed": "49564bb858c8f417958337b24823ff190c231e601ecc7ebd02a9c076702fed3c",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2010-05-22",
+      "last_date": "2010-05-22",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "4b58feeda5d32cdbfb4220e98c77e351855fd308931d85b9714658244ba07db0",
+      "season": "2009/2010",
+      "season_id": 21,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "cd68b20941aebee27b76c40c89a5eec81a731dde762ed2d9f637799587892fd8",
+      "calendar_sha256_observed": "e57c77765acaa9682463c8f66b7c35333369faf03c035bff97f56981f92cdb73",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2011-05-28",
+      "last_date": "2011-05-28",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "c0d65fa2f18017300eedff7f06984bc0ca5de778fe62f0f72edbd895893b11c5",
+      "season": "2010/2011",
+      "season_id": 22,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "3e2d9dc2ab7fac8882f6e5861b0af1d5ffa2e8c2da2285bc7ba8258d614e6063",
+      "calendar_sha256_observed": "5bc3017d5fe12cc0ea5409475cbbea3f7505e5b42e0349b160831e5361a4b698",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2012-05-19",
+      "last_date": "2012-05-19",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "603daa37963bf73e4055b3cbae922931e5314f9b6b831f72b7f2b3e096c37738",
+      "season": "2011/2012",
+      "season_id": 23,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "2f37150f5a0efa78b58db0ec527329946a5dcca7ce55fc4020de304bd00bdc6e",
+      "calendar_sha256_observed": "afbdd74a7792bfdbc466bb699289ceea5665b7067449a7f15a02d5e968169531",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2013-05-25",
+      "last_date": "2013-05-25",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "91df1fc3ba74fa51f87b25958cb970ae964a311e5c824009a1ee70ed78b1e62a",
+      "season": "2012/2013",
+      "season_id": 24,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "fd7b018574e64a9a779dcd5936606ecbaaab10f5fcf558c7358b11c01f8d00d1",
+      "calendar_sha256_observed": "4c9e63703d979870695b4fb73f98483c720cc93e4928557101fea0c36bd80c64",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2014-05-24",
+      "last_date": "2014-05-24",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "6b985f75256915e45b0afb82748bc77ac724d0f2060f4dc2929bff3fa079e625",
+      "season": "2013/2014",
+      "season_id": 25,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "d7776327dc611da04b70c2bb362b5c154acde4f388c897a25aa13a92a5aa7be9",
+      "calendar_sha256_observed": "3dcf70140be72589ee38a3b6cf4b047fbd6fa41e95090e66e5b352a19a0d32cb",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2015-06-06",
+      "last_date": "2015-06-06",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "ee3cb08ff9bc40e8a3cf9d0f475e83eaeaadca2fac57ee1baf1700b756db3b60",
+      "season": "2014/2015",
+      "season_id": 26,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "485ff0a3537a0067975605c8ec704a0b4f09d8db36c02252b3949cf153822055",
+      "calendar_sha256_observed": "b38dee338c96f3cffff01cb9ec5dbc056110f21e658f42e01e49773e8a7be025",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2016-05-28",
+      "last_date": "2016-05-28",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "5443d3027ddfa837063dd5c29bec1b26c6aea9cb15aceacd002c4d2487908f86",
+      "season": "2015/2016",
+      "season_id": 27,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "2f6c045f4a046d2a2302b2c8eb58ad778b35d5114b9c22d31f03b1828042b334",
+      "calendar_sha256_observed": "7e0ba3457eaef6219928f470a62b4bd038610dcd3ca9d65324d888c65be52316",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2005-05-25",
+      "last_date": "2005-05-25",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "4160007c2a24b637996267eebfa0ee25ae24cedd1756c7445039515293ac0794",
+      "season": "2004/2005",
+      "season_id": 37,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "1127a59efd5352c9e8bf0af2aacc2940f3333d3d53c2f2e20ab51dfcd36c0b00",
+      "calendar_sha256_observed": "23502c59cab527669827acbcf3b5f49d366a5e5eeb195e021e3543d30fa225b1",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2007-05-23",
+      "last_date": "2007-05-23",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "5b7891235e9c8ecf005ffc5d4f1cf8fe0ac38673a6fea54d9be072e108800867",
+      "season": "2006/2007",
+      "season_id": 39,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "019a57928448032d8c1bc3e02d67704ecabb544469376e2c27636b732fc8e24c",
+      "calendar_sha256_observed": "bac1700a839629f3bc2a21f304c74551b111587db4e8dbe1cb1525b294846c37",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2009-05-27",
+      "last_date": "2009-05-27",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "00f5925a0adcd11091bdea248eda5df9907b67b37a8f134f7f8001784bf4b89b",
+      "season": "2008/2009",
+      "season_id": 41,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "4313089c2d57af11368bc6b32cdd939f0124d6b8c8b085d4f190b8de5db88fbd",
+      "calendar_sha256_observed": "06941bc0c3f73d1ec29a45ca7d017d6c5532bf9d24cdf412f9d1b89748ec91f2",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2004-05-26",
+      "last_date": "2004-05-26",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "ea11d1e74d866a9e1d6e31590941feffb62b950dca5d89b09da7b29322fdef16",
+      "season": "2003/2004",
+      "season_id": 44,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "8b93c9f4aea3157bed17c799798020f42e0f0b5bbf58de4e9aa4b64103a35aa0",
+      "calendar_sha256_observed": "f51ec28ff62591b51b09644a0741d16187fb612e21bee098bd8254cb53a94579",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1972-05-31",
+      "last_date": "1972-05-31",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "809dc45cc58b7d75f9671f1db8800b0fc1227eb20c4c1a7242bd7888be626013",
+      "season": "1971/1972",
+      "season_id": 71,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "af485f18875bfc180f58d9697266b49a47dfdc40569c36a2cdeb76f8b98b3bd6",
+      "calendar_sha256_observed": "1e1d84987087d4064b7ab56750bc528fb73fa15adf3fceacf6ee79100e3c2fc9",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1999-11-23",
+      "last_date": "1999-11-23",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "07b74fbcee4baad284fd7e81293cafd421a689c5609da863b512563ba4afd50e",
+      "season": "1999/2000",
+      "season_id": 76,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "0229c663c297e2d0a13cd0b206a05bda89332199f4c9eca59ed65c9c863bf7c8",
+      "calendar_sha256_observed": "48179afd7b1e4a48256ac2b1838c7813d28423aeada9d1b4589d3c169158002a",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1971-06-02",
+      "last_date": "1971-06-02",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "892a662eb32f9d72dd82753d00fb8c1bcc7f50d8695b2e6eefcb2c4e3e36376c",
+      "season": "1970/1971",
+      "season_id": 276,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "ae3fbfb9eae7d1f7255bad0c119af51bbbb6d36a0670fb9d1aeaee2c4839e45d",
+      "calendar_sha256_observed": "c7199779fb4662d37d48fe8bfd5a10fc6737875686c9bb00e808ab0918c051a6",
+      "competition": "Champions League",
+      "competition_id": 16,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1973-05-30",
+      "last_date": "1973-05-30",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "c148984c4dd16b50a5de3c504457ad75b0f15bf79c7ea9b5a53814a8239b137a",
+      "season": "1972/1973",
+      "season_id": 277,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "9891da730f135b24a1683d4580ae0bfbb39a54af21341e3f8b42cd5f60117bcf",
+      "calendar_sha256_observed": "36231c987f9e6dc578aad7f827d4cd246c34d0e8574e7aa6dea3ed273f71efa9",
+      "competition": "UEFA Europa League",
+      "competition_id": 35,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 3,
+        "lineups_missing": 0,
+        "lineups_present": 3,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1989-03-15",
+      "last_date": "1989-05-03",
+      "matches": 3,
+      "matches_per_team": {
+        "maximum": 3,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "3722dcbd69b56070364174c192daac1fb82b088727f85465b0ba5aec1fa82679",
+      "season": "1988/1989",
+      "season_id": 75,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 4,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 51,
+        "h5_calculable": null,
+        "h5_calendar": 78
+      },
+      "calendar_sha256_expected": "c1e053daa38fa2c9f46ac75a40648da8955a711170250de847ccb98e2fd109ed",
+      "calendar_sha256_observed": "15034629589a6a90d2ddec552688086a9f2a52018b67a13aba36ee2b4d48fd40",
+      "competition": "FA Women's Super League",
+      "competition_id": 37,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 107,
+        "lineups_missing": 0,
+        "lineups_present": 107,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2018-09-09",
+      "last_date": "2019-05-11",
+      "matches": 107,
+      "matches_per_team": {
+        "maximum": 20,
+        "median": 19,
+        "minimum": 19
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.3",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        },
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "ausente"
+        },
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "cc313ee49a899a80d26323718dd8af6e6ccf300edeb64ebc5565b45c8eaa0270",
+      "season": "2018/2019",
+      "season_id": 4,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 11,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 25,
+        "h5_calculable": null,
+        "h5_calendar": 56
+      },
+      "calendar_sha256_expected": "d5d01eb688de0dea557ad39ace71e1ba6a7781f9a815011593c48f6f9cfe98a0",
+      "calendar_sha256_observed": "e984ab71bebfabf548cb56fa128e4f46cee8d9a4f10cb7d57390eda2696a8cf4",
+      "competition": "FA Women's Super League",
+      "competition_id": 37,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 87,
+        "lineups_missing": 0,
+        "lineups_present": 87,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2019-09-07",
+      "last_date": "2020-02-23",
+      "matches": 87,
+      "matches_per_team": {
+        "maximum": 16,
+        "median": 14.0,
+        "minimum": 13
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "1ff7f35c349900a59a3e399544af21949bbecf406f1028daf021a9a03c9e09ff",
+      "season": "2019/2020",
+      "season_id": 42,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 12,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 68,
+        "h5_calculable": null,
+        "h5_calendar": 99
+      },
+      "calendar_sha256_expected": "a9ea5e5e3c6f7b2e070ab9c3f3c23d6757545d7a6aa81fa4fbb9c443218597c2",
+      "calendar_sha256_observed": "0ea0b9d30a6059527f5e47dc0b2cece8cc91a5d06ce5bbe2c571b6629113b72b",
+      "competition": "FA Women's Super League",
+      "competition_id": 37,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 131,
+        "lineups_missing": 0,
+        "lineups_present": 131,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2020-09-05",
+      "last_date": "2021-05-09",
+      "matches": 131,
+      "matches_per_team": {
+        "maximum": 22,
+        "median": 22.0,
+        "minimum": 21
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "82411d6f3c008739742cf4591595bdb3491b491eb14188094c4bec39d165d0f3",
+      "season": "2020/2021",
+      "season_id": 90,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 12,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 72,
+        "h5_calculable": null,
+        "h5_calendar": 102
+      },
+      "calendar_sha256_expected": "f0f3a5509f0ca9a1b5315b3a78d86d1c4c6909be5d16f2999c2d2295d6f3a22e",
+      "calendar_sha256_observed": "34bdf6515ac31e2407bde1655762c03cbc8e7a1a557f62d04e20172d0c55900c",
+      "competition": "FA Women's Super League",
+      "competition_id": 37,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 132,
+        "lineups_missing": 0,
+        "lineups_present": 132,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2023-10-01",
+      "last_date": "2024-05-18",
+      "matches": 132,
+      "matches_per_team": {
+        "maximum": 22,
+        "median": 22.0,
+        "minimum": 22
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "a4ee6c6ec9cbd90f3e41274c2f683960b39ae5dbf10cbf26b87f21b73410668f",
+      "season": "2023/2024",
+      "season_id": 281,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 12,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 4
+      },
+      "calendar_sha256_expected": "f89dbd4aedcaf9c9e4ec9d8e745d5d54596500ec357d7489c914a2f126805adf",
+      "calendar_sha256_observed": "b36b45235b06aa6c1c56ef3682a93a237b493d5c4a394a6c13c500460aa4f85f",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 64,
+        "lineups_missing": 0,
+        "lineups_present": 64,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2018-06-14",
+      "last_date": "2018-07-15",
+      "matches": 64,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 3.5,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.2",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "f5f4fac03ea047db44220cc8d872f99839d4fd0f82e32cb3e4dd2b3e0713606b",
+      "season": "2018",
+      "season_id": 3,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 32,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "5bf18dca74e0de7440ba2b5ff8562059a09c0f5950c9fefaf1278bc37191c77c",
+      "calendar_sha256_observed": "274d48e48027009c65e47ca0bc54852d2a4f6b9dca3c4208e03d61db81e30f74",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 6,
+        "lineups_missing": 0,
+        "lineups_present": 6,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1974-06-19",
+      "last_date": "1974-07-07",
+      "matches": 6,
+      "matches_per_team": {
+        "maximum": 5,
+        "median": 1.5,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "d89c87d7a7b79a0ea8cf72e8a6fd61c1377ba754ffdf963de9b97c3b054199fb",
+      "season": "1974",
+      "season_id": 51,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 6,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "c5ddb2b7899417e5b1b80ba91ed15dac32a9f03a00358b392daa3dfd168bde50",
+      "calendar_sha256_observed": "ab779b7bd5d62df0f089f7ce0f1e3cd0eb7e7161d194a4fe48f75fd021f7f4ed",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 3,
+        "lineups_missing": 0,
+        "lineups_present": 3,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1986-06-22",
+      "last_date": "1986-06-29",
+      "matches": 3,
+      "matches_per_team": {
+        "maximum": 3,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "f319dc459dec9770fd6ce08d6c8d438fba32d3189c1d55ee36bba18f3bb16da6",
+      "season": "1986",
+      "season_id": 54,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 4,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "dfebe4b357c03af5e12a91988f9231d43b9bf8d052b31bbdb65bcb995a5341f9",
+      "calendar_sha256_observed": "1a62298eb8a4436f3b716bfae7e18d68cfd744ef5918afd764c6f4c57f4809f0",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1990-06-24",
+      "last_date": "1990-06-24",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "56c88948ff3d83a12cc6d7b29a7e7340ceec46215dc687168ba4d27f82ea18ec",
+      "season": "1990",
+      "season_id": 55,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 4
+      },
+      "calendar_sha256_expected": "b9d7516dc9919a825f04c204ca85487958c8a2431e84140a48e944934661efc7",
+      "calendar_sha256_observed": "e526f97e3f01894f851863fc9cc379e19f792825c57c0780949b3cd1415ab652",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 64,
+        "lineups_missing": 0,
+        "lineups_present": 64,
+        "related_orphans": null,
+        "three_sixty_present": 64
+      },
+      "first_date": "2022-11-20",
+      "last_date": "2022-12-18",
+      "matches": 64,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 3.5,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "8a36122721875bc44e21b29e09496c9229e725e0f8adbc5d398c0f48357bc6a2",
+      "season": "2022",
+      "season_id": 106,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 32,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "4d0cf1a1a667c43f96afed244848a8b379ac4ebe633c4bc7ef666d05c51ee3c4",
+      "calendar_sha256_observed": "976f19e36d99510fa78fbeca8bf07df3ce43509178c8fdbb4aa7a91f7f13624e",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 2,
+        "lineups_missing": 0,
+        "lineups_present": 2,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1958-06-24",
+      "last_date": "1958-06-29",
+      "matches": 2,
+      "matches_per_team": {
+        "maximum": 2,
+        "median": 1,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "41c363446dd9d6a7811d39040ad17469489c784b831cb1ae0a74c63dc3e5a45e",
+      "season": "1958",
+      "season_id": 269,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 3,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "c6ef9598ced247d79cf5b0cbceca57d39b71cb0ba461251362c659549d95de2b",
+      "calendar_sha256_observed": "dde7334922c83ec1f73e1e60c7c929f01935d8bae1307990795959a18b7d39b2",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1962-05-30",
+      "last_date": "1962-05-30",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "aeb71724a4a5f786eeb7e91d86db6785f0f04009ffd44f4e3f61699511bbca9a",
+      "season": "1962",
+      "season_id": 270,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "39b5beeb3a7424b3d09c0778a23cbe7cd96673516e5de39ab3742d6e37c51e78",
+      "calendar_sha256_observed": "694aeebce75d9c5a956f8007656412bb5905570e20ecec15a822a459e731d4e8",
+      "competition": "FIFA World Cup",
+      "competition_id": 43,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 6,
+        "lineups_missing": 0,
+        "lineups_present": 6,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1970-06-03",
+      "last_date": "1970-06-21",
+      "matches": 6,
+      "matches_per_team": {
+        "maximum": 6,
+        "median": 1,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "43cd4da1c534bfd4886e73addbc5c9b97ab7aa4bfdea2dca5d3e419ac4cd62c6",
+      "season": "1970",
+      "season_id": 272,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 7,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "40d2d668c9f0ac26349dd268ee3325b011031f6322612d0b728b80a1b3c6ff6d",
+      "calendar_sha256_observed": "0fd4be67a79b283b98de9d6fe960206415bb41ffe5a77b12ac5b3d5c17b8509f",
+      "competition": "Major League Soccer",
+      "competition_id": 44,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 6,
+        "lineups_missing": 0,
+        "lineups_present": 6,
+        "related_orphans": null,
+        "three_sixty_present": 6
+      },
+      "first_date": "2023-08-27",
+      "last_date": "2023-10-22",
+      "matches": 6,
+      "matches_per_team": {
+        "maximum": 6,
+        "median": 1,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "0d2c492407474926fb6d7ef60a20339181fde7a4342cd34f8b0a75a1fe8de6bd",
+      "season": "2023",
+      "season_id": 107,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 7,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 10
+      },
+      "calendar_sha256_expected": "33f87c47cc0d08b842ed052d84a7c7ff0f2b685850173595d72680bd8581dc8f",
+      "calendar_sha256_observed": "4111161bdfcfa63f3dc81e11ef3ad03823f450169d43dcb96a209bc8375b76a1",
+      "competition": "NWSL",
+      "competition_id": 49,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 36,
+        "lineups_missing": 0,
+        "lineups_present": 36,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2018-04-15",
+      "last_date": "2018-08-12",
+      "matches": 36,
+      "matches_per_team": {
+        "maximum": 13,
+        "median": 7,
+        "minimum": 5
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.0.2",
+          "shot_fidelity_version": "ausente",
+          "xy_fidelity_version": "ausente"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "60ac92870707a7d3e2c24f1a3b8b25097f9914ea77fe1067be09985254353114",
+      "season": "2018",
+      "season_id": 3,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 9,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 77,
+        "h5_calculable": null,
+        "h5_calendar": 107
+      },
+      "calendar_sha256_expected": "75e333e1b196e60f62de86338eed82232bb1432e3f6bf7bafe867c9fdf8392b9",
+      "calendar_sha256_observed": "fea38ad1c5b61606ace83a43a097145896887b0a64ec6ddb800bef694fbfdc0c",
+      "competition": "NWSL",
+      "competition_id": 49,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 137,
+        "lineups_missing": 0,
+        "lineups_present": 137,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2023-03-25",
+      "last_date": "2023-11-12",
+      "matches": 137,
+      "matches_per_team": {
+        "maximum": 25,
+        "median": 22.5,
+        "minimum": 22
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "c07b34c2a66a923b03bc21c61a0d61ae40d1d237880edcb1485ce7afb6853625",
+      "season": "2023",
+      "season_id": 107,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 12,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 1
+      },
+      "calendar_sha256_expected": "09b7f387ae4288a2b665c7564d19668643913104b98f041c39fd895f62da37e7",
+      "calendar_sha256_observed": "9b84914bf5ce9060b60e0bda6358b20f443434c26921dafe9e9e058e5a36986e",
+      "competition": "UEFA Women's Euro",
+      "competition_id": 53,
+      "domain": "feminino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 31,
+        "lineups_missing": 0,
+        "lineups_present": 31,
+        "related_orphans": null,
+        "three_sixty_present": 31
+      },
+      "first_date": "2022-07-06",
+      "last_date": "2022-07-31",
+      "matches": 31,
+      "matches_per_team": {
+        "maximum": 6,
+        "median": 3.5,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "88517462ecff82d841bee712789b5683eab7876b5b957739e1b92902466cd76c",
+      "season": "2022",
+      "season_id": 106,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 16,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 1
+      },
+      "calendar_sha256_expected": "e3cb69837963e9c87ac705eb74f995920e36a69a8a7775caa85f5f8ae3da03a8",
+      "calendar_sha256_observed": "8d5a26780e132841d931d070e60846b91af99c9b314e6102184cedfd039bda5c",
+      "competition": "UEFA Women's Euro",
+      "competition_id": 53,
+      "domain": "feminino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 31,
+        "lineups_missing": 0,
+        "lineups_present": 31,
+        "related_orphans": null,
+        "three_sixty_present": 31
+      },
+      "first_date": "2025-07-02",
+      "last_date": "2025-07-27",
+      "matches": 31,
+      "matches_per_team": {
+        "maximum": 6,
+        "median": 3.5,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "3b13bb759085a812582c07ac3b1962ae48cd28903d56a075dacd54ab685b8ab0",
+      "season": "2025",
+      "season_id": 315,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 16,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 3
+      },
+      "calendar_sha256_expected": "6467df80bd2abd7698ab84a6409523c573d2aad25462f1cbae90efdeb29831b6",
+      "calendar_sha256_observed": "d00b8dfafa1eff7ccded5a30602ecc9073bbc951306f7922d08a3faf753231a1",
+      "competition": "UEFA Euro",
+      "competition_id": 55,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 51,
+        "lineups_missing": 0,
+        "lineups_present": 51,
+        "related_orphans": null,
+        "three_sixty_present": 51
+      },
+      "first_date": "2021-06-11",
+      "last_date": "2021-07-11",
+      "matches": 51,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 4.0,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "620818616860ead2c1eb4f40f52724ca267b1bb257fee94e3002baedf49c1042",
+      "season": "2020",
+      "season_id": 43,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 24,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 3
+      },
+      "calendar_sha256_expected": "70aa07d8a73e899d501c3edcd39b4bea0d4ae1d48bce7b59c4619869a13adc1b",
+      "calendar_sha256_observed": "4031e75dcce6c3d251df68d81b782cd1095ca0517498b7dc761c8da8a618d5d8",
+      "competition": "UEFA Euro",
+      "competition_id": 55,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 51,
+        "lineups_missing": 0,
+        "lineups_present": 51,
+        "related_orphans": null,
+        "three_sixty_present": 51
+      },
+      "first_date": "2024-06-14",
+      "last_date": "2024-07-14",
+      "matches": 51,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 4.0,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "e210231777f4e9a06e7c23d8fb946dbeebad75f6574a6db91776ced213bb77a5",
+      "season": "2024",
+      "season_id": 282,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 24,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 4
+      },
+      "calendar_sha256_expected": "7051c0aa9bef4d726fa4068eaa2185d16dcc3d04f2c346d9fb6f17e770a3aa4a",
+      "calendar_sha256_observed": "e1ee154600243095d83575c81cc96511ac276ab524944a7bf3ef4502cf023829",
+      "competition": "Women's World Cup",
+      "competition_id": 72,
+      "domain": "feminino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 52,
+        "lineups_missing": 0,
+        "lineups_present": 52,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2019-06-07",
+      "last_date": "2019-07-07",
+      "matches": 52,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 4.0,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "27efdb64ecd3c0002b0261d99ef748e4414765de5f33aa6cc643d8e8251157a4",
+      "season": "2019",
+      "season_id": 30,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 24,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 4
+      },
+      "calendar_sha256_expected": "55af7b1e0ba323e8b277467673856cf1549417159d677ba11718814bfa19f9b9",
+      "calendar_sha256_observed": "83e647b858022dfa8826de4c13bad54c5420bf96758ea6985e41f4ce24c183ad",
+      "competition": "Women's World Cup",
+      "competition_id": 72,
+      "domain": "feminino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 64,
+        "lineups_missing": 0,
+        "lineups_present": 64,
+        "related_orphans": null,
+        "three_sixty_present": 64
+      },
+      "first_date": "2023-07-20",
+      "last_date": "2023-08-20",
+      "matches": 64,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 3.5,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "d3b70a243f2bc022ce2900725ec8ac8f1f8120c33db40141042df260b4768b20",
+      "season": "2023",
+      "season_id": 107,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 32,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "7d9cdc7182642f977360cb6ba6e6f7e391603011a9dbabd81d3e5beacdd391c9",
+      "calendar_sha256_observed": "d38983053b4664878b0ebdffaded6f87860f11795aa82ce75ea90edc58604fc3",
+      "competition": "Liga Profesional",
+      "competition_id": 81,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1997-10-25",
+      "last_date": "1997-10-25",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "c3911c0e1269a368fde15e55b203d3d84bbda573704a9f292f36391f20ec7daf",
+      "season": "1997/1998",
+      "season_id": 48,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "8af094567f1e6839a373bde431972e25f28cce00cae70bbcf5c90ad5cd1c0cb1",
+      "calendar_sha256_observed": "95b6583ce79920b43c77ab560ad32a5d0d42f96a1303c8db58789fa3d2105479",
+      "competition": "Liga Profesional",
+      "competition_id": 81,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1981-04-10",
+      "last_date": "1981-04-10",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "376ffaae3768d04f744895bbdb3b9fa03261356063b5bb3a3d679b5629654dab",
+      "season": "1981",
+      "season_id": 275,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "1122f16794ed14da4a16cb2dca9b28f0bb3dbf43966c34e7a0250a3e0fa536c3",
+      "calendar_sha256_observed": "24e3f8530680561335c1f1e23d69409635aef4326f873944244e8ea9a3115bb3",
+      "competition": "Copa del Rey",
+      "competition_id": 87,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1984-05-05",
+      "last_date": "1984-05-05",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "2665692914cededba209d30e7a76a87f58eb06d9577bc5b88286ff243ac7fbe2",
+      "season": "1983/1984",
+      "season_id": 84,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "8d12e1e0dde6fb74bb39234ff0b924a20e8ef2f349dfe330175158d475f63891",
+      "calendar_sha256_observed": "c143157d8ffe05c43e2a3c9638bcfb0c7e878711edcc39107b5d97e65274a24b",
+      "competition": "Copa del Rey",
+      "competition_id": 87,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1983-06-04",
+      "last_date": "1983-06-04",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "1067303754023eaed5b882ef09122da0507336a6d7112dce20123676977acdd6",
+      "season": "1982/1983",
+      "season_id": 268,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "68fe3ad4d595a88bd014b3b8f7d72704922e894759ab74a35462aabb19683031",
+      "calendar_sha256_observed": "b426ef43944d8fddd65f91b1a51d9bcbee6bac5b49d0fafb6a10094d68a5dd59",
+      "competition": "Copa del Rey",
+      "competition_id": 87,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1978-04-19",
+      "last_date": "1978-04-19",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "06825b36191222433939bfb43e54d6b8d23771f2e703256f7c07f687ef178cd0",
+      "season": "1977/1978",
+      "season_id": 279,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "64b84ea85a8eaa7004461f9125032056e3e110d614508fd147ac2b4ac9f7cd68",
+      "calendar_sha256_observed": "73e659cdad5dab84b8b0d687e7b16b7498d278ed01cf4f0aead9d178b5a9d82b",
+      "competition": "North American League",
+      "competition_id": 116,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1977-08-28",
+      "last_date": "1977-08-28",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "e7c92596edabbf5e52fa44835c33c521412b42587bbc71e91438298754a5642f",
+      "season": "1977",
+      "season_id": 68,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 80,
+        "h5_calculable": null,
+        "h5_calendar": 105
+      },
+      "calendar_sha256_expected": "9065d0279c94718cfb687306c4a329200783bd19e9f5796af2038ccbc86ae0fe",
+      "calendar_sha256_observed": "b991a87b7ad97b7bb5b056cd23f0b965a3acabc202be531ffe77b5acf295c93f",
+      "competition": "Serie A Women",
+      "competition_id": 131,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 130,
+        "lineups_missing": 0,
+        "lineups_present": 130,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2023-09-16",
+      "last_date": "2024-05-19",
+      "matches": 130,
+      "matches_per_team": {
+        "maximum": 26,
+        "median": 26.0,
+        "minimum": 26
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "e612f18826df8dbe9f37fe8622adc0c5bb526245c5e46de1a2b7e2022d1970f7",
+      "season": "2023/2024",
+      "season_id": 281,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 10,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 72,
+        "h5_calculable": null,
+        "h5_calendar": 102
+      },
+      "calendar_sha256_expected": "78d01ecb20035bb8bbd94001065ec0f92ea747cb053b4aafca8b1051be12a7d3",
+      "calendar_sha256_observed": "494ff4dce959ff4006a0ed18690efc1a9001d4568bda39d5631049550b3dee26",
+      "competition": "Frauen Bundesliga",
+      "competition_id": 135,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 132,
+        "lineups_missing": 0,
+        "lineups_present": 132,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2023-09-15",
+      "last_date": "2024-05-20",
+      "matches": 132,
+      "matches_per_team": {
+        "maximum": 22,
+        "median": 22.0,
+        "minimum": 22
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "bbf45e1c311ecec1551a4b67b8cbed54e64dfb7e86446f12ae390e4daf6adbcf",
+      "season": "2023/2024",
+      "season_id": 281,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 12,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 160,
+        "h5_calculable": null,
+        "h5_calendar": 200
+      },
+      "calendar_sha256_expected": "ea93b27a4d1101ba62792c88b5770bdacd904cefdf38671382698f5c2298628a",
+      "calendar_sha256_observed": "a7b6696e31becbbe453957c102d0b7896f7b94bc9c2ac4264dd8ed44f2a3df44",
+      "competition": "Liga F",
+      "competition_id": 182,
+      "domain": "feminino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 240,
+        "lineups_missing": 0,
+        "lineups_present": 240,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2023-09-15",
+      "last_date": "2024-06-16",
+      "matches": 240,
+      "matches_per_team": {
+        "maximum": 30,
+        "median": 30.0,
+        "minimum": 30
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "ae0cc2b95fd3979e49e54b4888c29582348dff31a2f3bac94e26d19c515d5801",
+      "season": "2023/2024",
+      "season_id": 281,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 16,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 2
+      },
+      "calendar_sha256_expected": "058380b9fe90a51f4a15beb35db08cb6e7f925c840d4d7b5ceb7103da878c857",
+      "calendar_sha256_observed": "cb12924d07436c2f9f4126eb30a665f4b8ec979c4df16778bfe4a733ea0a1eab",
+      "competition": "Copa America",
+      "competition_id": 223,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 32,
+        "lineups_missing": 0,
+        "lineups_present": 32,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2024-06-21",
+      "last_date": "2024-07-15",
+      "matches": 32,
+      "matches_per_team": {
+        "maximum": 6,
+        "median": 3.5,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "50ad432ad4663955f6158f1cae6374bba38ce99aae77c9bdfdf4b71e7605d82f",
+      "season": "2024",
+      "season_id": 282,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 16,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 59,
+        "h5_calculable": null,
+        "h5_calendar": 85
+      },
+      "calendar_sha256_expected": "118501bdae13189c73e453177374b1f10ad4e0aa768c8d67a3e1251cc0255fd4",
+      "calendar_sha256_observed": "ccfa8e974217bec45167a867c2d4c1a2985655d1dced24814c3bfffc836ca6e7",
+      "competition": "Indian Super league",
+      "competition_id": 1238,
+      "domain": "masculino; adulto; clubes",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 115,
+        "lineups_missing": 0,
+        "lineups_present": 115,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "2021-11-19",
+      "last_date": "2022-03-20",
+      "matches": 115,
+      "matches_per_team": {
+        "maximum": 23,
+        "median": 20,
+        "minimum": 20
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "f3b8852f9686f2bf4480a6f715d9ff6f2d78724d9cc12a1f2fbc6586be8ca6bc",
+      "season": "2021/2022",
+      "season_id": 108,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 11,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 4
+      },
+      "calendar_sha256_expected": "0c5a7fdd63c969916c078f89fbd8257c834a2cdb486e56ec64c08354ea3c87de",
+      "calendar_sha256_observed": "8b8d9edbbb6608ab90647c3a8ae2c47811d9401f0887bd9cbb1d722c70783deb",
+      "competition": "African Cup of Nations",
+      "competition_id": 1267,
+      "domain": "masculino; adulto; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 52,
+        "lineups_missing": 0,
+        "lineups_present": 52,
+        "related_orphans": null,
+        "three_sixty_present": 1
+      },
+      "first_date": "2024-01-13",
+      "last_date": "2024-02-11",
+      "matches": 52,
+      "matches_per_team": {
+        "maximum": 7,
+        "median": 4.0,
+        "minimum": 3
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "09e48b06a9a173c203583e785e42e715dc21043428cc5d3b4037f1a4d6683780",
+      "season": "2023",
+      "season_id": 107,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inconclusivo",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 24,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    },
+    {
+      "audit_date": "2026-10-25",
+      "bilateral_targets": {
+        "h10_calculable": null,
+        "h10_calendar": 0,
+        "h5_calculable": null,
+        "h5_calendar": 0
+      },
+      "calendar_sha256_expected": "52b5349658d57fd29a78d30875002de0ed0f2553a9983a3700ef7f77d5504607",
+      "calendar_sha256_observed": "e2413adda903dcf6e5050bc0875a4d3838b70ad337a8a1ec0aa08cef4f6d246a",
+      "competition": "FIFA U20 World Cup",
+      "competition_id": 1470,
+      "domain": "masculino; juvenil; seleções",
+      "existing_v3_allowlist": false,
+      "files": {
+        "events_missing": 0,
+        "events_present": 1,
+        "lineups_missing": 0,
+        "lineups_present": 1,
+        "related_orphans": null,
+        "three_sixty_present": 0
+      },
+      "first_date": "1979-09-07",
+      "last_date": "1979-09-07",
+      "matches": 1,
+      "matches_per_team": {
+        "maximum": 1,
+        "median": 1.0,
+        "minimum": 1
+      },
+      "metadata_versions": [
+        {
+          "data_version": "1.1.0",
+          "shot_fidelity_version": "2",
+          "xy_fidelity_version": "2"
+        }
+      ],
+      "orientation_status": "não avaliado",
+      "reasons": [
+        "Snapshot local incompatível com o contrato CORE-01.",
+        "Nenhum alvo com H5 bilateral no calendário.",
+        "Estrutura dos eventos, taxonomia, geometria, orientação e métricas não auditadas nesta matriz."
+      ],
+      "row_fingerprint": "d5cb8fc0e22bab00afb0f911b639ff72bc4bd2f42d52e9ca0a05c3138450d2e4",
+      "season": "1979",
+      "season_id": 274,
+      "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "spatial_gaps": null,
+      "status": "inelegível",
+      "structural_failures": null,
+      "taxonomy_failures": null,
+      "teams": 2,
+      "temporal_status": "política de calendário calculada; conteúdo não auditado"
+    }
+  ],
+  "snapshot_issue_codes": [
+    "LINE_ENDINGS_CHANGED",
+    "ORPHAN_FILES"
+  ],
+  "snapshot_status": "incompatível",
+  "source_revision_claimed": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb"
+}

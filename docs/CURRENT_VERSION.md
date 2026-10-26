@@ -1,6 +1,6 @@
 # ManagerAI — estado operacional atual
 
-**CORE-01: contrato versionado e verificador de provisionamento StatsBomb implementados; clone temporário com LF e 247 testes reais validados. `.gitattributes` fixa LF dos relatórios congelados em novos checkouts. Aceite integral ainda depende do wheel atualizado instalado com `python -I`. Evidências em [PENDING.md](PENDING.md), §17. O runtime do treinador permanece determinístico; regressões são experimentais.**
+**CORE-01: contrato versionado e verificador de provisionamento StatsBomb implementados; clone temporário com LF e 247 testes reais validados. Aceite integral ainda depende do wheel atualizado instalado com `python -I`. CORE-02 tem protocolo, matriz de 80 calendários e auditor portátil; nenhuma temporada nova foi certificada. Evidências em [PENDING.md](PENDING.md), §§17–18. O runtime do treinador permanece determinístico; regressões são experimentais.**
 
 Verificado no código em 25/10/2026; ancestral publicado da integração `e91e55dd51081bd381f69097353ec86ca5bf7583`; HEADs anteriores nos registros de validação são históricos. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
 
@@ -43,6 +43,7 @@ Todos os módulos abaixo ficam em `src/managerai/`; nomes V3 indicam módulos at
 | `__init__.py`, `__main__.py`, `cli.py` | Versão, entrada de módulo, parser e execução CLI |
 | `data_loader.py` | Leitura JSON protegida, estruturas básicas, fontes SHA-256/fingerprint |
 | `data_inventory.py` | Competições, temporadas, calendário, equipes e arquivos órfãos |
+| `season_audit.py` | Matriz CORE-02 de calendário/presença e diagnósticos isolados de taxonomia, calculabilidade e orientação; não altera V3 |
 | `temporal.py` | Últimas N partidas da temporada antes do corte |
 | `feature_engineering.py` | Validação, 21 métricas legadas e agregações |
 | `tactical_analysis.py`, `recommendation_engine.py` | Comparações/achados e três regras legadas |
@@ -79,6 +80,10 @@ Os comandos são para uma instalação necessária/autorizada, usando o Python d
 Dados efetivos: `open-data/data/`, com `competitions.json`, `matches/{competition}/{season}.json`, `events/{match}.json` e `lineups/{match}.json`. `three-sixty/` participa apenas do inventário. `data/raw/` e `data/processed/` contêm placeholders, não cópia dos brutos. Clone StatsBomb local independente, não registrado como submódulo nem rastreado pelo Git pai; revisão observada `4b73468fc5b0f1950f9f66fada70ad3a4f9327cb`. Um clone novo do ManagerAI não provisiona esses dados automaticamente.
 
 O [contrato StatsBomb](../src/managerai/statsbomb_snapshot.json) é a fonte canônica de revisão, hashes e cobertura por temporada. O [guia de provisionamento](STATSBOMB_PROVISIONING.md) traz comandos Linux/macOS/PowerShell, licença, diagnóstico e política de atualização. `verify-data` confere clone, origem, revisão, worktree, controles, calendários e presença de eventos/escalações/360; não substitui validação semântica dos arquivos de jogo. O contrato acompanha o wheel.
+
+A [matriz CORE-02](season_coverage_core02.json) é derivada do contrato e dos calendários presentes, com algoritmo em `season_audit.py` e [protocolo fixado](CORE02_CERTIFICATION.md). Ela registra 80 pares, período, domínio, distribuição por equipe, presença, versões e H5/H10 de calendário. Campos de calculabilidade, falhas de conteúdo e orientação permanecem null/não avaliados até auditoria integral. O clone Windows atual é `incompatível` pelos hashes CRLF; a revisão do contrato é **alegada, não comprovada pelos bytes desse clone**. Não usar a matriz como certificado V3 nem como amostra homogênea. A auditoria de candidato lê um par por vez e recusa clone incompatível; seu resultado não altera a allowlist.
+
+Revisão de conformidade CORE-02: a comparação `mismatch` em `season_audit.py` inclui a contagem de arquivos 360 e pode classificar uma temporada como `reprovado` se essa contagem divergir do contrato, embora o protocolo trate 360 como informativo e não consumido pela V3. Corrigir a classificação e cobrir divergência/ausência de 360 com teste antes de usar a matriz como gate. `related_orphans` por temporada permanece null porque arquivos órfãos não têm vínculo confiável com um par; os IDs observados são apresentados somente no inventário global. Essa limitação deve permanecer explícita até existir atribuição verificável.
 
 No checkout Windows desta CORE-01, o clone ignorado tem o HEAD correto e `git status` limpo, mas o checkout converteu LF dos blobs Git em CRLF em README/JSONs. Por exemplo, `data/competitions.json` tem SHA-256 local `c5f10d2811ace6057ff8e414bfd93c2c34c27dddb2199d9fc29ffc425bc30425`, enquanto o blob Git da mesma revisão e a fixture congelada usam `e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa`. O contrato fixa **bytes dos blobs Git**, e `verify-data` recusa esse clone com `LINE_ENDINGS_CHANGED`. Não modificar os brutos locais; para reprodução fiel, provisionar outro clone com `git clone -c core.autocrlf=false` conforme o guia. Os totais de catálogo e presença coincidem; isso não resolve a divergência de hashes.
 

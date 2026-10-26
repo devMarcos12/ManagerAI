@@ -69,6 +69,11 @@ contrato fixado, `2` indica lacunas ou incompatibilidade. `MANAGERAI_DATA_ROOT`
 também define a raiz padrão. Consulte o guia para provisionar em Linux, macOS e
 PowerShell e interpretar o diagnóstico.
 
+A [matriz CORE-02](docs/season_coverage_core02.json) inventaria os 80 pares e
+separa H5/H10 de calendário de calculabilidade ainda não auditada. O
+[protocolo de certificação](docs/CORE02_CERTIFICATION.md) explica os gates. Nenhum
+novo recorte V3 foi liberado por essa matriz.
+
 ## Validar
 
 ```bash
