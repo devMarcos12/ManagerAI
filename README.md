@@ -34,7 +34,9 @@ NumPy para as regressões leves. Para instalar o núcleo sem opcionais, use
 
 O dataset é provisionado separadamente em `open-data/data/`; um clone novo do
 ManagerAI não o inclui. Preserve a revisão dos dados e consulte as condições em
-`open-data/README.md` e `open-data/LICENSE.pdf`. Nunca escreva resultados nos brutos.
+`open-data/README.md` e `open-data/LICENSE.pdf`. Siga o
+[guia de provisionamento e licença](docs/STATSBOMB_PROVISIONING.md), que aponta ao
+[contrato versionado](src/managerai/statsbomb_snapshot.json). Nunca escreva resultados nos brutos.
 
 ## Executar
 
@@ -55,6 +57,17 @@ MPLCONFIGDIR=/tmp/managerai-mpl PYTHONPATH=src venv/bin/python -B -m managerai a
 A CLI também oferece `catalog`, `teams`, `matches` e `audit`. Retire `--v3` para o
 contrato legado; use a opção global `--data-root` antes do subcomando para mudar os
 dados. Os resultados incluem fontes, hashes, amostras e denominadores.
+
+Para conferir um clone StatsBomb já provisionado, sem ler integralmente os eventos:
+
+```bash
+python -B -m managerai --data-root open-data/data verify-data
+```
+
+O verificador emite JSON determinístico; código `0` indica compatibilidade com o
+contrato fixado, `2` indica lacunas ou incompatibilidade. `MANAGERAI_DATA_ROOT`
+também define a raiz padrão. Consulte o guia para provisionar em Linux, macOS e
+PowerShell e interpretar o diagnóstico.
 
 ## Validar
 

@@ -1,0 +1,4 @@
+# Relatórios congelados são comparados byte a byte nos testes portáteis.
+/outputs/mvp_demo_city_arsenal/report.json text eol=lf
+/outputs/v3_demo_city_arsenal/report.json text eol=lf
+/outputs/v3_demo_real_madrid_barcelona/report.json text eol=lf

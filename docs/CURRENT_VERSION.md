@@ -1,8 +1,8 @@
 # ManagerAI — estado operacional atual
 
-**CORE-00: V4.1, A/B e C versionadas; instalação e 237 testes validados em checkout limpo. CI aprovada e integração Git rastreadas pelo [PR #10](https://github.com/devMarcos12/ManagerAI/pull/10) e pela seção CORE-00 ao final. O runtime do treinador permanece determinístico; regressões são experimentais.**
+**CORE-01: contrato versionado e verificador de provisionamento StatsBomb implementados; clone temporário com LF e 247 testes reais validados. `.gitattributes` fixa LF dos relatórios congelados em novos checkouts. Aceite integral ainda depende do wheel atualizado instalado com `python -I`. Evidências em [PENDING.md](PENDING.md), §17. O runtime do treinador permanece determinístico; regressões são experimentais.**
 
-Verificado no código em 17/10/2026; Ancestral publicado da integração `e91e55dd51081bd381f69097353ec86ca5bf7583`; HEADs anteriores nos registros de validação são históricos. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
+Verificado no código em 25/10/2026; ancestral publicado da integração `e91e55dd51081bd381f69097353ec86ca5bf7583`; HEADs anteriores nos registros de validação são históricos. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
 
 ## 1. Produto e fronteiras
 
@@ -77,6 +77,12 @@ Python `>=3.12`; `pyproject.toml` é a definição canônica. O núcleo mantém 
 Os comandos são para uma instalação necessária/autorizada, usando o Python do ambiente escolhido; não recriar o `venv` funcional. O snapshot EDA original está em `docs/history/requirements-eda-20261017.txt`, com bytes preservados, fora da configuração operacional. Não instalar esse snapshot para executar a aplicação. O gerador Word usa pandas/Pillow e XML/ZIP padrão, sem `python-docx`. Os antigos arquivos de dependências UI/V3 foram removidos depois de migrar seus consumidores para os extras. Nenhum pacote de futuro fine-tuning/modelo/LLM é exigido; grupo de treinamento instalável depende de tarefa/modelo/avaliação ainda não definidos.
 
 Dados efetivos: `open-data/data/`, com `competitions.json`, `matches/{competition}/{season}.json`, `events/{match}.json` e `lineups/{match}.json`. `three-sixty/` participa apenas do inventário. `data/raw/` e `data/processed/` contêm placeholders, não cópia dos brutos. Clone StatsBomb local independente, não registrado como submódulo nem rastreado pelo Git pai; revisão observada `4b73468fc5b0f1950f9f66fada70ad3a4f9327cb`. Um clone novo do ManagerAI não provisiona esses dados automaticamente.
+
+O [contrato StatsBomb](../src/managerai/statsbomb_snapshot.json) é a fonte canônica de revisão, hashes e cobertura por temporada. O [guia de provisionamento](STATSBOMB_PROVISIONING.md) traz comandos Linux/macOS/PowerShell, licença, diagnóstico e política de atualização. `verify-data` confere clone, origem, revisão, worktree, controles, calendários e presença de eventos/escalações/360; não substitui validação semântica dos arquivos de jogo. O contrato acompanha o wheel.
+
+No checkout Windows desta CORE-01, o clone ignorado tem o HEAD correto e `git status` limpo, mas o checkout converteu LF dos blobs Git em CRLF em README/JSONs. Por exemplo, `data/competitions.json` tem SHA-256 local `c5f10d2811ace6057ff8e414bfd93c2c34c27dddb2199d9fc29ffc425bc30425`, enquanto o blob Git da mesma revisão e a fixture congelada usam `e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa`. O contrato fixa **bytes dos blobs Git**, e `verify-data` recusa esse clone com `LINE_ENDINGS_CHANGED`. Não modificar os brutos locais; para reprodução fiel, provisionar outro clone com `git clone -c core.autocrlf=false` conforme o guia. Os totais de catálogo e presença coincidem; isso não resolve a divergência de hashes.
+
+Um clone temporário novo foi criado **localmente e sem rede** a partir do clone existente, com `core.autocrlf=false`, mantendo o original intacto. Após configurar no temporário o remoto oficial para refletir a origem do clone fonte, `verify-data` retornou 0, e a análise City × Arsenal reproduziu o conteúdo da fixture. Esse ensaio valida o procedimento e os bytes da revisão; não substitui uma obtenção independente da URL oficial nem um teste de wheel instalado. Detalhes e limites em PENDING §17.
 
 | Recorte V3 permitido | IDs competição/temporada | Cobertura documentada no snapshot | Caso de validação |
 |---|---|---|---|
@@ -175,6 +181,7 @@ Rodar na raiz, com dados locais provisionados. Exemplos de análise exigem saíd
 
 ```bash
 PYTHONPATH=src python3 -B -m managerai --help
+PYTHONPATH=src python3 -B -m managerai --data-root open-data/data verify-data
 PYTHONPATH=src python3 -B -m managerai --data-root open-data/data catalog
 PYTHONPATH=src python3 -B -m managerai teams --competition-id 2 --season-id 27
 PYTHONPATH=src python3 -B -m managerai matches --competition-id 2 --season-id 27
@@ -185,6 +192,8 @@ MPLCONFIGDIR=/tmp/managerai-mpl PYTHONPATH=src venv/bin/python -B -m managerai a
 ```
 
 `catalog` reconcilia cobertura/órfãos; `teams` e `matches` listam opções; `audit` abre eventos do recorte inteiro e reporta qualidade, sem certificar semântica completa. `analyze` gera `report.json` e `report.md`; V3 CLI acrescenta `shot_map.png` e `progression_entries.png`. `hypotheses` no stdout conta regras legadas; `v3_hypotheses` conta adicionais. Corte livre: substituir `--target-match-id` por `--cutoff-date 2016-05-08`. Cenário CLI: `--venue`, `--match-context`, `--strategic-objective`, `--unavailable-player-id` repetível, `--notes`. Argumento/erro de dados/opcional ausente retorna código 2; sucesso 0. Diretório existente ou saída dentro dos brutos é recusado.
+
+`verify-data` emite JSON estável para a mesma raiz e contrato; `status=compatível` retorna 0, incompatibilidade retorna 2. A opção global `--data-root` prevalece sobre `MANAGERAI_DATA_ROOT`; na ausência de ambos, usa `open-data/data` do checkout de origem. Use raiz explícita para um wheel instalado em outro diretório. O modo rápido hasheia apenas controles e calendários, enumera arquivos de jogo e consulta Git local sem rede nem escrita; os eventos/escalações/360 não são lidos integralmente. Avisos 360 e os órfãos já fixados no contrato são informativos; erro de revisão/origem/controle/evento/escalação bloqueia compatibilidade.
 
 ```bash
 MPLCONFIGDIR=/tmp/managerai-mpl venv/bin/python -B -m streamlit run streamlit_app.py
@@ -213,6 +222,7 @@ PYTHONPATH=src venv/bin/python -B outputs/v22_v3_validation/check_metrics.py
 | Módulos de teste | Cobertura a preservar |
 |---|---|
 | `test_managerai.py`, `test_local_data.py` | Contratos, inventário, métricas/qualidade, corte/alvo/futuro, reprodutibilidade e fixture real |
+| `test_statsbomb_provisioning.py` | Clone sintético, origem/revisão, hashes, cobertura, caminhos seguros, JSON e códigos da CLI; sem rede/dataset real |
 | `test_coverage.py`, `test_v22_presentation.py`, `test_v22_ui.py` | Cobertura, n/período, suficiência e janela reativa |
 | `test_presentation.py`, `test_streamlit_ui.py` | Fidelidade numérica, português, UI/CLI e downloads |
 | `test_v3_features.py`, `test_v3_rules.py` | Métricas, limites geométricos, denominadores, referências, nulos e abstenção |

@@ -1,0 +1,861 @@
+{
+  "contract_version": "1.0.0",
+  "control_sha256": {
+    "LICENSE.pdf": "a5462e69aeb71a39268b760b110c5c2190a2e0cee3015ba976f66bd71f6c2bb4",
+    "README.md": "98a757466c4d931dba4b6c4290c55c2fe74e4550d7455bbe05fd884dc831aff3",
+    "data/competitions.json": "e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa"
+  },
+  "coverage": {
+    "cataloged_matches": 3961,
+    "competition_count": 24,
+    "file_counts": {
+      "events": 4235,
+      "lineups": 4235,
+      "three-sixty": 426
+    },
+    "orphan_counts": {
+      "events": 274,
+      "lineups": 274,
+      "three-sixty": 0
+    },
+    "season_count": 80,
+    "seasons": [
+      {
+        "calendar_sha256": "e07d6d360b30e0cd17f9aeea0db1502d2a5666d298f1b44b83a2d2f21ba3d21b",
+        "competition_id": 2,
+        "events": 380,
+        "lineups": 380,
+        "match_ids_sha256": "b0a047ef6bc529c8024125355467db4847c4c670e5676b96986d6a8bb9a26002",
+        "matches": 380,
+        "season_id": 27,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "bb4dda2763385050725507de76719f11d506b14a66148c7348950a02eadfcf35",
+        "competition_id": 2,
+        "events": 38,
+        "lineups": 38,
+        "match_ids_sha256": "97d640cbadde604c6eafa3e11c1c6ecf3f38b4f3de4698fbb7f40d7376548d29",
+        "matches": 38,
+        "season_id": 44,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "733c7cf47bd7a19d9acae5add722c32b404664d949377057a280bd0b0f0d2464",
+        "competition_id": 7,
+        "events": 377,
+        "lineups": 377,
+        "match_ids_sha256": "6cea2669c009ad897df792248fe3c8eb118124267ca3edbf224ce793e5102a50",
+        "matches": 377,
+        "season_id": 27,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "a3b2c322f18a621305720bbf79d68f581441de8657ca53b33901fcf867bf0c0f",
+        "competition_id": 7,
+        "events": 26,
+        "lineups": 26,
+        "match_ids_sha256": "d5c6d9f50ac51d71368686df8af88506a14d828650b919f43932a739c8b50edb",
+        "matches": 26,
+        "season_id": 108,
+        "three_sixty": 26
+      },
+      {
+        "calendar_sha256": "8cab2c24952ef2668d57bb7de6c2ba93227a38fba3a3dcd9d425e5749f515f8a",
+        "competition_id": 7,
+        "events": 32,
+        "lineups": 32,
+        "match_ids_sha256": "2d22de9d3fe46c5c7c6b706b7089f8a329becd0657f332f60404fc860c23ad6f",
+        "matches": 32,
+        "season_id": 235,
+        "three_sixty": 32
+      },
+      {
+        "calendar_sha256": "1fd6519dc64f268e40395a2e65c82f1feb9974c2705253a2af2c37aa34a5655d",
+        "competition_id": 9,
+        "events": 34,
+        "lineups": 34,
+        "match_ids_sha256": "6c6c6ecc573a24c36391dd1f930c05d9a4760cbf56517f7e987074c246147862",
+        "matches": 34,
+        "season_id": 27,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "13dff90f126d9f73da410ae3292b2773744657d3ba968a2b7a9c02135033581c",
+        "competition_id": 9,
+        "events": 34,
+        "lineups": 34,
+        "match_ids_sha256": "7e26c7117b33a0feeeb1881bb0a99144a4fc15c8e9c7d2d95735f364c9383c43",
+        "matches": 34,
+        "season_id": 281,
+        "three_sixty": 34
+      },
+      {
+        "calendar_sha256": "ac2b71812837bfabc08d538faee5dae6ae4cfbc4c03e2b8867d2d31a9eb379ac",
+        "competition_id": 11,
+        "events": 36,
+        "lineups": 36,
+        "match_ids_sha256": "b4a0810c64cb447fce4a277f680f59185ee7334d01c204d503cdbcad31696004",
+        "matches": 36,
+        "season_id": 1,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "f34be8ff144e889af756082410c9357dcadd380aa13f8ec85a1b344411f8722c",
+        "competition_id": 11,
+        "events": 34,
+        "lineups": 34,
+        "match_ids_sha256": "a8fedf7a984a77dd8abef4aac8d9771ab3c55aadd3252641580eb8df984b25a4",
+        "matches": 34,
+        "season_id": 2,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "5406a8517de316b3b8ccf225a7f77f6ce48b4fa6a3aa4385aa7bf4651ce84706",
+        "competition_id": 11,
+        "events": 34,
+        "lineups": 34,
+        "match_ids_sha256": "1e7545b2b1c6d9f7f28eec4578e72faa3782ab8bf75268295a8bd503aed7b22e",
+        "matches": 34,
+        "season_id": 4,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "cdaadea54f8f6adc114b736482b8f65d24ffd8ae11eb4a0824dbbb947e698c77",
+        "competition_id": 11,
+        "events": 35,
+        "lineups": 35,
+        "match_ids_sha256": "6fc421a08f2cae62c27eb44ba8a84a3cf54c9df86192e6902465af7b940b88c4",
+        "matches": 35,
+        "season_id": 21,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "b2333589ea2a9ba1b8d74d129f54c4706fd3e2b56847c01a9a18301df027867c",
+        "competition_id": 11,
+        "events": 33,
+        "lineups": 33,
+        "match_ids_sha256": "0c9147d5c64c9e5669b844a53f23c7208137c5410c73d8b3cd6585ed6f79b385",
+        "matches": 33,
+        "season_id": 22,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "cd25028cbd799dee2ef76fd11b79865d950374b0c938cd36d0641c73987f5490",
+        "competition_id": 11,
+        "events": 37,
+        "lineups": 37,
+        "match_ids_sha256": "b43f014ab2537888ac9a20d923e4597d197436d5319f43702f574df22202a7b9",
+        "matches": 37,
+        "season_id": 23,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "ffe52aa5b2daaefd8f1a8a480575ef0caa4998c4eb61792f404a99720c87f0a2",
+        "competition_id": 11,
+        "events": 32,
+        "lineups": 32,
+        "match_ids_sha256": "c783efc45a3e0f28550995f17071dd6c48d4a7caf9c9c7002eedba0e87074b6d",
+        "matches": 32,
+        "season_id": 24,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "cb8a0255157fef62e30d6bcdd9d42973d77fc865f901454a47d435a9200fb551",
+        "competition_id": 11,
+        "events": 31,
+        "lineups": 31,
+        "match_ids_sha256": "3b91cf5cad21c3dab2f04d5089109bdadf05964196880bf862a5a2218ca4105f",
+        "matches": 31,
+        "season_id": 25,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "cbb307c273c20f3401ae5a18dcddb34cb76a4ee910503f947025a92df3412c4b",
+        "competition_id": 11,
+        "events": 38,
+        "lineups": 38,
+        "match_ids_sha256": "e51d5aacb2f5fe6337013f8e41803e214c286560d57b50039229623a39232949",
+        "matches": 38,
+        "season_id": 26,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "4e2074c633559f3b88e9593a752d8d15d9d9ba0d6c8a25316a68ec6526b4d14b",
+        "competition_id": 11,
+        "events": 380,
+        "lineups": 380,
+        "match_ids_sha256": "edfc1cee1ec7f8ac09b973e55b4ffa319668d93485e9cd15fdf6d1ebb0f30477",
+        "matches": 380,
+        "season_id": 27,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "eea8a3631fbd162d3fa0acfe004260407fcff5d03de3552650d97c9f4add5b4e",
+        "competition_id": 11,
+        "events": 7,
+        "lineups": 7,
+        "match_ids_sha256": "e4719ab9d1817e8692c3e67b24de4e0a170912a3d07586074d76436ba9af1d55",
+        "matches": 7,
+        "season_id": 37,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "be447aac4d614dc022488207f133a36bacaa13595ab09cb710190cf300780a68",
+        "competition_id": 11,
+        "events": 17,
+        "lineups": 17,
+        "match_ids_sha256": "6fe986d382843b87e96497e255f6e2c16cfda42b00b4097e091e0c684391b37e",
+        "matches": 17,
+        "season_id": 38,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "e8f2580376cb588a62c296564a41ad3a8f88580606fd85720426dee0af68bd56",
+        "competition_id": 11,
+        "events": 26,
+        "lineups": 26,
+        "match_ids_sha256": "e43dee798f7bd827c4c25eca1c66173ceda89201fb13a554370759af81eb4abf",
+        "matches": 26,
+        "season_id": 39,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "fc03587c12dffc5952b915dcf920a5556148f6deac5062466a9a3a41fedcbe8e",
+        "competition_id": 11,
+        "events": 27,
+        "lineups": 27,
+        "match_ids_sha256": "afe0bc28dbcf8439445735182a21853f5714b3f7a434321b4fbf4d563d0de68c",
+        "matches": 27,
+        "season_id": 40,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "1b13d9d1ca35b0024ec8a2b4b2d03dd4820952ecb12f37111a9b0081753b9345",
+        "competition_id": 11,
+        "events": 31,
+        "lineups": 31,
+        "match_ids_sha256": "de483140cb6bac06de7511ab92b19beb0c43053aa0985223359f27d9d2acd17c",
+        "matches": 31,
+        "season_id": 41,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "1002d78125854dc9c9e0fb4450cd2605213b1a3c93797f7a722d77de42cedc8b",
+        "competition_id": 11,
+        "events": 33,
+        "lineups": 33,
+        "match_ids_sha256": "9c8d77f3c7f9ba333f9e9f4b94a663f6d0a9d8111e3cba2c22ef500a523d8568",
+        "matches": 33,
+        "season_id": 42,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "37f6d9026f9ea9ce6c53ebbcc7a349bab42ed0cde9c2bbb15dfb94e664949ba9",
+        "competition_id": 11,
+        "events": 35,
+        "lineups": 35,
+        "match_ids_sha256": "db6758e68ef21e35217e9a9eb3f190f0b5c6eb6c4830cdf917a25aed73a2eb31",
+        "matches": 35,
+        "season_id": 90,
+        "three_sixty": 35
+      },
+      {
+        "calendar_sha256": "b27b46f4554ba92bf7ddda20a9724495e218e5ab3628bc0f2cbfd9f1cc5ba63e",
+        "competition_id": 11,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "22af2e53153ce59d4adbd534a30c6db6b13fe043edd3cbf734afd11d32e705a9",
+        "matches": 1,
+        "season_id": 278,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "613cd3cc70699ba613cb1b3c27b4c8a01b0b5fa28415e09c928d020208905c7a",
+        "competition_id": 12,
+        "events": 380,
+        "lineups": 380,
+        "match_ids_sha256": "0abee3f7a900bbe6a02b2ebabf211c1f2e6104a94dc978e925febff9e89080ad",
+        "matches": 380,
+        "season_id": 27,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "87281e46919ec41d383a864a0d1f767507542fc77c221135cd7569263dc60f29",
+        "competition_id": 12,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "8a4fb047722d38573e49a776f30cb5484c865de5f6cd225659da057743182b4f",
+        "matches": 1,
+        "season_id": 86,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "53bb99a0f603816cea50986e255fb51841376c6c655a57de44642541b46c495a",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "a1abe4fd88c687155c3f8698226cbbd4cbd6d3858db7cfb25974a7a8316549fc",
+        "matches": 1,
+        "season_id": 1,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "9d7191d1758c5ec56ed8947bbf30b7fa03797fb2015ead77bd1f7a36c0c53b03",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "05894d962753af64e040326bcf94277cf76d2489bb1a521a13f033a5de26cd43",
+        "matches": 1,
+        "season_id": 2,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "eb1f3c0872ce01094f0378e5d80c9782164964d82917a23ae76a93e9c0b0da8e",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "106c1a898b1a20d7b44861231dbdea37e3785d2e707e488adb91be7e0975d9b7",
+        "matches": 1,
+        "season_id": 4,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "cae41a65afc48072d9ed1fb4c7f15afe710713be303a0bdedfd1ee75714789f1",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "1e692ae7719a6e4a5f352afc461c06ce3cef8e2a1f6b58e0a38d12533f94d61f",
+        "matches": 1,
+        "season_id": 21,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "cd68b20941aebee27b76c40c89a5eec81a731dde762ed2d9f637799587892fd8",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "7827c2d92b2fb1a1ad7df5215a3f904f0519a847e348eaa76f8ab78a5dcfdbae",
+        "matches": 1,
+        "season_id": 22,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "3e2d9dc2ab7fac8882f6e5861b0af1d5ffa2e8c2da2285bc7ba8258d614e6063",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "d3816808e8592c0393f4f50d8c4f93630c988141775b4a6ace672b1ffe1fa335",
+        "matches": 1,
+        "season_id": 23,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "2f37150f5a0efa78b58db0ec527329946a5dcca7ce55fc4020de304bd00bdc6e",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "9447a4eaedbdea516d61e5e804ef3a725980b6cffad0fd89d66a0fb1565bfd42",
+        "matches": 1,
+        "season_id": 24,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "fd7b018574e64a9a779dcd5936606ecbaaab10f5fcf558c7358b11c01f8d00d1",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "1b5aed212ff8f01facdb42a67952929c8aa5f728a5d1c055ed7b150f969a776b",
+        "matches": 1,
+        "season_id": 25,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "d7776327dc611da04b70c2bb362b5c154acde4f388c897a25aa13a92a5aa7be9",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "4f64c5ad03bfca7af015533223eefab3e4fd3c86c58d8a5a0a18da886b200aa2",
+        "matches": 1,
+        "season_id": 26,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "485ff0a3537a0067975605c8ec704a0b4f09d8db36c02252b3949cf153822055",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "3dc39fb380c3e9e1203098b604e2e639ac5fa18467701eb218c0c0c50ebf1e28",
+        "matches": 1,
+        "season_id": 27,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "2f6c045f4a046d2a2302b2c8eb58ad778b35d5114b9c22d31f03b1828042b334",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "f38db199633f1d9a7713145a4e137b95d1649651521ce2013b723422a7d64252",
+        "matches": 1,
+        "season_id": 37,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "1127a59efd5352c9e8bf0af2aacc2940f3333d3d53c2f2e20ab51dfcd36c0b00",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "b8ecffde71af1f7791bfa72d9bf035dc71f1d91d3b53036d86737a833ed000fd",
+        "matches": 1,
+        "season_id": 39,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "019a57928448032d8c1bc3e02d67704ecabb544469376e2c27636b732fc8e24c",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "2fbb3d392a39753355f7d7ab70559f59b725451884dfbb2c9c6a503331c92ab9",
+        "matches": 1,
+        "season_id": 41,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "4313089c2d57af11368bc6b32cdd939f0124d6b8c8b085d4f190b8de5db88fbd",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "3646f4c170ab4daab2ab621d3c1516d8487907f7a69f3c7fcd186e19a0d35d54",
+        "matches": 1,
+        "season_id": 44,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "8b93c9f4aea3157bed17c799798020f42e0f0b5bbf58de4e9aa4b64103a35aa0",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "7684234c43e6b27f0ba02e1b895d856ac39bfbac892b4afb4030009477a1c9da",
+        "matches": 1,
+        "season_id": 71,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "af485f18875bfc180f58d9697266b49a47dfdc40569c36a2cdeb76f8b98b3bd6",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "22faae0968ab18dfb6bb226dd018f83ca0f7b712375030c6093b74242ff4d6d6",
+        "matches": 1,
+        "season_id": 76,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "0229c663c297e2d0a13cd0b206a05bda89332199f4c9eca59ed65c9c863bf7c8",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "f0e099b708e77858183bae08b664de112c5b58420cfbfe2bdc13db03018fdc3d",
+        "matches": 1,
+        "season_id": 276,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "ae3fbfb9eae7d1f7255bad0c119af51bbbb6d36a0670fb9d1aeaee2c4839e45d",
+        "competition_id": 16,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "85b62a3119c8789bbf96bc7aa7fb88a50612c44d1f2bfccb53f15b8fa769d9c9",
+        "matches": 1,
+        "season_id": 277,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "9891da730f135b24a1683d4580ae0bfbb39a54af21341e3f8b42cd5f60117bcf",
+        "competition_id": 35,
+        "events": 3,
+        "lineups": 3,
+        "match_ids_sha256": "b61c147771a10bcf5c670cfae59abf9f340bd3920c2fa4be8339069c7974b2c8",
+        "matches": 3,
+        "season_id": 75,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "c1e053daa38fa2c9f46ac75a40648da8955a711170250de847ccb98e2fd109ed",
+        "competition_id": 37,
+        "events": 107,
+        "lineups": 107,
+        "match_ids_sha256": "e3c2913ae4a1f34f2b9f424f90fec547652d2a4261d3a122cca8428fa7b9ca13",
+        "matches": 107,
+        "season_id": 4,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "d5d01eb688de0dea557ad39ace71e1ba6a7781f9a815011593c48f6f9cfe98a0",
+        "competition_id": 37,
+        "events": 87,
+        "lineups": 87,
+        "match_ids_sha256": "6c690590241fdfa54cea072f59cb95e33312f988e5dfa964a7196530a829bde3",
+        "matches": 87,
+        "season_id": 42,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "a9ea5e5e3c6f7b2e070ab9c3f3c23d6757545d7a6aa81fa4fbb9c443218597c2",
+        "competition_id": 37,
+        "events": 131,
+        "lineups": 131,
+        "match_ids_sha256": "c020d9da9350ef1a878902f425adcbf7f5b85fcb528fcd2eb08eb69b8afa0b6e",
+        "matches": 131,
+        "season_id": 90,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "f0f3a5509f0ca9a1b5315b3a78d86d1c4c6909be5d16f2999c2d2295d6f3a22e",
+        "competition_id": 37,
+        "events": 132,
+        "lineups": 132,
+        "match_ids_sha256": "f78d32a00d78ea1ba8a058c23b24a2cf2c731770f20b6e9bdea232b06bc18f47",
+        "matches": 132,
+        "season_id": 281,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "f89dbd4aedcaf9c9e4ec9d8e745d5d54596500ec357d7489c914a2f126805adf",
+        "competition_id": 43,
+        "events": 64,
+        "lineups": 64,
+        "match_ids_sha256": "3fc618777d66767d6b86da4538e2ac009cc9232e5091872be2fc35b9208f9dd7",
+        "matches": 64,
+        "season_id": 3,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "5bf18dca74e0de7440ba2b5ff8562059a09c0f5950c9fefaf1278bc37191c77c",
+        "competition_id": 43,
+        "events": 6,
+        "lineups": 6,
+        "match_ids_sha256": "32ef76e24d21310d704c3fe4c18c74fe06d5149a945a7c5c840cfce13e3bc2bb",
+        "matches": 6,
+        "season_id": 51,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "c5ddb2b7899417e5b1b80ba91ed15dac32a9f03a00358b392daa3dfd168bde50",
+        "competition_id": 43,
+        "events": 3,
+        "lineups": 3,
+        "match_ids_sha256": "e93dd42b7123b1f2070eb7c2d618f4aaf63d37ffe2ed417a33573e94e3e8d169",
+        "matches": 3,
+        "season_id": 54,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "dfebe4b357c03af5e12a91988f9231d43b9bf8d052b31bbdb65bcb995a5341f9",
+        "competition_id": 43,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "289e261775205cec52b7e516689318a581c27a0dda42b0d84c46e0ba9cf047f1",
+        "matches": 1,
+        "season_id": 55,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "b9d7516dc9919a825f04c204ca85487958c8a2431e84140a48e944934661efc7",
+        "competition_id": 43,
+        "events": 64,
+        "lineups": 64,
+        "match_ids_sha256": "81e0321f19d6160e29819b777d3481433898174ce43a525c8e24bb003ce7cfa6",
+        "matches": 64,
+        "season_id": 106,
+        "three_sixty": 64
+      },
+      {
+        "calendar_sha256": "4d0cf1a1a667c43f96afed244848a8b379ac4ebe633c4bc7ef666d05c51ee3c4",
+        "competition_id": 43,
+        "events": 2,
+        "lineups": 2,
+        "match_ids_sha256": "ce23b7e3e595b1a63102752a0709e6feca3eafe2deb3eee804af1826e395c559",
+        "matches": 2,
+        "season_id": 269,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "c6ef9598ced247d79cf5b0cbceca57d39b71cb0ba461251362c659549d95de2b",
+        "competition_id": 43,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "92a1171dd36a72901180c7048f28c60742225bb8ee53c582c314529d4ccd3af5",
+        "matches": 1,
+        "season_id": 270,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "39b5beeb3a7424b3d09c0778a23cbe7cd96673516e5de39ab3742d6e37c51e78",
+        "competition_id": 43,
+        "events": 6,
+        "lineups": 6,
+        "match_ids_sha256": "73843ceaa1a502df3fd773ac66d4cb00411e995519b3c8b4b52ed4c20b89161b",
+        "matches": 6,
+        "season_id": 272,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "40d2d668c9f0ac26349dd268ee3325b011031f6322612d0b728b80a1b3c6ff6d",
+        "competition_id": 44,
+        "events": 6,
+        "lineups": 6,
+        "match_ids_sha256": "d8fd7f8c9fc0dc91882badae56da2dc18f1c1c13e0d320869095fb4369adf412",
+        "matches": 6,
+        "season_id": 107,
+        "three_sixty": 6
+      },
+      {
+        "calendar_sha256": "33f87c47cc0d08b842ed052d84a7c7ff0f2b685850173595d72680bd8581dc8f",
+        "competition_id": 49,
+        "events": 36,
+        "lineups": 36,
+        "match_ids_sha256": "fd68265c5a0a9d88c3029d067f6ab9833fc36f1b68c604eb8d88e1370b98f421",
+        "matches": 36,
+        "season_id": 3,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "75e333e1b196e60f62de86338eed82232bb1432e3f6bf7bafe867c9fdf8392b9",
+        "competition_id": 49,
+        "events": 137,
+        "lineups": 137,
+        "match_ids_sha256": "8c2a74face9b252400080b3c00d5b4f8e81e4c64eb54f2b75abf6f38da805319",
+        "matches": 137,
+        "season_id": 107,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "09b7f387ae4288a2b665c7564d19668643913104b98f041c39fd895f62da37e7",
+        "competition_id": 53,
+        "events": 31,
+        "lineups": 31,
+        "match_ids_sha256": "571820bf0bf3da4c521026c1ce1205b67b36bf28c1aa40022c389565cf751cc7",
+        "matches": 31,
+        "season_id": 106,
+        "three_sixty": 31
+      },
+      {
+        "calendar_sha256": "e3cb69837963e9c87ac705eb74f995920e36a69a8a7775caa85f5f8ae3da03a8",
+        "competition_id": 53,
+        "events": 31,
+        "lineups": 31,
+        "match_ids_sha256": "54d37bae529e4a3050cc4d123208217e9cb64d533337aa43b4f95b5bdbfdbff0",
+        "matches": 31,
+        "season_id": 315,
+        "three_sixty": 31
+      },
+      {
+        "calendar_sha256": "6467df80bd2abd7698ab84a6409523c573d2aad25462f1cbae90efdeb29831b6",
+        "competition_id": 55,
+        "events": 51,
+        "lineups": 51,
+        "match_ids_sha256": "30b1ddf22e8e08c023c979328430c1da612a0458492427840c5d0c4fc1ca56f2",
+        "matches": 51,
+        "season_id": 43,
+        "three_sixty": 51
+      },
+      {
+        "calendar_sha256": "70aa07d8a73e899d501c3edcd39b4bea0d4ae1d48bce7b59c4619869a13adc1b",
+        "competition_id": 55,
+        "events": 51,
+        "lineups": 51,
+        "match_ids_sha256": "25fe7efd930ebcf27e7427c429357728638e13a836c2d203fdf3bbe9dc6402f6",
+        "matches": 51,
+        "season_id": 282,
+        "three_sixty": 51
+      },
+      {
+        "calendar_sha256": "7051c0aa9bef4d726fa4068eaa2185d16dcc3d04f2c346d9fb6f17e770a3aa4a",
+        "competition_id": 72,
+        "events": 52,
+        "lineups": 52,
+        "match_ids_sha256": "94b86dc6c4a95d9b7057a8fc3427ed0ddb213d758ef16e1096f226d448b68902",
+        "matches": 52,
+        "season_id": 30,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "55af7b1e0ba323e8b277467673856cf1549417159d677ba11718814bfa19f9b9",
+        "competition_id": 72,
+        "events": 64,
+        "lineups": 64,
+        "match_ids_sha256": "58364b94079faf05db818046a01a4187e4b1131918847cc410b5fe3cf76a5c79",
+        "matches": 64,
+        "season_id": 107,
+        "three_sixty": 64
+      },
+      {
+        "calendar_sha256": "7d9cdc7182642f977360cb6ba6e6f7e391603011a9dbabd81d3e5beacdd391c9",
+        "competition_id": 81,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "e1871fd39aab02398038fc49dc279b4f4bfe0c9c9020568f25eb785dc9efbbc6",
+        "matches": 1,
+        "season_id": 48,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "8af094567f1e6839a373bde431972e25f28cce00cae70bbcf5c90ad5cd1c0cb1",
+        "competition_id": 81,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "d71c91965a902bd2f21552b6d561dbd6699643714c1e4b1e96481f1575c3ef52",
+        "matches": 1,
+        "season_id": 275,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "1122f16794ed14da4a16cb2dca9b28f0bb3dbf43966c34e7a0250a3e0fa536c3",
+        "competition_id": 87,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "4537f94f1f9770e71a2b6adbebe1d1745f3e4b0cb18caea9ed0d3e0ad41fe246",
+        "matches": 1,
+        "season_id": 84,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "8d12e1e0dde6fb74bb39234ff0b924a20e8ef2f349dfe330175158d475f63891",
+        "competition_id": 87,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "3668dbb3f06e668d5fb32683d0983378bfa8a0271decf5ba69f9ce3db3ee3427",
+        "matches": 1,
+        "season_id": 268,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "68fe3ad4d595a88bd014b3b8f7d72704922e894759ab74a35462aabb19683031",
+        "competition_id": 87,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "a47d2987df815e36db29ca9a86bbc393d986b29254534872d19fe5554079debf",
+        "matches": 1,
+        "season_id": 279,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "64b84ea85a8eaa7004461f9125032056e3e110d614508fd147ac2b4ac9f7cd68",
+        "competition_id": 116,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "cef0e5f4010c7cff40cfe9dc7268b073d44534985725284189c663b4cdf907d5",
+        "matches": 1,
+        "season_id": 68,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "9065d0279c94718cfb687306c4a329200783bd19e9f5796af2038ccbc86ae0fe",
+        "competition_id": 131,
+        "events": 130,
+        "lineups": 130,
+        "match_ids_sha256": "4a241404f500fba3a266cc207c9191b7ac098b54c2f311dc6eb9892c5a663752",
+        "matches": 130,
+        "season_id": 281,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "78d01ecb20035bb8bbd94001065ec0f92ea747cb053b4aafca8b1051be12a7d3",
+        "competition_id": 135,
+        "events": 132,
+        "lineups": 132,
+        "match_ids_sha256": "ef3980dfe045e277a73e1f8ae67c63eea4f89a892c61c91695cb84f0f0e86986",
+        "matches": 132,
+        "season_id": 281,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "ea93b27a4d1101ba62792c88b5770bdacd904cefdf38671382698f5c2298628a",
+        "competition_id": 182,
+        "events": 240,
+        "lineups": 240,
+        "match_ids_sha256": "b632b5b417ea072d53b11fd98128b664bd29f4ed758a0d269ed3458edea51345",
+        "matches": 240,
+        "season_id": 281,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "058380b9fe90a51f4a15beb35db08cb6e7f925c840d4d7b5ceb7103da878c857",
+        "competition_id": 223,
+        "events": 32,
+        "lineups": 32,
+        "match_ids_sha256": "c25876b7fc68e0e049e4f65a0ad6c2bdc94e1af1ace8bb84f20aca9fd24f8eef",
+        "matches": 32,
+        "season_id": 282,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "118501bdae13189c73e453177374b1f10ad4e0aa768c8d67a3e1251cc0255fd4",
+        "competition_id": 1238,
+        "events": 115,
+        "lineups": 115,
+        "match_ids_sha256": "f072f287825dbd631d6b6a2bfa304e904f914a4bea3c8cc5c6c19755f24b40e2",
+        "matches": 115,
+        "season_id": 108,
+        "three_sixty": 0
+      },
+      {
+        "calendar_sha256": "0c5a7fdd63c969916c078f89fbd8257c834a2cdb486e56ec64c08354ea3c87de",
+        "competition_id": 1267,
+        "events": 52,
+        "lineups": 52,
+        "match_ids_sha256": "96f998acd669c9907671f4b462261a00ada223be800f43b25cee20864a7ec5b5",
+        "matches": 52,
+        "season_id": 107,
+        "three_sixty": 1
+      },
+      {
+        "calendar_sha256": "52b5349658d57fd29a78d30875002de0ed0f2553a9983a3700ef7f77d5504607",
+        "competition_id": 1470,
+        "events": 1,
+        "lineups": 1,
+        "match_ids_sha256": "2312cd29dcedd0f9d25fb24753aad19b6d7290cce2268694f94d44e962630d58",
+        "matches": 1,
+        "season_id": 274,
+        "three_sixty": 0
+      }
+    ]
+  },
+  "limitations": [
+    "Modo rápido valida controles, calendários e presença; não lê o conteúdo de eventos, escalações ou 360.",
+    "Presença e Git limpo não certificam semântica, calculabilidade ou disponibilidade temporal original.",
+    "Metadados StatsBomb têm data_version heterogênea; não há versão única do schema.",
+    "360 é informativo e não é consumido pelo produto."
+  ],
+  "required_paths": [
+    "README.md",
+    "LICENSE.pdf",
+    "data/competitions.json",
+    "data/matches",
+    "data/events",
+    "data/lineups"
+  ],
+  "source": {
+    "accepted_origins": [
+      "https://github.com/hudl/open-data.git",
+      "https://github.com/statsbomb/open-data.git",
+      "git@github.com:hudl/open-data.git",
+      "git@github.com:statsbomb/open-data.git"
+    ],
+    "alias_policy": "Aliases hudl/statsbomb somente no GitHub oficial; revisão, worktree e hashes também precisam coincidir. Sem mirrors arbitrários ou verificação de redirect pela rede.",
+    "name": "StatsBomb Open Data",
+    "repository": "https://github.com/hudl/open-data",
+    "revision": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb"
+  },
+  "v3_certified_recuts": [
+    [
+      2,
+      27
+    ],
+    [
+      11,
+      90
+    ]
+  ]
+}
