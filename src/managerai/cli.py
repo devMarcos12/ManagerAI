@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import sys
 
@@ -11,14 +12,18 @@ from .data_loader import DataError, LocalData
 from .pipeline import analyze, audit
 from .report_renderer import render_markdown
 from .report_schema import AnalysisRequest
+from .statsbomb_provisioning import verify_snapshot
 
 DEFAULT_DATA = Path(__file__).resolve().parents[2] / "open-data" / "data"
 
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="ManagerAI — apoio histórico pré-jogo, sem rede ou modelo treinado.")
-    p.add_argument("--data-root", type=Path, default=DEFAULT_DATA, help="Diretório contendo competitions.json, matches e events")
+    p.add_argument("--data-root", type=Path,
+                   default=Path(os.environ.get("MANAGERAI_DATA_ROOT", str(DEFAULT_DATA))),
+                   help="Diretório data do clone StatsBomb; padrão MANAGERAI_DATA_ROOT ou open-data/data")
     sub = p.add_subparsers(dest="command", required=True)
+    sub.add_parser("verify-data", help="Verifica revisão, licença, estrutura e cobertura StatsBomb (JSON)")
     sub.add_parser("catalog", help="Inventário de cobertura e arquivos sem catálogo (JSON)")
     for command in ("teams", "matches", "audit", "analyze"):
         q = sub.add_parser(command)
@@ -46,6 +51,10 @@ def main(argv: list[str] | None = None) -> int:
     args = p.parse_args(argv)
     try:
         data = LocalData(args.data_root)
+        if args.command == "verify-data":
+            result = verify_snapshot(args.data_root)
+            print(json.dumps(result, ensure_ascii=False, allow_nan=False, sort_keys=True, indent=2))
+            return 0 if result["status"] == "compatível" else 2
         if args.command == "catalog":
             result = inventory(data)
         elif args.command == "audit":

@@ -35,3 +35,6 @@ managerai = "managerai.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["managerai*"]
+
+[tool.setuptools.package-data]
+managerai = ["statsbomb_snapshot.json"]
