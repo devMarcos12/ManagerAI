@@ -222,3 +222,11 @@ __marimo__/
 # Artefatos A/B e C permanecem no disco; reprodução por módulos experimentais.
 # Compartilhamento de dados/derivados exige análise de direitos própria.
 /outputs/runs/
+
+# Aplicação web local; preservar lockfile e tipos gerados.
+/frontend/node_modules/
+/frontend/dist/
+/frontend/playwright-report/
+/frontend/test-results/
+/frontend/.env.local
+/.venv-web/

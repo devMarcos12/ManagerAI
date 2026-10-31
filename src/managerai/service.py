@@ -10,12 +10,11 @@ from .service_schema import ServiceError, ServiceRequest, SERVICE_VERSION
 from .tactical_engines import compare_engines
 from .v3_schema import VALIDATED_RECUTS
 
-ORDERING_VERSION = "context-order-1"
+ORDERING_VERSION = "context-order-2"
 STRATEGY_PREFERENCE = {"equilibrada": (), "proteger_area": ("R03_CHANCES", "V3_CHUTES_AREA"),
                        "saida_sob_pressao": ("R02_PRESSAO_ALTA",),
                        "proteger_progressao": ("R01_PROGRESSAO", "V3_ENTRADAS_PASSE")}
-OBJECTIVE_PREFERENCE = {"proteger vantagem": ("R03_CHANCES", "V3_CHUTES_AREA"),
-                        "pressionar alto": ("R02_PRESSAO_ALTA",)}
+OBJECTIVE_PREFERENCE = {"proteger vantagem": ("R03_CHANCES", "V3_CHUTES_AREA")}
 
 
 def validate_context(root, request):
@@ -105,7 +104,10 @@ def build_service_report(root, request: ServiceRequest, *, provider=None):
             "abstention_reason": abstention,
             "ordering": {"version": ORDERING_VERSION, "meaning": "Prioridade declarada, não eficácia ou superioridade.",
                          "ties": "Empates não são ordenação de mérito; IDs apenas estabilizam apresentação.",
-                         "rule": "Estratégia compatível +2; objetivo compatível +1; demais 0."},
+                         "rule": "Estratégia compatível +2; objetivo compatível +1; demais 0.",
+                         "objective_note": ("Objetivo declarado sem plano compatível para prioridade adicional."
+                                            if request.analysis.strategic_objective not in OBJECTIVE_PREFERENCE
+                                            and request.analysis.strategic_objective != "equilibrado" else None)},
             "roster_policy": {"status": "declared" if request.roster else "missing",
                               "provenance": "Declarações do treinador; não verificadas externamente.",
                               "individual_suggestions": "abstained",
@@ -130,6 +132,8 @@ def render_service_markdown(result):
               f"Elenco: {result['roster_policy']['status']}. Sugestões individuais: abstenção.", ""]
     if result["abstention_reason"]:
         lines += [result["abstention_reason"], ""]
+    if result["ordering"].get("objective_note"):
+        lines += [result["ordering"]["objective_note"], ""]
     for p in result["plans"]:
         lines += [f"## {p['plan_id']}", "", p["observation"], "", p["possible_action"], "",
                   f"Condição: {p['condition']}", "", "Riscos: " + " ".join(p["risks"]), "",

@@ -1,0 +1,127 @@
+{
+  "artifacts": [
+    {
+      "adapter_hashes": {
+        "adapter/README.md": {
+          "matches_stored": true,
+          "sha256": "5e8d0ea3f4c1e0191062332fc44ded50c89a0a5e7e155c5a44799a61f810d97a"
+        },
+        "adapter/adapter_config.json": {
+          "matches_stored": true,
+          "sha256": "ac4e21c6574db2b80dbf9fdca2e92a4839d1ad98c63659d80bfe362e4518ade2"
+        },
+        "adapter/adapter_model.safetensors": {
+          "matches_stored": true,
+          "sha256": "691444b0e23489dbb49c8ef1e9d6a45e9431e2a7b720fa151c3a8b99c571602d"
+        },
+        "adapter/chat_template.jinja": {
+          "matches_stored": true,
+          "sha256": "872be49dbb638044ad01b60388f48d469ff2980e5f0dccdc22ec907db54d0788"
+        },
+        "adapter/merges.txt": {
+          "matches_stored": true,
+          "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+        },
+        "adapter/special_tokens_map.json": {
+          "matches_stored": true,
+          "sha256": "2b7379f3ae813529281a5c602bc5a11c1d4e0a99107aaa597fe936c1e813ca52"
+        },
+        "adapter/tokenizer.json": {
+          "matches_stored": true,
+          "sha256": "7d27c493c729a66ecefc837280b05d948b1ed50d130eebdbf911b1b36cf38ed7"
+        },
+        "adapter/tokenizer_config.json": {
+          "matches_stored": true,
+          "sha256": "5dbff37e2d5899f5f69d86116f80733e11a790f703fd59855e2aef5717533ac5"
+        },
+        "adapter/vocab.json": {
+          "matches_stored": true,
+          "sha256": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79"
+        }
+      },
+      "available": true,
+      "configuration": {
+        "cpu_threads": 4,
+        "epochs": 2,
+        "learning_rate": 0.0005,
+        "lora_alpha": 16,
+        "lora_rank": 8,
+        "max_tokens": 768
+      },
+      "dataset_matches_manifest": true,
+      "evaluation_sha256": "7c141b1ce4121d0d3fd08c4d4b06107a9677f3ee558015d2d12bfff0affc52e6",
+      "manifest_sha256": "0ff3a854a8eb4c12b9fa5a41ea1e7577f4f28029ea2b49c5727a05069626ce0d",
+      "metrics": {
+        "base": {
+          "exact_validity_and_coverage": 0.0,
+          "human_reviews": 0,
+          "n": 40
+        },
+        "fine_tuned": {
+          "exact_validity_and_coverage": 1.0,
+          "human_reviews": 0,
+          "n": 40
+        },
+        "validation": {
+          "exact_validity_and_coverage": 1.0,
+          "human_reviews": 0,
+          "n": 24
+        }
+      },
+      "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "path": "outputs/runs/core_ai_lora_20261031/evaluation.json",
+      "promoted": false,
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "splits": {
+        "test": 40,
+        "train": 96,
+        "validation": 24
+      },
+      "steps": 192
+    },
+    {
+      "available": true,
+      "decisions": {
+        "linear": {
+          "absolute_gain": 0.036639977218062114,
+          "production": false,
+          "reason": "Sem validação esportiva; previsão não avalia decisões táticas.",
+          "relative_gain": 0.010817965032290482,
+          "useful_threshold_met": false
+        },
+        "ridge": {
+          "absolute_gain": 0.03646653962761448,
+          "production": false,
+          "reason": "Sem validação esportiva; previsão não avalia decisões táticas.",
+          "relative_gain": 0.010766757528050487,
+          "useful_threshold_met": false
+        }
+      },
+      "evaluation_sha256": "68fe1f6ccf3affb62deca60705e97167f95361639ab9cd2da799f86ed4fb2918",
+      "metrics": {
+        "B0": {
+          "mae": 3.9130434782608696,
+          "n": 69
+        },
+        "B1": {
+          "mae": 3.3869565217391306,
+          "n": 69
+        },
+        "linear": {
+          "mae": 3.3503165445210685,
+          "n": 69
+        },
+        "ridge": {
+          "mae": 3.350489982111516,
+          "n": 69
+        }
+      },
+      "path": "outputs/runs/core_ai_independent_installed_20261031/evaluation.json",
+      "protocol_fingerprint": "8cc07c14063e05c196e4815d24f03e22687d1c9f05f7ab30a897f1a50aa3cddc",
+      "test_n": 69,
+      "train_n": 198
+    }
+  ],
+  "kind": "historical_artifacts_integrity_check",
+  "new_training_or_evaluation": false
+}

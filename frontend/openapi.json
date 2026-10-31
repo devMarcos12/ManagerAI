@@ -1,0 +1,2490 @@
+{
+  "components": {
+    "schemas": {
+      "AnalysisBody": {
+        "additionalProperties": false,
+        "properties": {
+          "analysis": {
+            "$ref": "#/components/schemas/AnalysisPayload"
+          },
+          "blocked_plan_ids": {
+            "items": {
+              "enum": [
+                "R01_PROGRESSAO",
+                "R02_PRESSAO_ALTA",
+                "R03_CHANCES",
+                "V3_ENTRADAS_PASSE",
+                "V3_CHUTES_AREA"
+              ],
+              "type": "string"
+            },
+            "maxItems": 5,
+            "title": "Blocked Plan Ids",
+            "type": "array"
+          },
+          "engine": {
+            "const": "deterministic",
+            "default": "deterministic",
+            "title": "Engine",
+            "type": "string"
+          },
+          "explainer_model": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explainer Model"
+          },
+          "explanation": {
+            "default": "none",
+            "enum": [
+              "none",
+              "optional",
+              "required"
+            ],
+            "title": "Explanation",
+            "type": "string"
+          },
+          "include_v3": {
+            "default": false,
+            "title": "Include V3",
+            "type": "boolean"
+          },
+          "intended_strategy": {
+            "default": "equilibrada",
+            "enum": [
+              "equilibrada",
+              "proteger_area",
+              "saida_sob_pressao",
+              "proteger_progressao"
+            ],
+            "title": "Intended Strategy",
+            "type": "string"
+          },
+          "roster": {
+            "items": {
+              "$ref": "#/components/schemas/RosterPayload"
+            },
+            "maxItems": 60,
+            "title": "Roster",
+            "type": "array"
+          },
+          "schema_version": {
+            "const": "2.0.0",
+            "default": "2.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "analysis"
+        ],
+        "title": "AnalysisBody",
+        "type": "object"
+      },
+      "AnalysisPayload": {
+        "additionalProperties": false,
+        "properties": {
+          "competition_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Competition Id",
+            "type": "integer"
+          },
+          "cutoff_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cutoff Date"
+          },
+          "match_context": {
+            "default": "regular",
+            "enum": [
+              "regular",
+              "clássico",
+              "eliminatório",
+              "decisivo",
+              "outro"
+            ],
+            "title": "Match Context",
+            "type": "string"
+          },
+          "notes": {
+            "default": "",
+            "maxLength": 4000,
+            "title": "Notes",
+            "type": "string"
+          },
+          "opponent_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Opponent Id",
+            "type": "integer"
+          },
+          "recent_matches_window": {
+            "default": 10,
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Recent Matches Window",
+            "type": "integer"
+          },
+          "season_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Season Id",
+            "type": "integer"
+          },
+          "strategic_objective": {
+            "default": "equilibrado",
+            "enum": [
+              "equilibrado",
+              "pressionar alto",
+              "proteger vantagem",
+              "buscar gol",
+              "outro"
+            ],
+            "title": "Strategic Objective",
+            "type": "string"
+          },
+          "target_match_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Match Id"
+          },
+          "team_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "unavailable_player_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "maxItems": 60,
+            "title": "Unavailable Player Ids",
+            "type": "array"
+          },
+          "venue": {
+            "default": "desconhecido",
+            "enum": [
+              "casa",
+              "fora",
+              "neutro",
+              "desconhecido"
+            ],
+            "title": "Venue",
+            "type": "string"
+          }
+        },
+        "required": [
+          "competition_id",
+          "season_id",
+          "team_id",
+          "opponent_id"
+        ],
+        "title": "AnalysisPayload",
+        "type": "object"
+      },
+      "CapabilitiesBody": {
+        "properties": {
+          "engines": {
+            "items": {
+              "const": "deterministic",
+              "type": "string"
+            },
+            "title": "Engines",
+            "type": "array"
+          },
+          "fine_tuned_model": {
+            "const": "experimental_not_promoted",
+            "title": "Fine Tuned Model",
+            "type": "string"
+          },
+          "individual_recommendations": {
+            "const": false,
+            "title": "Individual Recommendations",
+            "type": "boolean"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/LimitsBody"
+          },
+          "llm": {
+            "$ref": "#/components/schemas/LLMCapability"
+          },
+          "schema_version": {
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "shots_prediction": {
+            "const": "experimental_not_integrated",
+            "title": "Shots Prediction",
+            "type": "string"
+          },
+          "storage": {
+            "title": "Storage",
+            "type": "string"
+          },
+          "v3_recuts": {
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "V3 Recuts",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "engines",
+          "llm",
+          "fine_tuned_model",
+          "shots_prediction",
+          "individual_recommendations",
+          "v3_recuts",
+          "limits",
+          "storage"
+        ],
+        "title": "CapabilitiesBody",
+        "type": "object"
+      },
+      "CatalogBody": {
+        "additionalProperties": true,
+        "properties": {
+          "competition_id": {
+            "title": "Competition Id",
+            "type": "integer"
+          },
+          "competition_name": {
+            "title": "Competition Name",
+            "type": "string"
+          },
+          "country_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country Name"
+          },
+          "season_id": {
+            "title": "Season Id",
+            "type": "integer"
+          },
+          "season_name": {
+            "title": "Season Name",
+            "type": "string"
+          },
+          "v3_certified": {
+            "title": "V3 Certified",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "competition_id",
+          "season_id",
+          "competition_name",
+          "season_name",
+          "v3_certified"
+        ],
+        "title": "CatalogBody",
+        "type": "object"
+      },
+      "ClaimBody": {
+        "properties": {
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "plan_id": {
+            "anyOf": [
+              {
+                "enum": [
+                  "R01_PROGRESSAO",
+                  "R02_PRESSAO_ALTA",
+                  "R03_CHANCES",
+                  "V3_ENTRADAS_PASSE",
+                  "V3_CHUTES_AREA"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "evidence_ids"
+        ],
+        "title": "ClaimBody",
+        "type": "object"
+      },
+      "ComparisonBody": {
+        "properties": {
+          "context_priority_tied": {
+            "title": "Context Priority Tied",
+            "type": "boolean"
+          },
+          "different_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Different Evidence Ids",
+            "type": "array"
+          },
+          "interpretation": {
+            "title": "Interpretation",
+            "type": "string"
+          },
+          "plans": {
+            "items": {
+              "enum": [
+                "R01_PROGRESSAO",
+                "R02_PRESSAO_ALTA",
+                "R03_CHANCES",
+                "V3_ENTRADAS_PASSE",
+                "V3_CHUTES_AREA"
+              ],
+              "type": "string"
+            },
+            "title": "Plans",
+            "type": "array"
+          }
+        },
+        "required": [
+          "plans",
+          "different_evidence_ids",
+          "interpretation",
+          "context_priority_tied"
+        ],
+        "title": "ComparisonBody",
+        "type": "object"
+      },
+      "CoverageBody": {
+        "properties": {
+          "cutoff": {
+            "title": "Cutoff",
+            "type": "string"
+          },
+          "minimum_matches": {
+            "title": "Minimum Matches",
+            "type": "integer"
+          },
+          "opponent": {
+            "$ref": "#/components/schemas/TeamCoverageBody"
+          },
+          "policy": {
+            "title": "Policy",
+            "type": "string"
+          },
+          "requested_window": {
+            "title": "Requested Window",
+            "type": "integer"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamCoverageBody"
+          }
+        },
+        "required": [
+          "team",
+          "opponent",
+          "cutoff",
+          "requested_window",
+          "minimum_matches",
+          "policy"
+        ],
+        "title": "CoverageBody",
+        "type": "object"
+      },
+      "DisplayBody": {
+        "properties": {
+          "competition": {
+            "title": "Competition",
+            "type": "string"
+          },
+          "cutoff_date": {
+            "title": "Cutoff Date",
+            "type": "string"
+          },
+          "metric_definitions": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Metric Definitions",
+            "type": "object"
+          },
+          "opponent": {
+            "$ref": "#/components/schemas/DisplayProfile"
+          },
+          "season": {
+            "title": "Season",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/SourceBody"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "team": {
+            "$ref": "#/components/schemas/DisplayProfile"
+          }
+        },
+        "required": [
+          "competition",
+          "season",
+          "cutoff_date",
+          "team",
+          "opponent",
+          "sources",
+          "metric_definitions"
+        ],
+        "title": "DisplayBody",
+        "type": "object"
+      },
+      "DisplayProfile": {
+        "properties": {
+          "match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Match Ids",
+            "type": "array"
+          },
+          "period_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period End"
+          },
+          "period_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period Start"
+          },
+          "shots": {
+            "items": {
+              "$ref": "#/components/schemas/ShotBody"
+            },
+            "title": "Shots",
+            "type": "array"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "team_name": {
+            "title": "Team Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "team_id",
+          "team_name",
+          "period_start",
+          "period_end",
+          "match_ids",
+          "shots"
+        ],
+        "title": "DisplayProfile",
+        "type": "object"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody",
+        "type": "object"
+      },
+      "EvidenceBody": {
+        "properties": {
+          "denominator": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denominator"
+          },
+          "formula_version": {
+            "title": "Formula Version",
+            "type": "string"
+          },
+          "match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Match Ids",
+            "type": "array"
+          },
+          "median": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median"
+          },
+          "metric_id": {
+            "title": "Metric Id",
+            "type": "string"
+          },
+          "numerator": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Numerator"
+          },
+          "per_match": {
+            "items": {
+              "$ref": "#/components/schemas/PerMatchBody"
+            },
+            "title": "Per Match",
+            "type": "array"
+          },
+          "sample_size": {
+            "title": "Sample Size",
+            "type": "integer"
+          },
+          "standard_deviation": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Standard Deviation"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "team_name": {
+            "title": "Team Name",
+            "type": "string"
+          },
+          "unit": {
+            "title": "Unit",
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "metric_id",
+          "value",
+          "unit",
+          "sample_size",
+          "match_ids",
+          "numerator",
+          "denominator",
+          "median",
+          "standard_deviation",
+          "per_match",
+          "formula_version",
+          "team_id",
+          "team_name"
+        ],
+        "title": "EvidenceBody",
+        "type": "object"
+      },
+      "ExcludedPlanBody": {
+        "properties": {
+          "plan_id": {
+            "enum": [
+              "R01_PROGRESSAO",
+              "R02_PRESSAO_ALTA",
+              "R03_CHANCES",
+              "V3_ENTRADAS_PASSE",
+              "V3_CHUTES_AREA"
+            ],
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "plan_id",
+          "reason"
+        ],
+        "title": "ExcludedPlanBody",
+        "type": "object"
+      },
+      "ExplanationBody": {
+        "properties": {
+          "claims": {
+            "items": {
+              "$ref": "#/components/schemas/ClaimBody"
+            },
+            "title": "Claims",
+            "type": "array"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds"
+          },
+          "input_fingerprint": {
+            "title": "Input Fingerprint",
+            "type": "string"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "model_digest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Digest"
+          },
+          "policy": {
+            "title": "Policy",
+            "type": "string"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "unavailable",
+              "failed",
+              "generated"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "reason",
+          "provider",
+          "model",
+          "prompt_version",
+          "input_fingerprint",
+          "claims",
+          "policy"
+        ],
+        "title": "ExplanationBody",
+        "type": "object"
+      },
+      "HealthBody": {
+        "properties": {
+          "data_present": {
+            "title": "Data Present",
+            "type": "boolean"
+          },
+          "service_version": {
+            "title": "Service Version",
+            "type": "string"
+          },
+          "status": {
+            "const": "ok",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "service_version",
+          "data_present"
+        ],
+        "title": "HealthBody",
+        "type": "object"
+      },
+      "LLMCapability": {
+        "properties": {
+          "availability": {
+            "const": "checked_on_generation",
+            "title": "Availability",
+            "type": "string"
+          },
+          "configured": {
+            "title": "Configured",
+            "type": "boolean"
+          },
+          "mode": {
+            "const": "validated_claim_selection",
+            "title": "Mode",
+            "type": "string"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          }
+        },
+        "required": [
+          "configured",
+          "provider",
+          "model",
+          "mode",
+          "availability"
+        ],
+        "title": "LLMCapability",
+        "type": "object"
+      },
+      "LimitsBody": {
+        "properties": {
+          "analyses_per_minute": {
+            "title": "Analyses Per Minute",
+            "type": "integer"
+          },
+          "concurrent_analyses": {
+            "title": "Concurrent Analyses",
+            "type": "integer"
+          },
+          "report_bytes": {
+            "title": "Report Bytes",
+            "type": "integer"
+          },
+          "report_ttl_seconds": {
+            "title": "Report Ttl Seconds",
+            "type": "integer"
+          },
+          "request_bytes": {
+            "title": "Request Bytes",
+            "type": "integer"
+          },
+          "retained_reports": {
+            "title": "Retained Reports",
+            "type": "integer"
+          },
+          "window": {
+            "title": "Window",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "request_bytes",
+          "window",
+          "concurrent_analyses",
+          "analyses_per_minute",
+          "report_bytes",
+          "retained_reports",
+          "report_ttl_seconds"
+        ],
+        "title": "LimitsBody",
+        "type": "object"
+      },
+      "MatchBody": {
+        "properties": {
+          "away_team_id": {
+            "title": "Away Team Id",
+            "type": "integer"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "home_team_id": {
+            "title": "Home Team Id",
+            "type": "integer"
+          },
+          "match_id": {
+            "title": "Match Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "match_id",
+          "date",
+          "home_team_id",
+          "away_team_id"
+        ],
+        "title": "MatchBody",
+        "type": "object"
+      },
+      "MetricCoverageBody": {
+        "properties": {
+          "insufficient_metrics": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Insufficient Metrics",
+            "type": "array"
+          },
+          "minimum_sample_size": {
+            "title": "Minimum Sample Size",
+            "type": "integer"
+          },
+          "sample_sizes": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Sample Sizes",
+            "type": "object"
+          },
+          "team_name": {
+            "title": "Team Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "team_name",
+          "sample_sizes",
+          "minimum_sample_size",
+          "insufficient_metrics"
+        ],
+        "title": "MetricCoverageBody",
+        "type": "object"
+      },
+      "ModelStatusBody": {
+        "properties": {
+          "fine_tuned_explainer": {
+            "const": "experimental_not_promoted",
+            "title": "Fine Tuned Explainer",
+            "type": "string"
+          },
+          "shots_predictor": {
+            "const": "experimental_not_integrated",
+            "title": "Shots Predictor",
+            "type": "string"
+          },
+          "tactical": {
+            "const": "deterministic",
+            "title": "Tactical",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tactical",
+          "shots_predictor",
+          "fine_tuned_explainer"
+        ],
+        "title": "ModelStatusBody",
+        "type": "object"
+      },
+      "OrderingBody": {
+        "properties": {
+          "meaning": {
+            "title": "Meaning",
+            "type": "string"
+          },
+          "objective_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Objective Note"
+          },
+          "rule": {
+            "title": "Rule",
+            "type": "string"
+          },
+          "ties": {
+            "title": "Ties",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "meaning",
+          "ties",
+          "rule",
+          "objective_note"
+        ],
+        "title": "OrderingBody",
+        "type": "object"
+      },
+      "PerMatchBody": {
+        "additionalProperties": true,
+        "properties": {
+          "denominator": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denominator"
+          },
+          "match_date": {
+            "title": "Match Date",
+            "type": "string"
+          },
+          "match_id": {
+            "title": "Match Id",
+            "type": "integer"
+          },
+          "numerator": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Numerator"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "match_id",
+          "match_date",
+          "value",
+          "numerator",
+          "denominator"
+        ],
+        "title": "PerMatchBody",
+        "type": "object"
+      },
+      "PlanBody": {
+        "properties": {
+          "abstention_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abstention Reason"
+          },
+          "condition": {
+            "title": "Condition",
+            "type": "string"
+          },
+          "context_priority": {
+            "title": "Context Priority",
+            "type": "integer"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "observation": {
+            "title": "Observation",
+            "type": "string"
+          },
+          "plan_id": {
+            "enum": [
+              "R01_PROGRESSAO",
+              "R02_PRESSAO_ALTA",
+              "R03_CHANCES",
+              "V3_ENTRADAS_PASSE",
+              "V3_CHUTES_AREA"
+            ],
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "possible_action": {
+            "title": "Possible Action",
+            "type": "string"
+          },
+          "preconditions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Preconditions",
+            "type": "array"
+          },
+          "restrictions": {
+            "items": {
+              "enum": [
+                "R01_PROGRESSAO",
+                "R02_PRESSAO_ALTA",
+                "R03_CHANCES",
+                "V3_ENTRADAS_PASSE",
+                "V3_CHUTES_AREA"
+              ],
+              "type": "string"
+            },
+            "title": "Restrictions",
+            "type": "array"
+          },
+          "risks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Risks",
+            "type": "array"
+          }
+        },
+        "required": [
+          "plan_id",
+          "observation",
+          "evidence_ids",
+          "condition",
+          "possible_action",
+          "risks",
+          "restrictions",
+          "limitations",
+          "preconditions",
+          "abstention_reason",
+          "context_priority"
+        ],
+        "title": "PlanBody",
+        "type": "object"
+      },
+      "ReportBody": {
+        "properties": {
+          "abstention_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abstention Reason"
+          },
+          "display": {
+            "$ref": "#/components/schemas/DisplayBody"
+          },
+          "evidence": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/EvidenceBody"
+            },
+            "title": "Evidence",
+            "type": "object"
+          },
+          "excluded_plans": {
+            "items": {
+              "$ref": "#/components/schemas/ExcludedPlanBody"
+            },
+            "title": "Excluded Plans",
+            "type": "array"
+          },
+          "explanation": {
+            "$ref": "#/components/schemas/ExplanationBody"
+          },
+          "legacy_report": {
+            "additionalProperties": true,
+            "title": "Legacy Report",
+            "type": "object"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "model_status": {
+            "$ref": "#/components/schemas/ModelStatusBody"
+          },
+          "ordering": {
+            "$ref": "#/components/schemas/OrderingBody"
+          },
+          "plan_comparisons": {
+            "items": {
+              "$ref": "#/components/schemas/ComparisonBody"
+            },
+            "title": "Plan Comparisons",
+            "type": "array"
+          },
+          "plans": {
+            "items": {
+              "$ref": "#/components/schemas/PlanBody"
+            },
+            "title": "Plans",
+            "type": "array"
+          },
+          "provenance": {
+            "additionalProperties": true,
+            "title": "Provenance",
+            "type": "object"
+          },
+          "report_id": {
+            "title": "Report Id",
+            "type": "string"
+          },
+          "report_key": {
+            "title": "Report Key",
+            "type": "string"
+          },
+          "request": {
+            "$ref": "#/components/schemas/AnalysisBody"
+          },
+          "roster_policy": {
+            "$ref": "#/components/schemas/RosterPolicyBody"
+          },
+          "schema_version": {
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "sufficiency": {
+            "$ref": "#/components/schemas/SufficiencyBody"
+          }
+        },
+        "required": [
+          "schema_version",
+          "report_id",
+          "request",
+          "legacy_report",
+          "display",
+          "evidence",
+          "sufficiency",
+          "plans",
+          "excluded_plans",
+          "plan_comparisons",
+          "abstention_reason",
+          "ordering",
+          "roster_policy",
+          "model_status",
+          "explanation",
+          "limitations",
+          "provenance",
+          "report_key"
+        ],
+        "title": "ReportBody",
+        "type": "object"
+      },
+      "RosterPayload": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "enum": [
+              "available",
+              "unavailable",
+              "unknown"
+            ],
+            "title": "Availability",
+            "type": "string"
+          },
+          "observed_on": {
+            "title": "Observed On",
+            "type": "string"
+          },
+          "player_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Player Id",
+            "type": "integer"
+          },
+          "positions": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Positions",
+            "type": "array"
+          },
+          "source": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "team_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Team Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "player_id",
+          "team_id",
+          "positions",
+          "availability",
+          "source",
+          "observed_on"
+        ],
+        "title": "RosterPayload",
+        "type": "object"
+      },
+      "RosterPolicyBody": {
+        "properties": {
+          "individual_suggestions": {
+            "const": "abstained",
+            "title": "Individual Suggestions",
+            "type": "string"
+          },
+          "provenance": {
+            "title": "Provenance",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "declared",
+              "missing"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "provenance",
+          "individual_suggestions",
+          "reason"
+        ],
+        "title": "RosterPolicyBody",
+        "type": "object"
+      },
+      "ShotBody": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "match_id": {
+            "title": "Match Id",
+            "type": "integer"
+          },
+          "period": {
+            "title": "Period",
+            "type": "integer"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "x": {
+            "title": "X",
+            "type": "number"
+          },
+          "xg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Xg"
+          },
+          "y": {
+            "title": "Y",
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "match_id",
+          "team_id",
+          "period",
+          "x",
+          "y",
+          "xg"
+        ],
+        "title": "ShotBody",
+        "type": "object"
+      },
+      "SourceBody": {
+        "properties": {
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "sha256": {
+            "title": "Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "title": "SourceBody",
+        "type": "object"
+      },
+      "SufficiencyBody": {
+        "properties": {
+          "minimum_matches": {
+            "title": "Minimum Matches",
+            "type": "integer"
+          },
+          "opponent": {
+            "$ref": "#/components/schemas/MetricCoverageBody"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "sufficient": {
+            "title": "Sufficient",
+            "type": "boolean"
+          },
+          "team": {
+            "$ref": "#/components/schemas/MetricCoverageBody"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "sufficient",
+          "team",
+          "opponent",
+          "minimum_matches",
+          "warnings"
+        ],
+        "title": "SufficiencyBody",
+        "type": "object"
+      },
+      "TeamBody": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "team_id",
+          "name"
+        ],
+        "title": "TeamBody",
+        "type": "object"
+      },
+      "TeamCoverageBody": {
+        "properties": {
+          "available_period_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Available Period End"
+          },
+          "available_period_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Available Period Start"
+          },
+          "calendar_matches_before_cutoff": {
+            "title": "Calendar Matches Before Cutoff",
+            "type": "integer"
+          },
+          "event_match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Event Match Ids",
+            "type": "array"
+          },
+          "event_period_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Period End"
+          },
+          "event_period_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Period Start"
+          },
+          "missing_event_match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Missing Event Match Ids",
+            "type": "array"
+          },
+          "selected_match_dates": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Selected Match Dates",
+            "type": "array"
+          },
+          "selected_match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Selected Match Ids",
+            "type": "array"
+          },
+          "selected_period_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Period End"
+          },
+          "selected_period_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Period Start"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "team_name": {
+            "title": "Team Name",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "team_id",
+          "team_name",
+          "calendar_matches_before_cutoff",
+          "selected_match_ids",
+          "selected_match_dates",
+          "event_match_ids",
+          "missing_event_match_ids",
+          "available_period_start",
+          "available_period_end",
+          "selected_period_start",
+          "selected_period_end",
+          "event_period_start",
+          "event_period_end",
+          "warnings"
+        ],
+        "title": "TeamCoverageBody",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Análise histórica e planos condicionais. Sem validação de eficácia esportiva.",
+    "title": "ManagerAI Core",
+    "version": "2.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/v1/analyses": {
+      "post": {
+        "operationId": "analyses_v1_analyses_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalysisBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Analyses"
+      }
+    },
+    "/v1/capabilities": {
+      "get": {
+        "operationId": "capabilities_v1_capabilities_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CapabilitiesBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Capabilities"
+      }
+    },
+    "/v1/catalog": {
+      "get": {
+        "operationId": "catalog_v1_catalog_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogBody"
+                  },
+                  "title": "Response Catalog V1 Catalog Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Catalog"
+      }
+    },
+    "/v1/coverage": {
+      "post": {
+        "operationId": "preview_v1_coverage_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalysisBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoverageBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Preview"
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "operationId": "health_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/v1/matches": {
+      "get": {
+        "operationId": "matches_v1_matches_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "schema": {
+              "exclusiveMinimum": 0,
+              "title": "Competition Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "season_id",
+            "required": true,
+            "schema": {
+              "exclusiveMinimum": 0,
+              "title": "Season Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/MatchBody"
+                  },
+                  "title": "Response Matches V1 Matches Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Matches"
+      }
+    },
+    "/v1/reports/{report_key}": {
+      "get": {
+        "operationId": "report_v1_reports__report_key__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_key",
+            "required": true,
+            "schema": {
+              "title": "Report Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Report"
+      }
+    },
+    "/v1/reports/{report_key}/export": {
+      "get": {
+        "operationId": "export_v1_reports__report_key__export_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_key",
+            "required": true,
+            "schema": {
+              "title": "Report Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "markdown"
+              ],
+              "title": "Format",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Export"
+      }
+    },
+    "/v1/teams": {
+      "get": {
+        "operationId": "teams_v1_teams_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "schema": {
+              "exclusiveMinimum": 0,
+              "title": "Competition Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "season_id",
+            "required": true,
+            "schema": {
+              "exclusiveMinimum": 0,
+              "title": "Season Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TeamBody"
+                  },
+                  "title": "Response Teams V1 Teams Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Teams"
+      }
+    }
+  }
+}

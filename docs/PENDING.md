@@ -1,10 +1,12 @@
 # ManagerAI — pendências e validação
 
+**Entrega web 31/10/2026: frontend local implementado e integrado com API real; correções A1–A3 e evidências atuais no §21. Resultados e conclusões do §20 são históricos da etapa de IA; não foram reutilizados como testes desta execução. Validade esportiva e avaliação humana permanecem pendentes.**
+
 Atualização de interface em 30/10/2026: mitigação da sobrecarga da prévia JSON V3 implementada e validada por AppTest; confirmação manual do travamento no navegador pendente (§19). Os status CORE não foram reavaliados naquela correção; a execução posterior de 31/10 está no §20.
 
 **31/10: serviço/API 2.0.0 implementados; wheel atualizado instalado e conferido com `python -I`, 282 testes instalados com dados reais aprovados. Ollama real validado; ajuste LoRA real de explicação concluído como experimento, sem promoção. Motor tático aprendido e validação esportiva humana continuam ausentes. CORE-02 não certificou novas temporadas. Estado e rastreabilidade CORE-03…16 no §20.**
 
-Atualizado em 25/10/2026. Estado, contratos e comandos: [CURRENT_VERSION.md](CURRENT_VERSION.md). Regras: [AGENTS.md](../AGENTS.md). **V4.1, V4.2 e V4.3-A/B concluídas; dataset e regressões offline validados (§14).** Há OLS/Ridge experimentalmente ajustadas para previsão de chutes. Motor aprendido integrado ao runtime, fine-tuning, LLM e recomendações de escalação continuam **não implementados**. V4.3-C concluída como estudo exploratório; CORE-00 no §16.
+Registro histórico de 25/10/2026 (superado no que se refere a API/LLM/ajuste pelo §20; frontend no §21). Estado, contratos e comandos: [CURRENT_VERSION.md](CURRENT_VERSION.md). Regras: [AGENTS.md](../AGENTS.md). **V4.1, V4.2 e V4.3-A/B concluídas; dataset e regressões offline validados (§14).** Há OLS/Ridge experimentalmente ajustadas para previsão de chutes. Naquele registro ainda não havia API/LLM ou ajuste de explicação; o serviço e a pesquisa posteriores estão no §20. Motor tático aprendido e recomendações individuais continuam não implementados. V4.3-C concluída como estudo exploratório; CORE-00 no §16.
 
 ## 1. Estado conferido e prioridades
 
@@ -916,3 +918,72 @@ Os destinos acima já existem e são preservados; para repetir, escolher nomes n
 Preservação: os três relatórios congelados coincidem com SHA-256 inicial; Git do clone StatsBomb continua limpo e na revisão fixada; EDA mantém 108 arquivos observados, sem gerador executado. Não se fez hash integral da EDA nem inspeção visual de navegador. A mitigação de JSON da UI foi preservada e os testes reais passaram; confirmação humana de responsividade permanece pendente. Não foram executadas avaliações esportivas humanas, treino tático supervisionado, serviço pago, CI remota, certificação V3 adicional ou frontend novo.
 
 **Status de entrega:** BACKEND PARA FRONTEND: APTO para integração local com as capacidades explicitadas no contrato. IA E FINE-TUNING: PARCIAIS — inferência e ajuste de explicação reais, avaliação técnica sintética concluída; sem decisão tática aprendida, superioridade sobre template, revisão humana ou validação esportiva. O projeto inteiro não está concluído; frontend novo e critérios externos permanecem abertos.
+
+
+## 21. Frontend local e correções de integração — 31/10/2026
+
+### 21.1 Estado de entrada, escopo e arquitetura
+
+Entrada conferida: branch `main`, HEAD `4175df419443756d9a1af18a7701f9c1e2841b69`, checkout limpo, sem alterações preexistentes não commitadas. A referência coincidiu com HEAD; nenhum estado posterior foi descartado. Não havia frontend/package manager/lockfile; foi criada aplicação React/TypeScript/Vite em `frontend/`, com package-lock e configuração de exemplo sem segredos. CLI, Streamlit, fórmulas, schemas 1.0.0/1.1.0, dados/EDA e fixtures foram preservados. Não houve commit, push, PR, mudança de issue, publicação, autenticação, banco, fila ou novo treinamento.
+
+A interface consome a API como fonte de catálogo/equipes/calendário/cobertura/relatório/exportação. Há seletores dependentes, exclusão entre alvo/corte, aviso de redefinição, janela limitada por capacidades, V3 certificada, contexto declarado e opções avançadas. Elenco não é editado nesta UI; análise permanece coletiva, com limitação explícita. Explicação é `none` por padrão; configuração do provedor não é anunciada como disponibilidade confirmada. Seleção de IDs pela LLM não é apresentada como raciocínio tático aprendido.
+
+Acesso à API e mensagens em `frontend/src/api.ts`; tipos gerados e opções canônicas; requisições de leitura obsoletas canceladas e ignoradas por identidade. Pedidos de análise não recebem retry; o timeout cobre leitura do corpo e alerta que cálculo pode continuar no servidor. Resultado mantém identificação do pedido enviado se o formulário mudar. Relatórios/notas não são persistidos em localStorage; token de exportação não entra em analytics/logs da UI. Markdown é baixado pelo endpoint, não executado como HTML.
+
+A apresentação prioriza indicadores e planos com observações, condições, riscos, pré-condições e evidências. Todos os indicadores ficam sob demanda: caso V3 tem 21+26 linhas, com unidades/amostras por equipe. Valores ausentes são indisponíveis, nunca zero. Barras não misturam unidades; porcentagens usam 0–100. Entradas/90 e mapa de chutes usam métricas/pontos existentes; plano 120×80, sem espelhamento. A tabela mobile foi inspecionada e ajustada para manter valores/amostras visíveis; tabela detalhada de evidências permite rolagem explicitamente indicada. Não se renderiza JSON/eventos/sequências integrais. Evidências/fontes/gráficos são expandidos sob demanda.
+
+### 21.2 Correções e rastreabilidade
+
+| Revisão/fluxo | Implementação e aceite local |
+|---|---|
+| A1 / prioridades | Removida associação objetivo `pressionar alto` → R02. A ação real de R02 é saída sob pressão adversária. Ordenação `context-order-2`, teste semântico e `objective_note` no JSON/Markdown; prioridades compatíveis preservadas. Métricas/hipóteses legadas intactas |
+| A2 / CORE-04, CORE-14 | Literals comuns em options.py, modelos HTTP em http_schema.py, projeção display aditiva, respostas tipadas e erros próprios preservados; OpenAPI e TS/opções gerados e conferidos na CI |
+| A3 / pesquisa | Contradições atuais de README/início de PENDING reconciliadas; registros anteriores identificados como históricos. Artefatos locais acessíveis e hashes/configurações/resultados consolidados em research_evidence.json, sem pesos/datasets no Git ou novo treino |
+| B / seleção e cobertura | Dados reais da API, referência exclusiva, limites, amostra insuficiente descritiva, invalidar respostas antigas e mudanças de recorte |
+| C / relatório | Indicadores, planos condicionais, comparação sem mérito validado, evidências e exportação real; estado recebido separado de expiração no servidor |
+| D–E / uso e robustez | Layout desktop/mobile, teclado/foco/labels, tratamento 413/422/429/500/503 e 404 de exportação; proxy local, sem CORS aberto, retries de análise ou armazenamento local |
+| F / CORE-16 técnico local | Build/TS, backend instalado, 16 testes portáteis de navegador e 4 cenários reais, incluindo V3/gráficos/downloads, insuficiência, LLM e ciclo de falhas |
+| CORE-06, CORE-08, CORE-15 e critérios externos | Interface não valida tática aprendida, eficácia, utilidade esportiva ou requisito acadêmico. Revisão humana continua ausente; fine-tuning anterior permanece experimental e não foi refeito |
+
+API mantém service_version 2.0.0 com campos aditivos de apresentação. `legacy_report` e proveniência V4.1 preservados; frontend não depende de reconstruir objetos opacos. Literals reutilizam valores canônicos do Core e verificações de equivalência; desconhecidos mantêm códigos do serviço, inclusive ENGINE_UNAVAILABLE e INVALID_RESTRICTIONS. Schema JSON de OpenAPI em frontend/openapi.json, TS em src/generated/api.d.ts, opções em options.ts. Gerar/conferir conforme BACKEND_API.md; sem servidor/dados/modelo. Job frontend adicionado à CI, preservando os dois perfis backend; CI remota não foi executada nesta entrega.
+
+### 21.3 Ambiente, instalação e validação desta execução
+
+Linux, Python 3.12.3, Node 20.19.4 e npm 10.8.2; Node 18.20.8 também estava no PATH inicial, mas é incompatível com Vite atual e não foi usado para build/testes. Node compatível foi selecionado por PATH, sem atualizar o sistema. Brave Chromium local em `/usr/bin/brave-browser`, executado headless por Playwright 1.64.1 com perfis temporários novos, sem reutilizar perfil pessoal. React 19.3.1, TypeScript 5.9.3, Vite 8.3.5. Sem imagens/escudos/fontes externas como dependência do fluxo.
+
+Backend construído/instalado em `/tmp/managerai-frontend-20261031/backend-env`, novo e independente, a partir de clone temporário mais sobreposição fiel dos arquivos alterados/novos em `/tmp/managerai-frontend-20261031/checkout`. O código instalado foi comparado byte a byte com todos os módulos Python atuais: zero divergências. Dados reais referenciados por symlink ignorado somente no temporário. Pacote JSON e imports novos conferidos com `python -I`; pip check sem requisitos quebrados. Venvs funcionais não foram alterados. Instalação para outra pessoa usa `.venv-web` e npm ci conforme README, sem depender dos temporários de validação.
+
+| Verificação atual | Comando/intérprete | Resultado |
+|---|---|---|
+| Backend completo instalado | `MANAGERAI_RUN_LOCAL_TESTS=1 PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg MPLCONFIGDIR=/tmp/managerai-frontend-20261031/mpl /tmp/managerai-frontend-20261031/backend-env/bin/python -I -B -m unittest discover -s tests -q`, cwd temporário | 284 aprovados, zero falhas/erros/pulos; 73,070 s |
+| Backend mínimo fonte | `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -B -S -m unittest discover -s tests -q` | 284 descobertos, 234 aprovados, 50 pulados, zero falhas/erros; 7,664 s |
+| Serviço/API focal | `PYTHONPATH=src:tests /tmp/managerai-final-core/full-env/bin/python -B -m unittest discover -s tests -p test_service.py -q` | 20 aprovados, zero falhas/erros/pulos; 2,474 s; ambiente anterior apenas lido |
+| Conferência independente | `/tmp/managerai-frontend-20261031/backend-env/bin/python -I -B outputs/v22_v3_validation/check_metrics.py`, MPLCONFIGDIR temporário | 16/16 aprovadas, código 0 |
+| Contrato | `python -I -B scripts/export_openapi.py --check` com Python instalado + `npm run types:check` | OpenAPI atual, TS e opções equivalentes |
+| Build frontend | `npm run build` com Node 20.19.4 | TypeScript sem erros e build de produção concluído; bundle sem datasets/pesos |
+| Navegador portátil | `PLAYWRIGHT_BROWSER_EXECUTABLE_PATH=/usr/bin/brave-browser MANAGERAI_TEST_OUTPUT=/tmp/managerai-frontend-20261031/... npm test` | 16 aprovados, sem falhas/erros/pulos; fixtures sintéticas somente nos testes, sem backend/dados/modelo |
+| Navegador/API reais | `MANAGERAI_BACKEND_PYTHON=/tmp/managerai-frontend-20261031/backend-env/bin/python PLAYWRIGHT_BROWSER_EXECUTABLE_PATH=/usr/bin/brave-browser MANAGERAI_REAL_ARTIFACTS=<destino novo> npm run test:real` | 4 aprovados, zero falhas/pulos; execução release em 40,2 s |
+| Pesquisa histórica | `python3 -B scripts/check_research_evidence.py --check` | Artefatos/manifestos/dataset sintético/adapter hashes conferidos; nenhuma nova avaliação/treino |
+| Dependências frontend | `npm ci`/lockfile e `npm audit --omit=dev` | Runtime sem vulnerabilidades reportadas. Auditoria completa reporta três moderadas na cadeia de desenvolvimento openapi-typescript/Redocly/minimatch; não estão no bundle. Não foi aplicado override incompatível nem apresentada auditoria total como limpa |
+
+Falhas intermediárias corrigidas, não contadas como aprovações: reforço inicial do contrato causou quatro erros de validação de resposta por tuplas do serviço e uma falha de código de motor; normalização do pedido HTTP e preservação do erro original resolveram, focal final 20/20. Override de Redocly 2 quebrou exports internos do gerador; tentativa com gerador 6 trouxe outros avisos de dependência e foi abandonada. A entrega fixa openapi-typescript 7.13.0 compatível, com limitação de auditoria dev registrada acima. Uma reinstalação sem build isolation falhou por ausência de setuptools no venv novo; build isolation passou. Nada disso foi chamado de validação bem-sucedida. Porta 8000 já estava ocupada; a tentativa de bind falhou e o servidor preexistente foi preservado, usando 8011 para esta tarefa.
+
+### 21.4 Navegador real e evidência visual
+
+Artefatos finais de teste: `outputs/runs/frontend_browser_release_20261031/`, ignorado pelo Git. City × Arsenal de 08/05/2016, janela 10, V3: HTTP 200, 4.994.332 bytes, análise/apresentação inicial 6.938 ms; seis indicadores principais, 47 adicionais consultáveis e planos presentes. Downloads JSON/Markdown concluídos pelo servidor; pontos/gráficos/evidências exibidos; nenhum pageerror. Uma amostra requestAnimationFrame após a expansão levou 0,3 ms: é medição local pontual, não benchmark contínuo nem SLA. Desktop 1440×1000 e mobile 390×844, sem overflow horizontal do documento. Capturas desktop-report.png, desktop-charts.png, mobile-report.png e inspeção corretiva mobile-indicators-responsive.png (tabela com 316 px). Tabelas largas de evidência têm rolagem própria sinalizada; valores/amostras do resumo não são ocultos em mobile.
+
+Real × Barcelona, La Liga2020/21: HTTP 200 com abstenção explícita e zero planos. Qwen2.5 1.5B local via Ollama: explicação opcional retornou `generated`, 10,393 s de geração na execução release; modo padrão não aciona LLM. Sem inferência paga, geração livre ou aprendizado tático presumido. Os casos não constituem avaliação de qualidade esportiva.
+
+Ciclo real adicional em servidores próprios 8012/5178: mando conflitante gerou 422 e bloqueou envio; backend parado foi percebido por nova página; após reinício, exportação de chave antiga gerou 404, com relatório recebido preservado na página e sem sucesso fictício. Esse teste é perda real de memória por reinício, não espera de TTL. TTL de 300 s é testado no backend com relógio controlado e o 404 também em teste portátil da UI. Não se inventou espera real de cinco minutos. Teclado/foco e data em timezone America/Sao_Paulo foram conferidos nos testes portáteis. O novo frontend foi inspecionado visualmente; isso não equivale a homologação visual do Streamlit nem avaliação formal de acessibilidade com usuários.
+
+### 21.5 Evidências preservadas, execução e pendências
+
+`docs/research_evidence.json` é uma consolidação pequena e reproduzível, sem pesos/dados de partidas. Registra disponibilidade, configuração, partições, resultados históricos, hash de avaliação/manifesto e hashes do adaptador conferidos contra o acervo. Não houve treinamento, reavaliação quantitativa ou revisão humana nesta tarefa. Resultados antigos do §20 não foram transformados em execução nova.
+
+Instalação reproduzível: README, seção Aplicação web local. `.venv-web` novo com `.[api,v3]`, Node compatível e npm ci. `python3 -B scripts/run_web.py` inicia interface/API; script preserva o caminho do Python do venv (não segue symlink até o Python do sistema), um worker, loopback. O comando conjunto foi efetivamente testado com `--python /tmp/managerai-frontend-20261031/backend-env/bin/python`: saúde, proxy e capacidades com LLM desativada por padrão confirmados. O encerramento do comando conjunto por Ctrl+C retornou código 0; conferência de sockets confirmou livres 8011/8012/5173/5177/5178. Servidores de teste/criados nesta execução foram encerrados; o servidor preexistente em 8000 permaneceu intacto.
+
+Dados StatsBomb continuam na revisão fixada e com Git limpo; verificador retornou compatível nesta execução. Os três relatórios congelados coincidem com hashes iniciais. Nenhum gerador EDA foi executado; não se reivindica hash integral da EDA. Pendências externas: revisão humana/utilidade esportiva, rótulos válidos para decisão tática, generalização, direitos para distribuição/publicação e exigência acadêmica do ajuste. Implantação pública ainda exigiria tarefa própria de autenticação/TLS/gestão de armazenamento e recursos; nada disso foi implementado aqui.
+
+Validação final do lockfile em cópia limpa `/tmp/managerai-frontend-20261031/frontend-clean`: `npm ci`, `npm run types:check`, `npm run build` e 16 testes portáteis aprovados em 23,8 s, sem backend de teste ativo. Isso confirma instalação sem depender de node_modules do checkout original. A última execução do checkout também passou 16/16 em 23,6 s após ajustar o timeout para cobrir o corpo da resposta. Checks de 36 links locais, JSON/contrato empacotado, identidade dos módulos instalados e git diff --check passaram.
+
+**FRONTEND LOCAL: APTO** — fluxo documentado e executável com dados reais, build/contrato/testes/visualização e exportação validados localmente. **INTEGRAÇÃO REAL: VALIDADA** — navegador, API instalada, StatsBomb local, gráficos/downloads, insuficiência e ciclo de falhas exercitados; LLM local opcional confirmada separadamente. Estes status não validam IA esportiva nem concluem o projeto inteiro.

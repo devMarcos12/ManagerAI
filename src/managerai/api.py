@@ -12,7 +12,6 @@ from fastapi import FastAPI, Query
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
-from pydantic import BaseModel, ConfigDict, Field
 
 from .data_inventory import load_season, team_ids
 from .data_loader import DataError, LocalData
@@ -21,106 +20,8 @@ from .service import build_service_report, coverage, render_service_markdown
 from .service_schema import ServiceError, ServiceRequest, SERVICE_VERSION
 from .ui_support import available_catalog
 from .v3_schema import VALIDATED_RECUTS
-
-
-class StrictModel(BaseModel):
-    model_config = ConfigDict(extra="forbid", strict=True)
-
-
-class AnalysisPayload(StrictModel):
-    competition_id: int = Field(gt=0)
-    season_id: int = Field(gt=0)
-    team_id: int = Field(gt=0)
-    opponent_id: int = Field(gt=0)
-    cutoff_date: str | None = None
-    target_match_id: int | None = Field(default=None, gt=0)
-    recent_matches_window: int = Field(default=10, ge=1, le=20)
-    venue: str = "desconhecido"
-    match_context: str = "regular"
-    strategic_objective: str = "equilibrado"
-    unavailable_player_ids: list[int] = Field(default_factory=list, max_length=60)
-    notes: str = Field(default="", max_length=4000)
-
-
-class RosterPayload(StrictModel):
-    player_id: int = Field(gt=0)
-    team_id: int = Field(gt=0)
-    positions: list[str] = Field(min_length=1, max_length=5)
-    availability: Literal["available", "unavailable", "unknown"]
-    source: str = Field(min_length=1, max_length=200)
-    observed_on: str
-
-
-class AnalysisBody(StrictModel):
-    schema_version: Literal["2.0.0"] = "2.0.0"
-    analysis: AnalysisPayload
-    include_v3: bool = False
-    intended_strategy: str = "equilibrada"
-    blocked_plan_ids: list[str] = Field(default_factory=list, max_length=5)
-    roster: list[RosterPayload] = Field(default_factory=list, max_length=60)
-    explanation: Literal["none", "optional", "required"] = "none"
-    engine: str = "deterministic"
-    explainer_model: str | None = Field(default=None, min_length=1, max_length=160)
-
-
-class ErrorBody(BaseModel):
-    code: str
-    message: str
-
-
-class PlanBody(BaseModel):
-    plan_id: str
-    observation: str
-    evidence_ids: list[str]
-    condition: str
-    possible_action: str
-    risks: list[str]
-    restrictions: list[str]
-    limitations: list[str]
-    preconditions: list[str]
-    abstention_reason: str | None
-    context_priority: int
-
-
-class ExplanationBody(BaseModel):
-    model_config = ConfigDict(extra="allow")
-    status: Literal["disabled", "unavailable", "failed", "generated"]
-    reason: str | None
-    provider: str | None
-    model: str | None
-    prompt_version: str
-    input_fingerprint: str
-    claims: list[dict]
-    policy: str
-
-
-class SufficiencyBody(BaseModel):
-    status: str
-    sufficient: bool
-    team: dict
-    opponent: dict
-    minimum_matches: int
-    warnings: list[str]
-
-
-class ReportBody(BaseModel):
-    schema_version: str
-    report_id: str
-    request: dict
-    legacy_report: dict
-    evidence: dict
-    sufficiency: SufficiencyBody
-    plans: list[PlanBody]
-    excluded_plans: list[dict]
-    plan_comparisons: list[dict]
-    abstention_reason: str | None
-    ordering: dict
-    roster_policy: dict
-    model_status: dict
-    explanation: ExplanationBody
-    limitations: list[str]
-    provenance: dict
-    report_key: str
+from .http_schema import (AnalysisBody, ReportBody, ErrorBody, HealthBody, CapabilitiesBody,
+                          CatalogBody, TeamBody, MatchBody, CoverageBody, display_projection)
 
 
 def create_app(*, data_root=None, provider=None, cors_origins=None):
@@ -148,6 +49,10 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(_, exc):
+        for item in exc.errors():
+            original = item.get("ctx", {}).get("error")
+            if isinstance(original, ServiceError):
+                return error(original.code, str(original), original.status)
         return error("INVALID_REQUEST", "Requisição inválida; consulte o contrato OpenAPI.", 422)
 
     @app.exception_handler(DataError)
@@ -174,12 +79,12 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
             request._body = b"".join(chunks)
         return await call_next(request)
 
-    @app.get("/v1/health")
+    @app.get("/v1/health", response_model=HealthBody, response_model_exclude_unset=True)
     def health():
         return {"status": "ok", "service_version": SERVICE_VERSION,
                 "data_present": (root / "competitions.json").is_file()}
 
-    @app.get("/v1/capabilities")
+    @app.get("/v1/capabilities", response_model=CapabilitiesBody, response_model_exclude_unset=True)
     def capabilities():
         return {"schema_version": SERVICE_VERSION, "engines": ["deterministic"],
                 "llm": {"configured": provider is not None, "provider": provider.provider_id if provider else None,
@@ -192,27 +97,27 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
                            "retained_reports": 8, "report_ttl_seconds": ttl},
                 "storage": "Memória por processo; token de acesso por posse; reinício remove relatórios."}
 
-    @app.get("/v1/catalog")
+    @app.get("/v1/catalog", response_model=list[CatalogBody], response_model_exclude_unset=True)
     def catalog():
         return [{**c, "v3_certified": (c["competition_id"], c["season_id"]) in VALIDATED_RECUTS}
                 for c in available_catalog(root)]
 
-    @app.get("/v1/teams")
+    @app.get("/v1/teams", response_model=list[TeamBody], response_model_exclude_unset=True)
     def teams(competition_id: int = Query(gt=0), season_id: int = Query(gt=0)):
         season = load_season(LocalData(root), competition_id, season_id)
         return [{"team_id": tid, "name": name} for tid, name in sorted(season.teams.items())]
 
-    @app.get("/v1/matches")
+    @app.get("/v1/matches", response_model=list[MatchBody], response_model_exclude_unset=True)
     def matches(competition_id: int = Query(gt=0), season_id: int = Query(gt=0)):
         season = load_season(LocalData(root), competition_id, season_id)
         return [{"match_id": m["match_id"], "date": m["match_date"], "home_team_id": team_ids(m)[0],
                  "away_team_id": team_ids(m)[1]} for m in season.matches]
 
-    @app.post("/v1/coverage")
+    @app.post("/v1/coverage", response_model=CoverageBody)
     def preview(body: AnalysisBody):
         return coverage(root, ServiceRequest.from_dict(body.model_dump()))
 
-    @app.post("/v1/analyses", response_model=ReportBody)
+    @app.post("/v1/analyses", response_model=ReportBody, response_model_exclude_unset=True)
     def analyses(body: AnalysisBody):
         request = ServiceRequest.from_dict(body.model_dump())
         if not analysis_lock.acquire(blocking=False):
@@ -225,6 +130,8 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
                 raise ServiceError("RATE_LIMIT", "Limite de análises por minuto atingido.", 429)
             recent.append(now)
             result = build_service_report(root, request, provider=provider)
+            result["request"] = body.model_dump()
+            result["display"] = display_projection(result)
             key = secrets.token_urlsafe(32)
             result["report_key"] = key
             payload = canonical(result).encode()
@@ -240,7 +147,7 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
         finally:
             analysis_lock.release()
 
-    @app.get("/v1/reports/{report_key}", response_model=ReportBody)
+    @app.get("/v1/reports/{report_key}", response_model=ReportBody, response_model_exclude_unset=True)
     def report(report_key: str):
         with store_lock:
             item = reports.get(report_key)

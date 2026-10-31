@@ -26,6 +26,20 @@ class ServiceFixture(LocalFixture):
 
 
 class ServiceTests(ServiceFixture):
+    def test_pressing_objective_does_not_prioritize_escape_from_opponent_pressure(self):
+        baseline = build_service_report(self.root, ServiceRequest(self.request))
+        high = build_service_report(self.root, ServiceRequest(replace(self.request, strategic_objective="pressionar alto")))
+        self.assertEqual([p["context_priority"] for p in high["plans"]], [p["context_priority"] for p in baseline["plans"]])
+        self.assertTrue(any(p["plan_id"] == "R02_PRESSAO_ALTA" for p in high["plans"]))
+        self.assertTrue(all(p["context_priority"] == 0 for p in high["plans"]))
+        self.assertIn("sem plano compatível", high["ordering"]["objective_note"])
+        self.assertEqual(high["ordering"]["version"], "context-order-2")
+        self.assertEqual(high["legacy_report"]["team_profile"], baseline["legacy_report"]["team_profile"])
+        escape = build_service_report(self.root, ServiceRequest(self.request, intended_strategy="saida_sob_pressao"))
+        self.assertEqual(next(p for p in escape["plans"] if p["plan_id"] == "R02_PRESSAO_ALTA")["context_priority"], 2)
+        defend = build_service_report(self.root, ServiceRequest(replace(self.request, strategic_objective="proteger vantagem")))
+        self.assertEqual(next(p for p in defend["plans"] if p["plan_id"] == "R03_CHANCES")["context_priority"], 1)
+
     def test_legacy_equivalence_and_determinism(self):
         req = ServiceRequest(self.request)
         a = build_service_report(self.root, req)
@@ -139,6 +153,18 @@ class ExplanationTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("fastapi") and importlib.util.find_spec("httpx"), "API opcional")
 class APITests(ServiceFixture):
+    def test_openapi_types_canonical_options_and_service_error_codes(self):
+        from typing import get_args
+        from managerai.options import Venue, MatchContext, Objective, Strategy, PlanId
+        schema = self.client.get('/openapi.json').json()['components']['schemas']
+        for field, alias in [('venue', Venue), ('match_context', MatchContext), ('strategic_objective', Objective)]:
+            self.assertEqual(schema['AnalysisPayload']['properties'][field]['enum'], list(get_args(alias)))
+        self.assertEqual(schema['AnalysisBody']['properties']['intended_strategy']['enum'], list(get_args(Strategy)))
+        self.assertEqual(schema['PlanBody']['properties']['plan_id']['enum'], list(get_args(PlanId)))
+        for delta, code in [({'blocked_plan_ids': ['unknown']}, 'INVALID_RESTRICTIONS'), ({'engine': 'unknown'}, 'ENGINE_UNAVAILABLE')]:
+            r = self.client.post('/v1/analyses', json={**self.body, **delta})
+            self.assertEqual(r.json()['code'], code)
+
     def setUp(self):
         super().setUp()
         from fastapi.testclient import TestClient

@@ -1,5 +1,7 @@
 # ManagerAI — estado operacional atual
 
+**Entrega web local — 31/10/2026:** frontend React/TypeScript/Vite em `frontend/` consome API FastAPI com contratos HTTP tipados e tipos gerados do OpenAPI. Fluxo completo de confronto → cobertura → relatório → evidências/gráficos → exportação validado em navegador real, desktop/mobile. Ordenação `context-order-2` remove associação indevida entre objetivo pressionar alto e saída sob pressão adversária. API instalada com 284 testes reais aprovados nesta execução; números das fases anteriores abaixo são históricos. Instalação reproduzível e início conjunto no README; evidências e limites em PENDING §21. Não há nova validação esportiva, treinamento ou implantação pública.
+
 **31/10/2026 — serviço 2.0.0 e API local implementados:** contratos de contexto/elenco/restrições, planos condicionais rastreáveis, ordenação explícita por preferências, explicação opcional restrita com Ollama e exportação JSON/Markdown. Inferência real com Qwen2.5 1.5B validada em três casos; modo sem LLM preservado. Nenhum motor tático aprendido ou escalação ideal foi implementado. Pesquisa LoRA de explicação tem supervisão sintética e não é validação esportiva. Estado detalhado, aceite de pacote e resultados finais em PENDING §20; contrato/exemplos em [BACKEND_API.md](BACKEND_API.md). Registros Windows abaixo são históricos daquele ambiente, não diagnóstico do Linux atual.
 
 Atualização de interface em 30/10/2026: prévia JSON limitada a 512.000 bytes; relatórios maiores mostram somente schema/metadados, com JSON integral preservado no download. Mitiga sobrecarga do navegador na V3; 13 testes de UI aprovados, incluindo dados reais e dois gráficos. Confirmação manual no navegador do usuário pendente; evidências em [PENDING.md](PENDING.md), §19. O aceite posterior do pacote/serviço está em PENDING §20; certificação V3 adicional permanece pendente.
@@ -470,3 +472,16 @@ Explicação opcional: Ollama local real com Qwen2.5 1.5B seleciona IDs de afirm
 Avaliação quantitativa pré-fixada entre competições: treino PL2015/16 n198 e teste La Liga2015/16 n69; ganho de OLS/Ridge abaixo do limiar útil. Permanecem experimentais, sem prever eficácia de planos. Nenhuma certificação V3 foi inferida dessa auditoria específica de contagem.
 
 Fine-tuning real de SmolLM2-135M com LoRA: 96/24/40 casos sintéticos por partição, 192 passos, adaptador salvo/recarregado. Validade/cobertura estruturada no teste: base 0%, ajustado 100%, template 100%. Sem superioridade sobre template nessa tarefa, revisão humana ou validação tática. Ajuste não promovido, fora da decisão de produção. Proveniência, métricas, comandos e ressalvas no §20 de PENDING; fontes oficiais no guia da API. A exigência acadêmica específica permanece desconhecida.
+
+
+## 15. Aplicação web local
+
+`frontend/` usa React 19.3.1, TypeScript 5.9.3, Vite 8.3.5 e Playwright 1.64.1; runtime compatível Node 20.19+/22.12+. Lockfile npm versionado. Só React/ReactDOM no runtime. A API fornece `display` aditivo com identificação/períodos, pontos existentes, títulos canônicos e fontes; a interface usa evidências e estruturas tipadas, sem reconstruir `legacy_report` nem calcular indicadores científicos.
+
+Seletores usam catálogo/equipes/calendário reais, referência exclusiva e datas de calendário sem timezone. Cobertura invalida respostas obsoletas; análise guarda o pedido enviado e não faz retry automático. LLM desativada por padrão, opcional somente quando configurada, com estado de geração visível. V3 restrita à certificação existente; mudança de temporada anuncia redefinição. Relatórios recebidos ficam apenas na memória da página; cópia do servidor é volátil e exportação pode retornar 404.
+
+Visão principal prioriza indicadores e planos com condições/riscos. Demais indicadores, evidências, fontes e gráficos ficam sob demanda. Mapas usam pontos StatsBomb 120×80 existentes, sem espelhamento. Tabela mobile mantém valores e amostras por equipe visíveis. No caso real V3, payload de 4.994.332 bytes e análise/apresentação inicial em 6,938 s, nesta máquina e configuração; não é SLA. Testes de API, navegador real e mocks estão separados em PENDING §21.
+
+Contrato OpenAPI versionado em `frontend/openapi.json`, com TS e opções gerados. Atualizar por `scripts/export_openapi.py` + `npm run types`; checks detectam divergências. `options.py` é a fonte comum de Literals/validação do Core e HTTP. `context-order-2` preserva prioridades justificadas e explica objetivos sem plano compatível. CLI, Streamlit, schemas legados e fórmulas permanecem preservados.
+
+Pesquisa anterior não foi reexecutada. [research_evidence.json](research_evidence.json) consolida disponibilidade, configuração, resultados históricos e hashes conferidos dos artefatos locais; não copia pesos/datasets nem substitui revisão humana. Revisão esportiva, generalização, direitos de distribuição e requisito acadêmico permanecem separados da conclusão técnica da interface.

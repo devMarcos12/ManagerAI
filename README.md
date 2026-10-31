@@ -2,7 +2,8 @@
 
 Apoio à preparação pré-jogo de futebol com dados históricos StatsBomb Open Data.
 O sistema calcula indicadores auditáveis e hipóteses condicionais, com relatórios
-JSON/Markdown e interface Streamlit. A análise usa arquivos locais, sem API ou GPU.
+JSON/Markdown, interface web React e Streamlit preservado. O frontend usa a API
+FastAPI local; o núcleo calcula a partir de arquivos locais, sem API externa ou GPU.
 
 A V3 está implementada como extensão opcional: 26 indicadores de progressão,
 finalização e pressão espacial, sequências, atletas/formações históricos e dois
@@ -14,7 +15,55 @@ A V4.1 oferece contratos e adaptador do motor determinístico. A V4.3 contém
 experimentos offline de previsão de finalizações e robustez temporal com OLS e
 Ridge. Esses experimentos são separados das análises e hipóteses exibidas ao treinador.
 
-## Instalação
+## Aplicação web local
+
+Requer Python 3.12+, Node 20.19+ ou 22.12+ e os dados locais provisionados.
+Use um ambiente Python novo para a web; não substitua um ambiente funcional.
+Na raiz do checkout, uma vez:
+
+```bash
+python3 -m venv .venv-web
+.venv-web/bin/python -m pip install '.[api,v3]'
+cd frontend
+# Se usar nvm: nvm install && nvm use
+npm ci
+cd ..
+```
+
+Com Node compatível no PATH, inicie API e interface em um único comando:
+
+```bash
+python3 -B scripts/run_web.py
+```
+
+Abra **http://127.0.0.1:5173**. A API usa `127.0.0.1:8011`, um worker; ambos
+permanecem em loopback. Ctrl+C encerra somente os processos criados pelo comando.
+Portas ocupadas causam erro, sem substituir servidores existentes.
+
+O fluxo permite escolher confronto, conferir cobertura, analisar, inspecionar
+indicadores/planos/evidências e exportar JSON/Markdown. V3 só é oferecida em
+recortes certificados. Explicação LLM fica desativada por padrão; opcionalmente,
+configure `MANAGERAI_OLLAMA_MODEL` no servidor antes de iniciar. Não há histórico
+persistente: relatórios no servidor expiram; notas/relatórios não são gravados
+em localStorage. Sem previsão de vitória ou escalação ideal.
+
+Configuração pública de frontend em `frontend/.env.example`; copiar para
+`frontend/.env.local` somente se necessário. Não colocar segredos em `VITE_*`.
+O proxy de desenvolvimento/preview evita CORS aberto. Não há deploy ou
+implantação pública nesta entrega.
+
+```bash
+cd frontend
+npm run build
+npm test
+```
+
+Os testes de navegador portáteis usam Playwright; para uma instalação nova,
+execute `npx playwright install chromium` antes de `npm test`. Build e checks
+TypeScript não precisam de navegador. Contratos, atualização de tipos e testes
+reais opt-in estão em [BACKEND_API.md](docs/BACKEND_API.md).
+
+## Instalação CLI/Streamlit
 
 Requer Python 3.12+. Na raiz do checkout, crie o ambiente **somente se ainda não
 existir** e instale a aplicação com UI e gráficos:
@@ -28,7 +77,8 @@ Se o ambiente já existe, execute apenas a instalação necessária. `requiremen
 seleciona `.[v3]`; versões e extras `ui`, `v3`, `dev`, `experiments` e `eda` são definidos no
 `pyproject.toml`. O núcleo pode ser usado sem dependências externas via
 `PYTHONPATH=src`; EDA e ferramentas de desenvolvimento são opcionais. Dependências
-de fine-tuning ainda não foram escolhidas. O extra `experiments` instala somente
+de treinamento foram escolhidas no extra `training` apenas para o experimento
+de explicação; não são necessárias para usar a aplicação web. O extra `experiments` instala somente
 NumPy para as regressões leves. Para instalar o núcleo sem opcionais, use
 `python -m pip install .`.
 
@@ -85,7 +135,7 @@ PYTHONPATH=src venv/bin/python -B outputs/v22_v3_validation/check_metrics.py
 
 O primeiro comando valida sem pacotes opcionais; o segundo testa o pacote instalado
 sem depender de `PYTHONPATH`. O terceiro inclui dados reais, UI e gráficos quando
-provisionados. Para toda a suíte portátil, instale também `.[experiments]`.
+provisionados. Para toda a suíte portátil do backend, instale também `.[experiments,api]`.
 A CI de PRs e `main` testa instalação mínima e UI/V3/NumPy sem dados StatsBomb.
 Os testes criam fixtures temporárias, preservam
 os brutos e conferem a fixture congelada. Pulos não são testes aprovados.
@@ -126,12 +176,13 @@ Motor tático aprendido e recomendações individuais continuam não implementad
 Fine-tuning de explicação é uma pesquisa separada com supervisão sintética,
 sem validação esportiva nem promoção automática.
 
-Para o futuro frontend, consulte [contrato, execução e exemplos da API](docs/BACKEND_API.md).
+Para a aplicação web, consulte [contrato, execução e exemplos da API](docs/BACKEND_API.md).
 Em ambiente isolado, instale `.[api,v3,experiments]` e execute:
 
 ```bash
 MANAGERAI_DATA_ROOT="$PWD/open-data/data" python -I -B -m uvicorn managerai.api:create_app --factory --host 127.0.0.1 --port 8000 --workers 1
 ```
 
-OpenAPI: `http://127.0.0.1:8000/openapi.json`. O novo frontend não foi implementado.
+OpenAPI: `http://127.0.0.1:8000/openapi.json` para esse comando de API isolada.
+A aplicação React abaixo usa a API em 8011 por padrão.
 Resultados reais e limites de treinamento/avaliação ficam em `docs/PENDING.md`, §20.

@@ -6,6 +6,7 @@ from datetime import date
 import json
 import math
 from typing import Any, Literal
+from .options import VENUES, CONTEXTS, OBJECTIVES
 
 
 @dataclass(frozen=True)
@@ -39,11 +40,11 @@ class AnalysisRequest:
             raise ValueError("target_match_id deve ser inteiro positivo.")
         if type(self.recent_matches_window) is not int or not 1 <= self.recent_matches_window <= 100:
             raise ValueError("Janela deve estar entre 1 e 100 partidas.")
-        if self.venue not in {"casa", "fora", "neutro", "desconhecido"}:
+        if self.venue not in VENUES:
             raise ValueError("venue inválido.")
-        if self.match_context not in {"regular", "clássico", "eliminatório", "decisivo", "outro"}:
+        if self.match_context not in CONTEXTS:
             raise ValueError("match_context inválido.")
-        if self.strategic_objective not in {"equilibrado", "pressionar alto", "proteger vantagem", "buscar gol", "outro"}:
+        if self.strategic_objective not in OBJECTIVES:
             raise ValueError("strategic_objective inválido.")
         if any(type(x) is not int or x <= 0 for x in self.unavailable_player_ids):
             raise ValueError("Jogadores indisponíveis devem ter IDs inteiros positivos.")

@@ -4,11 +4,9 @@ from datetime import date
 from typing import Any
 
 from .report_schema import AnalysisRequest
+from .options import PLAN_IDS, STRATEGIES
 
 SERVICE_VERSION = "2.0.0"
-PLAN_IDS = frozenset({"R01_PROGRESSAO", "R02_PRESSAO_ALTA", "R03_CHANCES",
-                      "V3_ENTRADAS_PASSE", "V3_CHUTES_AREA"})
-STRATEGIES = ("equilibrada", "proteger_area", "saida_sob_pressao", "proteger_progressao")
 
 
 class ServiceError(ValueError):

@@ -12,7 +12,7 @@ python3 -m venv /tmp/managerai-backend-env
 MANAGERAI_DATA_ROOT="$PWD/open-data/data" /tmp/managerai-backend-env/bin/python -I -B -m uvicorn managerai.api:create_app --factory --host 127.0.0.1 --port 8000 --workers 1
 ```
 
-Esse é um serviço local, sem autenticação multiusuário. Não expor publicamente sem uma implantação específica que trate autenticação, TLS e limites por usuário. CORS fica fechado por padrão; `MANAGERAI_CORS_ORIGINS=http://localhost:3000` libera somente a origem indicada. O cliente não pode escolher caminho de dados, destino de arquivos, URL de provedor ou credenciais.
+Esse é um serviço local, sem autenticação multiusuário. Não expor publicamente sem uma implantação específica que trate autenticação, TLS e limites por usuário. CORS fica fechado por padrão; `MANAGERAI_CORS_ORIGINS=http://127.0.0.1:5173` libera somente a origem indicada quando a API é acessada diretamente. O frontend padrão usa proxy local, sem liberar CORS. O cliente não pode escolher caminho de dados, destino de arquivos, URL de provedor ou credenciais.
 
 Para LLM local opcional, com Ollama já instalado e modelo presente, iniciar o mesmo comando com `MANAGERAI_OLLAMA_MODEL=qwen2.5:1.5b` e, de preferência, `MANAGERAI_OLLAMA_DIGEST` igual ao digest observado em `/api/tags`. O backend não baixa modelos nem chama provedores pagos. `explanation=none` não faz chamada. `optional` mantém o relatório com falha explícita; `required` retorna 503 se não gerar saída validada. `explainer_model`, quando informado, precisa ser exatamente o modelo configurado no servidor, sem substituição.
 
@@ -101,3 +101,51 @@ python -I -B -m managerai.experiments.independent --data-root open-data/data --p
 O ajuste usa supervisão sintética de seleção de afirmações em português, sem decisão tática aprendida. O modelo ajustado não é promovido automaticamente. Não se sabe se essa tarefa atende à exigência acadêmica do professor. Configuração, partições, métricas completas e checkpoints reais ficam nos destinos registrados em PENDING.
 
 Referências de implementação: [FastAPI — CORS](https://fastapi.tiangolo.com/tutorial/cors/), [testes](https://fastapi.tiangolo.com/tutorial/testing/), [Ollama — saídas estruturadas](https://docs.ollama.com/capabilities/structured-outputs), [SmolLM2 — autores e licença](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct), [PEFT — LoRA](https://huggingface.co/docs/peft/en/package_reference/lora).
+
+
+## Frontend React e contrato verificável
+
+A aplicação em `frontend/` usa React/TypeScript/Vite, Node 20.19+ ou 22.12+ e `npm ci` com lockfile. Instalação e comando conjunto em [README](../README.md#aplicação-web-local). `scripts/run_web.py` inicia API instalada em 8011 e Vite em 5173, somente loopback; Ctrl+C encerra os processos que criou. Para testar sem alterar ambientes funcionais, pode-se passar `--python /caminho/do/venv/bin/python`. O Python precisa ter o pacote atualizado instalado. Portas ocupadas não são substituídas.
+
+`frontend/.env.example` documenta `VITE_API_BASE_URL` (pública, sem segredos) e `MANAGERAI_PROXY_TARGET` (proxy de desenvolvimento/preview). O modo padrão usa mesma origem por proxy. Para comandos separados, iniciar API com um worker em 8011 e executar `npm run dev` em frontend. Para verificar o build local: `npm run build && npm run preview`, somente loopback em 4173, proxy para a mesma API. O build estático não implementa um proxy de produção; implantação pública é uma tarefa separada.
+
+As opções de mando/contexto/objetivo/estratégia/planos têm Literals canônicos em `options.py`. A API mantém os erros próprios do serviço mesmo após tipagem. Modelos HTTP de respostas em `http_schema.py` tipificam catálogo, capacidades, equipes, partidas, cobertura, evidências, suficiência, planos, comparação, modelos e explicação. O campo `display` é projeção aditiva de apresentação: identificação, perfis/períodos, pontos localizados existentes, títulos canônicos de métricas e fontes/hashes do relatório. Não calcula indicadores nem modifica schemas legados. `legacy_report` e proveniência V4.1 continuam preservados; a interface não depende de reconstruir esses objetos opacos.
+
+Atualizar e conferir contrato, na raiz com um Python que importe o backend atual:
+
+```bash
+.venv-web/bin/python -I -B scripts/export_openapi.py
+cd frontend
+npm run types
+npm run types:check
+npm run build
+cd ..
+.venv-web/bin/python -I -B scripts/export_openapi.py --check
+```
+
+O OpenAPI real está versionado em `frontend/openapi.json`; `src/generated/api.d.ts` e `options.ts` são derivados reproduzíveis, sem servidor/dataset/modelo. O primeiro check detecta mudança no backend; o segundo, divergência entre JSON e TypeScript/opções. A CI faz ambos antes dos testes portáteis. O gerador é dependência de desenvolvimento e lê somente o contrato local conhecido; não faz parte do bundle da aplicação.
+
+Ordenação `context-order-2`: objetivo `pressionar alto` não favorece R02, que descreve saída sob pressão adversária. Objetivos sem plano compatível são declarações sem bônus; prioridade explícita de `saida_sob_pressao` para R02 e de `proteger vantagem` para proteção defensiva é preservada. `ordering.objective_note` expõe a limitação também no relatório Markdown. Nenhuma regra/fórmula legada foi alterada.
+
+O frontend invalida buscas/previews obsoletos, mantém identificação do pedido enviado quando o formulário muda, impede duplicatas, usa timeout de 120 s sem retry de análise e distingue a página recebida da cópia volátil no servidor. Expiração/falta da chave na exportação não apaga o relatório local nem simula download. A referência usa datas de calendário, sem conversão por timezone. Nenhuma nota, elenco ou relatório é persistido em localStorage. V3 só é solicitada explicitamente para recorte certificado; mudança de temporada anuncia redefinição.
+
+Há seis indicadores priorizados, todos os demais em tabela sob demanda (47 no caso V3: 21+26), evidências por métrica, planos com condições/riscos e comparação sem eficácia estimada. Barras usam unidades compatíveis, porcentagens 0–100; não há score composto. Gráficos V3 usam taxas/pontos existentes no relatório, no plano 120×80 sem espelhamento. JSON integral não é renderizado. Evidências limitam a tabela inicial a 20 partidas; fontes são paginadas em lotes de dez; mapa limita renderização a mil pontos por equipe, avisando quando há corte visual. A exportação permanece integral.
+
+Testes portáteis, com navegador Playwright instalado:
+
+```bash
+cd frontend
+npx playwright install chromium
+npm test
+```
+
+Fixtures sintéticas existem somente em `frontend/tests/`, sem importar dados fictícios no produto. Integração real opt-in requer API atual em 8011, frontend em 5173 e dados locais; para o teste de reinício, indicar Python instalado:
+
+```bash
+cd frontend
+MANAGERAI_BACKEND_PYTHON="$PWD/../.venv-web/bin/python" npm run test:real
+```
+
+Pode-se usar um navegador Chromium já instalado por `PLAYWRIGHT_BROWSER_EXECUTABLE_PATH`. `MANAGERAI_REAL_ARTIFACTS` deve apontar a diretório novo para evidências; padrão temporário `/tmp/managerai-frontend-real`. O teste de ciclo inicia e encerra somente seus servidores adicionais em 8012/5178; não depende de serviços pagos. O teste de LLM é pulado se não estiver configurada; geração só é confirmada pelo status retornado, separado de configuração. O cenário 404 real usa perda da memória em reinício; TTL de 300 s é coberto separadamente por teste do backend com relógio controlado, sem fingir espera de cinco minutos no navegador.
+
+Resultados desta entrega, limites e inspeção visual estão em PENDING §21. Evidência histórica pequena da pesquisa, com disponibilidade/configurações/resultados e hashes conferíveis, em [research_evidence.json](research_evidence.json). `python3 -B scripts/check_research_evidence.py --check` verifica o acervo local quando disponível; ausência de artefatos em outra máquina não bloqueia a interface determinística, nem deve ser apresentada como avaliação conferida naquela máquina.
