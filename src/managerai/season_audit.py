@@ -75,13 +75,14 @@ def build_coverage_matrix(data: LocalData, *, audit_date: str,
         coverage = present["coverage"]
         mismatch = (baseline["matches"] != present["matches"] or
                     baseline["events"] != coverage["events"] or
-                    baseline["lineups"] != coverage["lineups"] or
-                    baseline["three_sixty"] != coverage["three-sixty"])
+                    baseline["lineups"] != coverage["lineups"])
         reasons = []
         if check["status"] != "compatível":
             reasons.append("Snapshot local incompatível com o contrato CORE-01.")
         if mismatch:
             reasons.append("Cobertura de arquivos diverge do contrato CORE-01.")
+        if baseline["three_sixty"] != coverage["three-sixty"]:
+            reasons.append("Cobertura 360 diverge do contrato; informativo, não consumido pela V3.")
         if coverage["events"] != len(matches) or coverage["lineups"] != len(matches):
             reasons.append("Eventos ou escalações ausentes.")
         h5, h10 = (_eligible_targets(matches, n) for n in (5, 10))

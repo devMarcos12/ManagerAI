@@ -1,6 +1,8 @@
 # ManagerAI — pendências e validação
 
-**CORE-01: contrato e verificador implementados; clone temporário LF, dois perfis portáveis e 247 testes reais validados sem rede. `.gitattributes` fixa LF dos relatórios congelados para novos checkouts. Aceite integral pendente do wheel atualizado instalado com `python -I`. CORE-02: protocolo, matriz e auditor portátil implementados; certificação real pendente, §18. O runtime do treinador permanece determinístico; regressões são experimentais.**
+Atualização de interface em 30/10/2026: mitigação da sobrecarga da prévia JSON V3 implementada e validada por AppTest; confirmação manual do travamento no navegador pendente (§19). Os status CORE não foram reavaliados naquela correção; a execução posterior de 31/10 está no §20.
+
+**31/10: serviço/API 2.0.0 implementados; wheel atualizado instalado e conferido com `python -I`, 282 testes instalados com dados reais aprovados. Ollama real validado; ajuste LoRA real de explicação concluído como experimento, sem promoção. Motor tático aprendido e validação esportiva humana continuam ausentes. CORE-02 não certificou novas temporadas. Estado e rastreabilidade CORE-03…16 no §20.**
 
 Atualizado em 25/10/2026. Estado, contratos e comandos: [CURRENT_VERSION.md](CURRENT_VERSION.md). Regras: [AGENTS.md](../AGENTS.md). **V4.1, V4.2 e V4.3-A/B concluídas; dataset e regressões offline validados (§14).** Há OLS/Ridge experimentalmente ajustadas para previsão de chutes. Motor aprendido integrado ao runtime, fine-tuning, LLM e recomendações de escalação continuam **não implementados**. V4.3-C concluída como estudo exploratório; CORE-00 no §16.
 
@@ -19,16 +21,16 @@ Na V4.1, este documento foi corrigido a partir do estado antigo da Fase 1 para r
 | V4.3-A/B | CONCLUÍDA | 330 exemplos/50 excluídos; baselines, OLS/Ridge e avaliação 198/65/67 reproduzidos; 191 testes e 16 comparações aprovados; §14 |
 | V4.3-C | CONCLUÍDA | Estudo exploratório, reprodução e 228 testes históricos no §15; pré-requisitos versionados na CORE-00 |
 | CORE-00 | BASE CONSOLIDADA E VALIDADA | Instalação limpa e CI aprovadas; integração rastreada pelo PR #10, §16 |
-| CORE-01 / DATA-01 | IMPLEMENTAÇÃO E SUÍTES LOCAIS VALIDADAS; WHEEL PENDENTE | Clone LF passou no verificador e 247 testes reais; `.gitattributes` protege novos checkouts. Wheel atualizado não validado. Finalidade/permissões e responsável nominal exigem decisão humana; §17 |
+| CORE-01 / DATA-01 | WHEEL E DADOS LINUX VALIDADOS EM 31/10 | Pacote instalado atualizado e contrato empacotado conferidos; 282 testes reais aprovados no §20. Finalidade/distribuição e responsável nominal continuam decisão humana; §17 histórico |
 | ART-01 | IMPLEMENTADO NA C, CONFERIDO NA CORE-00 | `open-data/` e `outputs/runs/` ignorados; fixtures, exemplos finais e verificadores preservados/rastreados |
 | TEAM-01 / B4 | DECISÃO HUMANA | Responsáveis por contratos, dados/indicadores, UI e avaliação; confirmar uso compartilhado de `.vscode/settings.json` |
-| REF-01 | NÃO INICIADO | Consolidar constantes de suficiência e revisar acoplamento regras/apresentação em refatoração própria, sem alterar fórmulas/contratos |
-| V3-01 / CORE-02 | PARCIAL: MATRIZ E GATES PORTÁVEIS | 80 pares inventariados e candidatos priorizados; CORE-01 wheel/clone compatível e auditorias reais integrais pendentes. Nenhuma ampliação de VALIDATED_RECUTS; §18 |
-| PERF-01 | NÃO INICIADO | Medir releitura/tamanho dos relatórios; preservar proveniência, inspeção e compatibilidade |
+| REF-01 | SUFICIÊNCIA CONSOLIDADA | Constantes e predicado compartilhados; regras V3 deixam de importar apresentação para suficiência. Helpers de formatação ainda reutilizados; sem alteração de fórmulas/contratos |
+| V3-01 / CORE-02 | PARCIAL: MATRIZ E GATES PORTÁVEIS | 80 pares inventariados e candidatos priorizados; wheel/clone Linux validados no §20. Auditorias integrais para certificação V3 continuam pendentes. Nenhuma ampliação de VALIDATED_RECUTS; §18 |
+| PERF-01 | MEDIÇÕES INICIAIS E LIMITES IMPLEMENTADOS | Duração/payload reais e limites de API no §20; prévia JSON da UI mitigada. Perfil completo de releitura e revisão visual continuam pendentes |
 | EVAL-01 | PENDENTE | Revisão especializada/vídeo/treino com correção, rastreabilidade, plausibilidade, compreensão, riscos e utilidade separados |
 | AI-01 | EXPERIMENTO QUANTITATIVO A/B IMPLEMENTADO | OLS/Ridge treinadas offline para chutes; sem motor tático aprendido no runtime, validação de estratégia ou integração V3/V4.1. Decisão C no §14 |
-| AI-02 | PLANEJADO | Fine-tuning depende de alvo, direitos, rótulos, avaliadores, divisão temporal e ganho mensurável; sem pacote/checkpoint escolhido |
-| AI-03 | PLANEJADO | LLM explicadora depende de provedor/custo e avaliação de fidelidade aos números calculados; nenhuma integração atual |
+| AI-02 | AJUSTE REAL DE EXPLICAÇÃO EXPERIMENTAL | SmolLM2-135M + LoRA, 192 passos, avaliação sintética e recarregamento reais, §20. Decisão tática aprendida bloqueada por ausência de rótulos revisados |
+| AI-03 | INFERÊNCIA LOCAL REAL VALIDADA | Qwen2.5 1.5B via Ollama; seleção restrita de afirmações autorizadas; sem provedor pago. Sem prosa livre ou avaliação humana de utilidade |
 | AI-04 | NÃO IMPLEMENTADO, SEM ESCOPO APROVADO | Escalação/formação ideal exige disponibilidade atual, tarefa e validação próprias; histórico de atletas não basta |
 
 `PENDENTE` não autoriza execução. Os módulos ativos V3, 14 módulos anteriores de testes, fixture congelada, dois exemplos finais, scripts/verificadores independentes, brutos, licenças, EDA e ambiente funcional continuam preservados. V4.1 acrescenta um módulo de testes e dois módulos de infraestrutura.
@@ -800,3 +802,117 @@ Os testes CORE-02 aprovados nesta fase cobrem a matriz sintética, cortes tempor
 Validação desta fase: `venv/Scripts/python.exe` Python 3.14.7, `PYTHONPATH=src`, `PYTHONDONTWRITEBYTECODE=1`, `PYTHONUTF8=1`; sem instalação ou rede. `-B -S -m unittest discover -s tests -p test_season_audit.py -q`: **16 aprovados**, zero falhas/erros/pulos. `-B -S -m unittest discover -s tests -p test_statsbomb_provisioning.py -q`: **10 aprovados**, zero falhas/erros/pulos. Suíte `-B -S -m unittest discover -s tests -q`, com TEMP curto original: 262 descobertos, **5 falhas e 43 pulos**, das quais duas falhas de comparação de caminho curto/longo do TEMP. Com TEMP longo explícito: 263 descobertos, **217 aprovados, 3 falhas, 43 pulos**. Perfil com opcionais, mesmo TEMP longo, `-B -m unittest discover -s tests -q`: 263 descobertos, **250 aprovados, 3 falhas, 10 pulos**. As três falhas remanescentes são subcasos preexistentes de comparação byte a byte dos três relatórios congelados com CRLF neste checkout Windows; nenhum arquivo foi regravado para fazê-los passar. O teste de wheel atualizado com `python -I`, os opt-in com clone compatível e os candidatos reais não foram executados. Uma tentativa opcional de checkout LF temporário via `git clone --local` falhou por permissão de hardlink na pasta `.git` antes dos testes; não conta como validação.
 
 Próximo gate: validar o wheel CORE-01 atualizado instalado em ambiente isolado sem pacote adicional não autorizado; provisionar clone novo LF em destino separado e confirmar `verify-data=compatível`; executar auditorias integrais dos três candidatos, registrar duração/bytes/fontes e testes reais opt-in; revisar versões, métricas e orientação segundo o protocolo; só então decidir cada inclusão explícita na allowlist. A meta de expansão permanece tecnicamente inconclusiva. Dados, EDA, relatórios e fixture congelada não foram alterados nesta fase; diff/status e hashes finais são conferidos no encerramento.
+
+## 19. UI — prévia JSON extensa na V3 (30/10/2026)
+
+Relato: navegador deixa de responder ao analisar com V3. No checkout Linux, a análise City × Arsenal de 08/05/2016, janela 10, terminou em 6,22 s e produziu JSON UTF-8 de 8.657.572 bytes e 211.447 linhas. Antes da correção, `results` enviava esse objeto inteiro para `st.json` com expansão padrão, inclusive dentro do expander fechado. O AppTest anterior passou os três testes V3 em 21,874 s; portanto não reproduziu travamento no servidor nem comprova a causa exclusiva do sintoma no navegador.
+
+Mitigação em `src/managerai/streamlit_ui.py`: serializar uma vez para o download; limitar a prévia integral a 512.000 bytes, sempre recolhida; acima desse limite mostrar somente schema/metadados e orientar para o download completo. Indicadores, hipóteses, gráficos, fórmulas e schemas não foram alterados. `tests/test_v3_ui.py` verifica no confronto real que a prévia é limitada e recolhida, o download preserva exatamente o JSON completo e os dois gráficos continuam presentes.
+
+Validação no `venv/bin/python` Python 3.12.3, Streamlit 1.65.0 e Matplotlib 3.11.2, sem instalação. Prefixo dos dois comandos: `MPLCONFIGDIR=/tmp/managerai-mpl PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:tests MANAGERAI_RUN_LOCAL_TESTS=1 venv/bin/python -B -m unittest discover -s tests`.
+
+| Sufixo do comando | Aprovados | Falhas/erros/pulos | Tempo |
+|---|---:|---:|---:|
+| `-p test_v3_ui.py -v` | 3 | 0/0/0 | 22,098 s |
+| `-p test_streamlit_ui.py -v` | 10 | 0/0/0 | 7,474 s |
+
+Suíte completa e revisão visual em navegador real não executadas nesta tarefa. AppTest não mede responsividade do navegador. Próximo passo: reiniciar o Streamlit e repetir a demonstração com V3 no navegador do usuário; investigar console/terminal se o sintoma persistir. Não houve commit/push, instalação, geração de relatórios em disco nem alteração dos dados, da EDA ou das fixtures congeladas. Os gates CORE-01/02 continuam pendentes.
+
+
+## 20. Core de serviço, API e pesquisa de IA — 31/10/2026
+
+Esta seção prevalece para o estado da implementação nova. As evidências anteriores continuam históricas e não são contagens desta execução. Entrada: `main`, HEAD `37f2a13afe221454c78f2c7103d6999ddee6a53b`. Quatro alterações preexistentes preservadas: CURRENT_VERSION, PENDING, streamlit_ui e test_v3_ui. Patch inicial preservado em `/tmp/managerai-final-core/preexisting.patch`; nenhuma alteração própria em streamlit_ui/test_v3_ui.
+
+### 20.1 Implementação e limites
+
+Serviço versionado 2.0.0 em `service_schema.py`/`service.py`; API FastAPI em `api.py`; política comum em `sufficiency.py`; LLM local opcional em `explanation.py`. Pedidos validam contexto, corte, elenco com fonte/data e restrições. Ausência de elenco limita sugestões individuais, sem bloquear análise coletiva. Planos reutilizam evidências/regras reais; preferências só ordenam opções já sustentadas. JSON e Markdown preservam condições, riscos, limites e proveniência. Schemas legados 1.0.0/1.1.0 continuam intactos.
+
+LLM: seleção validada de afirmações autorizadas, materializadas em português pelo Core. Sem prosa livre, ferramentas, recalcular números, chave de API ou chamadas pagas. Notas não entram no prompt. Provedor Ollama apenas loopback, modelo configurado no servidor, digest registrado; modo `required` falha explicitamente, `optional` conserva relatório determinístico. Modelos desconhecidos não recebem fallback silencioso.
+
+Correção 360: removida a divergência 360 da reprovação da matriz, mantendo aviso e teste combinado com verify-data para ausência/cobertura parcial; eventos obrigatórios ausentes continuam incompatíveis/reprovados. Nenhuma alteração da allowlist V3. Linux atual: verify-data `compatível`, revisão `4b73468fc5b0f1950f9f66fada70ad3a4f9327cb`, remoto `hudl/open-data`, duas informações de órfãos e nenhum erro. Isso não altera o resultado histórico do checkout Windows CRLF nem certifica novas temporadas.
+
+Contrato HTTP, instalação e exemplos: [BACKEND_API.md](BACKEND_API.md). API síncrona, um worker, janela até 20, uma análise concorrente, limite de dez análises/minuto e armazenamento volátil de oito relatórios/300 s, até 32 MB cada. Acesso por token aleatório de posse; serviço local, sem autenticação multiusuário. Reinício perde relatórios. Sem banco/fila/frontend novo. CI alterada para incluir extra api no perfil opcional, mas não executada remotamente nesta tarefa.
+
+### 20.2 Recursos, direitos e protocolo
+
+Python funcional 3.12.3; CPU i7-1165G7, oito CPUs lógicas, RAM total 15 GiB, aproximadamente 8,6 GiB disponível no início, disco livre 204 GiB. CUDA indisponível no PyTorch 2.14.0; não há nvidia-smi. Ollama local disponível: Qwen2.5 1.5B (~986 MB) e Llama3.1 8B (~4,92 GB). Apenas o menor foi usado, sem download de outro modelo Ollama. Seu digest: `65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b`.
+
+`api-env`, `train-env` e `full-env` foram criados em `/tmp/managerai-final-core/`. O ambiente de treino reutiliza por .pth as bibliotecas já existentes do venv, instalando Transformers/PEFT somente no diretório isolado; isso não é instalação limpa de toda a pilha de treinamento. A validação do pacote/backend usa ambiente limpo separado. Nenhum pacote foi instalado no venv funcional. A primeira tentativa pip no sandbox falhou por DNS; repetição autorizada fora do sandbox baixou dependências públicas. TestClient também bloqueou no sandbox por restrição de sockets; testes HTTP executados fora dessa restrição, sem provedor externo.
+
+O protocolo [core_ai_protocol.json](core_ai_protocol.json) foi gravado antes das avaliações; identidade canônica registrada nos artefatos. Distingue previsão de contagem, revisão tática e explicação. Sem rótulos táticos de especialistas, D1 permanece bloqueada: placar/regras não foram usados como tática ideal. Nenhuma revisão humana foi realizada. Rubrica/formulário em [tactical_review.schema.json](tactical_review.schema.json); casos e fontes preparados pelo verificador backend não são avaliações. Requisito acadêmico específico do professor não foi encontrado nos documentos operacionais; ajuste de explicação não pode ser anunciado como cumprimento de aprendizado de decisão tática.
+
+Uso dos dados continua local/restrito; nenhuma redistribuição, publicação ou autorização comercial inferida. Para treinamento de explicação foram usados somente casos sintéticos locais, sem eventos StatsBomb, dados pessoais reais ou avaliação de especialistas. Licença do modelo base verificada nos metadados oficiais Apache-2.0; revisão fixada `12fd25f77366fa6b3b4b768ec3050bf629380bac` de HuggingFaceTB/SmolLM2-135M-Instruct. Download público de 271.177.292 bytes, em `outputs/runs/core_ai_model_20261031/`, ignorado pelo Git, com README/config/tokenizador/pesos e `provision.json` com SHA-256. Não houve gasto pago.
+
+### 20.3 Avaliação quantitativa independente
+
+Runner `experiments/independent.py`; auditoria integral específica de contagem parametrizada em `build_shots_dataset`, sem certificar geometria/V3. Treino PL2015/16 até 06/02/2016: 198 exemplos. Teste La Liga2015/16 a partir de 09/04/2016: 69 exemplos. É avaliação entre competições no mesmo período, não temporada futura. Cada recorte teve conteúdo auditado para o alvo de contagem; features H5 congeladas antes da passagem de labels, sem alvo/dia/futuro ou reposição. Todos os IDs, exclusões, fontes e dependências estão no artefato. Janelas/equipes compartilhadas não são observações IID.
+
+Primeira execução real em `outputs/runs/core_ai_independent_20261031/evaluation.json`: MAE B0=3,9130434783; B1=3,3869565217; OLS=3,3503165445; Ridge=3,3504899821. OLS melhora 0,0366399772 chute (1,0818%); Ridge 0,0364665396 (1,0767%). Ambas falham os critérios pré-fixados de 0,2 chute E 5% contra B1. Nenhum modelo promovido. Métricas mensais, RMSE, viés e diferenças pareadas por jogo estão preservados, sem IC/p-valor IID. Previsão de chutes não avalia eficácia de planos.
+
+### 20.4 Inferência real, ajuste e validação final
+
+Primeiro verificador real da API: `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-final-core/api-env/bin/python -u -B scripts/check_backend.py --data-root open-data/data --output-dir outputs/runs/core_ai_backend_real_20261031 --with-ollama`. Três casos com HTTP 200, explicação real `generated` e exportação JSON equivalente: City V3 (4 planos, 27,863 s, 4.947.691 bytes); Real/Barcelona insuficiente (0 planos, 9,438 s, 3.274.645 bytes); notas com injeção (2 planos, 10,448 s, 152.823 bytes). LLM durou 19,884/4,494/7,799 s. Isso não é prova visual de navegador; nenhuma ferramenta de inspeção visual estava disponível. Os bytes correspondem àquela revisão local; campos posteriores de comparação/contrato podem mudar o tamanho.
+
+Treinamento real executado, com 96 casos sintéticos de treino, 24 de validação e 40 de teste, separados antes das derivações; seed 42, duas épocas, LoRA r8/alpha16 em q_proj/v_proj, lr 0,0005, até 768 tokens, quatro threads CPU. Avalia modelo base com o mesmo prompt, ajustado e template. Saída restrita exige seleção integral de IDs das afirmações autorizadas. Essa tarefa limitada de montagem de explicação não aprende decisão tática. Artefatos em `outputs/runs/core_ai_lora_20261031/`; resultados finais e carregamento do adaptador registrados abaixo.
+
+### 20.5 Rastreabilidade CORE-03…CORE-16
+
+| Issue | Estado local e critério |
+|---|---|
+| CORE-03 / #13 | Avaliação real entre competições executada; limiar útil não atingido; sem confirmação em temporada futura |
+| CORE-04 / #14 | Contrato novo 2.0.0 de contexto/pedido implementado; schemas legados preservados |
+| CORE-05 / #15 | Perfis/evidências reutilizados, política de suficiência consolidada; compatibilidade e custo medidos; sem novas fórmulas |
+| CORE-06 / #16 | Tarefas/rubrica/formulário definidos; coleta e revisão humana de rótulos bloqueadas por ausência de avaliadores/dados revisados |
+| CORE-07 / #17 | Planos condicionais rastreáveis, restrições e ordenação explícita implementados; eficácia não validada |
+| CORE-08 / #18 | Preditores avaliados e não promovidos; D1 sem rótulos válidos; D2 com ajuste, avaliação e recarregamento reais concluídos como experimento, sem promoção |
+| CORE-09 / #19 | Elenco declarado com posição/disponibilidade/fonte/data e validações; nenhuma recomendação individual validada |
+| CORE-10 / #20 | Comparação descritiva de opções sustentadas e prioridades declaradas; sem ganho esperado ou eficácia estimada |
+| CORE-11 / #21 | Serviço orquestra núcleo/planos/explicação opcional; preditores não aprovados permanecem fora da decisão |
+| CORE-12 / #22 | Ollama real integrado e validado; seleção restrita em português, fallback explícito apenas no modo opcional |
+| CORE-13 / #23 | JSON/Markdown versionados com contexto/evidências/abstenção; aceitação esportiva humana pendente |
+| CORE-14 / #24 | API/OpenAPI, erros, exportação e fluxo HTTP real validados com pacote instalado; exemplos entregues |
+| CORE-15 / #25 | Rubrica e casos preparados; zero avaliações especializadas, dependência externa explícita |
+| CORE-16 / #26 | Homologação técnica local do backend aprovada; validação esportiva/direitos de distribuição continuam pendentes; frontend não construído |
+
+Nenhuma issue remota foi alterada; não houve commit/push/merge/PR ou publicação. Estes status não significam fechamento automático dos critérios externos.
+
+
+### 20.6 Resultados finais, artefatos e comandos reproduzíveis
+
+**Fine-tuning real concluído como experimento de explicação restrita; sem promoção.** SmolLM2-135M + LoRA: 460.800 parâmetros treináveis, 192 passos; loss inicial 0,9454962611 e final 0,0001553384. Fit até o passo 192: 363,697 s. O campo `training.duration_seconds=528,203` do artefato inclui também avaliação pós-fit e recarregamento, não é tempo puro de otimização. No teste sintético n40: validade/cobertura exata e respeito à abstenção base=0%, ajustado=100%; na validação n24, ajustado=100%. Os nulos/fatos alterados são recusados pelo validador; zero conteúdo inseguro exposto após validação não significa que o modelo base não produziu conteúdo inválido. Saídas brutas e falhas completas estão preservadas.
+
+Avaliação base: 261,188 s para 40 casos; ajustado: 91,863 s para 40; validação: 68,134 s para 24. Pico RSS cumulativo do processo: 1.624.220 KiB na base e 2.153.652 KiB após ajuste. Não são medições isoladas de VRAM/memória por modelo. Template: 100% por construção nessa supervisão, aproximadamente 0,000220 s para validar/materializar os 40 casos, sem parâmetros/modelo adicional. Portanto o ajuste demonstra viabilidade técnica nesta tarefa pequena, sem vantagem sobre template em fidelidade e custo. Zero revisões humanas de clareza/utilidade; nenhuma decisão tática aprendida ou adequação acadêmica comprovada. Modelo ajustado permanece experimental, fora da API de produção.
+
+Artefato real: `outputs/runs/core_ai_lora_20261031/adapter/` (6.659.416 bytes incluindo tokenizador); SHA-256 de `adapter_model.safetensors`: `691444b0e23489dbb49c8ef1e9d6a45e9431e2a7b720fa151c3a8b99c571602d`. `evaluation.json` contém treino/perdas, casos completos base/ajustado/validação, decisão e hashes; `manifest.json` contém partições, configuração, dependências, identidade do modelo/dados/protocolo; `execution_identity.json` registra duração e proveniência complementar. O adaptador salvo foi recarregado com PEFT e produziu seleção válida para o primeiro caso de teste.
+
+Limite de proveniência do primeiro ajuste: o processo já estava executando quando foram adicionados somente guards de destino e captura automática de código ao runner. Seu manifesto inicial não captura hash do código. A fonte exata do runner no lançamento foi reconstruída revertendo essas alterações não numéricas e preservada em `executed_explainer_training.py` (SHA-256 `68aedc24299a76d74c82d63e8370dcc6eb272fe9e65ee6f12ab56783de5bd18c`); essa reconstrução está explicitada em `execution_identity.json`, não apresentada como captura imutável no início. O runner entregue captura automaticamente hashes em futuras execuções. Nenhuma configuração, passo, dado ou resultado do ajuste original foi alterado para fazê-lo passar.
+
+Protocolo: SHA-256 dos bytes `9fa36937190000fbebd86ab8a03cc2257c86aa2072a293f56f25ea39eac7f21d`; fingerprint canônico `8cc07c14063e05c196e4815d24f03e22687d1c9f05f7ab30a897f1a50aa3cddc`. A segunda avaliação quantitativa, agora com pacote instalado, está em `outputs/runs/core_ai_independent_installed_20261031/evaluation.json`, com hashes do código efetivamente executado. Reproduziu exatamente modelos, previsões, métricas e decisões da primeira, em 205,448 s. OLS/Ridge continuam sem atingir o limiar útil; não promover.
+
+**Pacote instalado:** cópia temporária Git em `/tmp/managerai-final-core/checkout`, com sobreposição dos arquivos atuais rastreados e novos autorizados, incluindo as quatro alterações preexistentes. Não foi teste de HEAD antigo. Verificação byte a byte de todos os módulos Python instalados contra `src/managerai`: zero divergências. Contrato JSON empacotado com SHA-256 `952e0db46781d71cf7c99aadcc58d7f40d04d8e3671737b2598ac1c323aa7244`, idêntico ao fonte. Imports novos e contrato confirmados com `python -I`. `pip check`: nenhum requisito quebrado. Wheel salvo em `/tmp/managerai-final-core/wheels/`; o venv funcional não foi alterado. Atualizações documentais posteriores e comentário no pyproject não mudaram o código instalado; não se atribui um hash binário de wheel a outro build.
+
+| Verificação desta execução | Comando/intérprete | Resultado real |
+|---|---|---|
+| Perfil mínimo fonte final | `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -B -S -m unittest discover -s tests -q` | 282 descobertos, 233 aprovados, 49 pulados, zero falhas/erros; 9,450 s |
+| Serviço/API portátil focal | `PYTHONPATH=src:tests PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-final-core/api-env/bin/python -B -m unittest discover -s tests -p test_service.py -v` | 18 aprovados, zero falhas/erros/pulos; 2,800 s; executado fora da restrição de sockets |
+| Núcleo instalado sem opcionais | `/tmp/managerai-final-core/core-env/bin/python -I -B -m unittest discover -s tests -q` no checkout temporário | 282 descobertos, 233 aprovados, 49 pulados, zero falhas/erros; 8,083 s |
+| Pacote instalado portátil com opcionais | `MANAGERAI_RUN_LOCAL_TESTS=0 PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg MPLCONFIGDIR=/tmp/managerai-final-core/mpl-portable /tmp/managerai-final-core/full-env/bin/python -I -B -m unittest discover -s tests -q` no temporário | 282 descobertos, 272 aprovados, 10 pulados, zero falhas/erros; 14,577 s |
+| Pacote instalado completo com dados reais | `MANAGERAI_RUN_LOCAL_TESTS=1 PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg MPLCONFIGDIR=/tmp/managerai-final-core/mpl-installed /tmp/managerai-final-core/full-env/bin/python -I -B -m unittest discover -s tests -q` no temporário | 282 aprovados, zero falhas/erros/pulos; 85,319 s |
+| Comparações independentes | `/tmp/managerai-final-core/full-env/bin/python -I -B outputs/v22_v3_validation/check_metrics.py`, MPLCONFIGDIR temporário | 16/16 aprovadas; código 0 |
+| API instalada + Ollama real | `/tmp/managerai-final-core/full-env/bin/python -I -B scripts/check_backend.py --data-root open-data/data --output-dir outputs/runs/core_ai_backend_installed_20261031 --with-ollama` | 3/3 casos HTTP 200 e `generated`; exportações equivalentes; 28,704 / 7,760 / 9,190 s |
+| HTTP TCP real sem LLM | Uvicorn instalado em loopback, script temporário `check_http.py` | HTTP 200, dois planos, 151.701 bytes, exportação equivalente, 2,799 s; servidor encerrado |
+
+Integração instalada final: `outputs/runs/core_ai_backend_installed_20261031/` contém OpenAPI real, avaliação, hashes de código e `human_review_cases.json` com três casos/fontes, lista de revisões vazia. Os casos cobrem funções, não constituem amostra independente de utilidade. Payloads finais: 4.950.415 bytes (City V3), 3.274.667 (insuficiente), 153.199 (injeção). HTTP real/OpenAPI também em `outputs/runs/core_ai_http_20261031/`. Manifesto da entrega em `outputs/runs/core_ai_delivery_20261031/`. Artefatos permanecem locais/ignorados; não foram publicados.
+
+Comandos de pesquisa efetivamente executados (variáveis de threads/caches isoladas quando aplicáveis):
+
+```bash
+PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /tmp/managerai-final-core/train-env/bin/python -u -B -m managerai.experiments.explainer_training --model-path outputs/runs/core_ai_model_20261031 --protocol docs/core_ai_protocol.json --output-dir outputs/runs/core_ai_lora_20261031
+OPENBLAS_NUM_THREADS=1 /tmp/managerai-final-core/full-env/bin/python -I -B -m managerai.experiments.independent --data-root open-data/data --protocol docs/core_ai_protocol.json --output-dir outputs/runs/core_ai_independent_installed_20261031
+```
+
+Os destinos acima já existem e são preservados; para repetir, escolher nomes novos. Para carregar o adaptador sem treinar: `LocalTransformerProvider('outputs/runs/core_ai_model_20261031', adapter_path='outputs/runs/core_ai_lora_20261031/adapter')`, em ambiente com training; método `generate(projection)` seguido obrigatoriamente por `validate_selection`. Isso é uso experimental explícito, não registro automático no servidor.
+
+Preservação: os três relatórios congelados coincidem com SHA-256 inicial; Git do clone StatsBomb continua limpo e na revisão fixada; EDA mantém 108 arquivos observados, sem gerador executado. Não se fez hash integral da EDA nem inspeção visual de navegador. A mitigação de JSON da UI foi preservada e os testes reais passaram; confirmação humana de responsividade permanece pendente. Não foram executadas avaliações esportivas humanas, treino tático supervisionado, serviço pago, CI remota, certificação V3 adicional ou frontend novo.
+
+**Status de entrega:** BACKEND PARA FRONTEND: APTO para integração local com as capacidades explicitadas no contrato. IA E FINE-TUNING: PARCIAIS — inferência e ajuste de explicação reais, avaliação técnica sintética concluída; sem decisão tática aprendida, superioridade sobre template, revisão humana ou validação esportiva. O projeto inteiro não está concluído; frontend novo e critérios externos permanecem abertos.

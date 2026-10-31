@@ -165,9 +165,10 @@ class SupervisedDataset:
     metadata_sources: tuple[tuple[str, str], ...]
     source_hashes: tuple[tuple[str, str], ...]
     audit: dict
+    task_id: str = TASK_ID
 
     def to_dict(self) -> dict:
-        return {"task_id": TASK_ID, "task_version": TASK_VERSION, "window": WINDOW,
+        return {"task_id": self.task_id, "task_version": TASK_VERSION, "window": WINDOW,
                 "feature_names": FEATURE_NAMES, "examples": [asdict(e) for e in self.examples],
                 "excluded": [asdict(e) for e in self.excluded], "metadata_sources": self.metadata_sources,
                 "source_hashes": self.source_hashes, "audit": self.audit}
@@ -244,12 +245,20 @@ def build_dataset(root: str | Path) -> SupervisedDataset:
     Passo1 congela todas as features a partir de janelas passadas. Passo2 audita
     eventos do recorte e extrai y, sem voltar a chamar o builder de features.
     """
+    return build_shots_dataset(root, 2, 27)
+
+
+def build_shots_dataset(root: str | Path, competition_id: int, season_id: int) -> SupervisedDataset:
+    """Auditoria integral específica de contagem; não certifica geometria/V3.
+
+    Mesma construção temporal da A/B, parametrizada para avaliação independente.
+    """
     metadata = LocalData(root)
-    original = load_season(metadata, 2, 27)
+    original = load_season(metadata, competition_id, season_id)
     fixtures = tuple(sorted((Fixture(m["match_id"], m["match_date"], *team_ids(m)) for m in original.matches),
                             key=lambda m: (m.match_date, m.match_id)))
     # Remover placares e todos os outros campos pós-jogo antes da seleção/features.
-    season = Season(2, 27, original.competition, original.season,
+    season = Season(competition_id, season_id, original.competition, original.season,
                     [m.calendar_record() for m in fixtures], original.teams)
     del original
     history_data = LocalData(root)
@@ -268,7 +277,7 @@ def build_dataset(root: str | Path) -> SupervisedDataset:
 
     by_id = {m.match_id: m for m in fixtures}
     for target in fixtures:
-        request = AnalysisRequest(2, 27, target.home_team_id, target.away_team_id,
+        request = AnalysisRequest(competition_id, season_id, target.home_team_id, target.away_team_id,
                                   target_match_id=target.match_id, recent_matches_window=WINDOW)
         histories, _ = select_history(season, request)
         reasons = []
@@ -333,4 +342,5 @@ def build_dataset(root: str | Path) -> SupervisedDataset:
              "feature_build_completed_before_label_reads": True,
              "definition": "Shot ID16/nomeShot nos períodos1/2, inclui todos outcomes e pênaltis regulamentares; exclui prorrogação/disputa. Sem deduplicação silenciosa ou inferência VAR."}
     return SupervisedDataset(tuple(examples), tuple(exclusions), tuple(sorted(metadata.sources.items())),
-                             tuple(sorted(source_hashes.items())), audit)
+                             tuple(sorted(source_hashes.items())), audit,
+                             TASK_ID if (competition_id, season_id) == (2, 27) else "home_shots_pre_match")

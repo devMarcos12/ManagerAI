@@ -18,6 +18,8 @@ v3 = ["streamlit==1.65.0", "matplotlib==3.11.2"]
 dev = ["streamlit==1.65.0", "matplotlib==3.11.2"]
 # Experimento quantitativo opt-in; não altera dependências do núcleo/UI/V3.
 experiments = ["numpy==2.5.2"]
+api = ["fastapi==0.162.0", "uvicorn==0.54.0", "httpx==0.28.1"]
+training = ["transformers==4.57.6", "peft==0.21.2", "torch==2.14.0"]
 eda = [
     "pandas==3.0.5",
     "numpy==2.5.2",
@@ -27,7 +29,7 @@ eda = [
     "nbformat==5.11.1",
     "pillow==12.3.0",
 ]
-# Fine-tuning: nenhuma dependência escolhida até definir tarefa/modelo/avaliação.
+# Ajuste de explicação no extra training; não é dependência do produto padrão.
 
 [project.scripts]
 managerai = "managerai.cli:main"

@@ -87,6 +87,28 @@ class SnapshotFixture(unittest.TestCase):
 
 
 class ProvisioningTests(SnapshotFixture):
+    def test_360_absent_partial_and_matrix_agree_without_relaxing_required_files(self):
+        from managerai.data_loader import LocalData
+        from managerai.season_audit import build_coverage_matrix
+        self.contract["coverage"]["seasons"][0]["three_sixty"] = 2
+        self.contract["coverage"]["file_counts"]["three-sixty"] = 2
+        for absent in (False, True):
+            if absent:
+                (self.root/"three-sixty/101.json").unlink()
+            verified = self.check()
+            self.assertEqual(verified["status"], "compatível")
+            matrix = build_coverage_matrix(LocalData(self.root), audit_date="2026-10-31",
+                                           contract=self.contract, verification=verified)
+            row = matrix["rows"][0]
+            self.assertNotEqual(row["status"], "reprovado")
+            self.assertTrue(any("360" in reason for reason in row["reasons"]))
+        (self.root/"events/101.json").unlink()
+        verified = self.check()
+        self.assertEqual(verified["status"], "incompatível")
+        matrix = build_coverage_matrix(LocalData(self.root), audit_date="2026-10-31",
+                                       contract=self.contract, verification=verified)
+        self.assertEqual(matrix["rows"][0]["status"], "reprovado")
+
     def test_compatible_alias_deterministic_and_orphans_informative(self):
         first = self.check()
         self.assertEqual(first["status"], "compatível")

@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 
 from ..report_schema import AnalysisReport, MetricEvidence, TacticalHypothesis, TeamProfile
+from ..sufficiency import insufficient_core_evidence
 from .terminology import (CORE_METRICS, MINIMUM_CORE_MATCHES, PRIORITY_METRICS, TERMS,
                           count_label, date_label, number, reading)
 
@@ -45,13 +46,6 @@ def metric_period(profile: TeamProfile, metric: MetricEvidence) -> str:
         return f"{date_label(dates[0])} a {date_label(dates[-1])}"
     # Perfis produzidos pelo pipeline sempre têm per_match; fallback identifica a janela.
     return f"janela: {date_label(profile.period_start)} a {date_label(profile.period_end)}"
-
-
-def insufficient_core_evidence(report: AnalysisReport) -> bool:
-    """Política de apresentação compartilhável pela UI, sem alterar o JSON V1/V2."""
-    return any(profile.metrics.get(key) is None or profile.metrics[key].value is None
-               or profile.metrics[key].sample_size < MINIMUM_CORE_MATCHES
-               for profile in (report.team_profile, report.opponent_profile) for key in CORE_METRICS)
 
 
 def core_evidence_warnings(report: AnalysisReport) -> list[str]:

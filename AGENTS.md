@@ -11,7 +11,7 @@
 
 ## Produto e integridade científica
 
-ManagerAI implementa analítica histórica determinística, CLI, UI Streamlit integrada, hipóteses por regras e extensão V3 opcional. Há regressões quantitativas offline e estudos de robustez V4.3, separados do produto. **Motor tático aprendido integrado, fine-tuning, LLM e recomendações de escalação ainda não estão implementados.** A existência de dependências de IA não altera esse estado.
+ManagerAI implementa analítica histórica determinística, CLI, UI Streamlit integrada, hipóteses por regras e extensão V3 opcional. O serviço 2.0.0 e a API FastAPI acrescentam planos condicionais e explicação opcional por seleção de afirmações autorizadas com LLM local. Regressões e ajuste LoRA de explicação são experimentais, separados da decisão tática. **Motor tático aprendido e recomendações de escalação não estão implementados; ajuste de explicação não é aprendizado de estratégia.** Estado e evidências atuais: CURRENT_VERSION e PENDING.
 
 - Separar observação, hipótese condicional, simulação, previsão e recomendação validada. Não afirmar eficácia causal, pressão bem-sucedida, formação ideal, disponibilidade atual nem probabilidade de vitória a partir dos indicadores existentes.
 - Preservar período, amostra específica, numeradores/denominadores, fórmulas, fontes/hashes e limitações. Ausência de dado não vira zero; xG não é gol real nem chance de vitória.

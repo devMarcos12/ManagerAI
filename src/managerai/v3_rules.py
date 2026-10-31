@@ -1,5 +1,5 @@
 """Regras exploratórias 3.0.0; limiares operacionais, sem eficácia validada."""
-from .presentation.coach_report import insufficient_core_evidence
+from .sufficiency import insufficient_core_evidence
 from .feature_engineering import finite
 from .presentation.terminology import number, count
 

@@ -18,6 +18,7 @@ from .ui_support import available_catalog, friendly_error, match_options, run_an
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[2] / "open-data" / "data"
 INPUT_ERRORS = (ValueError, OSError, KeyError, TypeError, AttributeError)
+MAX_INLINE_JSON_BYTES = 512_000
 
 
 @st.cache_data(ttl=60, show_spinner=False)
@@ -32,6 +33,7 @@ def cached_season(root: str, competition_id: int, season_id: int):
 
 def results(report) -> None:
     view = build_coach_report(report)
+    report_json = report.to_json().encode("utf-8")
     st.header("Análise do confronto")
     for line in view.overview:
         st.write(line)
@@ -91,14 +93,21 @@ def results(report) -> None:
                              "Período do adversário": metric_period(report.opponent_profile, b), "Explicação": term.explanation})
         st.dataframe(advanced, hide_index=True, width="stretch")
         st.markdown(render_technical_markdown(report))
-        st.json(report.to_dict())
+        # A closed expander still sends its contents to the browser. V3 reports
+        # contain extensive sequence evidence; keep the full JSON in downloads.
+        if len(report_json) <= MAX_INLINE_JSON_BYTES:
+            st.json(report_json.decode("utf-8"), expanded=False)
+        else:
+            st.info("O JSON completo é extenso. Para consultar todas as evidências, use Baixar relatório técnico (.json). "
+                    "A prévia abaixo mostra somente a identificação da análise.")
+            st.json({"schema_version": report.schema_version, "metadata": report.metadata}, expanded=False)
     if getattr(report, "tactical_v3", None):
         from .v3_presentation import render_v3_streamlit
         render_v3_streamlit(report)
     # In-memory downloads: no arbitrary paths and no writes to past reports.
     st.download_button("Baixar relatório legível (.md)", render_markdown(report).encode("utf-8"),
                        file_name="managerai_relatorio.md", mime="text/markdown", key="download_md")
-    st.download_button("Baixar relatório técnico (.json)", report.to_json().encode("utf-8"),
+    st.download_button("Baixar relatório técnico (.json)", report_json,
                        file_name="managerai_relatorio.json", mime="application/json", key="download_json")
 
 

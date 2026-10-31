@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Revisão humana de plano condicional ManagerAI",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_id", "plan_id", "reviewer", "role", "review_date", "source_evidence", "scores", "rationale", "disagreements"],
+  "properties": {
+    "report_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "plan_id": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string", "minLength": 1},
+    "role": {"type": "string", "minLength": 1},
+    "review_date": {"type": "string", "format": "date"},
+    "source_evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "scores": {
+      "type": "object", "additionalProperties": false,
+      "required": ["plausibility", "evidence", "constraints", "clarity", "utility"],
+      "properties": {
+        "plausibility": {"enum": [0, 1, 2, "NA"]},
+        "evidence": {"enum": [0, 1, 2, "NA"]},
+        "constraints": {"enum": [0, 1, 2, "NA"]},
+        "clarity": {"enum": [0, 1, 2, "NA"]},
+        "utility": {"enum": [0, 1, 2, "NA"]}
+      }
+    },
+    "rationale": {"type": "string", "minLength": 1},
+    "disagreements": {"type": "array", "items": {"type": "string"}}
+  }
+}

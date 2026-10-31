@@ -10,12 +10,11 @@ from dataclasses import dataclass
 from .data_inventory import Season, load_season, team_ids
 from .data_loader import LocalData
 from .feature_engineering import MIN_SAMPLE
+from .sufficiency import CORE_METRICS
 from .report_schema import AnalysisReport, AnalysisRequest, TeamProfile
 from .temporal import select_history
 
 
-CORE_METRICS = ("xg_for", "xg_against", "shots_for", "shots_against",
-                "pass_accuracy", "final_third_entries")
 WINDOW_POLICY = (
     "A janela considera até N partidas anteriores disponíveis no calendário desta temporada. "
     "Não inclui jogos do dia do corte ou posteriores, não amplia a janela para compensar "

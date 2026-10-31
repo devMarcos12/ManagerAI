@@ -43,7 +43,7 @@ jobs:
         run: python -m pip install .
       - name: Install application and experimental dependencies
         if: matrix.profile == 'optionals'
-        run: python -m pip install -r requirements.txt '.[experiments]'
+        run: python -m pip install -r requirements.txt '.[experiments,api]'
       - name: Check installed imports and contracts
         run: |
           python -I -c "from pathlib import Path; import sys, managerai; from managerai.tactical_engines import DeterministicEngine; from managerai.experiments.robustness import fixed_windows; assert Path(managerai.__file__).is_relative_to(sys.prefix); assert len(fixed_windows()) == 14"

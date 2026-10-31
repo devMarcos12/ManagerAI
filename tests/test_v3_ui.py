@@ -52,15 +52,27 @@ class V3UI(LocalFixture):
 @unittest.skipUnless(HAS_STREAMLIT and importlib.util.find_spec('matplotlib') and os.environ.get('MANAGERAI_RUN_LOCAL_TESTS') == '1', 'Dataset real opcional')
 class V3RealUI(unittest.TestCase):
     def test_city_and_partial_coverage_v3_in_browser_runtime(self):
+        import json
+        import streamlit as st
+        from managerai.streamlit_ui import MAX_INLINE_JSON_BYTES
         from streamlit.testing.v1 import AppTest
         with patch.dict(os.environ, {'MANAGERAI_DATA_ROOT': str(APP.parent / 'open-data/data')}):
             app = AppTest.from_file(str(APP), default_timeout=60).run()
             app.checkbox(key='include_v3').check().run()
-            app.button(key='FormSubmitter:analysis_form-Analisar confronto').click().run()
+            with patch('streamlit.json', wraps=st.json) as inline_json, patch('streamlit.download_button', wraps=st.download_button) as downloads:
+                app.button(key='FormSubmitter:analysis_form-Analisar confronto').click().run()
             self.assertFalse(app.exception)
             self.assertEqual(app.session_state['report'].schema_version, '1.1.0')
             self.assertTrue(app.session_state['report'].tactical_v3['hypotheses'])
             self.assertEqual(len(app.get('image')), 2)
+            complete = app.session_state['report'].to_json().encode('utf-8')
+            self.assertGreater(len(complete), MAX_INLINE_JSON_BYTES)
+            inline_json.assert_called_once()
+            preview = inline_json.call_args.args[0]
+            self.assertLess(len(json.dumps(preview).encode('utf-8')), MAX_INLINE_JSON_BYTES)
+            self.assertEqual(preview, {'schema_version': '1.1.0', 'metadata': app.session_state['report'].metadata})
+            self.assertFalse(inline_json.call_args.kwargs['expanded'])
+            self.assertEqual(downloads.call_args_list[1].args[1], complete)
             app.selectbox(key='competition').set_value(11).run()
             app.selectbox(key='season_11').set_value(90).run()
             app.selectbox(key='team_11_90').set_value(220).run()

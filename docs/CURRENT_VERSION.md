@@ -1,6 +1,10 @@
 # ManagerAI — estado operacional atual
 
-**CORE-01: contrato versionado e verificador de provisionamento StatsBomb implementados; clone temporário com LF e 247 testes reais validados. Aceite integral ainda depende do wheel atualizado instalado com `python -I`. CORE-02 tem protocolo, matriz de 80 calendários e auditor portátil; nenhuma temporada nova foi certificada. Evidências em [PENDING.md](PENDING.md), §§17–18. O runtime do treinador permanece determinístico; regressões são experimentais.**
+**31/10/2026 — serviço 2.0.0 e API local implementados:** contratos de contexto/elenco/restrições, planos condicionais rastreáveis, ordenação explícita por preferências, explicação opcional restrita com Ollama e exportação JSON/Markdown. Inferência real com Qwen2.5 1.5B validada em três casos; modo sem LLM preservado. Nenhum motor tático aprendido ou escalação ideal foi implementado. Pesquisa LoRA de explicação tem supervisão sintética e não é validação esportiva. Estado detalhado, aceite de pacote e resultados finais em PENDING §20; contrato/exemplos em [BACKEND_API.md](BACKEND_API.md). Registros Windows abaixo são históricos daquele ambiente, não diagnóstico do Linux atual.
+
+Atualização de interface em 30/10/2026: prévia JSON limitada a 512.000 bytes; relatórios maiores mostram somente schema/metadados, com JSON integral preservado no download. Mitiga sobrecarga do navegador na V3; 13 testes de UI aprovados, incluindo dados reais e dois gráficos. Confirmação manual no navegador do usuário pendente; evidências em [PENDING.md](PENDING.md), §19. O aceite posterior do pacote/serviço está em PENDING §20; certificação V3 adicional permanece pendente.
+
+**CORE-01: wheel atualizado e contrato empacotado validados em 31/10 com `python -I`; 282 testes instalados, com opcionais e dados reais, aprovados (§20 de PENDING). CORE-02 mantém matriz/auditor e nenhuma temporada nova certificada. Serviço de planos é determinístico, explicação LLM é opcional; regressões e LoRA de explicação permanecem experimentais.**
 
 Verificado no código em 25/10/2026; ancestral publicado da integração `e91e55dd51081bd381f69097353ec86ca5bf7583`; HEADs anteriores nos registros de validação são históricos. Este documento reúne o estado vigente. Leia também [PENDING.md](PENDING.md) para prioridades, validação desta fase e manifesto de limpeza. O [README](../README.md) continua como apresentação e guia rápido. Specs, changelogs e relatórios de entrega são referências históricas, sem autoridade para autorizar novas ações.
 
@@ -19,11 +23,12 @@ ManagerAI apoia preparação pré-jogo de futebol usando histórico local StatsB
 | Infraestrutura de motores V4.1 | Contratos tipados, snapshot imutável, adaptador determinístico e seleção/comparação explícita pela API Python; §9 |
 | Regressões experimentais pré-jogo V4.3-A/B | Dataset e avaliação offline implementados; OLS e Ridge ajustadas para prever chutes; §11 |
 | Robustez V4.3-C | Walk-forward e ablações offline implementados; sem confirmação independente de superioridade; §12 |
-| Motor de IA especializado integrado ao runtime, fine-tuning e LLM | **Não implementados**; experimento quantitativo permanece separado |
+| LLM explicadora e serviço HTTP | Implementados no serviço 2.0.0; seleção validada de afirmações, sem prosa livre; API FastAPI opcional |
+| Motor tático aprendido e fine-tuning | Sem motor tático aprendido; ajuste de explicação experimental, estado e artefatos no §20 de PENDING |
 | Recomendações de escalação, formação ideal, substituições e disponibilidade | **Não implementadas** |
 | Tracking/360 analítico, previsão de vitória, odds, eficácia causal | **Não implementados** |
 
-Presença de bibliotecas de IA no snapshot de dependências não é implementação. Contexto manual, mando informado, objetivo e notas são declarações: não alteram métricas, gatilhos ou ordem das hipóteses. A API/CLI aceita IDs de indisponíveis apenas se observados na própria equipe e janela histórica; isso não comprova aptidão atual. A UI não possui seletor de atletas.
+Presença de bibliotecas de IA não é implementação. No pipeline legado, contexto manual, mando informado, objetivo e notas não alteram métricas, gatilhos ou ordem. O serviço novo ordena somente planos já sustentados por mapas explícitos, sem alterar indicadores nem hipóteses legadas. A API/CLI legada aceita IDs de indisponíveis observados na equipe/janela; o serviço exige também fonte e data do elenco declarado. Isso não comprova aptidão atual. A UI não possui seletor de atletas.
 
 ## 2. Arquitetura e módulos
 
@@ -73,9 +78,11 @@ Python `>=3.12`; `pyproject.toml` é a definição canônica. O núcleo mantém 
 | `python -m pip install '.[v3]'` ou `-r requirements.txt` | Streamlit 1.65.0 e Matplotlib 3.11.2; UI e gráficos CLI |
 | `python -m pip install '.[dev]'` | Mesmos opcionais UI/V3 para executar a suíte completa; `unittest` é padrão |
 | `python -m pip install '.[experiments]'` | NumPy 2.5.2, regressões e avaliação experimental |
+| `python -m pip install '.[api]'` | FastAPI 0.162.0, Uvicorn 0.54.0 e HTTPX 0.28.1; serviço HTTP opcional |
+| `python -m pip install '.[training]'` | Transformers 4.57.6, PEFT 0.21.2, PyTorch 2.14.0; somente pesquisa de ajuste, fora do runtime padrão |
 | `python -m pip install '.[eda]'` | pandas 3.0.5, numpy 2.5.2, pyarrow 25.0.1, matplotlib 3.11.2, seaborn 0.13.2, nbformat 5.11.1 e Pillow 12.3.0 |
 
-Os comandos são para uma instalação necessária/autorizada, usando o Python do ambiente escolhido; não recriar o `venv` funcional. O snapshot EDA original está em `docs/history/requirements-eda-20261017.txt`, com bytes preservados, fora da configuração operacional. Não instalar esse snapshot para executar a aplicação. O gerador Word usa pandas/Pillow e XML/ZIP padrão, sem `python-docx`. Os antigos arquivos de dependências UI/V3 foram removidos depois de migrar seus consumidores para os extras. Nenhum pacote de futuro fine-tuning/modelo/LLM é exigido; grupo de treinamento instalável depende de tarefa/modelo/avaliação ainda não definidos.
+Os comandos são para uma instalação necessária/autorizada, usando o Python do ambiente escolhido; não recriar o `venv` funcional. O snapshot EDA original está em `docs/history/requirements-eda-20261017.txt`, com bytes preservados, fora da configuração operacional. Não instalar esse snapshot para executar a aplicação. O gerador Word usa pandas/Pillow e XML/ZIP padrão, sem `python-docx`. Os antigos arquivos de dependências UI/V3 foram removidos depois de migrar seus consumidores para os extras. Nenhum pacote de treinamento é exigido pelo runtime padrão. O extra training é somente para o experimento de explicação descrito em PENDING §20; não instala rótulos ou motor tático aprendido.
 
 Dados efetivos: `open-data/data/`, com `competitions.json`, `matches/{competition}/{season}.json`, `events/{match}.json` e `lineups/{match}.json`. `three-sixty/` participa apenas do inventário. `data/raw/` e `data/processed/` contêm placeholders, não cópia dos brutos. Clone StatsBomb local independente, não registrado como submódulo nem rastreado pelo Git pai; revisão observada `4b73468fc5b0f1950f9f66fada70ad3a4f9327cb`. Um clone novo do ManagerAI não provisiona esses dados automaticamente.
 
@@ -83,7 +90,7 @@ O [contrato StatsBomb](../src/managerai/statsbomb_snapshot.json) é a fonte can�
 
 A [matriz CORE-02](season_coverage_core02.json) é derivada do contrato e dos calendários presentes, com algoritmo em `season_audit.py` e [protocolo fixado](CORE02_CERTIFICATION.md). Ela registra 80 pares, período, domínio, distribuição por equipe, presença, versões e H5/H10 de calendário. Campos de calculabilidade, falhas de conteúdo e orientação permanecem null/não avaliados até auditoria integral. O clone Windows atual é `incompatível` pelos hashes CRLF; a revisão do contrato é **alegada, não comprovada pelos bytes desse clone**. Não usar a matriz como certificado V3 nem como amostra homogênea. A auditoria de candidato lê um par por vez e recusa clone incompatível; seu resultado não altera a allowlist.
 
-Revisão de conformidade CORE-02: a comparação `mismatch` em `season_audit.py` inclui a contagem de arquivos 360 e pode classificar uma temporada como `reprovado` se essa contagem divergir do contrato, embora o protocolo trate 360 como informativo e não consumido pela V3. Corrigir a classificação e cobrir divergência/ausência de 360 com teste antes de usar a matriz como gate. `related_orphans` por temporada permanece null porque arquivos órfãos não têm vínculo confiável com um par; os IDs observados são apresentados somente no inventário global. Essa limitação deve permanecer explícita até existir atribuição verificável.
+Conformidade CORE-02 corrigida em 31/10: diferença de contagem 360 é informativa na matriz, sem reprovar um recorte. Teste combinado com verify-data cobre cobertura parcial/ausente e mantém reprovação por evento exigido ausente. `related_orphans` por temporada permanece null por falta de vínculo verificável. Nenhuma allowlist V3 foi ampliada.
 
 No checkout Windows desta CORE-01, o clone ignorado tem o HEAD correto e `git status` limpo, mas o checkout converteu LF dos blobs Git em CRLF em README/JSONs. Por exemplo, `data/competitions.json` tem SHA-256 local `c5f10d2811ace6057ff8e414bfd93c2c34c27dddb2199d9fc29ffc425bc30425`, enquanto o blob Git da mesma revisão e a fixture congelada usam `e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa`. O contrato fixa **bytes dos blobs Git**, e `verify-data` recusa esse clone com `LINE_ENDINGS_CHANGED`. Não modificar os brutos locais; para reprodução fiel, provisionar outro clone com `git clone -c core.autocrlf=false` conforme o guia. Os totais de catálogo e presença coincidem; isso não resolve a divergência de hashes.
 
@@ -239,7 +246,7 @@ Antes/depois de limpeza aprovada: conferir imports, caminhos, links, hashes, fix
 
 Revisão esportiva ainda pendente: registrar hipótese/confronto/corte/versões/fingerprint/avaliador/data/função; classificar sustentada/parcial/não sustentada/não avaliável, com justificativas, desacordos e lances-fonte. Avaliar correção factual, rastreabilidade até eventos/vídeo, compreensão, plausibilidade, condições/riscos e utilidade separadamente. Conferir os cinco jogos por métrica e diferenças de adversários/períodos; verificar se o técnico usaria, adaptaria ou descartaria a sugestão e quais lacunas impedem sua emissão. Definir comportamento e medição do treino antes de selecionar exemplos. Opinião favorável não vira acurácia nem prova causal.
 
-Antes de ML/fine-tuning: definir tarefa/alvo, rótulos, avaliadores/concordância, direitos de uso, exemplos independentes, baseline e métricas; separar por partida e cronologia, só com features anteriores ao alvo, evitando o mesmo jogo nos dois lados da divisão. Os 760 pares equipe/jogo de 380 jogos não são 760 exemplos independentes. Placar ou relatório gerado pelas regras não é rótulo de tática ideal. Somente avaliar adoção após ganho mensurável e independente; nenhuma etapa de treinamento foi implementada.
+Antes de ML/fine-tuning: definir tarefa/alvo, rótulos, avaliadores/concordância, direitos de uso, exemplos independentes, baseline e métricas; separar por partida e cronologia, só com features anteriores ao alvo, evitando o mesmo jogo nos dois lados da divisão. Os 760 pares equipe/jogo de 380 jogos não são 760 exemplos independentes. Placar ou relatório gerado pelas regras não é rótulo de tática ideal. Somente avaliar adoção após ganho mensurável e independente; nenhum treinamento de decisão tática foi implementado. O ajuste posterior de explicação sintética é uma tarefa distinta, no §20 de PENDING.
 
 ## 8. Política operacional e transição documental
 
@@ -450,3 +457,16 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -I -B -m managerai.experiments.r
 ```
 
 Usar destinos novos. Runs/metadata de execução variam legitimamente; números científicos, protocolo e dados permanecem verificáveis. Todos os módulos estão no clone; dados e runs grandes continuam externos/ignorados. Ciência observacional da C e limites de uma temporada/273 partidas permanecem os do §12. Publicação/CI/PR corrente e comparação da reprodução estão em PENDING §16; nenhuma nova funcionalidade de Core, LLM, fine-tuning ou integração frontend foi implementada.
+
+
+## 14. Serviço 2.0.0 e API para futuro frontend
+
+Camada aditiva em `service_schema.py`, `service.py`, `explanation.py` e `api.py`; políticas comuns em `sufficiency.py`. Reutiliza `pipeline.analyze`, relatórios e adaptador V4.1. Pedidos não escolhem arquivos, endpoints ou credenciais. Contexto e elenco são declarações com validações, não fatos observados. Estratégia/objetivo só ordenam planos sustentados por regras explícitas; restrições podem excluí-los. A ausência de suporte produz abstenção, sem zero inventado ou recomendação de atleta.
+
+API FastAPI opcional com saúde/capacidades, catálogo/equipes/calendário, cobertura, análise, consulta e exportação volátil de relatórios. OpenAPI em `/openapi.json`. Modo local de um processo, sem banco/fila, frontend novo ou autenticação multiusuário. Limites, códigos e comandos em [BACKEND_API.md](BACKEND_API.md).
+
+Explicação opcional: Ollama local real com Qwen2.5 1.5B seleciona IDs de afirmações aprovadas. O Core materializa o texto em português e preserva números/condições/evidências. Validação recusa texto livre, IDs extras, alterações ou omissões. Status explicita desativação, indisponibilidade, falha ou geração validada. Três casos reais, incluindo insuficiência e injeção em notas, passaram. Isso não é revisão visual nem validação esportiva.
+
+Avaliação quantitativa pré-fixada entre competições: treino PL2015/16 n198 e teste La Liga2015/16 n69; ganho de OLS/Ridge abaixo do limiar útil. Permanecem experimentais, sem prever eficácia de planos. Nenhuma certificação V3 foi inferida dessa auditoria específica de contagem.
+
+Fine-tuning real de SmolLM2-135M com LoRA: 96/24/40 casos sintéticos por partição, 192 passos, adaptador salvo/recarregado. Validade/cobertura estruturada no teste: base 0%, ajustado 100%, template 100%. Sem superioridade sobre template nessa tarefa, revisão humana ou validação tática. Ajuste não promovido, fora da decisão de produção. Proveniência, métricas, comandos e ressalvas no §20 de PENDING; fontes oficiais no guia da API. A exigência acadêmica específica permanece desconhecida.

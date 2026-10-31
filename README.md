@@ -119,6 +119,19 @@ eficácia causal. xG não é probabilidade de vitória; pressão registrada não
 sucesso. Amostras insuficientes geram avisos e abstenção. Contexto manual não altera
 os cálculos; formações e atletas históricos não comprovam disponibilidade atual.
 
-Modelo especializado de IA, fine-tuning, integração LLM e recomendações de
-escalação **não estão implementados**. Exigem tarefa, dados/rótulos e avaliação
-independentes, preservando o núcleo determinístico como baseline.
+O serviço `2.0.0` acrescenta planos condicionais, contexto/restrições e API HTTP
+opcional, preservando os schemas legados. A LLM local pode selecionar afirmações
+autorizadas para uma explicação em português; o Core mantém números e decisões.
+Motor tático aprendido e recomendações individuais continuam não implementados.
+Fine-tuning de explicação é uma pesquisa separada com supervisão sintética,
+sem validação esportiva nem promoção automática.
+
+Para o futuro frontend, consulte [contrato, execução e exemplos da API](docs/BACKEND_API.md).
+Em ambiente isolado, instale `.[api,v3,experiments]` e execute:
+
+```bash
+MANAGERAI_DATA_ROOT="$PWD/open-data/data" python -I -B -m uvicorn managerai.api:create_app --factory --host 127.0.0.1 --port 8000 --workers 1
+```
+
+OpenAPI: `http://127.0.0.1:8000/openapi.json`. O novo frontend não foi implementado.
+Resultados reais e limites de treinamento/avaliação ficam em `docs/PENDING.md`, §20.

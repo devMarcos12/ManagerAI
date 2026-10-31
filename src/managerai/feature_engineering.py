@@ -9,9 +9,9 @@ from typing import Any
 from .data_inventory import team_ids
 from .data_loader import DataError, LocalData
 from .report_schema import MetricEvidence, TeamProfile
+from .sufficiency import MIN_SAMPLE
 
 FORMULA_VERSION = "1.0.0"
-MIN_SAMPLE = 5
 
 # Aggregation is explicit: mean per match, pooled rate per 90, or pooled ratio.
 METRICS = {

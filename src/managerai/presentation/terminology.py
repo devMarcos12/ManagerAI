@@ -1,6 +1,7 @@
 """Vocabulário de futebol; valores e identificadores internos são preservados."""
 from dataclasses import dataclass
 from datetime import date
+from ..sufficiency import CORE_METRICS, MIN_SAMPLE as MINIMUM_CORE_MATCHES
 
 
 @dataclass(frozen=True)
@@ -34,8 +35,6 @@ TERMS = {
     "lane_high_y": Term("Ações na faixa de coordenada transversal alta", "%", "Parcela das ações localizadas nessa faixa; não chamamos de esquerda/direita porque a orientação não foi validada."),
 }
 
-MINIMUM_CORE_MATCHES = 5
-CORE_METRICS = ("xg_for", "xg_against", "shots_for", "shots_against", "pass_accuracy", "final_third_entries")
 
 
 def count(value: int, singular: str = "jogo", plural: str | None = None) -> str:

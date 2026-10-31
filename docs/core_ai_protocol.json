@@ -1,0 +1,43 @@
+{
+  "version": "core-ai-evaluation-1",
+  "frozen_before_execution": "2026-10-31",
+  "quantitative": {
+    "task": "home_shots_regulation",
+    "unit": "unique match, home side only",
+    "train_pair": [2, 27],
+    "test_pair": [11, 27],
+    "train_end": "2016-02-06",
+    "test_start": "2016-04-09",
+    "window": 5,
+    "inclusion": "full integral shot-count audit; exact five prior matches per team; no replacement; exclude whole target day",
+    "models": ["B0", "B1", "OLS", "Ridge_alpha1"],
+    "primary_metric": "MAE",
+    "secondary_metrics": ["RMSE", "bias", "paired_absolute_error_difference", "monthly_MAE"],
+    "minimum_test_matches": 30,
+    "minimum_useful_gain_absolute": 0.2,
+    "minimum_useful_gain_relative": 0.05,
+    "decision": "Both thresholds versus B1; no statistical superiority claim; any production adoption still requires sports review",
+    "interpretation": "cross-competition, same season; NOT future-season generalization; overlapping histories/teams are dependent"
+  },
+  "tactical": {
+    "task": "review conditional plans, not ideal tactics",
+    "labels_available": false,
+    "rubric": ["plausibility", "evidence", "constraints", "clarity", "utility"],
+    "scale": {"0": "unsupported", "1": "partial", "2": "supported", "NA": "not evaluable"},
+    "requirements": "named reviewer role/date, source events/video, disagreement, rationale; human reviews only"
+  },
+  "explanation": {
+    "task": "Portuguese grounded explanation with structured claim selection",
+    "supervision": "synthetic verbalization only, generated locally; no sports expertise labels",
+    "base_model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "license": "Apache-2.0, verify upstream before download",
+    "seed": 42,
+    "split": "case groups before any derivation; 96 train, 24 validation, 40 test; no match or case crosses splits",
+    "training": {"epochs": 2, "learning_rate": 0.0005, "lora_rank": 8, "lora_alpha": 16, "max_tokens": 768, "cpu_threads": 4},
+    "comparators": ["same base model with same prompt", "fine-tuned model", "deterministic template"],
+    "metrics": ["exact structured validity", "claim coverage", "factual fidelity after validation", "abstention compliance", "latency", "peak_RSS"],
+    "promotion": "100% valid/factual/abstention; >=5 percentage-point coverage gain over base; no human clarity/utility review means no production promotion",
+    "human_reviews_available": 0,
+    "limits": "synthetic task feasibility study, not proof of sports utility or academic compliance; professor requirement unknown"
+  }
+}
