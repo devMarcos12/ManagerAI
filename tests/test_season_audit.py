@@ -4,6 +4,7 @@ from __future__ import annotations
 from copy import deepcopy
 from dataclasses import replace
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -116,6 +117,12 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(first, second)
         self.assertEqual(first["matches_read"], 12)
         self.assertEqual(first["matches_diagnosed"], 12)
+        self.assertEqual(first["events_read"], 12 * len(fixture_events(1)))
+        shots = first["metric_calculability"]["shots_for"]
+        self.assertEqual(shots, {"available_team_games": 24,
+                                 "diagnosed_team_games": 24,
+                                 "cataloged_team_games": 24})
+        self.assertEqual(first["metric_calculability"]["entry_block_share"]["available_team_games"], 0)
         self.assertEqual(first["target_counts"]["h5_calculable"], 0)
         self.assertEqual(len(first["sources"]), 26)
         self.assertEqual(first["status"], "inconclusivo")
@@ -133,6 +140,39 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(result["status"], "reprovado")
         self.assertTrue(any("duplicado entre partidas" in failure["reason"]
                             for failure in result["structural_or_taxonomy_failures"]))
+
+    def test_content_only_never_claims_snapshot_compatibility_or_certification(self) -> None:
+        for mid in range(1, 13):
+            self.write(f"events/{mid}.json", fixture_events(mid))
+            self.write(f"lineups/{mid}.json", fixture_lineups())
+        from managerai.v3_schema import VALIDATED_RECUTS
+        before = VALIDATED_RECUTS
+        with patch("managerai.season_audit.verify_snapshot", side_effect=AssertionError("Não consultar clone parcial")):
+            result = audit_candidate(LocalData(self.root), 2, 27,
+                                     audit_date="2026-10-25", content_only=True,
+                                     verification={"status": "compatível", "source": {"revision": "não confiável"}})
+        self.assertEqual(result["matches_diagnosed"], 12)
+        self.assertEqual(result["snapshot_status"], "não verificado")
+        self.assertIsNone(result["source_revision"])
+        self.assertEqual(result["certification_status"], "não certificado")
+        self.assertEqual(result["status"], "inconclusivo")
+        self.assertEqual(VALIDATED_RECUTS, before)
+
+    def test_calculability_separates_failed_matches_from_unavailable_metrics(self) -> None:
+        for mid in range(1, 13):
+            events = fixture_events(mid)
+            if mid == 1:
+                events[0]["pass"] = "payload inválido"
+            self.write(f"events/{mid}.json", events)
+            self.write(f"lineups/{mid}.json", fixture_lineups())
+        result = audit_candidate(LocalData(self.root), 2, 27,
+                                 audit_date="2026-10-25",
+                                 verification={"status": "compatível", "source": {"revision": "sintética"}})
+        self.assertEqual(result["status"], "reprovado")
+        self.assertEqual(result["matches_diagnosed"], 11)
+        self.assertEqual(result["metric_calculability"]["shots_for"],
+                         {"available_team_games": 22, "diagnosed_team_games": 22,
+                          "cataloged_team_games": 24})
 
     def test_candidate_rejects_invalid_consumed_geometry(self) -> None:
         for mid in range(1, 13):
@@ -168,6 +208,14 @@ def orientation_games(kind: str, count: int = 10) -> list[tuple[dict, list[dict]
 
 
 class OrientationTests(unittest.TestCase):
+    def test_orientation_records_the_evidence_behind_each_decision(self) -> None:
+        normal = audit_orientation(orientation_games("normal"))["groups"][0]
+        reverse = audit_orientation(orientation_games("reverse"))["groups"][0]
+        self.assertEqual((normal["shot_x_median"], normal["forward_movements"], normal["forward_share"]),
+                         (100, 10, 1.0))
+        self.assertEqual((reverse["shot_x_median"], reverse["forward_movements"], reverse["forward_share"]),
+                         (20, 0, 0.0))
+
     def test_coherent_inverted_mixed_and_insufficient(self) -> None:
         self.assertEqual(audit_orientation(orientation_games("normal"))["status"], "coerente")
         self.assertEqual(audit_orientation(orientation_games("reverse"))["status"], "invertida")
@@ -182,6 +230,8 @@ class OrientationTests(unittest.TestCase):
         result = audit_orientation(games)
         self.assertEqual(result["status"], "inconclusiva")
         self.assertEqual(result["group_counts"], {"inconclusivo": 40})
+        self.assertIsNone(result["groups"][0]["shot_x_median"])
+        self.assertIsNone(result["groups"][0]["forward_share"])
 
 
 class TaxonomyTests(unittest.TestCase):
@@ -285,6 +335,41 @@ class TemporalCore02Tests(LocalFixture):
             self._read_paths(replace(self.request, target_match_id=99))
         with self.assertRaises(DataError):
             self._read_paths(replace(self.request, season_id=28, target_match_id=13))
+
+
+@unittest.skipUnless(os.environ.get("MANAGERAI_CORE02_CONTENT_ROOT"),
+                     "Conteúdo real CORE-02 opcional: informe MANAGERAI_CORE02_CONTENT_ROOT")
+class RealCandidateContentTests(unittest.TestCase):
+    def test_laliga_core_history_is_temporal_and_v3_remains_blocked(self) -> None:
+        from managerai.data_inventory import load_season, team_ids
+        from managerai.v3_schema import VALIDATED_RECUTS
+        root = Path(os.environ["MANAGERAI_CORE02_CONTENT_ROOT"])
+        season = load_season(LocalData(root), 11, 27)
+        self.assertEqual(len(season.matches), 380)
+        target = max(season.matches, key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))
+        team, opponent = team_ids(target)
+        request = AnalysisRequest(11, 27, team, opponent, target_match_id=target["match_id"])
+        paths = []
+        original = LocalData.read
+
+        def observed(data, relative):
+            paths.append(relative)
+            return original(data, relative)
+
+        with patch.object(LocalData, "read", observed):
+            report = analyze(root, request)
+        allowed = set()
+        for tid, profile in ((team, report.team_profile), (opponent, report.opponent_profile)):
+            previous = sorted((m for m in season.matches if tid in team_ids(m)
+                               and m["match_date"] < target["match_date"]),
+                              key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))[-10:]
+            self.assertEqual(profile.match_ids, [m["match_id"] for m in previous])
+            self.assertIsNotNone(profile.metrics["shots_for"].value)
+            allowed.update(f"{kind}/{m['match_id']}.json" for m in previous for kind in ("events", "lineups"))
+        self.assertEqual({p for p in paths if p.startswith(("events/", "lineups/"))}, allowed)
+        self.assertNotIn((11, 27), VALIDATED_RECUTS)
+        with self.assertRaisesRegex(DataError, "recorte auditado"):
+            analyze(root, request, include_v3=True)
 
 
 if __name__ == "__main__":

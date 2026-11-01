@@ -1,0 +1,407 @@
+{
+  "audit_date": "2026-11-01",
+  "audit_fingerprint": "c81b6e10648bde3a93f1d07bdddbc5e5c87b843d53320ac7d459086fdc5497aa",
+  "audit_sha256": "fcfe3e32c98557f2f4d1bb29b4a69f910d09c001f697715d4895ceb9e37ea85c",
+  "code_sha256": {
+    "src/managerai/feature_engineering.py": "408f7cee83dc247c44a55f6eabbee6dd7d5b1ae6502fcf0bdf7d08e5f762619d",
+    "src/managerai/season_audit.py": "a618a7a0d6a4d5d8b5928e64406e34353ce85c327e9461d0bb6551a605eaad7c",
+    "src/managerai/temporal.py": "98d7ada392b8c5f30233e3948820ebdaf25f0458149709e6b44cad735fbc9cd9",
+    "src/managerai/v3_features.py": "a6fe66092873bef1472fbbb1d4a5d35c78d3380463984a809fe251776e65b9e0",
+    "src/managerai/v3_sequences.py": "eb4a78e362d87cfa854aeb85a86c743ccb40e1e529a26ef0098cf10945cc32f2"
+  },
+  "content_status": "reprovado",
+  "counts": {
+    "bilateral_targets": {
+      "h10_calculable": 0,
+      "h10_calendar": 280,
+      "h5_calculable": 0,
+      "h5_calendar": 330
+    },
+    "events": 1295354,
+    "matches": 380,
+    "matches_diagnosed": 380,
+    "matches_read": 380,
+    "metrics_fully_available": 33,
+    "metrics_total": 50,
+    "team_games": 760
+  },
+  "decision": "not_certified",
+  "failure_match_ids": [
+    266106,
+    266467,
+    266961,
+    267273,
+    3825665,
+    3825875
+  ],
+  "failures": [
+    {
+      "match_id": 266467,
+      "reason": "Qualidade incompatível: locations_invalid=2."
+    },
+    {
+      "match_id": 266467,
+      "reason": "Qualidade incompatível: movement_end_invalid=6."
+    },
+    {
+      "match_id": 3825665,
+      "reason": "Qualidade incompatível: durations_invalid=1."
+    },
+    {
+      "match_id": 266961,
+      "reason": "Qualidade incompatível: locations_invalid=1."
+    },
+    {
+      "match_id": 266961,
+      "reason": "Qualidade incompatível: movement_end_invalid=7."
+    },
+    {
+      "match_id": 267273,
+      "reason": "Qualidade incompatível: locations_invalid=4."
+    },
+    {
+      "match_id": 267273,
+      "reason": "Qualidade incompatível: movement_end_invalid=3."
+    },
+    {
+      "match_id": 266106,
+      "reason": "Qualidade incompatível: locations_invalid=2."
+    },
+    {
+      "match_id": 266106,
+      "reason": "Qualidade incompatível: movement_end_invalid=1."
+    },
+    {
+      "match_id": 3825875,
+      "reason": "Qualidade incompatível: durations_invalid=1."
+    }
+  ],
+  "full_snapshot_status": "not_verified",
+  "limitations": [
+    "Git clone and full CORE-01 verify-data not completed; scoped GitHub blob checks do not replace that gate.",
+    "Zero strict H5/H10 targets requires all 50 metrics in every historical team-game; it does not mean no useful history exists.",
+    "Orientation mixed/inconclusive is the fixed operational diagnostic, not proof of inverted provider coordinates.",
+    "No expert review, new training, frontend/API/browser exercise, or V3 certification."
+  ],
+  "metadata_versions": [
+    [
+      "1.1.0",
+      "2",
+      "2"
+    ]
+  ],
+  "metric_calculability": {
+    "box_carry_entries": {
+      "available_team_games": 757,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "box_entries": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "box_pass_entries": {
+      "available_team_games": 758,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "counterpressures": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "duel_tackles": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "entry_block_share": {
+      "available_team_games": 507,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "entry_lane_central_share": {
+      "available_team_games": 756,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "entry_lane_high_share": {
+      "available_team_games": 756,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "entry_lane_low_share": {
+      "available_team_games": 756,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "final_third_attempts": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "final_third_carry_entries": {
+      "available_team_games": 757,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "final_third_entries": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "final_third_pass_entries": {
+      "available_team_games": 758,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "interceptions": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "lane_central": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "lane_high_y": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "lane_low_y": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "observed_blocks": {
+      "available_team_games": 507,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pass_accuracy": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pass_accuracy_explicit_no_pressure": {
+      "available_team_games": 0,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pass_accuracy_under_pressure": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pass_accuracy_unmarked_pressure": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressure_high_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressure_lane_central_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressure_lane_high_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressure_lane_low_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures_high_third": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures_high_third_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures_low_third": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures_low_third_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures_middle_third": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "pressures_middle_third_share": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "progressive_carries": {
+      "available_team_games": 757,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "progressive_passes": {
+      "available_team_games": 758,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "recoveries": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "recoveries_explicit_failure": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "recoveries_explicit_nonfailure": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "recoveries_recorded": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "shot_block_share": {
+      "available_team_games": 507,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "shots_against": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "shots_box_share": {
+      "available_team_games": 759,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "shots_for": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "shots_outside_share": {
+      "available_team_games": 759,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "xg_against": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "xg_box": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "xg_for": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "xg_outside": {
+      "available_team_games": 760,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "xg_per_located_shot": {
+      "available_team_games": 759,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    },
+    "xg_per_shot": {
+      "available_team_games": 759,
+      "cataloged_team_games": 760,
+      "diagnosed_team_games": 760
+    }
+  },
+  "orientation": {
+    "group_counts": {
+      "coerente": 1141,
+      "inconclusivo": 151,
+      "mista": 228
+    },
+    "matches": 380,
+    "status": "inconclusiva"
+  },
+  "preservation": {
+    "allowlist_changed": false,
+    "downloaded_source_hashes_unchanged": true,
+    "fixture_hashes_unchanged": true,
+    "global_matrix_replaced": false
+  },
+  "protocol_version": "core-02.1",
+  "quality_counts": {
+    "core.durations_invalid": 2,
+    "core.locations_invalid": 9,
+    "core.locations_missing": 9182,
+    "core.movement_end_invalid": 17,
+    "sequence.invalid_or_decreasing_timestamp": 264,
+    "sequence.offensive_action_invalid_geometry": 7,
+    "v3.carry_geometry_missing_or_invalid": 4,
+    "v3.pass_geometry_missing_or_invalid": 3,
+    "v3.recovery_failure_unmarked": 35927
+  },
+  "repeat_duration_seconds": 46.53124828900036,
+  "repeated_output_byte_identical": true,
+  "scope": "La Liga 2015/16: integral content diagnosis, not full snapshot certification",
+  "source": {
+    "bytes_verified": 1129450550,
+    "files_verified": 762,
+    "method": "GitHub commit tree and blob API; exact bytes verified for every selected file",
+    "repository": "https://github.com/hudl/open-data",
+    "revision": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+    "source_manifest_sha256": "432b90ccf184154c26c5be16aa9f0a6c7bfd610102b6eef7f53b1a7398b54260",
+    "tree_sha": "d7669be3dba46aa3d506bd15ffeb58030c7879c9"
+  },
+  "tests": {
+    "focused_installed_with_real_content": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 20,
+      "skipped": 0
+    },
+    "independent_quality_counts_match": true,
+    "installed_full": {
+      "discovered": 288,
+      "errors": 0,
+      "failed": 0,
+      "passed": 238,
+      "skipped": 50
+    },
+    "source_full": {
+      "discovered": 288,
+      "errors": 0,
+      "failed": 0,
+      "passed": 238,
+      "skipped": 50
+    }
+  }
+}

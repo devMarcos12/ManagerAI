@@ -180,7 +180,11 @@ def audit_orientation(games: Iterable[tuple[dict[str, Any], list[dict[str, Any]]
             else:
                 state = "mista"
         details.append({"match_id": mid, "team_id": team, "period": period,
-                        "shots": len(shots), "movements": moves, "status": state})
+                        "shots": len(shots), "movements": moves,
+                        "shot_x_median": median(shots) if shots else None,
+                        "forward_movements": value["forward"],
+                        "forward_share": value["forward"] / moves if moves else None,
+                        "status": state})
     return _orientation_result(details, matches)
 
 
@@ -296,17 +300,21 @@ def audit_game_taxonomy(match: dict[str, Any], events: list[dict[str, Any]],
 
 
 def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
-                    audit_date: str, verification: dict[str, Any] | None = None) -> dict[str, Any]:
+                    audit_date: str, verification: dict[str, Any] | None = None,
+                    content_only: bool = False) -> dict[str, Any]:
     """Lê um único candidato integralmente, com uso de memória por partida.
 
     Diagnostica sem certificar ou mudar a allowlist. O chamador fornece um clone
     comprovado pela CORE-01; o resultado guarda fontes e calculabilidade real.
+    content_only permite um diagnóstico explicitamente não certificado de uma
+    cópia parcial. Não comprova revisão, origem nem compatibilidade do snapshot.
     """
     from .v3_features import V3_METRICS
 
     date.fromisoformat(audit_date)
-    check = verify_snapshot(data.root) if verification is None else verification
-    if check["status"] != "compatível":
+    check = ({"status": "não verificado", "source": {"revision": None}}
+             if content_only else verify_snapshot(data.root) if verification is None else verification)
+    if not content_only and check["status"] != "compatível":
         raise DataError("Snapshot incompatível com CORE-01; auditoria real recusada.")
     season = load_season(data, competition_id, season_id)
     ordered = sorted(season.matches, key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))
@@ -322,6 +330,7 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
     orientation_groups: list[dict[str, Any]] = []
     bytes_read = 0
     matches_read = 0
+    events_read = 0
     for match in ordered:
         mid = match["match_id"]
         if not data.exists("events", mid) or not data.exists("lineups", mid):
@@ -329,6 +338,7 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
             continue
         events, lineups = data.events(mid), data.lineups(mid)
         matches_read += 1
+        events_read += len(events)
         bytes_read += (data.root / "events" / f"{mid}.json").stat().st_size
         bytes_read += (data.root / "lineups" / f"{mid}.json").stat().st_size
         for event in events:
@@ -376,14 +386,26 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
                 count += 1
         target_counts[f"h{window}_calculable"] = count
     orientation = _orientation_result(orientation_groups, {m["match_id"] for m in ordered})
+    diagnosed_team_games = sum(len(teams) for teams in by_match.values())
+    metric_calculability = {
+        key: {"available_team_games": sum(key in metrics for teams in by_match.values()
+                                          for metrics in teams.values()),
+              "diagnosed_team_games": diagnosed_team_games,
+              "cataloged_team_games": 2 * len(ordered)}
+        for key in sorted(all_keys)
+    }
     body = {"protocol_version": PROTOCOL_VERSION, "audit_date": audit_date,
             "competition_id": competition_id, "season_id": season_id,
             "competition": season.competition, "season": season.season,
             "source_revision": check.get("source", {}).get("revision"),
+            "snapshot_status": check["status"],
+            "certification_status": "não certificado",
             "matches_cataloged": len(ordered), "matches_read": matches_read,
             "matches_diagnosed": len(by_match),
+            "events_read": events_read,
             "event_and_lineup_bytes_read": bytes_read,
             "target_counts": target_counts,
+            "metric_calculability": metric_calculability,
             "structural_or_taxonomy_failures": failures,
             "quality_counts": dict(sorted(quality_counts.items())),
             "spatial_or_xg_gaps": dict(sorted(gaps.items())),
@@ -395,7 +417,8 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
                                  for m in ordered}),
             "orientation": orientation,
             "status": "reprovado" if failures else "inconclusivo",
-            "reason": "A auditoria automática não altera a allowlist; gates temporal, amostra, versões e teste real exigem revisão explícita.",
+            "reason": ("Diagnóstico somente de conteúdo: origem/revisão/compatibilidade CORE-01 não verificadas; não certifica nem altera a allowlist."
+                       if content_only else "A auditoria automática não altera a allowlist; gates temporal, amostra, versões e teste real exigem revisão explícita."),
             "sources": [{"path": p, "sha256": h} for p, h in sorted(data.sources.items())]}
     body["fingerprint"] = sha256(_canonical(body)).hexdigest()
     return body
@@ -408,6 +431,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--audit-date", required=True)
     parser.add_argument("--candidate-competition-id", type=int)
     parser.add_argument("--candidate-season-id", type=int)
+    parser.add_argument("--content-only", action="store_true",
+                        help="Diagnóstico não certificado de conteúdo; não verifica o snapshot CORE-01.")
     args = parser.parse_args(argv)
     try:
         data = LocalData(args.data_root)
@@ -416,8 +441,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise DataError("Destino existente ou dentro dos dados; escolha arquivo novo fora dos brutos.")
         if (args.candidate_competition_id is None) != (args.candidate_season_id is None):
             raise DataError("Informe os dois IDs do candidato ou nenhum.")
+        if args.content_only and args.candidate_competition_id is None:
+            raise DataError("--content-only exige os dois IDs de um candidato.")
         matrix = (audit_candidate(data, args.candidate_competition_id,
-                                  args.candidate_season_id, audit_date=args.audit_date)
+                                  args.candidate_season_id, audit_date=args.audit_date,
+                                  content_only=args.content_only)
                   if args.candidate_competition_id is not None else
                   build_coverage_matrix(data, audit_date=args.audit_date))
         destination.parent.mkdir(parents=True, exist_ok=True)

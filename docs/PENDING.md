@@ -1,5 +1,7 @@
 # ManagerAI — pendências e validação
 
+**CORE-02 — 01/11/2026:** conteúdo integral da La Liga 2015/16 auditado; resultado reprovado sob as guardas atuais, sem certificação V3. Gate de snapshot completo permanece não verificado. Evidências, testes e distinção entre calendário e calculabilidade no §22.
+
 **Entrega web 31/10/2026: frontend local implementado e integrado com API real; correções A1–A3 e evidências atuais no §21. Resultados e conclusões do §20 são históricos da etapa de IA; não foram reutilizados como testes desta execução. Validade esportiva e avaliação humana permanecem pendentes.**
 
 Atualização de interface em 30/10/2026: mitigação da sobrecarga da prévia JSON V3 implementada e validada por AppTest; confirmação manual do travamento no navegador pendente (§19). Os status CORE não foram reavaliados naquela correção; a execução posterior de 31/10 está no §20.
@@ -27,7 +29,7 @@ Na V4.1, este documento foi corrigido a partir do estado antigo da Fase 1 para r
 | ART-01 | IMPLEMENTADO NA C, CONFERIDO NA CORE-00 | `open-data/` e `outputs/runs/` ignorados; fixtures, exemplos finais e verificadores preservados/rastreados |
 | TEAM-01 / B4 | DECISÃO HUMANA | Responsáveis por contratos, dados/indicadores, UI e avaliação; confirmar uso compartilhado de `.vscode/settings.json` |
 | REF-01 | SUFICIÊNCIA CONSOLIDADA | Constantes e predicado compartilhados; regras V3 deixam de importar apresentação para suficiência. Helpers de formatação ainda reutilizados; sem alteração de fórmulas/contratos |
-| V3-01 / CORE-02 | PARCIAL: MATRIZ E GATES PORTÁVEIS | 80 pares inventariados e candidatos priorizados; wheel/clone Linux validados no §20. Auditorias integrais para certificação V3 continuam pendentes. Nenhuma ampliação de VALIDATED_RECUTS; §18 |
+| V3-01 / CORE-02 | PARCIAL: CONTEÚDO LA LIGA AUDITADO, NÃO CERTIFICADO | 380 jogos/1.295.354 eventos; seis partidas com falhas, orientação inconclusiva e completude integral H5/H10 zero. Gate CORE-01 completo não verificado nesta execução; §22 |
 | PERF-01 | MEDIÇÕES INICIAIS E LIMITES IMPLEMENTADOS | Duração/payload reais e limites de API no §20; prévia JSON da UI mitigada. Perfil completo de releitura e revisão visual continuam pendentes |
 | EVAL-01 | PENDENTE | Revisão especializada/vídeo/treino com correção, rastreabilidade, plausibilidade, compreensão, riscos e utilidade separados |
 | AI-01 | EXPERIMENTO QUANTITATIVO A/B IMPLEMENTADO | OLS/Ridge treinadas offline para chutes; sem motor tático aprendido no runtime, validação de estratégia ou integração V3/V4.1. Decisão C no §14 |
@@ -987,3 +989,75 @@ Dados StatsBomb continuam na revisão fixada e com Git limpo; verificador retorn
 Validação final do lockfile em cópia limpa `/tmp/managerai-frontend-20261031/frontend-clean`: `npm ci`, `npm run types:check`, `npm run build` e 16 testes portáteis aprovados em 23,8 s, sem backend de teste ativo. Isso confirma instalação sem depender de node_modules do checkout original. A última execução do checkout também passou 16/16 em 23,6 s após ajustar o timeout para cobrir o corpo da resposta. Checks de 36 links locais, JSON/contrato empacotado, identidade dos módulos instalados e git diff --check passaram.
 
 **FRONTEND LOCAL: APTO** — fluxo documentado e executável com dados reais, build/contrato/testes/visualização e exportação validados localmente. **INTEGRAÇÃO REAL: VALIDADA** — navegador, API instalada, StatsBomb local, gráficos/downloads, insuficiência e ciclo de falhas exercitados; LLM local opcional confirmada separadamente. Estes status não validam IA esportiva nem concluem o projeto inteiro.
+
+## 22. CORE-02 — conteúdo integral da La Liga 2015/16 (01/11/2026)
+
+### Escopo, origem e decisão
+
+Entrada: main `3418e2b11713bc07246dc2a7cd3c9874ec8ee821`. Artefato não rastreado observado na EDA após obter o checkout foi preservado. Python 3.12.14; núcleo construído e instalado em ambiente novo `/tmp/managerai-core02-20261101-env`, imports isolados com `-I` e contrato empacotado conferidos. A primeira instalação encontrou erro de markers de extras no pip 25.0.1; atualizar somente o pip desse ambiente para 26.2.2 permitiu instalar o wheel. Nenhuma versão do pyproject foi alterada.
+
+O provisionamento Git completo não terminou neste ambiente; houve timeout HTTP e lock residual após interrupção. Não se obteve `verify-data=compatível` e não se substituiu a matriz histórica das 80 temporadas. Como alternativa de diagnóstico, a conexão GitHub forneceu a árvore oficial `d7669be3dba46aa3d506bd15ffeb58030c7879c9` da revisão fixada `4b73468fc5b0f1950f9f66fada70ad3a4f9327cb`. Os 380 eventos, 380 arquivos de escalação, catálogo e calendário foram obtidos por blob; tamanho e SHA Git de cada arquivo foram conferidos e hashes SHA-256 registrados. Total: 762 arquivos, 1.129.450.550 bytes. Essa prova é restrita aos arquivos selecionados, não é verificação do clone completo CORE-01.
+
+**Decisão: La Liga 2015/16 não certificada.** A auditoria de conteúdo foi integral; sua reprovação decorre de falhas encontradas nas guardas vigentes. O gate de snapshot completo também permanece não verificado. `VALIDATED_RECUTS`, contrato StatsBomb, fórmulas, limiares e dados brutos não foram alterados. Resumo versionado: [core02_laliga_201516_audit.json](core02_laliga_201516_audit.json).
+
+### Resultados reais
+
+| Medida | Resultado |
+|---|---:|
+| Jogos catalogados/lidos/diagnosticados | 380 / 380 / 380 |
+| Eventos examinados | 1.295.354 |
+| Jogos/equipe diagnosticados | 760 |
+| Métricas calculáveis em todos os jogos/equipe | 33 de 50 |
+| Alvos H5 / H10 pelo calendário | 330 / 280 |
+| Alvos H5 / H10 com todos os 50 indicadores em cada jogo histórico | 0 / 0 |
+| Coordenadas de início inválidas | 9 |
+| Coordenadas finais de movimento inválidas | 17 |
+| Durações inválidas | 2 |
+| Grupos de orientação coerente / inconclusiva / mista | 1.141 / 151 / 228 |
+
+As dez ocorrências de reprovação por qualidade atingem seis partidas: `266106`, `266467`, `266961`, `267273`, `3825665` e `3825875`. Uma conferência independente diretamente nos seis JSONs reproduziu 9 posições inválidas, 17 finais de movimento inválidos e 2 durações negativas. Contagens de campos podem pertencer ao mesmo evento; não são 28 eventos distintos presumidos. JSON, ligações e cálculos foram diagnosticados nos 380 jogos; isso não torna suas anomalias aceitáveis para certificação.
+
+`pass_accuracy_explicit_no_pressure` ficou indisponível nos 760 jogos/equipe. A implementação diferencia `under_pressure=False` de marcação ausente: não reinterpretar ausência como False para fazer o gate passar. Como o requisito de completude exige todos os 50 indicadores, essa indisponibilidade já impede qualquer H5/H10 integral. Isso não significa ausência de histórico útil: finalizações, xG, acerto global de passes e outros indicadores têm valores calculáveis em todos os 760 jogos/equipe. Disponibilidade não comprova qualidade certificada. Os 50 denominadores estão no resumo JSON.
+
+Os três agregados de sequência ficaram disponíveis em 507 de 760 jogos/equipe. O contador de qualidade de sequência registra 264 ocorrências de relógio inválido/decrescente e 7 de geometria ofensiva inválida, acumuladas por análise de equipe; não tratá-las como contagem de eventos únicos. Geometrias incompletas de passes/conduções também estão discriminadas. Houve uma única combinação de versões: `data_version=1.1.0`, fidelidades de chute e coordenadas `2`.
+
+Orientação agregada: inconclusiva, com 131 partidas tendo todos os quatro grupos coerentes. Os 228 grupos mistos não devem ser descritos como coordenadas comprovadamente invertidas: a guarda usa mediana dos chutes e fração de movimentos crescentes, não valida direção esportiva por si só. Nenhum grupo recebeu classificação invertida. O protocolo não foi recalibrado a partir destes resultados.
+
+### Gates e implementação
+
+| Gate | Estado nesta execução |
+|---|---|
+| 0 — fonte/instalação | Wheel isolado validado; hashes oficiais do recorte conferidos; snapshot completo CORE-01 não verificado |
+| 1 — presença | 380 eventos e 380 escalações presentes e conferidos no recorte; 360 não necessário |
+| 2–3 — estrutura/taxonomia/função | Diagnóstico integral concluído; falhas de qualidade registradas; completude de todos os indicadores não atingida |
+| 4 — geometria/orientação | Bloqueado pelas geometrias inválidas e pelos grupos mistos/inconclusivos sob as guardas vigentes |
+| 5 — tempo | Testes portáteis e caso real confirmaram seleção anterior ao dia do alvo, sem leitura do alvo/futuro nem reposição |
+| 6 — amostra | Calendário H5/H10 calculado; critério integral tem zero alvos, não representa poder estatístico |
+| 7 — V3 | Não certificado; teste real confirma que o recorte continua recusado pela V3 |
+
+`season_audit.py` acrescenta contagem de eventos, disponibilidade por indicador com denominadores diagnosticado/catalogado e valores que sustentam a orientação (mediana x de chutes, movimentos crescentes e fração). `--content-only` é diagnóstico explícito de cópia parcial: ignora alegações de compatibilidade fornecidas pelo chamador, marca snapshot como não verificado, revisão null e certificação ausente. Sem essa opção, a exigência CORE-01 permanece. Nenhuma allowlist é promovida automaticamente.
+
+### Execução, testes e preservação
+
+Artefatos locais ignorados: `outputs/runs/core02_laliga_20261101/` com baseline, manifesto de fontes, auditoria integral, repetição, execução e verificação independente de qualidade. Hashes do código e das saídas estão no resumo versionado. Uma segunda execução instalada levou 46,531 s e reproduziu byte a byte a primeira saída, SHA-256 `fcfe3e32c98557f2f4d1bb29b4a69f910d09c001f697715d4895ceb9e37ea85c`. O tempo refere-se à repetição da auditoria, não ao download.
+
+Comando executado com o pacote instalado:
+
+```bash
+/tmp/managerai-core02-20261101-env/bin/python -I -B -m managerai.season_audit --data-root /tmp/managerai-core02-api-data-20261101/data --audit-date 2026-11-01 --candidate-competition-id 11 --candidate-season-id 27 --content-only --output outputs/runs/core02_laliga_20261101/content_audit.json
+```
+
+O destino acima já existe. Para repetir, escolher destino novo. Com clone completo compatível, omitir `--content-only` e usar sua raiz real; isso continua sem autorizar inclusão na V3.
+
+Focal instalado: `MANAGERAI_CORE02_CONTENT_ROOT=/tmp/managerai-core02-api-data-20261101/data PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-core02-20261101-env/bin/python -I -B -m unittest discover -s tests -p test_season_audit.py -q`: **20 aprovados, zero falhas/erros/pulos**. Inclui caso real de histórico H10 e bloqueio V3; a variável é própria desse teste e não ativa as integrações que exigem o snapshot completo. Suítes finais fonte sem opcionais e pacote instalado, ambas com o caso real CORE-02: **288 descobertos, 238 aprovados, 50 pulados, zero falhas/erros** em cada perfil (5,931 s / 5,293 s). Saídas e comandos em `validation.json`. `pip check` passou. Não se executaram API, frontend, gráficos, LLM, avaliação humana ou treinamento nesta etapa.
+
+Os três relatórios congelados mantêm os hashes iniciais; todos os 762 arquivos recebidos mantêm seus hashes após a auditoria. EDA e fórmulas foram preservadas. Sem commit, push, PR, publicação ou atualização de issue.
+
+**Publicação posterior autorizada:** o usuário autorizou consolidar entregas em commits e enviá-las ao GitHub para atualização por git pull e validação local. Esta publicação inclui somente o auditor, seus testes, documentação e resumo compacto; os dados brutos e artefatos locais permanecem fora do commit. Os resultados de testes acima pertencem à execução da auditoria.
+
+### Próximos passos deste recorte
+
+1. Concluir o provisionamento CORE-01 em ambiente com o clone completo e executar o modo padrão, sem `--content-only`.
+2. Investigar os seis jogos e documentar uma política de elegibilidade/abstenção por família de indicador, em mudança própria. Não editar os JSONs nem converter nulos em zero.
+3. Rever a adequação científica da guarda de orientação e do requisito de completude global antes de formular eventual protocolo novo. Não reduzir limiares retroativamente para aprovar este recorte; exigir revisão e validação independente para uma política substituta.
+4. Só após resolver esses gates considerar certificação e inclusão explícita com teste real. Serie A/Ligue 1 ainda não foram auditadas integralmente nesta execução; não presumir aprovação ou reprovação.
