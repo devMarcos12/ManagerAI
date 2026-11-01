@@ -54,6 +54,7 @@ export default function ReportView({ report, changed }: { report: Report; change
   const [sources, setSources] = useState(10);
   const [charts, setCharts] = useState(false);
   const [allMetrics, setAllMetrics] = useState(false);
+  const [qualityDetails, setQualityDetails] = useState(false);
   const d = report.display;
   async function download(format: 'json' | 'markdown') {
     if (exporting) return;
@@ -77,6 +78,18 @@ export default function ReportView({ report, changed }: { report: Report; change
     <div className="exports"><button className="secondary" disabled={!!exporting} onClick={() => download('markdown')}>{exporting === 'markdown' ? 'Recebendo…' : 'Exportar Markdown'}</button><button className="text-button" disabled={!!exporting} onClick={() => download('json')}>{exporting === 'json' ? 'Recebendo…' : 'Exportar JSON'}</button></div>
     {exportError && <p role="alert" className="error">{exportError}</p>}{exportSuccess && <p role="status" className="muted">{exportSuccess}</p>}
     <p className="small muted">Exportação disponível enquanto o relatório estiver na memória do servidor. Esta página não é um histórico persistente.</p>
+    {report.data_quality && <section className="report-section quality-details" aria-label="Qualidade dos dados"><h3>Qualidade aplicada aos indicadores</h3>
+      <p>Os valores e planos abaixo usam somente os jogos utilizáveis por indicador. As amostras podem variar; nenhum jogo excluído foi substituído.</p>
+      <p className="small muted">A suficiência básica exige cinco jogos em finalizações, gols esperados e acerto global de passes. Cada plano exige também suas próprias evidências. Os filtros não certificam a temporada.</p>
+      <details onToggle={e => setQualityDetails(e.currentTarget.open)}><summary>Conferir amostras e motivos de exclusão</summary>{qualityDetails && <div className="table-scroll"><table>
+        <caption>Jogos utilizáveis, amostras originais e motivos por indicador</caption><thead><tr><th>Equipe e indicador</th><th>Jogos utilizáveis</th><th>Motivos</th></tr></thead><tbody>
+          {report.data_quality.metrics.map(q => <tr key={q.evidence_id}><th>{q.team_name} · {d.metric_definitions[q.metric_id] || q.metric_id}</th>
+            <td>{q.usable_sample_size} de {q.selected_matches}<small>Amostra original: {q.original_sample_size}</small></td>
+            <td>{Object.entries(q.reason_counts).map(([code, count]) => <p key={code}>{report.data_quality!.reason_labels[code] || code} ({count})</p>)}
+              {q.excluded_match_ids.length > 0 && <small>Partidas excluídas: {q.excluded_match_ids.join(', ')}</small>}
+              {!Object.keys(q.reason_counts).length && 'Sem exclusões adicionais.'}</td></tr>)}
+        </tbody></table></div>}</details>
+    </section>}
     {report.abstention_reason && <section className="abstention"><h3>Sem planos comparativos neste recorte</h3><p>{report.abstention_reason}</p><p>Você pode consultar os indicadores descritivos abaixo. Uma amostra menor não permite completar as evidências ausentes.</p>{report.sufficiency.warnings.map(w => <p key={w}>{w}</p>)}</section>}
     <section className="report-section"><div className="section-heading"><h3>O que o histórico mostra</h3><span>Indicadores por equipe</span></div>
       <p className="muted small">Gols esperados (xG) descrevem a qualidade esperada das finalizações registradas. Não são gols reais nem probabilidade de vencer.</p>

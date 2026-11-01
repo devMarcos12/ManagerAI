@@ -1,5 +1,7 @@
 # ManagerAI — estado operacional atual
 
+**Aproveitamento parcial no serviço — 01/11/2026:** `data_policy="quality_v1"` e checkbox web aplicam filtros de qualidade à análise básica, com amostra original/utilizável, jogos excluídos e motivos por indicador. Agregação preserva fórmulas, numeradores/denominadores e nulos. Planos são regenerados somente com evidências utilizáveis; suficiência própria exige cinco jogos em cinco métricas básicas não espaciais e cada regra mantém suas exigências. O padrão `legacy`, CLI/Streamlit e contratos 1.0.0/1.1.0/V4.1 permanecem preservados. O novo modo não combina com V3 nem libera indicadores direcionais em temporadas não certificadas. Revisão da orientação identificou limite da guarda, sem recalibrá-la ou certificar a La Liga. Validação instalada: 272 aprovados/43 pulados; navegador portátil 17/17 e real 3/3. Evidências e pendências no §24 de PENDING.
+
 **Elegibilidade por família — 01/11/2026:** diagnóstico `metric-eligibility-1` implementado no auditor: 16 famílias/50 indicadores, dependências explícitas e janelas H5/H10 sem reposição. Na La Liga 2015/16, finalizações e passes têm 330/280 alvos; pressão/recuperações por 90 têm 314/254. Critérios CORE-02, fórmulas, relatórios de produção e allowlist V3 não mudam. É diagnóstico posterior à auditoria, não certificação nem validação independente. Evidências em PENDING §23 e no resumo JSON existente.
 
 **CORE-02 — 01/11/2026:** auditoria integral de conteúdo da La Liga 2015/16 executada em 380 jogos e 1.295.354 eventos, a partir de 762 arquivos oficiais com hashes Git conferidos. **Recorte não certificado:** seis partidas com falhas de qualidade, orientação inconclusiva e zero janelas com todos os 50 indicadores calculáveis. Diagnóstico de conteúdo não substitui o gate CORE-01 do clone completo, que não foi concluído neste ambiente. Allowlist e matriz global anteriores preservadas. Resultado compacto: [core02_laliga_201516_audit.json](core02_laliga_201516_audit.json); execução, limites e próximos gates em PENDING §22.
@@ -23,6 +25,7 @@ ManagerAI apoia preparação pré-jogo de futebol usando histórico local StatsB
 | Catálogo, seleção temporal, métricas, qualidade e proveniência | Implementado, determinístico |
 | CLI, relatórios JSON/Markdown, UI Streamlit integrada ao núcleo | Implementado; UI opcional |
 | Prévia de cobertura e abstenção com amostra insuficiente | Implementado na V2.2 |
+| Filtros de qualidade por indicador com exclusões rastreáveis | Opt-in no serviço/API/frontend, análise básica; sem nova certificação |
 | 26 indicadores V3, três agregados de sequências e dois gráficos | Implementado opt-in |
 | Atletas e formações registrados em jogos anteriores | Implementado como exploração histórica; sem ranking/minutos presumidos |
 | Hipóteses táticas condicionais | Implementadas por regras heurísticas; eficácia esportiva não validada |

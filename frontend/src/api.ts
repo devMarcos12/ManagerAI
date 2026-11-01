@@ -1,6 +1,6 @@
 import type { components } from './generated/api';
 export type Schema = components['schemas'];
-export type AnalysisRequest = Schema['AnalysisBody'];
+export type AnalysisRequest = Omit<Schema['AnalysisBody'], 'data_policy'> & Partial<Pick<Schema['AnalysisBody'], 'data_policy'>>;
 export type Report = Schema['ReportBody'];
 export type Coverage = Schema['CoverageBody'];
 export type Capabilities = Schema['CapabilitiesBody'];
@@ -38,6 +38,7 @@ async function checkedFetch<T>(path: string, read: (response: Response) => Promi
       let code = 'HTTP_ERROR';
       try { code = (await response.json()).code || code; } catch { /* Resposta de proxy sem JSON. */ }
       const detail = code === 'SEASON_NOT_CERTIFIED' ? 'Esta temporada não é certificada para V3. Desmarque V3 explicitamente ou escolha um recorte certificado.'
+        : code === 'INCOMPATIBLE_DATA_POLICY' ? 'Os filtros de qualidade estão disponíveis na análise básica. Desmarque V3 explicitamente para utilizá-los.'
         : code === 'DATA_UNAVAILABLE_OR_INVALID' ? 'Não foi possível ler o histórico local. Confira o provisionamento dos dados no backend ou escolha um recorte disponível.'
         : response.status === 404 && !path.startsWith('/v1/reports/') ? 'Recurso da API não encontrado. Confira a configuração do endereço do backend.' : messages[response.status];
       throw new ApiError(response.status, code, detail || 'Não foi possível concluir o pedido.');

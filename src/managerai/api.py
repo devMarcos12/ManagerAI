@@ -95,7 +95,8 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
                 "limits": {"request_bytes": 64000, "window": 20, "concurrent_analyses": 1,
                            "analyses_per_minute": 10, "report_bytes": max_bytes,
                            "retained_reports": 8, "report_ttl_seconds": ttl},
-                "storage": "Memória por processo; token de acesso por posse; reinício remove relatórios."}
+                "storage": "Memória por processo; token de acesso por posse; reinício remove relatórios.",
+                "data_policies": ["legacy", "quality_v1"]}
 
     @app.get("/v1/catalog", response_model=list[CatalogBody], response_model_exclude_unset=True)
     def catalog():

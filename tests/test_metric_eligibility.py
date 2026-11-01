@@ -74,6 +74,15 @@ class DependencyTests(unittest.TestCase):
         self.assertIn("passing", rows[1]["eligible_families"])
         self.assertIn("shot_counts", rows[1]["eligible_families"])
 
+    def test_active_percentage_does_not_inherit_unrequested_v3_rate_dependency(self):
+        match, events = fixture_match(1, 1), fixture_events(1)
+        events[0]["duration"] = -9
+        diagnosis = audit_game_taxonomy(match, events, fixture_lineups())
+        rows = assess_game(match, diagnosis, quality_issues(match, events), coherent_groups(),
+                           active_metrics={"pressure_high_share"})
+        self.assertIn("pressure_space", rows[1]["eligible_families"])
+        self.assertNotIn("movement_rates", rows[1]["eligible_families"])
+
     def test_incomplete_pass_geometry_does_not_block_complete_pass_progression(self):
         events = fixture_events(1)
         events[1]["pass"]["end_location"] = [121, 40]

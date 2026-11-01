@@ -89,3 +89,23 @@ test('timeout no navegador explica que cálculo pode continuar e não reenvia',a
   const state=await mockApi(page,{requests:[],coverageRequests:[],hangAnalysis:true});await page.goto('/');await expect(page.getByRole('button',{name:'Analisar confronto'})).toBeEnabled();await page.clock.install();await page.getByRole('button',{name:'Analisar confronto'}).click();await expect.poll(()=>state.requests.length).toBe(1);
   await page.clock.fastForward(120100);await expect(page.getByRole('alert')).toContainText('O cálculo pode continuar no servidor');expect(state.requests).toHaveLength(1);
 });
+
+test('qualidade é opt-in e incompatibilidade com V3 não muda escolhas silenciosamente',async({page})=>{
+  const state=await mockApi(page);await page.goto('/');
+  const analyze=page.getByRole('button',{name:'Analisar confronto'});await expect(analyze).toBeEnabled();
+  const quality=page.getByLabel('Aplicar filtros de qualidade por indicador',{exact:true});
+  const v3=page.getByLabel('Incluir análise por eventos (V3)',{exact:true});
+  await expect(quality).not.toBeChecked();await quality.check();await expect(v3).toBeDisabled();
+  await expect(analyze).toBeEnabled();await analyze.click();await expect(page.getByRole('article')).toBeVisible();
+  expect(state.requests[0].data_policy).toBe('quality_v1');expect(state.requests[0].include_v3).toBe(false);
+  const section=page.getByRole('region',{name:'Qualidade dos dados'});
+  await expect(section.getByRole('heading',{name:'Qualidade aplicada aos indicadores'})).toBeVisible();
+  await expect(section.getByRole('table')).toHaveCount(0);
+  await section.getByText('Conferir amostras e motivos de exclusão',{exact:true}).click();
+  await expect(section.getByRole('table')).toContainText('5 de 6');
+  await expect(section.getByRole('table')).toContainText('Partidas excluídas: 99');
+  await expect(section.getByRole('table')).toContainText('Arquivo de eventos ausente');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await quality.uncheck();await v3.check();await expect(quality).toBeDisabled();await expect(v3).toBeChecked();
+});

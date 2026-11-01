@@ -47,6 +47,14 @@ configure `MANAGERAI_OLLAMA_MODEL` no servidor antes de iniciar. Não há histó
 persistente: relatórios no servidor expiram; notas/relatórios não são gravados
 em localStorage. Sem previsão de vitória ou escalação ideal.
 
+Na análise básica, a opção **Aplicar filtros de qualidade por indicador**
+mostra a amostra utilizável, as partidas excluídas e seus motivos. O padrão
+continua sem esse filtro. A opção não é combinável com V3 e não certifica
+temporadas; indicadores direcionais permanecem bloqueados fora dos recortes
+certificados. Jogos excluídos não são substituídos por jogos mais antigos.
+Após atualizar o código, reinstale o pacote no ambiente usado pelo servidor:
+`.venv-web/bin/python -m pip install '.[api,v3]'`.
+
 Configuração pública de frontend em `frontend/.env.example`; copiar para
 `frontend/.env.local` somente se necessário. Não colocar segredos em `VITE_*`.
 O proxy de desenvolvimento/preview evita CORS aberto. Não há deploy ou

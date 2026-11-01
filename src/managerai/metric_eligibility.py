@@ -84,7 +84,7 @@ def quality_issues(match, events):
     return issues
 
 
-def assess_game(match, diagnosis, issues, orientation):
+def assess_game(match, diagnosis, issues, orientation, *, active_metrics=None):
     """Separa ausência de valor, problemas de dependência e orientação."""
     assessed = {}
     for team in diagnosis["teams"]:
@@ -94,7 +94,12 @@ def assess_game(match, diagnosis, issues, orientation):
         direction_ok = len(groups) == 2 and {g["period"] for g in groups} == {1, 2} and all(
             g["status"] == "coerente" for g in groups)
         blockers, missing = {}, {}
+        active_families = set()
         for family, keys in FAMILIES.items():
+            keys = set(keys) if active_metrics is None else set(keys) & set(active_metrics)
+            if not keys:
+                continue
+            active_families.add(family)
             reasons = set()
             absent = sorted(set(keys) - available)
             if absent:
@@ -102,6 +107,10 @@ def assess_game(match, diagnosis, issues, orientation):
                 missing[family] = absent
             for issue in issues:
                 if family in issue["blocked_families"] and (issue["scope"] == "match" or issue["team_id"] == tid):
+                    if issue["code"] == "invalid_duration" and not any(
+                        (METRICS[k][2] if k in METRICS else V3_METRICS.get(k, {}).get("aggregation")) == "rate"
+                        for k in keys):
+                        continue
                     reasons.add(issue["code"])
             if diagnosis["core_quality"].get("event_player_not_in_match_lineup", 0):
                 reasons.add("lineup_inconsistent")
@@ -110,7 +119,7 @@ def assess_game(match, diagnosis, issues, orientation):
             if reasons:
                 blockers[family] = sorted(reasons)
         assessed[tid] = {"available_metrics": sorted(available),
-                         "eligible_families": sorted(set(FAMILIES) - blockers.keys()),
+                         "eligible_families": sorted(active_families - blockers.keys()),
                          "blocked_families": blockers, "unavailable_metrics": missing}
     return assessed
 

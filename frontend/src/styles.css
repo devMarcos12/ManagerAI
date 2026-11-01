@@ -6,3 +6,5 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 .all-metrics table{table-layout:fixed}.all-metrics th,.all-metrics td{white-space:normal;overflow-wrap:anywhere;vertical-align:top}.all-metrics th:first-child{width:42%}.all-metrics td span,.all-metrics td small{display:block;color:var(--muted);font-size:.68rem}.all-metrics td strong{font-size:.8rem}.all-metrics caption{white-space:normal}
+
+.quality-details table{table-layout:fixed}.quality-details th,.quality-details td{white-space:normal;overflow-wrap:anywhere;vertical-align:top}.quality-details th:first-child{width:32%}.quality-details td small{display:block;color:var(--muted);margin-top:4px}.quality-details caption{white-space:normal}

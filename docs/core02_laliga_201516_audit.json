@@ -816,6 +816,17 @@
     "matches": 380,
     "status": "inconclusiva"
   },
+  "orientation_review": {
+    "certification_status": "unchanged",
+    "guard_changed": false,
+    "inconclusive_groups": 151,
+    "inconclusive_with_fewer_than_ten_movements": 0,
+    "inconclusive_with_fewer_than_three_shots": 151,
+    "interpretation": "Fração de movimentos crescentes pode refletir estilo de jogo; grupo misto não prova coordenada invertida.",
+    "mixed_groups": 228,
+    "mixed_with_high_shot_median_but_low_forward_share": 228,
+    "review_version": "orientation-review-1"
+  },
   "preservation": {
     "allowlist_changed": false,
     "downloaded_source_hashes_unchanged": true,
@@ -833,6 +844,191 @@
     "v3.carry_geometry_missing_or_invalid": 4,
     "v3.pass_geometry_missing_or_invalid": 3,
     "v3.recovery_failure_unmarked": 35927
+  },
+  "quality_service": {
+    "code_sha256": {
+      "frontend/src/App.tsx": "e3e1efd28cf9caaf97a9ee583972cc97924c6966f09dbebecdb20b3f8732a655",
+      "frontend/src/ReportView.tsx": "80eb30b6ab62b75f6dab3fb6d5eb951eb6fe03ca7fb30b3ddb662dc094f37149",
+      "frontend/src/api.ts": "92b06bdd8a161c748e7232788bca28da6f613feb3e98b7db8f13e945b3066bf1",
+      "frontend/tests/flow.spec.ts": "0d2a56ffe1cb50a262382c23f1393ebd8893f1157b44db27fce36138abc7a79d",
+      "frontend/tests/quality.real.ts": "b30e23854ecdbb30ff7d939cce8e58c8cd62be8bd8d4358eda957e8670fd2dd0",
+      "src/managerai/api.py": "bb17250a852bb055b07e2fca88424bdb3b2e73748e568aba0fb99673afacfd17",
+      "src/managerai/http_schema.py": "88fd9ee6091d4d0e5c25e4ad08441ada92a1d48197f38216e2b1d4c34d167a76",
+      "src/managerai/metric_eligibility.py": "fdf1fca940fc52f968c829aef019246558778c350dd3f42aede9e50b7e88e951",
+      "src/managerai/quality_report.py": "bcb3d4276ad1f26eeceadbd991848922f7104a812fc1f436c0955a77580c9490",
+      "src/managerai/season_audit.py": "cdf6eef67b88043aa379bb565859ca66c22133a6aecb9bf740c75ce57ad11b70",
+      "src/managerai/service.py": "66e0462cbfb3218f9c67e07c28202e14365fa66ecfa65a1a1f00e6f9c6696201",
+      "src/managerai/service_schema.py": "874db558796c0bc7561118c719bccb4813f8f26cd322b126d0a9bbed26d192c4",
+      "tests/test_metric_eligibility.py": "a24243425eb6792792bf56e782071a047c85da6953f749a80bf75b88be406067",
+      "tests/test_quality_report.py": "e9bbdbbd0f9e2f7388172b02893c76f9d640cb1111b9c149df6a89477f97a3bf"
+    },
+    "focal_installed": {
+      "eligibility_tests_passed": 14,
+      "quality_tests_passed": 13,
+      "skipped": 0
+    },
+    "frozen_reports_preserved": 3,
+    "full_snapshot_status": "not_checked",
+    "installed_source_modules_identical": 49,
+    "limitations": [
+      "Política conservadora por família dos indicadores básicos ativos; não maximiza aproveitamento de cada valor isolado.",
+      "Orientação sem validação independente; guarda mantida e direcionais bloqueados fora da allowlist existente.",
+      "Sem treino, inferência LLM ou validação esportiva humana nesta etapa."
+    ],
+    "local_validation_artifact": "outputs/runs/core02_quality_service_20261101/final_validation.json",
+    "local_validation_sha256": "d07c611b2833fa31133553f17cfa9a25a7460c80e2ae9e87d0a517128835ba6b",
+    "minimum_matches": 5,
+    "new_certification": false,
+    "official_files_preserved": 762,
+    "policy_version": "quality-report-1",
+    "real_api_browser_cases": [
+      {
+        "name": "classic",
+        "opponent_pressure_sample": 10,
+        "opponent_shots_sample": 10,
+        "plan_ids": [
+          "R03_CHANCES"
+        ],
+        "pressure_exclusions": [],
+        "pressure_reason_counts": {},
+        "snapshot_status": "not_checked",
+        "spatial_sample": 0,
+        "spatial_season_certified": false,
+        "sufficient": true,
+        "target_match_id": 267533,
+        "window": 10
+      },
+      {
+        "name": "duration",
+        "opponent_pressure_sample": 9,
+        "opponent_shots_sample": 10,
+        "plan_ids": [
+          "R03_CHANCES"
+        ],
+        "pressure_exclusions": [
+          3825665
+        ],
+        "pressure_reason_counts": {
+          "invalid_duration": 1
+        },
+        "snapshot_status": "not_checked",
+        "spatial_sample": 0,
+        "spatial_season_certified": false,
+        "sufficient": true,
+        "target_match_id": 3825672,
+        "window": 10
+      },
+      {
+        "name": "insufficient",
+        "opponent_pressure_sample": 1,
+        "opponent_shots_sample": 1,
+        "plan_ids": [],
+        "pressure_exclusions": [],
+        "pressure_reason_counts": {},
+        "snapshot_status": "not_checked",
+        "spatial_sample": 0,
+        "spatial_season_certified": false,
+        "sufficient": false,
+        "target_match_id": 267533,
+        "window": 1
+      }
+    ],
+    "real_browser_checks": [
+      {
+        "analysisAndChecksMs": 4897,
+        "desktop": [
+          1440,
+          1000
+        ],
+        "horizontalOverflow": false,
+        "jsonExportEqualsAPI": true,
+        "markdownQuality": true,
+        "mobile": [
+          390,
+          844
+        ],
+        "mocks": false,
+        "opponentPressureSample": 10,
+        "pageErrors": [],
+        "realAPI": true,
+        "realBrowser": true,
+        "target": "267533",
+        "window": "10"
+      },
+      {
+        "analysisAndChecksMs": 3664,
+        "desktop": [
+          1440,
+          1000
+        ],
+        "horizontalOverflow": false,
+        "jsonExportEqualsAPI": true,
+        "markdownQuality": true,
+        "mobile": [
+          390,
+          844
+        ],
+        "mocks": false,
+        "opponentPressureSample": 9,
+        "pageErrors": [],
+        "realAPI": true,
+        "realBrowser": true,
+        "target": "3825672",
+        "window": "10"
+      },
+      {
+        "analysisAndChecksMs": 1771,
+        "desktop": [
+          1440,
+          1000
+        ],
+        "horizontalOverflow": false,
+        "jsonExportEqualsAPI": true,
+        "markdownQuality": true,
+        "mobile": [
+          390,
+          844
+        ],
+        "mocks": false,
+        "opponentPressureSample": 1,
+        "pageErrors": [],
+        "realAPI": true,
+        "realBrowser": true,
+        "target": "267533",
+        "window": "1"
+      }
+    ],
+    "required_core_metrics": [
+      "xg_for",
+      "xg_against",
+      "shots_for",
+      "shots_against",
+      "pass_accuracy"
+    ],
+    "status": "implemented_opt_in_basic_only",
+    "v3_combination_allowed": false,
+    "validation": {
+      "installed_api_and_scoped_real": {
+        "discovered": 315,
+        "passed": 272,
+        "seconds": 8.165,
+        "skipped": 43
+      },
+      "portable_browser": {
+        "passed": 17,
+        "seconds": 18.2
+      },
+      "real_browser": {
+        "passed": 3,
+        "seconds": 13.4
+      },
+      "source": {
+        "discovered": 315,
+        "passed": 262,
+        "seconds": 3.577,
+        "skipped": 53
+      }
+    }
   },
   "repeat_duration_seconds": 46.53124828900036,
   "repeated_output_byte_identical": true,

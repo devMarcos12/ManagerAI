@@ -167,6 +167,12 @@ export interface components {
             /** Blocked Plan Ids */
             blocked_plan_ids?: ("R01_PROGRESSAO" | "R02_PRESSAO_ALTA" | "R03_CHANCES" | "V3_ENTRADAS_PASSE" | "V3_CHUTES_AREA")[];
             /**
+             * Data Policy
+             * @default legacy
+             * @enum {string}
+             */
+            data_policy: "legacy" | "quality_v1";
+            /**
              * Engine
              * @default deterministic
              * @constant
@@ -247,6 +253,8 @@ export interface components {
         };
         /** CapabilitiesBody */
         CapabilitiesBody: {
+            /** Data Policies */
+            data_policies?: ("legacy" | "quality_v1")[];
             /** Engines */
             engines: "deterministic"[];
             /**
@@ -327,6 +335,39 @@ export interface components {
             /** Requested Window */
             requested_window: number;
             team: components["schemas"]["TeamCoverageBody"];
+        };
+        /** DataQualityBody */
+        DataQualityBody: {
+            /** Applied */
+            applied: boolean;
+            /**
+             * Full Snapshot Status
+             * @constant
+             */
+            full_snapshot_status: "not_checked";
+            /** Limitations */
+            limitations: string[];
+            /** Mask Fingerprint */
+            mask_fingerprint: string;
+            /** Metrics */
+            metrics: components["schemas"]["QualityMetricBody"][];
+            /** Minimum Matches */
+            minimum_matches: number;
+            /** Policy Version */
+            policy_version: string;
+            /** Reason Labels */
+            reason_labels: {
+                [key: string]: string;
+            };
+            /** Required Core Metrics */
+            required_core_metrics: string[];
+            /**
+             * Scope
+             * @constant
+             */
+            scope: "selected_history_only";
+            /** Spatial Season Certified */
+            spatial_season_certified: boolean;
         };
         /** DisplayBody */
         DisplayBody: {
@@ -578,10 +619,36 @@ export interface components {
             /** Risks */
             risks: string[];
         };
+        /** QualityMetricBody */
+        QualityMetricBody: {
+            /** Evidence Id */
+            evidence_id: string;
+            /** Excluded Match Ids */
+            excluded_match_ids: number[];
+            /** Family */
+            family: string;
+            /** Metric Id */
+            metric_id: string;
+            /** Original Sample Size */
+            original_sample_size: number;
+            /** Reason Counts */
+            reason_counts: {
+                [key: string]: number;
+            };
+            /** Selected Matches */
+            selected_matches: number;
+            /** Team Id */
+            team_id: number;
+            /** Team Name */
+            team_name: string;
+            /** Usable Sample Size */
+            usable_sample_size: number;
+        };
         /** ReportBody */
         ReportBody: {
             /** Abstention Reason */
             abstention_reason: string | null;
+            data_quality?: components["schemas"]["DataQualityBody"] | null;
             display: components["schemas"]["DisplayBody"];
             /** Evidence */
             evidence: {

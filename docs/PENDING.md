@@ -1,5 +1,7 @@
 # ManagerAI — pendências e validação
 
+**Aproveitamento parcial — 01/11/2026:** análise básica do serviço/API/frontend ganhou opção explícita de qualidade, preservando padrão legado e bloqueio espacial fora da certificação existente. Revisão da orientação concluída como diagnóstico, sem mudar guardas. Código, testes reais, migração e limites no §24. Clone completo, revisão independente e novas certificações continuam pendentes.
+
 **Elegibilidade por família — 01/11/2026:** diagnóstico implementado e executado na La Liga 2015/16; contagens históricas úteis separadas dos bloqueios espaciais e de exposição. 16 famílias/50 indicadores; regras e resultados no §23. Não houve certificação ou alteração da análise de produção.
 
 **CORE-02 — 01/11/2026:** conteúdo integral da La Liga 2015/16 auditado; resultado reprovado sob as guardas atuais, sem certificação V3. Gate de snapshot completo permanece não verificado. Evidências, testes e distinção entre calendário e calculabilidade no §22.
@@ -31,7 +33,7 @@ Na V4.1, este documento foi corrigido a partir do estado antigo da Fase 1 para r
 | ART-01 | IMPLEMENTADO NA C, CONFERIDO NA CORE-00 | `open-data/` e `outputs/runs/` ignorados; fixtures, exemplos finais e verificadores preservados/rastreados |
 | TEAM-01 / B4 | DECISÃO HUMANA | Responsáveis por contratos, dados/indicadores, UI e avaliação; confirmar uso compartilhado de `.vscode/settings.json` |
 | REF-01 | SUFICIÊNCIA CONSOLIDADA | Constantes e predicado compartilhados; regras V3 deixam de importar apresentação para suficiência. Helpers de formatação ainda reutilizados; sem alteração de fórmulas/contratos |
-| V3-01 / CORE-02 | PARCIAL: CONTEÚDO LA LIGA AUDITADO, NÃO CERTIFICADO | 380 jogos/1.295.354 eventos; seis partidas com falhas, orientação inconclusiva e completude integral H5/H10 zero. Gate CORE-01 completo não verificado nesta execução; §22 |
+| V3-01 / CORE-02 | PARCIAL: CONTEÚDO AUDITADO, NÃO CERTIFICADO | La Liga 2015/16 auditada; guardas mantidas e CORE-01 completo não verificado. Diagnóstico por família §23 e aproveitamento parcial opt-in básico §24; V3 sem novos recortes |
 | PERF-01 | MEDIÇÕES INICIAIS E LIMITES IMPLEMENTADOS | Duração/payload reais e limites de API no §20; prévia JSON da UI mitigada. Perfil completo de releitura e revisão visual continuam pendentes |
 | EVAL-01 | PENDENTE | Revisão especializada/vídeo/treino com correção, rastreabilidade, plausibilidade, compreensão, riscos e utilidade separados |
 | AI-01 | EXPERIMENTO QUANTITATIVO A/B IMPLEMENTADO | OLS/Ridge treinadas offline para chutes; sem motor tático aprendido no runtime, validação de estratégia ou integração V3/V4.1. Decisão C no §14 |
@@ -1112,3 +1114,41 @@ Python 3.12.14, ambiente isolado criado na etapa anterior; wheel reconstruído e
 Artefatos locais ignorados: `outputs/runs/core02_families_20261101/`, com política, auditoria, execução e verificações independentes. O resumo JSON existente foi ampliado; não se criou outro manual ou relatório histórico paralelo. Nenhuma nova aquisição de dados, treinamento, inferência LLM, execução de API/frontend/navegador, revisão humana ou certificação foi feita nesta etapa.
 
 **Estado:** política diagnóstica implementada e testada; a La Liga continua não certificada. Antes de integrar critérios de aproveitamento parcial ao produto, revisar a semântica/adequação da orientação e definir migração explícita dos gates com avaliação independente. O gate CORE-01 do clone completo permanece aberto. Não interpretar famílias com histórico elegível como licença para liberar V3 automaticamente.
+
+## 24. Aproveitamento parcial no serviço e revisão de orientação (01/11/2026)
+
+Entrada: main `82576ac4df14218e3e420d2d3c927734f6335b42`. Continuação autorizada pelo usuário, incluindo commit e publicação de versões para validação local. Nenhum dado bruto, fixture congelada, fórmula, limiar ou allowlist foi alterado. O resumo existente [core02_laliga_201516_audit.json](core02_laliga_201516_audit.json) recebeu `orientation_review` e `quality_service`; não há nova auditoria integral da temporada nesta etapa.
+
+### Decisão e migração
+
+`data_policy="quality_v1"` é opt-in no serviço/API e no checkbox web **Aplicar filtros de qualidade por indicador**. O padrão permanece `legacy`. A nova política aplica dependências por família aos 21 indicadores básicos ativos; reconstrói agregados com as mesmas fórmulas sobre evidências utilizáveis, sem transformar ausências em zero ou repor jogos. Expõe amostras original/utilizável/selecionada, IDs e motivos das exclusões. Famílias podem excluir um jogo por ausência de outro indicador ativo da mesma família; é uma política conservadora, não promessa de aproveitamento máximo.
+
+`evidence` e planos do serviço refletem o filtro; `legacy_report` preserva o resultado original completo, inclusive hipóteses não filtradas. Suficiência própria exige cinco jogos nos cinco indicadores não espaciais `xg_for/xg_against/shots_for/shots_against/pass_accuracy` de cada equipe. Cada regra continua exigindo suas evidências e mínimos; sem suporte há abstenção. O contrato separado `service-quality-1` identifica motor determinístico `deterministic-quality` e máscara/fontes por fingerprint. Não foi alterado o contrato V4.1, nem seu adaptador ou sua suficiência.
+
+A opção não combina com V3; erro explícito 422, sem fallback. Famílias direcionais ficam bloqueadas fora da allowlist existente, ainda que a guarda local seja coerente. CLI/Streamlit e schemas 1.0.0/1.1.0 permanecem preservados. O filtro relê somente a janela histórica e confere hashes contra o relatório original; mudança entre leituras é recusada. O snapshot completo continua declarado não verificado. Instalação/migração no README e contrato em BACKEND_API.
+
+### Orientação: diagnóstico e limite
+
+Todos os 228 grupos mistos têm mediana dos chutes x≥80 e menos de 60% dos movimentos em x crescente. Os 151 inconclusivos têm menos de três chutes; nenhum tem menos de dez movimentos. O contrafactual sintético de passes para trás com chutes avançados confirma que o gatilho pode classificar um padrão de circulação como misto. Isso não comprova inversão nem valida a direção real. A documentação oficial v1.1, apêndice 2, sustenta o plano de coordenadas, mas não forneceu nesta consulta prova suficiente de normalização de todos os eventos do recorte. Fonte e escopo em CORE02_CERTIFICATION. A guarda não foi relaxada; revisão científica independente continua necessária antes de substituí-la ou certificar novas temporadas.
+
+### Validação executada
+
+Python 3.12.14; extra canônico `.[api]` no ambiente isolado da etapa anterior, sem mudar pyproject. Wheel reconstruído de cópia temporária dos fontes e instalado; os 49 módulos Python instalados coincidem byte a byte com o checkout. `pip check` e `scripts/export_openapi.py --check` passaram. OpenAPI/TypeScript gerados atualizados. Node 24.22.1; `npm ci`, build TypeScript/Vite e `npm run types:check` passaram, sem mudanças no lockfile.
+
+- Fonte mínima: `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -B -S -m unittest discover -s tests -q`: **315 descobertos, 262 aprovados, 53 pulados**, zero falhas/erros; 3,577 s.
+- Pacote instalado com API e recorte real: `MANAGERAI_CORE02_CONTENT_ROOT=/tmp/managerai-core02-api-data-20261101/data PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-core02-20261101-env/bin/python -I -B -m unittest discover -s tests -q`: **315 descobertos, 272 aprovados, 43 pulados**, zero falhas/erros; 8,165 s. Pulos incluem opcionais não instalados e snapshot completo indisponível.
+- Focais instalados: qualidade **13/13** (0,516 s), elegibilidade **14/14** (0,624 s), sem pulos. Cobrem nulo/zero, agregação ponderada, duração versus contagem/percentual, ausência de arquivo sem reposição, indisponível declarado com fonte, alvo/futuro/dia do corte, mudança de fontes, abstenção, política incompatível e exportação tipada.
+- Navegador portátil: **17/17**, 18,2 s, dois workers. Verifica envio opt-in, incompatibilidade V3, tabela de motivos/amostras, carregamento sob demanda e mobile, além dos fluxos anteriores.
+- Navegador com API instalada e dados reais, sem mocks: **3/3**, 13,4 s. `frontend/tests/quality.real.ts`, config real existente e `MANAGERAI_E2E_REAL=1`; casos abaixo, desktop 1440×1000 e mobile 390×844, zero erros JS e sem transbordamento horizontal. JSON baixado igual à resposta HTTP; Markdown contém amostras/exclusões.
+
+| Caso | Resultado |
+|---|---|
+| Real Madrid × Barcelona, alvo 267533, H10 | Somente plano R03_CHANCES sustentado; finalizações n=10, pressão n=10; direcionais n=0 |
+| Málaga × Granada, alvo 3825672, H10 | Pressão do Granada n=9, excluindo 3825665 por duração; finalizações n=10; R03_CHANCES preservado |
+| Clássico com janela 1 | HTTP 200 descritivo, sem planos e com insuficiência explícita |
+
+Houve uma execução inicial Python com erro na nova fixture por faltar proveniência do indisponível; corrigida a declaração, ambas as suítes passaram. O build inicial apontou tipo obrigatório indevido no cliente gerado para opção HTTP com default; o alias de pedido foi ajustado, preservando omissão no fluxo legado. O download padrão do Chromium falhou; usou-se Chromium 153 em diretório temporário via pacote npm externo, sem dependência adicionada ao projeto. A primeira execução com `single-process` teve 9 aprovações/8 falhas por fechamento de contextos; removida essa opção do lançador temporário, a suíte final passou. A primeira tentativa real em processos isolados não alcançou loopback; servidores e testes no mesmo processo de execução passaram. Essas tentativas não são contabilizadas como aprovações. Starlette avisou depreciação de httpx no TestClient, sem falha; dependências canônicas mantidas.
+
+Artefatos locais ignorados em `outputs/runs/core02_quality_service_20261101/`: casos de API e `final_validation.json`. Logs/capturas do navegador em `/tmp/managerai-quality-*`. Hashes dos 762 arquivos oficiais e das três fixtures congeladas reconferidos após os testes; preservados. Não se executaram novo provisionamento global, treinamento, LLM, gráficos V3 ou avaliação esportiva humana.
+
+**Próximos passos:** validação manual do usuário após git pull/reinstalação; completar CORE-01 com o clone integral; revisão independente/vídeo para um eventual protocolo de orientação; só então avaliar novos gates/certificações e expansão da política para V3. Serie A/Ligue 1 continuam sem auditoria integral nesta execução. Esta entrega conclui o aproveitamento parcial opt-in da análise básica, não o projeto inteiro.

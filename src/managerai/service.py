@@ -45,11 +45,18 @@ def build_service_report(root, request: ServiceRequest, *, provider=None):
         raise ServiceError("MODEL_UNAVAILABLE", "Explicação obrigatória sem provedor configurado.", 503)
     report = analyze(root, request.analysis, include_v3=request.include_v3)
     legacy = report.to_dict()
-    engine = compare_engines(report)[0].to_dict()
-    sufficiency = asdict(report_sufficiency(report))
+    quality = None
+    if request.data_policy == "quality_v1":
+        from .quality_report import apply_quality_policy
+        effective, quality, engine, sufficiency = apply_quality_policy(root, report)
+    else:
+        effective = report
+        engine = compare_engines(report)[0].to_dict()
+        sufficiency = asdict(report_sufficiency(report))
+    calculated = effective.to_dict()
     evidence = {}
     for side in ("team_profile", "opponent_profile"):
-        for key, metric in legacy[side]["metrics"].items():
+        for key, metric in calculated[side]["metrics"].items():
             evidence[f"{side}.metrics.{key}"] = {**metric, "team_id": legacy[side]["team_id"],
                                                 "team_name": legacy[side]["team_name"]}
         if request.include_v3:
@@ -88,17 +95,24 @@ def build_service_report(root, request: ServiceRequest, *, provider=None):
                        "evidence_ids": p["evidence_ids"], "plan_id": p["plan_id"]})
     claims.append({"id": "roster", "text": "Nenhuma escalação ideal ou disponibilidade atual é inferida do histórico.",
                    "evidence_ids": ["service.roster_policy"]})
+    if quality:
+        claims.append({"id": "quality", "text": "Filtros de qualidade aplicados por indicador; amostras podem diminuir, sem nova certificação da temporada.",
+                       "evidence_ids": ["service.data_quality"]})
     comparisons = [{"plans": [left["plan_id"], right["plan_id"]],
                    "different_evidence_ids": sorted(set(left["evidence_ids"]) ^ set(right["evidence_ids"])),
                    "interpretation": "Opções condicionais distintas; evidências não estimam qual funciona melhor.",
                    "context_priority_tied": left["context_priority"] == right["context_priority"]}
                   for i, left in enumerate(plans) for right in plans[i+1:]]
-    identity = fingerprint({"request": request.to_dict(), "legacy": legacy})
+    identity_request = request.to_dict()
+    if request.data_policy == "legacy":
+        identity_request.pop("data_policy")
+    identity = fingerprint({"request": identity_request, "legacy": legacy,
+                            **({"quality_mask": quality["mask_fingerprint"]} if quality else {})})
     projection = {"report_id": identity, "claims": claims}
     explanation = explain(projection, mode=request.explanation, provider=provider)
     if request.explanation == "required" and explanation["status"] != "generated":
         raise ServiceError("EXPLANATION_FAILED", "Provedor não produziu explicação válida.", 503)
-    return {"schema_version": SERVICE_VERSION, "report_id": identity,
+    result = {"schema_version": SERVICE_VERSION, "report_id": identity,
             "request": request.to_dict(), "legacy_report": legacy, "evidence": evidence,
             "sufficiency": sufficiency, "plans": plans, "excluded_plans": excluded, "plan_comparisons": comparisons,
             "abstention_reason": abstention,
@@ -116,10 +130,15 @@ def build_service_report(root, request: ServiceRequest, *, provider=None):
                              "fine_tuned_explainer": "experimental_not_promoted"},
             "explanation": explanation, "limitations": list(report.data_gaps),
             "provenance": {"engine": engine, "context": "coach_declared", "ordering_version": ORDERING_VERSION}}
+    if quality:
+        result["data_quality"] = quality
+        result["limitations"].extend(quality["limitations"])
+    return result
 
 
 def render_service_markdown(result):
     from .presentation.terminology import number
+    from .presentation.terminology import TERMS
     lines = ["# Preparação histórica do confronto", "", f"Relatório: {result['report_id']}", "",
              "Hipóteses condicionais; sem eficácia esportiva validada.", "",
              f"Suficiência: {result['sufficiency']['status']}.", ""]
@@ -134,6 +153,17 @@ def render_service_markdown(result):
         lines += [result["abstention_reason"], ""]
     if result["ordering"].get("objective_note"):
         lines += [result["ordering"]["objective_note"], ""]
+    if result.get("data_quality"):
+        q = result["data_quality"]
+        lines += ["## Qualidade dos dados", "", "Filtros por indicador aplicados à janela selecionada; não certificam a temporada.",
+                  "", "Suficiência básica: cinco jogos em finalizações, gols esperados e acerto global de passes. Cada plano exige também suas próprias evidências.", ""]
+        for row in q["metrics"]:
+            reasons = "; ".join(f"{q['reason_labels'][code]} ({n})" for code, n in row["reason_counts"].items())
+            term = TERMS.get(row["metric_id"])
+            label = term.title if term else row["metric_id"]
+            lines += [f"- {row['team_name']} / {label}: {row['usable_sample_size']} de {row['selected_matches']} jogos utilizáveis; "
+                      f"amostra original={row['original_sample_size']}; excluídos={row['excluded_match_ids']}. {reasons}"]
+        lines += [""]
     for p in result["plans"]:
         lines += [f"## {p['plan_id']}", "", p["observation"], "", p["possible_action"], "",
                   f"Condição: {p['condition']}", "", "Riscos: " + " ".join(p["risks"]), "",

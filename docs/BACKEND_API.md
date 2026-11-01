@@ -67,6 +67,18 @@ Planos contêm observação, evidências, condição, ação possível, pré-con
 
 O frontend deve ler `sufficiency`, `abstention_reason`, `model_status` e `explanation.status` antes de apresentar conclusões. `report_id` é a identidade determinística do pedido e relatório; `report_key` é token aleatório de acesso por posse. Não tratar o token como autorização de equipe ou usuário autenticado. Não registrar notas ou tokens em analytics por padrão. Renderizar texto/Markdown como conteúdo não confiável, sem executar HTML ou scripts.
 
+## Filtros de qualidade opcionais
+
+`data_policy` aceita `legacy` (padrão, também quando omitido) ou `quality_v1`. A capacidade é anunciada em `GET /v1/capabilities`, campo `data_policies`. Para testar a nova opção, usar `"data_policy":"quality_v1"` e `"include_v3":false`. A combinação com V3 retorna 422 `INCOMPATIBLE_DATA_POLICY`; política desconhecida retorna 422 `INVALID_DATA_POLICY`. Não há fallback automático.
+
+No modo novo, `evidence`, `sufficiency` e `plans` usam a projeção filtrada. `legacy_report` guarda o resultado original, inclusive hipóteses originais: essas hipóteses não são os planos filtrados do serviço. Os schemas legados 1.0.0/1.1.0 e o contrato de motores V4.1 não mudam. O serviço usa o contrato separado `service-quality-1`, identificado na proveniência como `deterministic-quality`, versão `quality-report-1`. A seleção pública de motor continua `deterministic`; nenhuma IA aprendida foi acrescentada.
+
+`data_quality` registra as 42 combinações indicador/equipe: amostra original, utilizável e selecionada, IDs excluídos, motivos por família e fingerprint da máscara. Famílias exigem todos os seus indicadores ativos calculáveis, portanto a exclusão pode ser conservadora mesmo quando um valor isolado existe. Taxas por 90 exigem duração válida; geometrias exigem suas dependências; a guarda de orientação continua vigente. As famílias direcionais são bloqueadas em temporadas fora da allowlist V3, mesmo com orientação local coerente. A máscara é aplicada somente às evidências por jogo existentes; agregação usa soma de numeradores/denominadores e mantém fórmula, unidade, nulo, zero válido e datas. Não repõe partidas excluídas.
+
+A suficiência deste modo exige cinco jogos em `xg_for`, `xg_against`, `shots_for`, `shots_against` e `pass_accuracy` nas duas equipes. Cinco é mínimo operacional, sem confiança calibrada. Cada regra ainda exige suas evidências e mínimos próprios; sem suporte, há abstenção. A releitura se limita à janela anterior ao dia do corte e confere os hashes do relatório original. Alteração entre leituras gera erro de dados, sem misturar versões. `full_snapshot_status="not_checked"` declara que o filtro não verifica o clone completo nem certifica a temporada. `spatial_season_certified` apenas reflete a allowlist existente.
+
+JSON e Markdown exportam a política aplicada e as exclusões. A prévia `/v1/coverage` continua mostrando presença de arquivos, antes da inspeção do conteúdo. Clientes antigos podem omitir a opção; o frontend só a envia quando marcada. Reinstalar o pacote no ambiente da API após `git pull`, conforme README. CLI e Streamlit continuam usando o comportamento anterior. Validação e revisão de orientação: PENDING §24.
+
 ## Erros e limites
 
 Erros têm `{ "code": "...", "message": "..." }`. `INVALID_REQUEST`, `INVALID_ROSTER`, `INVALID_RESTRICTIONS`, `CONTEXT_CONFLICT`, `FUTURE_ROSTER` e `SEASON_NOT_CERTIFIED` retornam 422. `DATA_UNAVAILABLE_OR_INVALID` também retorna 422. Motor/modelo indisponível ou explicação obrigatória inválida retornam 503 com códigos específicos. Ocupação/limite de chamadas retorna 429; relatório expirado, 404; payload excedido, 413; erro inesperado, 500 sem stack trace.

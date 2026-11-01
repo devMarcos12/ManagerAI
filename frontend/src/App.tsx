@@ -13,9 +13,10 @@ interface FormState {
   objective: NonNullable<Analysis['strategic_objective']>; strategy: NonNullable<AnalysisRequest['intended_strategy']>;
   blocked: NonNullable<AnalysisRequest['blocked_plan_ids']>; notes: string;
   explanation: NonNullable<AnalysisRequest['explanation']>;
+  quality: boolean;
 }
 const initial: FormState = { competition: 0, season: 0, team: 0, opponent: 0, target: 0, reference: 'match', cutoff: '', window: 10,
-  v3: false, venue: 'desconhecido', context: 'regular', objective: 'equilibrado', strategy: 'equilibrada', blocked: [], notes: '', explanation: 'none' };
+  v3: false, quality: false, venue: 'desconhecido', context: 'regular', objective: 'equilibrado', strategy: 'equilibrada', blocked: [], notes: '', explanation: 'none' };
 const explanationLabels = { none: 'Não executar (padrão)', optional: 'Executar, mantendo relatório em caso de falha', required: 'Exigir explicação válida para concluir' };
 
 function CoverageView({ value }: { value: Coverage }) {
@@ -77,7 +78,7 @@ export default function App() {
     competition_id: form.competition, season_id: form.season, team_id: form.team, opponent_id: form.opponent,
     ...(form.reference === 'match' ? { target_match_id: form.target } : { cutoff_date: form.cutoff }),
     recent_matches_window: form.window, venue: form.venue, match_context: form.context, strategic_objective: form.objective, notes: form.notes,
-  }, include_v3: form.v3, intended_strategy: form.strategy, blocked_plan_ids: form.blocked, roster: [], engine: 'deterministic', explanation: form.explanation }), [form]);
+  }, include_v3: form.v3, ...(form.quality ? { data_policy: 'quality_v1' as const } : {}), intended_strategy: form.strategy, blocked_plan_ids: form.blocked, roster: [], engine: 'deterministic', explanation: form.explanation }), [form]);
   const requestKey = JSON.stringify(request); // Pedido pequeno; nunca serializar o relatório para renderizar.
   const debouncedKey = useDebounced(ready ? requestKey : null);
   const preview = useRemote(ready ? debouncedKey : null, signal => api.coverage(JSON.parse(debouncedKey!), signal));
@@ -131,7 +132,9 @@ export default function App() {
             <label htmlFor="objective">Objetivo declarado</label><select id="objective" value={form.objective} onChange={e => update('objective', e.target.value as FormState['objective'])}>{objectives.map(o => <option key={o}>{o}</option>)}</select>
             {form.objective === 'pressionar alto' && <p className="small muted">Não há plano validado para priorizar pressão da própria equipe. Este objetivo permanece apenas como declaração.</p>}
           </div>
-          <label className="checkbox v3-toggle"><input type="checkbox" disabled={!v3Certified} checked={form.v3} onChange={e => update('v3', e.target.checked)} /><span>Incluir análise por eventos (V3)</span></label><p className="small muted">{v3Certified ? 'Recorte certificado: indicadores adicionais e gráficos disponíveis.' : 'V3 indisponível: esta temporada não está na lista de recortes certificados.'}</p>
+          <label className="checkbox v3-toggle"><input type="checkbox" disabled={!v3Certified || form.quality} checked={form.v3} onChange={e => update('v3', e.target.checked)} /><span>Incluir análise por eventos (V3)</span></label><p className="small muted">{form.quality ? 'V3 indisponível enquanto os filtros de qualidade da análise básica estiverem selecionados.' : v3Certified ? 'Recorte certificado: indicadores adicionais e gráficos disponíveis.' : 'V3 indisponível: esta temporada não está na lista de recortes certificados.'}</p>
+          <label className="checkbox"><input type="checkbox" disabled={form.v3 || !capabilities?.data_policies?.includes('quality_v1')} checked={form.quality} onChange={e => update('quality', e.target.checked)} /><span>Aplicar filtros de qualidade por indicador</span></label>
+          <p className="small muted">{form.v3 ? 'Desmarque V3 para aplicar os filtros da análise básica. ' : ''}Amostras podem diminuir. Jogos excluídos não são substituídos; os filtros não certificam a temporada.</p>
           <details className="advanced"><summary>Opções avançadas</summary>
             <label htmlFor="strategy">Estratégia pretendida</label><select id="strategy" value={form.strategy} onChange={e => update('strategy', e.target.value as FormState['strategy'])}>{strategies.map(s => <option key={s} value={s}>{strategyLabels[s]}</option>)}</select>
             <fieldset><legend>Opções que não deseja investigar</legend>{planIds.map(id => <label key={id} className="checkbox"><input type="checkbox" checked={form.blocked.includes(id)} onChange={e => update('blocked', e.target.checked ? [...form.blocked, id] : form.blocked.filter(x => x !== id))} />{planLabels[id]}</label>)}</fieldset>

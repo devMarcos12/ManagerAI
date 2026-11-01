@@ -199,6 +199,22 @@ def _orientation_result(details: list[dict[str, Any]], matches: set[int]) -> dic
             "groups": sorted(details, key=lambda d: (d["match_id"], d["team_id"], d["period"]))}
 
 
+def review_orientation(groups):
+    """Explica a guarda existente; não redefine orientação nem certificação."""
+    mixed = [g for g in groups if g["status"] == "mista"]
+    inconclusive = [g for g in groups if g["status"] == "inconclusivo"]
+    return {"review_version": "orientation-review-1", "guard_changed": False,
+            "mixed_groups": len(mixed),
+            "mixed_with_high_shot_median_but_low_forward_share": sum(
+                g.get("shot_x_median") is not None and g["shot_x_median"] >= 80
+                and g.get("forward_share") is not None and g["forward_share"] < .6 for g in mixed),
+            "inconclusive_groups": len(inconclusive),
+            "inconclusive_with_fewer_than_three_shots": sum(g["shots"] < 3 for g in inconclusive),
+            "inconclusive_with_fewer_than_ten_movements": sum(g["movements"] < 10 for g in inconclusive),
+            "interpretation": "Fração de movimentos crescentes pode refletir estilo de jogo; grupo misto não prova coordenada invertida.",
+            "certification_status": "unchanged"}
+
+
 def audit_game_taxonomy(match: dict[str, Any], events: list[dict[str, Any]],
                         lineups: list[dict[str, Any]] | None) -> dict[str, Any]:
     """Confronta payloads consumidos com os três leitores existentes.
@@ -430,6 +446,7 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
                                  for key in ("data_version", "shot_fidelity_version", "xy_fidelity_version"))
                                  for m in ordered}),
             "orientation": orientation,
+            "orientation_review": review_orientation(orientation_groups),
             "status": "reprovado" if failures else "inconclusivo",
             "reason": ("Diagnóstico somente de conteúdo: origem/revisão/compatibilidade CORE-01 não verificadas; não certifica nem altera a allowlist."
                        if content_only else "A auditoria automática não altera a allowlist; gates temporal, amostra, versões e teste real exigem revisão explícita."),

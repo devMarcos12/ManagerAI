@@ -43,6 +43,7 @@ class AnalysisBody(StrictModel):
     explanation: ExplanationMode = "none"
     engine: Literal["deterministic"] = "deterministic"
     explainer_model: str | None = Field(default=None, min_length=1, max_length=160)
+    data_policy: Literal["legacy", "quality_v1"] = "legacy"
 
     @model_validator(mode="before")
     @classmethod
@@ -92,6 +93,7 @@ class CapabilitiesBody(BaseModel):
     v3_recuts: list[tuple[int, int]]
     limits: LimitsBody
     storage: str
+    data_policies: list[Literal["legacy", "quality_v1"]] = Field(default_factory=lambda: ["legacy"])
 
 
 class CatalogBody(BaseModel):
@@ -287,6 +289,33 @@ class DisplayBody(BaseModel):
     metric_definitions: dict[str, str]
 
 
+class QualityMetricBody(BaseModel):
+    evidence_id: str
+    metric_id: str
+    team_id: int
+    team_name: str
+    family: str
+    original_sample_size: int
+    usable_sample_size: int
+    selected_matches: int
+    excluded_match_ids: list[int]
+    reason_counts: dict[str, int]
+
+
+class DataQualityBody(BaseModel):
+    policy_version: str
+    applied: bool
+    scope: Literal["selected_history_only"]
+    full_snapshot_status: Literal["not_checked"]
+    spatial_season_certified: bool
+    minimum_matches: int
+    required_core_metrics: list[str]
+    mask_fingerprint: str
+    metrics: list[QualityMetricBody]
+    reason_labels: dict[str, str]
+    limitations: list[str]
+
+
 class ReportBody(BaseModel):
     schema_version: str
     report_id: str
@@ -306,6 +335,7 @@ class ReportBody(BaseModel):
     limitations: list[str]
     provenance: dict[str, Any]  # Contrato V4.1 preservado; sem consumidor visual opaco.
     report_key: str
+    data_quality: DataQualityBody | None = None
 
 
 def display_projection(result):

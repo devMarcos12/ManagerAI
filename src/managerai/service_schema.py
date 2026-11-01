@@ -57,10 +57,15 @@ class ServiceRequest:
     explanation: str = "none"
     engine: str = "deterministic"
     explainer_model: str | None = None
+    data_policy: str = "legacy"
 
     def __post_init__(self):
         if self.schema_version != SERVICE_VERSION or type(self.include_v3) is not bool:
             raise ServiceError("INVALID_REQUEST", "Versão ou opção V3 inválida.")
+        if self.data_policy not in ("legacy", "quality_v1"):
+            raise ServiceError("INVALID_DATA_POLICY", "Política de dados desconhecida.")
+        if self.data_policy == "quality_v1" and self.include_v3:
+            raise ServiceError("INCOMPATIBLE_DATA_POLICY", "Filtros de qualidade disponíveis somente para a análise básica, sem V3.")
         if self.engine != "deterministic":
             raise ServiceError("ENGINE_UNAVAILABLE", "Motor solicitado indisponível.", 503)
         if self.explainer_model is not None and (not isinstance(self.explainer_model, str)

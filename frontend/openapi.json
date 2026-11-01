@@ -22,6 +22,15 @@
             "title": "Blocked Plan Ids",
             "type": "array"
           },
+          "data_policy": {
+            "default": "legacy",
+            "enum": [
+              "legacy",
+              "quality_v1"
+            ],
+            "title": "Data Policy",
+            "type": "string"
+          },
           "engine": {
             "const": "deterministic",
             "default": "deterministic",
@@ -202,6 +211,17 @@
       },
       "CapabilitiesBody": {
         "properties": {
+          "data_policies": {
+            "items": {
+              "enum": [
+                "legacy",
+                "quality_v1"
+              ],
+              "type": "string"
+            },
+            "title": "Data Policies",
+            "type": "array"
+          },
           "engines": {
             "items": {
               "const": "deterministic",
@@ -435,6 +455,83 @@
           "policy"
         ],
         "title": "CoverageBody",
+        "type": "object"
+      },
+      "DataQualityBody": {
+        "properties": {
+          "applied": {
+            "title": "Applied",
+            "type": "boolean"
+          },
+          "full_snapshot_status": {
+            "const": "not_checked",
+            "title": "Full Snapshot Status",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "mask_fingerprint": {
+            "title": "Mask Fingerprint",
+            "type": "string"
+          },
+          "metrics": {
+            "items": {
+              "$ref": "#/components/schemas/QualityMetricBody"
+            },
+            "title": "Metrics",
+            "type": "array"
+          },
+          "minimum_matches": {
+            "title": "Minimum Matches",
+            "type": "integer"
+          },
+          "policy_version": {
+            "title": "Policy Version",
+            "type": "string"
+          },
+          "reason_labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Reason Labels",
+            "type": "object"
+          },
+          "required_core_metrics": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Required Core Metrics",
+            "type": "array"
+          },
+          "scope": {
+            "const": "selected_history_only",
+            "title": "Scope",
+            "type": "string"
+          },
+          "spatial_season_certified": {
+            "title": "Spatial Season Certified",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "policy_version",
+          "applied",
+          "scope",
+          "full_snapshot_status",
+          "spatial_season_certified",
+          "minimum_matches",
+          "required_core_metrics",
+          "mask_fingerprint",
+          "metrics",
+          "reason_labels",
+          "limitations"
+        ],
+        "title": "DataQualityBody",
         "type": "object"
       },
       "DisplayBody": {
@@ -1197,6 +1294,70 @@
         "title": "PlanBody",
         "type": "object"
       },
+      "QualityMetricBody": {
+        "properties": {
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "excluded_match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Excluded Match Ids",
+            "type": "array"
+          },
+          "family": {
+            "title": "Family",
+            "type": "string"
+          },
+          "metric_id": {
+            "title": "Metric Id",
+            "type": "string"
+          },
+          "original_sample_size": {
+            "title": "Original Sample Size",
+            "type": "integer"
+          },
+          "reason_counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Reason Counts",
+            "type": "object"
+          },
+          "selected_matches": {
+            "title": "Selected Matches",
+            "type": "integer"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "team_name": {
+            "title": "Team Name",
+            "type": "string"
+          },
+          "usable_sample_size": {
+            "title": "Usable Sample Size",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "metric_id",
+          "team_id",
+          "team_name",
+          "family",
+          "original_sample_size",
+          "usable_sample_size",
+          "selected_matches",
+          "excluded_match_ids",
+          "reason_counts"
+        ],
+        "title": "QualityMetricBody",
+        "type": "object"
+      },
       "ReportBody": {
         "properties": {
           "abstention_reason": {
@@ -1209,6 +1370,16 @@
               }
             ],
             "title": "Abstention Reason"
+          },
+          "data_quality": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataQualityBody"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "display": {
             "$ref": "#/components/schemas/DisplayBody"
