@@ -310,6 +310,7 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
     cópia parcial. Não comprova revisão, origem nem compatibilidade do snapshot.
     """
     from .v3_features import V3_METRICS
+    from .metric_eligibility import assess_game, quality_issues, summarize_eligibility
 
     date.fromisoformat(audit_date)
     check = ({"status": "não verificado", "source": {"revision": None}}
@@ -325,7 +326,9 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
     types: set[tuple[str, str]] = set()
     subtypes: set[tuple[str, str, str]] = set()
     outcomes: set[tuple[str, str]] = set()
-    event_ids: set[str] = set()
+    event_ids: dict[str, int] = {}
+    contaminated: set[int] = set()
+    assessments, field_issues = {}, []
     quality_counts: Counter[str] = Counter()
     orientation_groups: list[dict[str, Any]] = []
     bytes_read = 0
@@ -336,7 +339,11 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
         if not data.exists("events", mid) or not data.exists("lineups", mid):
             failures.append({"match_id": mid, "reason": "Evento ou escalação ausente."})
             continue
-        events, lineups = data.events(mid), data.lineups(mid)
+        try:
+            events, lineups = data.events(mid), data.lineups(mid)
+        except DataError as exc:
+            failures.append({"match_id": mid, "reason": f"Leitura: {exc}"})
+            continue
         matches_read += 1
         events_read += len(events)
         bytes_read += (data.root / "events" / f"{mid}.json").stat().st_size
@@ -345,7 +352,9 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
             if isinstance(event, dict) and isinstance(event.get("id"), str):
                 if event["id"] in event_ids:
                     failures.append({"match_id": mid, "reason": "ID de evento duplicado entre partidas."})
-                event_ids.add(event["id"])
+                    contaminated.update((mid, event_ids[event["id"]]))
+                else:
+                    event_ids[event["id"]] = mid
         try:
             diagnosis = audit_game_taxonomy(match, events, lineups)
         except (DataError, KeyError, TypeError, ValueError) as exc:
@@ -370,7 +379,11 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
         by_match[mid] = {team["team_id"]: (set(team["legacy_calculable"]) |
                          set(team["v3_calculable"]) | set(team["sequence_calculable"]))
                          for team in diagnosis["teams"]}
-        orientation_groups.extend(audit_orientation(((match, events),))["groups"])
+        groups = audit_orientation(((match, events),))["groups"]
+        orientation_groups.extend(groups)
+        issues = quality_issues(match, events)
+        field_issues.extend(issues)
+        assessments[mid] = assess_game(match, diagnosis, issues, groups)
     target_counts: dict[str, int] = {}
     for window in (5, 10):
         count = 0
@@ -406,6 +419,7 @@ def audit_candidate(data: LocalData, competition_id: int, season_id: int, *,
             "event_and_lineup_bytes_read": bytes_read,
             "target_counts": target_counts,
             "metric_calculability": metric_calculability,
+            "family_eligibility": summarize_eligibility(season, assessments, field_issues, contaminated),
             "structural_or_taxonomy_failures": failures,
             "quality_counts": dict(sorted(quality_counts.items())),
             "spatial_or_xg_gaps": dict(sorted(gaps.items())),

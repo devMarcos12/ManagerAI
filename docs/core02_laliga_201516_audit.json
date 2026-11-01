@@ -76,6 +76,471 @@
       "reason": "Qualidade incompatível: durations_invalid=1."
     }
   ],
+  "family_diagnostic": {
+    "audit_duration_seconds": 46.700500733999434,
+    "audit_sha256": "f651d67f84e77ef0603f6266c06a75111eb6cea1b9c975bd4d9ec73f2dda0745",
+    "code_sha256": {
+      "src/managerai/metric_eligibility.py": "287c432d475a06ab25e67c501224dbf5c9265b3eeb070bbbb315413133109444",
+      "src/managerai/season_audit.py": "5fd3b33605a3b3a7c7e6c34197ea10fbb999d830e56d8c84801e0a462b21870d"
+    },
+    "design": "Post-audit diagnostic, not independent validation or replacement certification",
+    "families": {
+      "action_lanes": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {
+          "invalid_location": 4
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 756,
+        "metrics": [
+          "lane_low_y",
+          "lane_central",
+          "lane_high_y"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 247
+          },
+          "h5": {
+            "eligible_targets": 310
+          }
+        }
+      },
+      "carry_progression": {
+        "available_team_games": 757,
+        "blocked_reason_counts": {
+          "invalid_duration": 4,
+          "invalid_location": 2,
+          "invalid_movement_end": 1,
+          "metric_unavailable": 3,
+          "orientation_not_established": 319
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 437,
+        "metrics": [
+          "progressive_carries",
+          "final_third_carry_entries",
+          "box_carry_entries"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 1
+          }
+        }
+      },
+      "entry_lanes": {
+        "available_team_games": 756,
+        "blocked_reason_counts": {
+          "invalid_location": 2,
+          "invalid_movement_end": 3,
+          "metric_unavailable": 4,
+          "orientation_not_established": 319
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 439,
+        "metrics": [
+          "entry_lane_low_share",
+          "entry_lane_central_share",
+          "entry_lane_high_share"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 3
+          }
+        }
+      },
+      "movement_rates": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {
+          "invalid_duration": 4,
+          "invalid_location": 3,
+          "invalid_movement_end": 7,
+          "orientation_not_established": 319
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 437,
+        "metrics": [
+          "final_third_entries",
+          "final_third_attempts",
+          "box_entries"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 1
+          }
+        }
+      },
+      "pass_progression": {
+        "available_team_games": 758,
+        "blocked_reason_counts": {
+          "invalid_duration": 4,
+          "invalid_movement_end": 2,
+          "metric_unavailable": 2,
+          "orientation_not_established": 319
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 439,
+        "metrics": [
+          "progressive_passes",
+          "final_third_pass_entries",
+          "box_pass_entries"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 2
+          }
+        }
+      },
+      "passing": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {},
+        "cataloged_team_games": 760,
+        "eligible_team_games": 760,
+        "metrics": [
+          "pass_accuracy"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 280
+          },
+          "h5": {
+            "eligible_targets": 330
+          }
+        }
+      },
+      "passing_explicit_no_pressure": {
+        "available_team_games": 0,
+        "blocked_reason_counts": {
+          "metric_unavailable": 760
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 0,
+        "metrics": [
+          "pass_accuracy_explicit_no_pressure"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 0
+          }
+        }
+      },
+      "passing_marked_pressure": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {},
+        "cataloged_team_games": 760,
+        "eligible_team_games": 760,
+        "metrics": [
+          "pass_accuracy_under_pressure"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 280
+          },
+          "h5": {
+            "eligible_targets": 330
+          }
+        }
+      },
+      "passing_unmarked_pressure": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {},
+        "cataloged_team_games": 760,
+        "eligible_team_games": 760,
+        "metrics": [
+          "pass_accuracy_unmarked_pressure"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 280
+          },
+          "h5": {
+            "eligible_targets": 330
+          }
+        }
+      },
+      "pressure_rates": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {
+          "invalid_duration": 4
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 756,
+        "metrics": [
+          "pressures",
+          "counterpressures"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 254
+          },
+          "h5": {
+            "eligible_targets": 314
+          }
+        }
+      },
+      "pressure_space": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {
+          "invalid_duration": 4,
+          "orientation_not_established": 319
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 439,
+        "metrics": [
+          "pressure_high_share",
+          "pressures_low_third",
+          "pressures_middle_third",
+          "pressures_high_third",
+          "pressures_low_third_share",
+          "pressures_middle_third_share",
+          "pressures_high_third_share",
+          "pressure_lane_low_share",
+          "pressure_lane_central_share",
+          "pressure_lane_high_share"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 2
+          }
+        }
+      },
+      "recovery_rates": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {
+          "invalid_duration": 4
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 756,
+        "metrics": [
+          "recoveries",
+          "interceptions",
+          "duel_tackles",
+          "recoveries_recorded",
+          "recoveries_explicit_failure",
+          "recoveries_explicit_nonfailure"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 254
+          },
+          "h5": {
+            "eligible_targets": 314
+          }
+        }
+      },
+      "sequences": {
+        "available_team_games": 507,
+        "blocked_reason_counts": {
+          "metric_unavailable": 253
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 507,
+        "metrics": [
+          "observed_blocks",
+          "entry_block_share",
+          "shot_block_share"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 2
+          }
+        }
+      },
+      "shot_counts": {
+        "available_team_games": 760,
+        "blocked_reason_counts": {},
+        "cataloged_team_games": 760,
+        "eligible_team_games": 760,
+        "metrics": [
+          "shots_for",
+          "shots_against"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 280
+          },
+          "h5": {
+            "eligible_targets": 330
+          }
+        }
+      },
+      "shot_locations": {
+        "available_team_games": 759,
+        "blocked_reason_counts": {
+          "metric_unavailable": 1,
+          "orientation_not_established": 319
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 441,
+        "metrics": [
+          "shots_box_share",
+          "shots_outside_share",
+          "xg_box",
+          "xg_outside",
+          "xg_per_located_shot"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 0
+          },
+          "h5": {
+            "eligible_targets": 4
+          }
+        }
+      },
+      "shot_quality": {
+        "available_team_games": 759,
+        "blocked_reason_counts": {
+          "metric_unavailable": 1
+        },
+        "cataloged_team_games": 760,
+        "eligible_team_games": 759,
+        "metrics": [
+          "xg_for",
+          "xg_against",
+          "xg_per_shot"
+        ],
+        "windows": {
+          "h10": {
+            "eligible_targets": 270
+          },
+          "h5": {
+            "eligible_targets": 325
+          }
+        }
+      }
+    },
+    "frozen_reports_preserved": 3,
+    "independent_windows_checked": 32,
+    "legacy_audit_fields_unchanged": true,
+    "policy_before_run_sha256": "bef1872c4d851ca81e1b934e0480c7d4ac5a8d7ac023fe558e51b8f72f0a26ae",
+    "policy_version": "metric-eligibility-1",
+    "quality_cases": {
+      "266106": {
+        "affected_families": [
+          "action_lanes",
+          "carry_progression",
+          "entry_lanes",
+          "movement_rates"
+        ],
+        "field_counts": {
+          "location": 2,
+          "pass.end_location": 1
+        }
+      },
+      "266467": {
+        "affected_families": [
+          "action_lanes",
+          "entry_lanes",
+          "movement_rates",
+          "pass_progression"
+        ],
+        "field_counts": {
+          "location": 2,
+          "pass.end_location": 6
+        }
+      },
+      "266961": {
+        "affected_families": [
+          "action_lanes",
+          "carry_progression",
+          "entry_lanes",
+          "movement_rates"
+        ],
+        "field_counts": {
+          "carry.end_location": 1,
+          "location": 1,
+          "pass.end_location": 6
+        }
+      },
+      "267273": {
+        "affected_families": [
+          "action_lanes",
+          "carry_progression",
+          "entry_lanes",
+          "movement_rates",
+          "pass_progression"
+        ],
+        "field_counts": {
+          "location": 4,
+          "pass.end_location": 3
+        }
+      },
+      "3825665": {
+        "affected_families": [
+          "carry_progression",
+          "movement_rates",
+          "pass_progression",
+          "pressure_rates",
+          "pressure_space",
+          "recovery_rates"
+        ],
+        "field_counts": {
+          "duration": 1
+        }
+      },
+      "3825875": {
+        "affected_families": [
+          "carry_progression",
+          "movement_rates",
+          "pass_progression",
+          "pressure_rates",
+          "pressure_space",
+          "recovery_rates"
+        ],
+        "field_counts": {
+          "duration": 1
+        }
+      }
+    },
+    "source_files_preserved": 762,
+    "status": "diagnostic_not_certification",
+    "tests": {
+      "audit_focal_real": {
+        "passed": 20,
+        "skipped": 0
+      },
+      "installed_with_real_cases": {
+        "discovered": 301,
+        "errors": 0,
+        "failures": 0,
+        "passed": 251,
+        "skipped": 50
+      },
+      "new_policy_focal_real": {
+        "passed": 13,
+        "skipped": 0
+      },
+      "source_minimal": {
+        "discovered": 301,
+        "errors": 0,
+        "failures": 0,
+        "passed": 249,
+        "skipped": 52
+      }
+    }
+  },
   "full_snapshot_status": "not_verified",
   "limitations": [
     "Git clone and full CORE-01 verify-data not completed; scoped GitHub blob checks do not replace that gate.",

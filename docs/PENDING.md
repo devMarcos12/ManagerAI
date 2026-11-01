@@ -1,5 +1,7 @@
 # ManagerAI — pendências e validação
 
+**Elegibilidade por família — 01/11/2026:** diagnóstico implementado e executado na La Liga 2015/16; contagens históricas úteis separadas dos bloqueios espaciais e de exposição. 16 famílias/50 indicadores; regras e resultados no §23. Não houve certificação ou alteração da análise de produção.
+
 **CORE-02 — 01/11/2026:** conteúdo integral da La Liga 2015/16 auditado; resultado reprovado sob as guardas atuais, sem certificação V3. Gate de snapshot completo permanece não verificado. Evidências, testes e distinção entre calendário e calculabilidade no §22.
 
 **Entrega web 31/10/2026: frontend local implementado e integrado com API real; correções A1–A3 e evidências atuais no §21. Resultados e conclusões do §20 são históricos da etapa de IA; não foram reutilizados como testes desta execução. Validade esportiva e avaliação humana permanecem pendentes.**
@@ -1061,3 +1063,52 @@ Os três relatórios congelados mantêm os hashes iniciais; todos os 762 arquivo
 2. Investigar os seis jogos e documentar uma política de elegibilidade/abstenção por família de indicador, em mudança própria. Não editar os JSONs nem converter nulos em zero.
 3. Rever a adequação científica da guarda de orientação e do requisito de completude global antes de formular eventual protocolo novo. Não reduzir limiares retroativamente para aprovar este recorte; exigir revisão e validação independente para uma política substituta.
 4. Só após resolver esses gates considerar certificação e inclusão explícita com teste real. Serie A/Ligue 1 ainda não foram auditadas integralmente nesta execução; não presumir aprovação ou reprovação.
+
+## 23. CORE-02 — elegibilidade diagnóstica por família (01/11/2026)
+
+Entrada: main `9fe7f91b35fbe467184d051e5f749aecedf76c00`, sem alterações rastreadas preexistentes. Preservado o artefato não rastreado observado anteriormente na EDA. Escopo: política diagnóstica `metric-eligibility-1`, descrita após os achados exploratórios do §22 e registrada em `outputs/runs/core02_families_20261101/policy_before_run.json` antes da nova execução por família. Isso não constitui protocolo prospectivo independente nem substitui a certificação `core-02.1`.
+
+### Política implementada
+
+`metric_eligibility.py` particiona os 50 indicadores atuais em 16 famílias sem duplicação. Cada jogo/equipe recebe valores disponíveis, famílias elegíveis, métricas ausentes e causas de bloqueio. Um valor não nulo é necessário, mas não suficiente: exige as dependências de qualidade daquela família. Essa saída é aditiva ao auditor, sem recalcular valores ou alterar relatórios 1.0.0/1.1.0, API, UI ou regras táticas.
+
+- Duração inválida bloqueia famílias com taxas por 90 das duas equipes, porque a exposição é compartilhada. Não bloqueia contagens ou acerto de passe por esse motivo.
+- Geometria inválida ou ausente bloqueia somente famílias consumidoras da equipe afetada; uma posição inválida observada também bloqueia suas proporções por faixa. Destino inválido de passe incompleto afeta tentativas legadas, mas não progressões V3 de passes completos.
+- Famílias direcionais exigem os dois grupos equipe/tempo coerentes sob a guarda já existente. Isso não demonstra orientação científica nem satisfaz a certificação da temporada.
+- Marcador de pressão ausente continua distinto de False explícito. A família sem denominador de ausência explícita fica indisponível, sem impedir passes globais ou outros grupos de pressão.
+- Sequências exigem seus valores calculáveis sob as regras existentes; relógios problemáticos não são corrigidos.
+- Falha estrutural, arquivo ausente ou JSON malformado deixa o jogo sem diagnóstico utilizável. O auditor registra o erro e continua os demais jogos. UUID compartilhado entre partidas bloqueia as famílias de ambas, incluindo a primeira; esse é um controle retrospectivo de integridade do snapshot, não prova de disponibilidade histórica dos dados.
+
+H5/H10 usa diretamente `temporal.select_history`, mesma competição/temporada e exclusão do dia do alvo/futuro. A janela precisa conter exatamente N jogos; todos os N precisam ser elegíveis para a família nas duas equipes. Não há reposição por partidas mais antigas. A saída completa guarda IDs dos alvos, não apenas totais. Nenhum resultado significa probabilidade de sucesso, utilidade tática validada, poder estatístico ou observações independentes.
+
+### Resultado real e investigação dos seis jogos
+
+| Família | Jogos/equipe elegíveis | H5 bilateral | H10 bilateral |
+|---|---:|---:|---:|
+| Contagem de finalizações | 760 | 330 | 280 |
+| Qualidade de finalização | 759 | 325 | 270 |
+| Acerto global de passes | 760 | 330 | 280 |
+| Passes com pressão marcada / não marcada (cada família) | 760 | 330 | 280 |
+| Passes com ausência explicitamente marcada de pressão | 0 | 0 | 0 |
+| Pressões por 90 | 756 | 314 | 254 |
+| Recuperações/interceptações/desarmes por 90 | 756 | 314 | 254 |
+| Faixas de ações localizadas | 756 | 310 | 247 |
+| Sequências | 507 | 2 | 0 |
+
+As seis famílias direcionais têm apenas 437–441 jogos/equipe elegíveis: movimentos legados H5/H10=1/0; progressões por passe 2/0; condução 1/0; faixas de entrada 3/0; pressão espacial 2/0; localização de chutes 4/0. Em 319 jogos/equipe a direção não foi estabelecida pela guarda operacional. As contagens completas e motivos estão no campo `family_diagnostic` do [resumo existente](core02_laliga_201516_audit.json).
+
+Os seis jogos permanecem no inventário, com problemas rastreáveis a campo, índice, ID de evento, equipe e famílias dependentes. `3825665` e `3825875` têm duração inválida; isso retira quatro jogos/equipe das famílias por 90. `266106`, `266467`, `266961` e `267273` concentram os problemas geométricos. Em todos os seis, contagens de finalizações e acerto global de passes continuam elegíveis no diagnóstico. Nenhum arquivo bruto foi editado ou excluído. Os 33/50 indicadores integralmente calculáveis e os zero alvos com completude global do §22 permanecem resultados corretos sob aquela definição.
+
+### Validação e evidências desta etapa
+
+Python 3.12.14, ambiente isolado criado na etapa anterior; wheel reconstruído e instalado com o código atual. Todos os módulos Python instalados foram comparados byte a byte com os fontes atuais; `pip check` passou. Não foi criada outra configuração de dependências.
+
+- Fonte mínima: `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -B -S -m unittest discover -s tests -q`: 301 descobertos, **249 aprovados, 52 pulados**, zero falhas/erros; 3,216 s.
+- Instalado com casos reais: `MANAGERAI_CORE02_CONTENT_ROOT=/tmp/managerai-core02-api-data-20261101/data PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-core02-20261101-env/bin/python -I -B -m unittest discover -s tests -q`: 301 descobertos, **251 aprovados, 50 pulados**, zero falhas/erros; 5,758 s. Pulos de dependências e snapshot completo não contam como aprovação.
+- Focais fonte com dados reais: `test_metric_eligibility.py` **13/13** (0,660 s); `test_season_audit.py` **20/20** (2,399 s), sem pulos. Cobrem famílias, False/ausência, exposição, geometria por equipe, períodos extras, orientação, janelas sem reposição, alvo/dia/futuro, duplicatas e JSON malformado; incluem os seis casos reais.
+- Auditoria integral com pacote instalado: mesmo comando do §22, saída nova `outputs/runs/core02_families_20261101/audit.json`; **46,701 s**, SHA-256 `f651d67f84e77ef0603f6266c06a75111eb6cea1b9c975bd4d9ec73f2dda0745`. Todos os campos anteriores, exceto o fingerprint do relatório ampliado, coincidem com a auditoria do §22.
+- Uma conferência independente de janelas a partir do calendário e das máscaras por jogo/equipe reproduziu IDs e totais das 32 combinações família/janela. Hashes dos 762 arquivos oficiais e das três fixtures congeladas foram reconferidos e preservados.
+
+Artefatos locais ignorados: `outputs/runs/core02_families_20261101/`, com política, auditoria, execução e verificações independentes. O resumo JSON existente foi ampliado; não se criou outro manual ou relatório histórico paralelo. Nenhuma nova aquisição de dados, treinamento, inferência LLM, execução de API/frontend/navegador, revisão humana ou certificação foi feita nesta etapa.
+
+**Estado:** política diagnóstica implementada e testada; a La Liga continua não certificada. Antes de integrar critérios de aproveitamento parcial ao produto, revisar a semântica/adequação da orientação e definir migração explícita dos gates com avaliação independente. O gate CORE-01 do clone completo permanece aberto. Não interpretar famílias com histórico elegível como licença para liberar V3 automaticamente.

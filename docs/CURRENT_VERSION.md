@@ -1,5 +1,7 @@
 # ManagerAI — estado operacional atual
 
+**Elegibilidade por família — 01/11/2026:** diagnóstico `metric-eligibility-1` implementado no auditor: 16 famílias/50 indicadores, dependências explícitas e janelas H5/H10 sem reposição. Na La Liga 2015/16, finalizações e passes têm 330/280 alvos; pressão/recuperações por 90 têm 314/254. Critérios CORE-02, fórmulas, relatórios de produção e allowlist V3 não mudam. É diagnóstico posterior à auditoria, não certificação nem validação independente. Evidências em PENDING §23 e no resumo JSON existente.
+
 **CORE-02 — 01/11/2026:** auditoria integral de conteúdo da La Liga 2015/16 executada em 380 jogos e 1.295.354 eventos, a partir de 762 arquivos oficiais com hashes Git conferidos. **Recorte não certificado:** seis partidas com falhas de qualidade, orientação inconclusiva e zero janelas com todos os 50 indicadores calculáveis. Diagnóstico de conteúdo não substitui o gate CORE-01 do clone completo, que não foi concluído neste ambiente. Allowlist e matriz global anteriores preservadas. Resultado compacto: [core02_laliga_201516_audit.json](core02_laliga_201516_audit.json); execução, limites e próximos gates em PENDING §22.
 
 **Entrega web local — 31/10/2026:** frontend React/TypeScript/Vite em `frontend/` consome API FastAPI com contratos HTTP tipados e tipos gerados do OpenAPI. Fluxo completo de confronto → cobertura → relatório → evidências/gráficos → exportação validado em navegador real, desktop/mobile. Ordenação `context-order-2` remove associação indevida entre objetivo pressionar alto e saída sob pressão adversária. API instalada com 284 testes reais aprovados nesta execução; números das fases anteriores abaixo são históricos. Instalação reproduzível e início conjunto no README; evidências e limites em PENDING §21. Não há nova validação esportiva, treinamento ou implantação pública.
@@ -53,6 +55,7 @@ Todos os módulos abaixo ficam em `src/managerai/`; nomes V3 indicam módulos at
 | `data_loader.py` | Leitura JSON protegida, estruturas básicas, fontes SHA-256/fingerprint |
 | `data_inventory.py` | Competições, temporadas, calendário, equipes e arquivos órfãos |
 | `season_audit.py` | Matriz CORE-02 de calendário/presença e diagnósticos isolados de taxonomia, calculabilidade e orientação; não altera V3 |
+| `metric_eligibility.py` | Política diagnóstica por família, dependências por jogo/equipe, causas de bloqueio e janelas exatas via seletor temporal; não altera o runtime ou certificação |
 | `temporal.py` | Últimas N partidas da temporada antes do corte |
 | `feature_engineering.py` | Validação, 21 métricas legadas e agregações |
 | `tactical_analysis.py`, `recommendation_engine.py` | Comparações/achados e três regras legadas |
