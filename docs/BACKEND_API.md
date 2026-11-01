@@ -237,3 +237,24 @@ Uma tentativa por consulta, timeout 45 s, entrada até 28 KB, resposta até 32 K
 cache em memória de oito respostas válidas/600 s e pausa de 60 s após 429. Não faz
 upgrade, fallback para modelo/provedor pago ou verificação automática de faturamento.
 Os limites de concorrência/chamadas da API principal continuam aplicados.
+
+## Provedor Groq
+
+A seleção `MANAGERAI_AI_PROVIDER=groq` usa `GROQ_API_KEY`,
+`MANAGERAI_GROQ_MODEL` (padrão `openai/gpt-oss-120b`) e
+`MANAGERAI_GROQ_ENABLED=true`. Sem seletor, preserva a configuração Gemini antiga.
+Seleção inválida é recusada. Nunca usa outra chave/provedor em caso de erro.
+
+`GroqAdvisor` usa `https://api.groq.com/openai/v1/chat/completions`, autenticação
+Bearer no header, modelo GPT-OSS explicitamente selecionado, JSON Schema estrito,
+reasoning effort baixo e sem ferramentas. A validação local mantém tamanho de
+arrays, referências e ausência de números inventados na prosa. O cache/lock,
+timeout 45 s, saída até 32 KB, máximo de oito respostas/600 s e pausa de 60 s após
+429 são compartilhados com Gemini. A entrada Groq é limitada a 16 KB para reduzir
+uso de contexto/cota; isso não certifica o limite em tokens da conta. Sem retries.
+
+`capabilities.tactical_advisor` e `ai_tactical` identificam `provider=groq`.
+Campos HTTP/OpenAPI permanecem iguais; `ai_analysis` continua opt-in. Status 503
+produz motivo sanitizado `PROVIDER_OVERLOADED`, com relatório preservado. Chaves
+não são enviadas ao processo do frontend. O operador confere o Free Plan; nenhum
+recurso habilita faturamento ou verifica a assinatura do provedor automaticamente.

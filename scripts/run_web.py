@@ -25,14 +25,14 @@ def main():
     if not (numbers >= (22,12) or numbers[0] == 20 and numbers >= (20,19)):
         parser.error("Use Node 20.19+ ou 22.12+. Consulte frontend/.nvmrc.")
     if create_local_env(root):
-        print('.env criado. Preencha sua chave pessoal; Gemini permanece desativado até sua ativação explícita.', flush=True)
+        print('.env criado. Preencha sua chave pessoal; A IA permanece desativada até sua ativação explícita.', flush=True)
     env = {**os.environ, "MANAGERAI_ENV_FILE": str(root / '.env'),
            "MANAGERAI_PROXY_TARGET": "http://127.0.0.1:8011", "PYTHONDONTWRITEBYTECODE": "1"}
     processes = []
     try:
         processes.append(subprocess.Popen([str(interpreter), "-I", "-B", "-m", "uvicorn", "managerai.api:create_app", "--factory",
                           "--host", "127.0.0.1", "--port", "8011", "--workers", "1", "--no-access-log"], cwd=root, env=env, start_new_session=True))
-        processes.append(subprocess.Popen(["npm", "run", "dev"], cwd=root/"frontend", env={k: v for k, v in env.items() if k not in ("GEMINI_API_KEY", "MANAGERAI_ENV_FILE") and not k.startswith("MANAGERAI_GEMINI_")}, start_new_session=True))
+        processes.append(subprocess.Popen(["npm", "run", "dev"], cwd=root/"frontend", env={k: v for k, v in env.items() if k not in ("GEMINI_API_KEY", "GROQ_API_KEY", "MANAGERAI_ENV_FILE") and not k.startswith(("MANAGERAI_GEMINI_", "MANAGERAI_GROQ_"))}, start_new_session=True))
         print("Abra http://127.0.0.1:5173 — Ctrl+C encerra estes dois processos.", flush=True)
         while all(p.poll() is None for p in processes):
             time.sleep(.3)

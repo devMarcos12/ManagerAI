@@ -49,14 +49,14 @@ export async function openComparison(page: Page) {
   await page.getByText('Como será o jogo? (opcional)',{exact:true}).click();
 }
 
-export interface MockState { analysisStatus?:number; analysisCode?:string; hangAnalysis?:boolean; exportStatus?:number; bootstrapFail?:boolean; configured?:boolean; delayAnalysis?:number; coverageDelay?:(window:number)=>number; requests:AnalysisRequest[]; coverageRequests:AnalysisRequest[]; advisorConfigured?:boolean; advisorReason?:string; teamRequests?:TeamRequest[]; teamDelay?:number; index?:typeof coachTeams }
+export interface MockState { analysisStatus?:number; analysisCode?:string; hangAnalysis?:boolean; exportStatus?:number; bootstrapFail?:boolean; configured?:boolean; delayAnalysis?:number; coverageDelay?:(window:number)=>number; requests:AnalysisRequest[]; coverageRequests:AnalysisRequest[]; advisorConfigured?:boolean; advisorProvider?:'groq'|'gemini'; advisorReason?:string; teamRequests?:TeamRequest[]; teamDelay?:number; index?:typeof coachTeams }
 export async function mockApi(page: Page, state: MockState = {requests:[],coverageRequests:[]}) {
   await page.route('**/v1/**', async route => {
     const path = new URL(route.request().url()).pathname;
     const fulfill = async (data: unknown, status=200) => { try { await route.fulfill({status,json:data}); } catch { /* Busca cancelada pelo cliente. */ } };
     if (state.bootstrapFail) return route.abort('connectionfailed');
     if (path.endsWith('/health')) return fulfill({status:'ok',service_version:'2.0.0',data_present:true});
-    if (path.endsWith('/capabilities')) return fulfill({...capabilities,tactical_advisor:{configured:!!state.advisorConfigured,provider:state.advisorConfigured?'gemini':null,model:state.advisorConfigured?'test-model':null},llm:{...capabilities.llm,configured:!!state.configured}});
+    if (path.endsWith('/capabilities')) return fulfill({...capabilities,tactical_advisor:{configured:!!state.advisorConfigured,provider:state.advisorConfigured?(state.advisorProvider||'gemini'):null,model:state.advisorConfigured?'test-model':null},llm:{...capabilities.llm,configured:!!state.configured}});
     if (path.endsWith('/catalog')) return fulfill(catalog);
     if (path.endsWith('/coach/teams')) return fulfill({teams:state.index || coachTeams,warnings:[]});
     if (path.endsWith('/team-coverage')) {
@@ -81,7 +81,7 @@ export async function mockApi(page: Page, state: MockState = {requests:[],covera
       const body=route.request().postDataJSON() as AnalysisRequest;state.requests.push(body);
       if(state.hangAnalysis) return new Promise<void>(()=>{});
       if(state.delayAnalysis) await new Promise(resolve=>setTimeout(resolve,state.delayAnalysis));
-      return state.analysisStatus ? fulfill({code:state.analysisCode||'SYNTHETIC_ERROR',message:'não expor stack trace'},state.analysisStatus) : fulfill({...makeReport(body), ...(body.ai_analysis==='optional'?{ai_tactical:{status:state.advisorReason?'failed':'generated',reason:state.advisorReason||null,provider:'gemini',model:'test-model',prompt_version:'tactical-advice-1',input_fingerprint:'synthetic',cached:false,summary:'Comparar criação e proteção da área.',options:state.advisorReason?[]:[{title:'Investigar proteção da área',action:'Considerar proteção das zonas de finalização.',rationale:'Conferir a produção das equipes.',video_check:'Observar entradas na área.',adjust_when:'Se houver progressões repetidas.',risks:['Pode reduzir a presença ofensiva.'],evidence_ids:['team_profile.metrics.shots_for','opponent_profile.metrics.shots_for']}],policy:'Sugestões exploratórias; sem eficácia esportiva validada.'}}:{})});
+      return state.analysisStatus ? fulfill({code:state.analysisCode||'SYNTHETIC_ERROR',message:'não expor stack trace'},state.analysisStatus) : fulfill({...makeReport(body), ...(body.ai_analysis==='optional'?{ai_tactical:{status:state.advisorReason?'failed':'generated',reason:state.advisorReason||null,provider:state.advisorProvider||'gemini',model:'test-model',prompt_version:'tactical-advice-1',input_fingerprint:'synthetic',cached:false,summary:'Comparar criação e proteção da área.',options:state.advisorReason?[]:[{title:'Investigar proteção da área',action:'Considerar proteção das zonas de finalização.',rationale:'Conferir a produção das equipes.',video_check:'Observar entradas na área.',adjust_when:'Se houver progressões repetidas.',risks:['Pode reduzir a presença ofensiva.'],evidence_ids:['team_profile.metrics.shots_for','opponent_profile.metrics.shots_for']}],policy:'Sugestões exploratórias; sem eficácia esportiva validada.'}}:{})});
     }
     if (path.endsWith('/export')) return state.exportStatus ? fulfill({code:'REPORT_NOT_FOUND'},state.exportStatus) : route.fulfill({status:200,contentType:'application/octet-stream',body:'synthetic export'});
     return fulfill({code:'NOT_FOUND'},404);

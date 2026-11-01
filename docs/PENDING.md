@@ -315,3 +315,45 @@ com StatsBomb real. A API instalada foi testada com provedor fictício, incluind
 exportação JSON igual à resposta e Markdown com sugestões/citações. Pulos não
 contam como aprovação. Validação humana e ensaio com chave nova em projeto
 Google comprovadamente gratuito permanecem pendentes.
+
+## 10. Groq
+
+Entrega de 01/11/2026 sobre `3addd5cc328016bfd75335ad8bf7266e0e1156c6`.
+Groq implementado com seleção explícita por instalação/backend, chave privada em
+`.env` e `.env.example` vazio no Git. Modelos permitidos no adaptador estrito:
+`openai/gpt-oss-120b` e `openai/gpt-oss-20b`. Gemini preservado sem troca automática;
+configuração antiga sem seletor continua selecionando Gemini. Interface mostra
+provedor real e diferencia indisponibilidade 503 de cota 429 e autorização.
+
+O resumo Groq remove somente repetição de IDs de partidas, nome de equipe e ID
+de métrica de cada evidência; conserva referências, valores, unidades, amostras e
+definições. O relatório mantém rastreabilidade integral. Limite de entrada 16 KB,
+JSON Schema estrito e mesmas validações/caches/abstenção da integração anterior.
+Chaves não entram no frontend, prompt, logs ou commit. A credencial fornecida foi
+configurada exclusivamente no `.env` privado deste ambiente; cada máquina ainda
+precisa do seu próprio arquivo local. Não se executou chamada real ou geração
+externa; autenticidade da chave, disponibilidade e plano gratuito não validados.
+
+Validação executada:
+
+- Python 3.12.14 com API em ambiente temporário novo: **345 testes descobertos,
+  300 aprovados, 45 pulados**, zero falhas/erros, em fontes e pacote instalado.
+  Após compactação do contexto: **19/19 focais Groq/Gemini aprovados** e suíte
+  instalada completa **345 descobertos, 300 aprovados, 45 pulados**.
+- Fontes: `PYTHONPATH=src:tests PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-groq-venv/bin/python -B -m unittest discover -s tests -q`;
+  instalado: `/tmp/managerai-groq-venv/bin/python -I -B -m unittest discover -s tests -q`.
+  Focais: `-m unittest test_groq test_gemini -q`.
+- Seis testes Groq novos: transporte/header/schema/cache, modelos e tamanho,
+  429 sem repetição/fallback, erros/truncamento sanitizados, configuração inválida
+  e integração HTTP com ambas as chaves fictícias presentes.
+- Node 24.22.1: build, tipos e OpenAPI conferidos, sem alterar dependências.
+  Playwright/Chromium temporário: **28/28 aprovados**, API mockada; inclui identificação
+  do Groq e preserva todos os casos anteriores.
+- O ambiente Python/Chromium temporário anterior estava ausente e foi refeito
+  apenas para validação. As primeiras tentativas sem esses executáveis não foram
+  contadas como aprovação. Logs finais em `/tmp/managerai-groq-*.log`.
+
+Sem mudança de métricas, regras, certificação, schemas HTTP ou dados brutos.
+Inferência externa, validação esportiva, treino e integração com dados reais não
+executados. A aplicação não verifica faturamento; manter conta no Free Plan e
+validar manualmente na máquina do usuário antes de uso contínuo.

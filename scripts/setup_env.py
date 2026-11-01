@@ -17,5 +17,5 @@ def create_local_env(root):
 
 if __name__ == '__main__':
     created = create_local_env(Path(__file__).resolve().parents[1])
-    print('.env criado. Preencha sua chave e confira o plano gratuito antes de ativar o Gemini.'
+    print('.env criado. Preencha sua chave e confira o plano gratuito antes de ativar a IA.'
           if created else '.env existente preservado.')

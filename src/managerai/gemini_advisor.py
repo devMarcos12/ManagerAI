@@ -102,18 +102,59 @@ def validate_advice(raw, projection):
 
 class GeminiAdvisor:
     provider_id = 'gemini'
+    max_input_bytes = 28000
+
+    def _valid_model(self, model):
+        return bool(re.fullmatch(r'gemini-[a-z0-9.-]{1,100}', model))
 
     def __init__(self, api_key, model='gemini-2.5-flash', *, timeout=45):
         if not api_key or '\n' in api_key or '\r' in api_key:
-            raise ValueError('Chave Gemini ausente ou inválida.')
-        if not re.fullmatch(r'gemini-[a-z0-9.-]{1,100}', model) or not 1 <= timeout <= 60:
-            raise ValueError('Modelo ou timeout Gemini inválido.')
+            raise ValueError('Chave do provedor ausente ou inválida.')
+        if not self._valid_model(model) or not 1 <= timeout <= 60:
+            raise ValueError('Modelo ou timeout do provedor inválido.')
         self._api_key, self.model, self.timeout = api_key, model, timeout
         self._lock, self._cache, self._pause_until = Lock(), OrderedDict(), 0
 
+    def _send(self, request):
+        try:
+            with build_opener(NoRedirect()).open(request, timeout=self.timeout) as response:
+                raw = response.read(MAX_BYTES + 1)
+        except HTTPError as exc:
+            if exc.code == 429:
+                self._pause_until = time.monotonic() + 60
+                raise AdvisorFailure('RATE_LIMIT') from None
+            if exc.code == 503:
+                raise AdvisorFailure('PROVIDER_OVERLOADED') from None
+            raise AdvisorFailure('AUTHORIZATION_FAILED' if exc.code in (401, 403) else 'PROVIDER_ERROR') from None
+        except (TimeoutError, URLError):
+            raise AdvisorFailure('PROVIDER_UNAVAILABLE') from None
+        if len(raw) > MAX_BYTES:
+            raise AdvisorFailure('INVALID_RESPONSE')
+        return json.loads(raw)
+
+    def _request(self, encoded):
+        body = {'systemInstruction': {'parts': [{'text': SYSTEM}]},
+                'contents': [{'role': 'user', 'parts': [{'text': encoded}]}],
+                'generationConfig': {'temperature': 0.2, 'maxOutputTokens': 2400,
+                                     'responseMimeType': 'application/json', 'responseJsonSchema': OUTPUT_SCHEMA}}
+        if self.model.startswith('gemini-2.5-flash'):
+            body['generationConfig']['thinkingConfig'] = {'thinkingBudget': 512}
+        # Nunca colocar a chave na URL; origem fixa, sem redirecionamento ou ferramentas externas.
+        request = Request(f'https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent',
+                          canonical(body).encode(), {'Content-Type': 'application/json', 'x-goog-api-key': self._api_key})
+        obj = self._send(request)
+        candidates = obj.get('candidates', [])
+        if len(candidates) != 1 or candidates[0].get('finishReason') != 'STOP':
+            raise AdvisorFailure('INVALID_RESPONSE')
+        parts = candidates[0].get('content', {}).get('parts', [])
+        return ''.join(part['text'] for part in parts if 'text' in part and not part.get('thought'))
+
+    def _encode(self, projection):
+        return canonical(projection)
+
     def generate(self, projection):
-        encoded = canonical(projection)
-        if len(encoded.encode()) > 28000:
+        encoded = self._encode(projection)
+        if len(encoded.encode()) > self.max_input_bytes:
             raise AdvisorFailure('INPUT_TOO_LARGE')
         key = fingerprint({'model': self.model, 'projection': projection})
         if not self._lock.acquire(blocking=False):
@@ -126,33 +167,7 @@ class GeminiAdvisor:
                 return deepcopy(self._cache[key][1]), True
             if now < self._pause_until:
                 raise AdvisorFailure('RATE_LIMIT')
-            body = {'systemInstruction': {'parts': [{'text': SYSTEM}]},
-                    'contents': [{'role': 'user', 'parts': [{'text': encoded}]}],
-                    'generationConfig': {'temperature': 0.2, 'maxOutputTokens': 2400,
-                                         'responseMimeType': 'application/json', 'responseJsonSchema': OUTPUT_SCHEMA}}
-            if self.model.startswith('gemini-2.5-flash'):
-                body['generationConfig']['thinkingConfig'] = {'thinkingBudget': 512}
-            # Nunca colocar a chave na URL; origem fixa, sem redirecionamento ou ferramentas externas.
-            request = Request(f'https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent',
-                              canonical(body).encode(), {'Content-Type': 'application/json', 'x-goog-api-key': self._api_key})
-            try:
-                with build_opener(NoRedirect()).open(request, timeout=self.timeout) as response:
-                    raw = response.read(MAX_BYTES + 1)
-            except HTTPError as exc:
-                if exc.code == 429:
-                    self._pause_until = time.monotonic() + 60
-                    raise AdvisorFailure('RATE_LIMIT') from None
-                raise AdvisorFailure('AUTHORIZATION_FAILED' if exc.code in (401, 403) else 'PROVIDER_ERROR') from None
-            except (TimeoutError, URLError):
-                raise AdvisorFailure('PROVIDER_UNAVAILABLE') from None
-            if len(raw) > MAX_BYTES:
-                raise AdvisorFailure('INVALID_RESPONSE')
-            obj = json.loads(raw)
-            candidates = obj.get('candidates', [])
-            if len(candidates) != 1 or candidates[0].get('finishReason') != 'STOP':
-                raise AdvisorFailure('INVALID_RESPONSE')
-            parts = candidates[0].get('content', {}).get('parts', [])
-            answer = ''.join(part['text'] for part in parts if 'text' in part and not part.get('thought'))
+            answer = self._request(encoded)
             validated = validate_advice(answer, projection)
             self._cache[key] = (time.monotonic(), validated)
             while len(self._cache) > 8:

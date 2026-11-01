@@ -14,14 +14,16 @@
 ManagerAI implementa analítica histórica determinística, CLI, UI Streamlit integrada, hipóteses por regras e extensão V3 opcional. O serviço 2.0.0 e a API FastAPI acrescentam planos condicionais e explicação opcional por seleção de afirmações autorizadas com LLM local. O frontend React/TypeScript em frontend/ consome essa API local, com tipos derivados de OpenAPI; Streamlit e CLI permanecem preservados. Regressões e ajuste LoRA de explicação são experimentais, separados da decisão tática. **Motor tático aprendido e recomendações de escalação não estão implementados; ajuste de explicação não é aprendizado de estratégia.** O serviço básico também oferece filtros de qualidade opt-in `quality_v1`, sem combinação com V3 e sem nova certificação. Estado e evidências atuais: CURRENT_VERSION e PENDING.
 
 
-A integração Gemini acrescenta `ai_tactical` exploratório separado dos planos por
+A integração Gemini/Groq acrescenta `ai_tactical` exploratório separado dos planos por
 regras, com `ai_analysis=optional`, sem alterar cálculos ou contratos legados.
 `.env` e variantes contêm configuração privada por backend; versionar somente
 `.env.example` vazio. Nunca ler, imprimir ou enviar credenciais ao frontend,
-relatório, prompt ou Git. O modo Gemini nasce desativado: o operador confere o
+relatório, prompt ou Git. Os provedores nascem desativados: o operador confere o
 plano gratuito antes de habilitar chamadas. Ausência, erro, cota ou abstenção da
 IA preservam o histórico. Citações/estrutura verificadas não demonstram correção
-semântica nem eficácia tática. Ver CURRENT_VERSION/PENDING para testes e limites.
+semântica nem eficácia tática. `MANAGERAI_AI_PROVIDER` seleciona o provedor;
+nunca fazer fallback automático, nem inferir provedor pela presença de uma chave.
+Ver CURRENT_VERSION/PENDING para testes e limites.
 
 - Separar observação, hipótese condicional, simulação, previsão e recomendação validada. Não afirmar eficácia causal, pressão bem-sucedida, formação ideal, disponibilidade atual nem probabilidade de vitória a partir dos indicadores existentes.
 - Preservar período, amostra específica, numeradores/denominadores, fórmulas, fontes/hashes e limitações. Ausência de dado não vira zero; xG não é gol real nem chance de vitória.

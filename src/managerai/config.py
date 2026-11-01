@@ -3,7 +3,8 @@ from pathlib import Path
 import os
 import re
 
-_ALLOWED = frozenset(('GEMINI_API_KEY', 'MANAGERAI_GEMINI_MODEL', 'MANAGERAI_GEMINI_ENABLED',
+_ALLOWED = frozenset(('GROQ_API_KEY', 'MANAGERAI_GROQ_MODEL', 'MANAGERAI_GROQ_ENABLED',
+                      'MANAGERAI_AI_PROVIDER', 'GEMINI_API_KEY', 'MANAGERAI_GEMINI_MODEL', 'MANAGERAI_GEMINI_ENABLED',
                       'MANAGERAI_DATA_ROOT', 'MANAGERAI_CORS_ORIGINS', 'MANAGERAI_OLLAMA_MODEL',
                       'MANAGERAI_OLLAMA_DIGEST'))
 
@@ -41,7 +42,9 @@ def backend_environment(path=None, *, environ=None):
         parsed[key] = value
     for key, value in parsed.items():
         env.setdefault(key, value)  # ambiente exportado prevalece, inclusive vazio
-    enabled = env.get('MANAGERAI_GEMINI_ENABLED', 'false').lower()
-    if enabled not in ('true', 'false'):
-        raise ValueError('MANAGERAI_GEMINI_ENABLED deve ser true ou false.')
+    if env.get('MANAGERAI_AI_PROVIDER', 'gemini') not in ('gemini', 'groq'):
+        raise ValueError('MANAGERAI_AI_PROVIDER deve ser gemini ou groq.')
+    for name in ('MANAGERAI_GEMINI_ENABLED', 'MANAGERAI_GROQ_ENABLED'):
+        if env.get(name, 'false').lower() not in ('true', 'false'):
+            raise ValueError(name + ' deve ser true ou false.')
     return env

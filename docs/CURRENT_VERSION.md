@@ -22,7 +22,7 @@ ManagerAI apoia preparação pré-jogo com histórico local StatsBomb Open Data.
 | Serviço/API 2.0.0 e frontend React | Planos condicionais, restrições, evidências e exportação local |
 | Filtros por indicador | `quality_v1`, opt-in somente na análise básica do serviço/API/frontend |
 | LLM explicadora | Ollama opcional para seleção validada de afirmações; texto final materializado pelo Core |
-| Sugestões exploratórias por API | Gemini opt-in, separado dos planos por regras; sem eficácia tática validada |
+| Sugestões exploratórias por API | Groq ou Gemini opt-in, separado dos planos por regras; sem eficácia tática validada |
 | Regressões OLS/Ridge e LoRA de explicação | Experimentos offline; não promovidos à decisão de produção |
 | Tracking/360 analítico e recomendação individual | Não implementados |
 
@@ -71,6 +71,22 @@ um minuto após HTTP 429. Falhas mantêm o relatório; não há provedor pago su
 A chave pertence à instalação/backend, sem separação multiusuário de credenciais.
 Modelo padrão `gemini-2.5-flash`, configurável; nenhuma geração externa foi
 executada nesta entrega. Resultados de testes em [PENDING](PENDING.md#9-gemini-e-env-pessoal).
+
+### Groq — 01/11/2026
+
+`groq_advisor.py` acrescenta transporte HTTPS fixo para Groq, com seleção explícita
+`MANAGERAI_AI_PROVIDER=groq`, `GROQ_API_KEY`, `MANAGERAI_GROQ_MODEL` e
+`MANAGERAI_GROQ_ENABLED=true`. Padrão `openai/gpt-oss-120b`; alternativa explícita
+`openai/gpt-oss-20b`. Não há fallback de chave/modelo/provedor. Configuração antiga
+sem seletor preserva Gemini. O novo `.env.example` prepara Groq desligado.
+
+Compartilha cache, validação e abstenção da integração anterior, com corpo de
+entrada Groq limitado a 16 KB e saída estruturada em JSON Schema estrito. Chaves
+não entram no frontend, prompt ou relatório. UI mostra o provedor efetivo e
+distingue demanda alta (503), cota (429) e autorização (401/403). Nenhuma fórmula,
+indicador, plano por regra ou contrato HTTP foi alterado. Setup no
+[README](../README.md#groq-e-escolha-do-provedor-de-ia); testes em
+[PENDING](PENDING.md#10-groq).
 
 ## 2. Arquitetura e módulos
 

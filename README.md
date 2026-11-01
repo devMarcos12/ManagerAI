@@ -83,6 +83,38 @@ execute `npx playwright install chromium` antes de `npm test`. Build e checks
 TypeScript não precisam de navegador. Contratos, atualização de tipos e testes
 reais opt-in estão em [BACKEND_API.md](docs/BACKEND_API.md).
 
+## Groq e escolha do provedor de IA
+
+Para usar Groq, cada integrante configura seu próprio `.env` na raiz:
+
+```dotenv
+MANAGERAI_AI_PROVIDER=groq
+GROQ_API_KEY=COLE_SUA_CHAVE_PESSOAL_AQUI
+MANAGERAI_GROQ_MODEL=openai/gpt-oss-120b
+MANAGERAI_GROQ_ENABLED=true
+```
+
+O `.env.example` novo vem preparado para Groq, com chave vazia e ativação desligada.
+O gerador `python3 -B scripts/setup_env.py` preserva `.env` existente: quem já usa
+Gemini precisa adicionar as quatro variáveis acima manualmente e reiniciar a API.
+Configuração antiga sem `MANAGERAI_AI_PROVIDER` continua selecionando Gemini.
+Com `groq` explícito, uma chave Gemini presente nunca será usada como alternativa.
+
+Modelos suportados neste adaptador: `openai/gpt-oss-120b` (padrão) e
+`openai/gpt-oss-20b`. As chamadas vão ao Groq, com autenticação no backend,
+respostas JSON estruturadas e as mesmas conferências de referências e abstenção.
+A UI e as exportações identificam o provedor usado. A entrada Groq fica limitada
+a 16 KB; resumos maiores pedem redução dos indicadores adicionais. Tokens/cotas
+reais dependem da conta; confira o Free Plan antes de usar, pois o aplicativo
+não verifica faturamento ou garante disponibilidade gratuita. Não há upgrade,
+retry ou troca automática de provedor/modelo.
+
+A chave fica apenas no `.env` privado, ignorado pelo Git, e não é passada ao
+processo do frontend, prompt, relatório ou logs. Uma implantação compartilhada
+usa a chave do backend; isso não é um cofre multiusuário. Geração e cache seguem
+os limites da integração anterior. HTTP 503 agora aparece como indisponibilidade/
+demanda alta, separado de HTTP 429 (cota) e 401/403 (autorização).
+
 ## Gemini e chave pessoal de cada integrante
 
 A análise por IA é opcional e usa uma chave **do backend de cada instalação**.

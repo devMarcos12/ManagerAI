@@ -18,6 +18,7 @@ from .data_loader import DataError, LocalData
 from .explanation import OllamaProvider, canonical
 from .config import backend_environment
 from .gemini_advisor import GeminiAdvisor
+from .groq_advisor import GroqAdvisor
 from .service import build_service_report, coverage, render_service_markdown
 from .service_schema import ServiceError, ServiceRequest, SERVICE_VERSION
 from .ui_support import available_catalog
@@ -30,8 +31,12 @@ from .http_schema import (AnalysisBody, ReportBody, ErrorBody, HealthBody, Capab
 
 def create_app(*, data_root=None, provider=None, cors_origins=None, advisor=None, env_file=None):
     env = backend_environment(env_file)
-    if advisor is None and env.get('MANAGERAI_GEMINI_ENABLED', 'false').lower() == 'true' and env.get('GEMINI_API_KEY'):
-        advisor = GeminiAdvisor(env['GEMINI_API_KEY'], env.get('MANAGERAI_GEMINI_MODEL', 'gemini-2.5-flash'))
+    selected = env.get('MANAGERAI_AI_PROVIDER', 'gemini')
+    if advisor is None:
+        if selected == 'groq' and env.get('MANAGERAI_GROQ_ENABLED', 'false').lower() == 'true' and env.get('GROQ_API_KEY'):
+            advisor = GroqAdvisor(env['GROQ_API_KEY'], env.get('MANAGERAI_GROQ_MODEL', 'openai/gpt-oss-120b'))
+        elif selected == 'gemini' and env.get('MANAGERAI_GEMINI_ENABLED', 'false').lower() == 'true' and env.get('GEMINI_API_KEY'):
+            advisor = GeminiAdvisor(env['GEMINI_API_KEY'], env.get('MANAGERAI_GEMINI_MODEL', 'gemini-2.5-flash'))
     root = Path(data_root or env.get("MANAGERAI_DATA_ROOT", "open-data/data")).resolve()
     if provider is None and env.get("MANAGERAI_OLLAMA_MODEL"):
         provider = OllamaProvider(env["MANAGERAI_OLLAMA_MODEL"], expected_digest=env.get("MANAGERAI_OLLAMA_DIGEST"))
