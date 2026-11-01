@@ -193,4 +193,4 @@ MANAGERAI_DATA_ROOT="$PWD/open-data/data" python -I -B -m uvicorn managerai.api:
 
 OpenAPI: `http://127.0.0.1:8000/openapi.json` para esse comando de API isolada.
 A aplicação React abaixo usa a API em 8011 por padrão.
-Resultados reais e limites de treinamento/avaliação ficam em `docs/PENDING.md`, §20.
+Resultados e limites de treinamento/avaliação ficam nas [decisões científicas](docs/PENDING.md#4-ia-e-decisões-científicas).
