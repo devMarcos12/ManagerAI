@@ -13,7 +13,6 @@ Atualização documental de 01/11/2026. Código de referência: [`f9315d9`](http
 | 5 | Generalização dos experimentos | Dados independentes/temporada futura e ganho útil pré-fixado; preditor de chutes não valida estratégia |
 | 6 | Direitos e colaboração | Definir finalidade/distribuição, responsáveis nominais por dados/contratos/UI/avaliação e acesso da equipe aos backups/dados |
 | 7 | Requisito acadêmico de IA | Confirmar com o professor se ajuste de explicação atende à tarefa exigida; não alegar aprendizado de decisão tática |
-| 8 | Limpeza física de gerados | Aprovar o manifesto exato do §6 e reconferir hashes antes de remover; nenhuma exclusão executada |
 
 Serviço/API, frontend local e aproveitamento parcial básico estão implementados. CLI/Streamlit, fórmulas, contratos legados e adaptador V4.1 permanecem preservados. Não estão implementados motor tático aprendido, recomendação de escalação/formação ideal, eficácia causal ou uso analítico de 360. Expansão da política para V3, auditoria integral de Serie A/Ligue 1, autenticação/implantação pública e lock completo de transitivas são trabalhos separados, sem aprovação presumida.
 
@@ -102,7 +101,7 @@ O aproveitamento parcial `quality-report-1` é uma migração explícita do serv
 
 ## 6. Manifesto da limpeza
 
-**Estado: preparação e consolidação documental; nenhuma exclusão física autorizada ou executada.** Entrada `f9315d9`, 254 arquivos rastreados e 191.599.327 bytes. EDA protegida: 108 arquivos/174.432.856 bytes (91,04% dos bytes rastreados). Os documentos CURRENT_VERSION/PENDING tinham 1.649 linhas e 254.772 bytes; a redução desta etapa retira cronologia repetida do contexto operacional, preservando o conteúdo integral no Git.
+**Estado: consolidação documental e exclusão física concluídas.** Após a publicação de `c910f33`, o usuário aprovou explicitamente o manifesto abaixo; os 59 arquivos foram removidos com conferência de tamanho/SHA-256 antes de cada exclusão e backup preservado. Entrada `f9315d9`, 254 arquivos rastreados e 191.599.327 bytes. EDA protegida: 108 arquivos/174.432.856 bytes (91,04% dos bytes rastreados). Os documentos CURRENT_VERSION/PENDING tinham 1.649 linhas e 254.772 bytes; a redução desta etapa retira cronologia repetida do contexto operacional, preservando o conteúdo integral no Git.
 
 Escopo executado: consolidar os dois documentos, corrigir referências dos guias/README/AGENTS e retirar comentários genéricos do `.gitignore` **sem alterar nenhum dos 102 padrões nem sua ordem**. Nenhum fonte, teste, fórmula, dependência ou contrato de aplicação muda.
 
@@ -115,9 +114,9 @@ Escopo executado: consolidar os dois documentos, corrigir referências dos guias
 - StatsBomb, licenças/atribuição, `outputs/runs/`, pesos, resultados científicos e backups; não apagar logs só pela extensão ignorada.
 - Placeholders `data/raw/`, `data/processed/` e configuração compartilhada `.vscode/settings.json`: nenhum benefício ou decisão de equipe justificou sua retirada.
 
-### Exclusões propostas, dependentes de aprovação
+### Exclusões aprovadas e executadas
 
-Somente os **59 arquivos gerados** listados abaixo, total **693.739 bytes** (aproximadamente 678 KiB). São cópias de build/metadados de empacotamento e bundle web reconstruível; não são a dependência instalada no venv, o código-fonte ou as evidências científicas.
+Foram removidos somente os **59 arquivos gerados** listados abaixo, total **693.739 bytes** (aproximadamente 678 KiB). São cópias de build/metadados de empacotamento e bundle web reconstruível; não são a dependência instalada no venv, o código-fonte ou as evidências científicas.
 
 | Diretório | Arquivos exatos | Bytes |
 |---|---:|---:|
@@ -125,10 +124,10 @@ Somente os **59 arquivos gerados** listados abaixo, total **693.739 bytes** (apr
 | `src/managerai.egg-info/` | 6 | 13.510 |
 | `frontend/dist/` | 3 | 271.111 |
 
-A aprovação não autoriza apagar diretórios recursivamente, usar glob, `git clean` ou remover arquivos novos que não constam desta lista. Antes de cada remoção, exigir caminho/bytes/SHA-256 ainda iguais ao manifesto; divergência exige novo inventário. Este manifesto descreve este checkout de trabalho; git pull não apaga gerados ignorados na máquina do usuário. Em outro checkout, preparar inventário/backup próprio antes de pedir aprovação.
+A aprovação ficou restrita aos caminhos listados, sem exclusão recursiva de diretórios, glob ou `git clean`. Cada arquivo teve caminho/bytes/SHA-256 reconferidos imediatamente antes da remoção; nenhum arquivo novo fora da lista foi removido. Uma futura limpeza exige inventário próprio. Este manifesto descreve este checkout de trabalho; git pull não apaga gerados ignorados na máquina do usuário. Em outro checkout, preparar inventário/backup próprio antes de pedir aprovação.
 
 <details>
-<summary>Lista exata dos 59 arquivos candidatos</summary>
+<summary>Lista exata dos 59 arquivos removidos</summary>
 
 ```text
 build/lib/managerai/__init__.py
@@ -196,19 +195,31 @@ src/managerai.egg-info/top_level.txt
 
 ### Rollback preparado e conferido
 
-Manifesto local completo: `outputs/runs/cleanup_20261101/removal_manifest.json`, com caminho/tamanho/SHA-256 de cada candidato, status aguardando aprovação e zero removidos. Backup: `outputs/runs/cleanup_20261101/generated_rollback.tar.gz`; SHA-256 `6350c9a413167d6742d8145af28379ac02281c24ce8d5ffced1e23c393f7630d`. A extração em diretório temporário novo foi testada e todos os 59 hashes coincidiram. O backup está fora dos três diretórios candidatos, ignorado pelo Git, e não acompanha git pull; sua presença deve ser reconferida antes de executar a exclusão.
+Manifesto local completo: `outputs/runs/cleanup_20261101/removal_manifest.json`, com caminho/tamanho/SHA-256 de cada arquivo, status concluído após aprovação e 59 removidos. O diário `removal_execution.json`, no mesmo diretório, registra aprovação, hashes de origem e cada remoção. Backup: `outputs/runs/cleanup_20261101/generated_rollback.tar.gz`; SHA-256 `6350c9a413167d6742d8145af28379ac02281c24ce8d5ffced1e23c393f7630d`. A extração em diretório temporário novo foi testada e todos os 59 hashes coincidiram. O backup está fora dos três diretórios candidatos, ignorado pelo Git, e não acompanha git pull; sua presença e o conteúdo dos 59 membros foram reconferidos antes da exclusão e o pacote foi mantido após a execução.
 
 Restauração deve extrair primeiro em pasta nova, conferir os 59 hashes contra o manifesto e copiar somente caminhos aprovados ausentes, sem sobrescrever trabalho novo. Builds podem ser regenerados com empacotamento Python e `npm run build`, mas a cópia de rollback é a referência para recuperar os bytes antigos. O estado documental anterior pode ser consultado pelo commit do §2. Não há exclusão pendente de fonte/teste/fixture/EDA neste manifesto.
 
 ## 7. Validação desta limpeza
 
-Executado nesta limpeza, com Python 3.12.14 e sem alterar dependências:
+### Consolidação documental, antes da aprovação
+
+Executado com Python 3.12.14 e sem alterar dependências:
 
 - `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -B -S -m unittest discover -s tests -q`: **315 descobertos, 262 aprovados, 53 pulados**, zero falhas/erros; 3,526 s. Log em `/tmp/managerai-cleanup-20261101-tests.log`. Pulos de opcionais/dados não contam como aprovação.
 - **54 links locais e âncoras** nos documentos operacionais/guias válidos; snapshots anteriores conferidos contra hashes dos blobs Git de `f9315d9`.
 - **102 padrões de ignore idênticos e na mesma ordem**; todos os caminhos ignorados anteriores continuam ignorados. Novos arquivos de preparação ficam exclusivamente no diretório ignorado desta limpeza.
-- Manifesto de **59 candidatos ainda intactos**, arquivo de rollback com hash conferido e restauração byte a byte testada. **Zero arquivos excluídos.**
+- Na preparação, os **59 candidatos estavam intactos**, com rollback e restauração byte a byte conferidos. Nenhuma exclusão havia sido executada antes da aprovação.
 - Três relatórios congelados mantêm os SHA-256 de entrada. Diff vazio em fontes, testes, frontend, scripts, dependências, atributos Git/CI e todo `outputs/` rastreado; EDA preservada. Alterações preexistentes foram mantidas.
 - `git diff --check` passou. Inventário, baseline, manifesto e verificações em `outputs/runs/cleanup_20261101/`; esses artefatos locais não entram no commit.
 
-Não reexecutei build, navegador, UI/V3, auditoria integral, LLM ou treinamento: esta fase modifica somente documentação e comentários do ignore. As execuções funcionais do §3 continuam identificadas como históricas. A CI do commit documental deve ser conferida separadamente no GitHub. Próximo passo físico depende da aprovação do manifesto do §6, exigida pelo AGENTS; manter a reconferência de hash imediatamente antes de remover cada candidato.
+Não foram reexecutados build, navegador, UI/V3, auditoria integral, LLM ou treinamento nesta execução local. As execuções funcionais do §3 continuam identificadas como históricas. A [CI da consolidação documental](https://github.com/devMarcos12/ManagerAI/actions/runs/41331758918) passou nos três jobs.
+
+### Exclusão após aprovação
+
+Os 59 arquivos aprovados foram removidos; nenhum arquivo rastreado foi excluído. Backup com SHA-256 conferido, membros do arquivo de rollback iguais ao manifesto e diário completo em `outputs/runs/cleanup_20261101/removal_execution.json`. Os diretórios vazios foram mantidos; nenhuma remoção recursiva foi usada. Validação posterior à exclusão, com Python 3.12.14:
+
+- `PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -B -S -m unittest discover -s tests -q`: **315 descobertos, 262 aprovados, 53 pulados**, zero falhas/erros; 3,806 s. Log em `/tmp/managerai-cleanup-approved-20261101-tests.log`.
+- **55 links locais e âncoras válidos**; `git diff --check` passou. Os 59 caminhos removidos continuam ausentes e os 59 membros do backup mantêm os hashes do manifesto.
+- Três fixtures congeladas, 102 padrões de ignore e arquivos preexistentes preservados; diff vazio nos fontes/testes/frontend/scripts/dados/evidências rastreados. O único delta versionado é o registro desta conclusão nos dois documentos operacionais.
+
+Verificações completas em `outputs/runs/cleanup_20261101/post_removal_validation.json`. Nenhum build foi executado para evitar recriar os gerados removidos. Esta exclusão é local ao checkout de trabalho; não limpa arquivos ignorados na máquina do usuário por git pull.

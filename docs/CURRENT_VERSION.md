@@ -2,6 +2,8 @@
 
 Estado do código de referência: [`f9315d9`](https://github.com/devMarcos12/ManagerAI/commit/f9315d91b82a8a3e3a91ecc1504d532c4248ade4), em 01/11/2026. Esta consolidação documental não muda a aplicação. Regras de trabalho em [AGENTS.md](../AGENTS.md), prioridades/evidências em [PENDING.md](PENDING.md) e instalação rápida no [README](../README.md). Resultados de testes têm execução e perfil identificados; não são garantia de validade esportiva.
 
+Limpeza aprovada de gerados concluída neste checkout: 59 arquivos de build/metadados e bundle web removidos (693.739 bytes), com rollback conferido. Código, testes, dados e fixtures preservados. Detalhes em [PENDING.md](PENDING.md#6-manifesto-da-limpeza). Arquivos ignorados em outra máquina não são apagados por git pull; um novo build pode recriá-los.
+
 ## 1. Produto e fronteiras
 
 ManagerAI apoia preparação pré-jogo com histórico local StatsBomb Open Data. Calcula indicadores e hipóteses condicionais por regras. A interface React usa a API FastAPI local; CLI e Streamlit continuam disponíveis. O núcleo analítico funciona sem rede, LLM ou GPU após provisionar dados/dependências. Não há motor tático aprendido, escalação ideal, previsão de vitória ou eficácia causal demonstrada.
