@@ -45,6 +45,7 @@ class AnalysisBody(StrictModel):
     engine: Literal["deterministic"] = "deterministic"
     explainer_model: str | None = Field(default=None, min_length=1, max_length=160)
     data_policy: Literal["legacy", "quality_v1"] = "legacy"
+    ai_analysis: Literal["none", "optional"] = "none"
 
     @model_validator(mode="before")
     @classmethod
@@ -84,10 +85,17 @@ class LimitsBody(BaseModel):
     report_ttl_seconds: int
 
 
+class AdvisorCapability(BaseModel):
+    configured: bool = False
+    provider: str | None = None
+    model: str | None = None
+
+
 class CapabilitiesBody(BaseModel):
     schema_version: str
     engines: list[Literal["deterministic"]]
     llm: LLMCapability
+    tactical_advisor: AdvisorCapability = Field(default_factory=AdvisorCapability)
     fine_tuned_model: Literal["experimental_not_promoted"]
     shots_prediction: Literal["experimental_not_integrated"]
     individual_recommendations: Literal[False]
@@ -402,6 +410,29 @@ class DataQualityBody(BaseModel):
     limitations: list[str]
 
 
+class AdviceOptionBody(BaseModel):
+    title: str
+    action: str
+    rationale: str
+    video_check: str
+    adjust_when: str
+    risks: list[str]
+    evidence_ids: list[str]
+
+
+class TacticalAdviceBody(BaseModel):
+    status: Literal["disabled", "unavailable", "abstained", "failed", "generated"]
+    reason: str | None
+    provider: str | None
+    model: str | None
+    prompt_version: str
+    input_fingerprint: str | None
+    cached: bool
+    summary: str | None
+    options: list[AdviceOptionBody]
+    policy: str
+
+
 class ReportBody(BaseModel):
     schema_version: str
     report_id: str
@@ -422,6 +453,7 @@ class ReportBody(BaseModel):
     provenance: dict[str, Any]  # Contrato V4.1 preservado; sem consumidor visual opaco.
     report_key: str
     data_quality: DataQualityBody | None = None
+    ai_tactical: TacticalAdviceBody | None = None
 
 
 def display_projection(result):

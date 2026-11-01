@@ -83,6 +83,55 @@ execute `npx playwright install chromium` antes de `npm test`. Build e checks
 TypeScript não precisam de navegador. Contratos, atualização de tipos e testes
 reais opt-in estão em [BACKEND_API.md](docs/BACKEND_API.md).
 
+## Gemini e chave pessoal de cada integrante
+
+A análise por IA é opcional e usa uma chave **do backend de cada instalação**.
+Na raiz do repositório, execute:
+
+```bash
+python3 -B scripts/setup_env.py
+```
+
+Esse comando cria `.env` a partir de [.env.example](.env.example), com permissão
+privada, sem sobrescrever um arquivo existente. `scripts/run_web.py` também cria
+esse arquivo no primeiro início. Cada integrante edita seu próprio `.env`:
+
+```dotenv
+GEMINI_API_KEY=COLE_SUA_CHAVE_PESSOAL_AQUI
+MANAGERAI_GEMINI_MODEL=gemini-2.5-flash
+MANAGERAI_GEMINI_ENABLED=true
+```
+
+O arquivo nasce com chave vazia e `MANAGERAI_GEMINI_ENABLED=false`. Só ative após
+conferir no Google AI Studio que o projeto tem acesso ao plano gratuito e não tem
+faturamento pago ativado. A integração não consegue verificar esse estado: uma
+chave de projeto pago pode gerar cobrança no Google. Não faz retry automático,
+upgrade de plano ou troca para provedor/modelo alternativo quando a cota acaba.
+
+`.env` e suas variantes locais são ignorados pelo Git. Somente `.env.example`
+sem chave é compartilhado. Nunca coloque a chave no frontend, em `VITE_*`, em
+commits ou em mensagens. Variáveis exportadas no processo prevalecem sobre `.env`.
+O formato aceita `NOME=valor`, aspas simples/duplas e comentários; não executa shell
+nem expande variáveis. A API lê `.env` do diretório de início ou o caminho indicado
+em `MANAGERAI_ENV_FILE`. Reinicie a API após mudar a configuração.
+
+Depois de reinstalar o pacote atualizado, inicie a web como antes. A opção
+**Incluir sugestões táticas da IA** fica disponível na comparação quando chave e
+ativação estão configuradas. Só a análise solicitada faz uma chamada ao Gemini;
+catálogo, prévia e panorama individual não chamam a API externa. A IA recebe
+indicadores elegíveis e contexto declarado; não recebe chave no prompt, notas,
+elenco, arquivos brutos ou segredos locais. O processo do frontend não recebe a
+credencial do backend. Não se trata de chaves separadas para usuários de um mesmo
+servidor: quem compartilha a mesma API usa a chave configurada naquele servidor.
+
+As sugestões incluem ações condicionais, justificativas, riscos, conferência em
+vídeo e condições para reavaliar. Números são exibidos pelo aplicativo a partir
+das evidências. A verificação de formato/citações não comprova fidelidade tática
+ou eficácia. Planos por regras e indicadores são preservados. Amostra insuficiente
+ou planos bloqueados manualmente levam à abstenção da IA. Falhas e cota esgotada
+não removem o relatório. Respostas válidas são reutilizadas em memória por até dez
+minutos para os mesmos dados/contexto/modelo; não há cache em disco.
+
 ## Instalação CLI/Streamlit
 
 Requer Python 3.12+. Na raiz do checkout, crie o ambiente **somente se ainda não

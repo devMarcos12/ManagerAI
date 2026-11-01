@@ -107,3 +107,7 @@ __marimo__/
 /frontend/test-results/
 /frontend/.env.local
 /.venv-web/
+
+# Credenciais locais de todos os integrantes; compartilhar somente os modelos.
+.env.*
+!.env.example

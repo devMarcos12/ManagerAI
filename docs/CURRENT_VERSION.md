@@ -22,6 +22,7 @@ ManagerAI apoia preparação pré-jogo com histórico local StatsBomb Open Data.
 | Serviço/API 2.0.0 e frontend React | Planos condicionais, restrições, evidências e exportação local |
 | Filtros por indicador | `quality_v1`, opt-in somente na análise básica do serviço/API/frontend |
 | LLM explicadora | Ollama opcional para seleção validada de afirmações; texto final materializado pelo Core |
+| Sugestões exploratórias por API | Gemini opt-in, separado dos planos por regras; sem eficácia tática validada |
 | Regressões OLS/Ridge e LoRA de explicação | Experimentos offline; não promovidos à decisão de produção |
 | Tracking/360 analítico e recomendação individual | Não implementados |
 
@@ -46,6 +47,30 @@ campo neutro. Extensão V3, filtros de qualidade, restrições e explicação pe
 em opções adicionais da comparação. CLI/Streamlit e fórmulas não foram alterados.
 
 Validação desta entrega e limites do ambiente: [PENDING](PENDING.md#8-validação-da-entrada-por-equipe).
+
+### Gemini e configuração pessoal — 01/11/2026
+
+`config.py` lê `.env` restrito ao backend, sem sobrescrever variáveis exportadas.
+`.env.example` não contém credenciais e `scripts/setup_env.py` cria `.env` privado,
+sem sobrescrever arquivos existentes; `run_web.py` usa o mesmo procedimento e
+retira a credencial do ambiente do frontend. A ativação nasce desligada e depende
+da conferência manual do plano gratuito no AI Studio; a aplicação não verifica
+faturamento do Google. O setup completo está no [README](../README.md#gemini-e-chave-pessoal-de-cada-integrante).
+
+`gemini_advisor.py` adiciona sugestões coletivas exploratórias ao serviço, somente
+com `ai_analysis=optional` e suficiência histórica. `ai_tactical` é separado do
+motor determinístico, da seleção de textos Ollama e dos schemas legados. Com
+restrições de planos, a IA se abstém para não contorná-las. Não recebe notas/elenco,
+brutos ou fontes privadas. Formato, limites, ausência de algarismos na prosa e
+referências elegíveis de ambas as equipes são conferidos; isso não comprova a
+interpretação. Valores são materializados na UI a partir das evidências reais.
+
+Origem HTTPS Google fixa, autenticação por header, sem redirecionamentos/retries,
+saída limitada, cache volátil de oito respostas por até dez minutos e pausa de
+um minuto após HTTP 429. Falhas mantêm o relatório; não há provedor pago substituto.
+A chave pertence à instalação/backend, sem separação multiusuário de credenciais.
+Modelo padrão `gemini-2.5-flash`, configurável; nenhuma geração externa foi
+executada nesta entrega. Resultados de testes em [PENDING](PENDING.md#9-gemini-e-env-pessoal).
 
 ## 2. Arquitetura e módulos
 

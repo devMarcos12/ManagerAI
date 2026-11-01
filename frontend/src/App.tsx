@@ -14,11 +14,11 @@ interface FormState {
   venue: NonNullable<Analysis['venue']>; context: NonNullable<Analysis['match_context']>;
   objective: NonNullable<Analysis['strategic_objective']>; strategy: NonNullable<AnalysisRequest['intended_strategy']>;
   blocked: NonNullable<AnalysisRequest['blocked_plan_ids']>; notes: string;
-  explanation: NonNullable<AnalysisRequest['explanation']>;
+  explanation: NonNullable<AnalysisRequest['explanation']>; ai: boolean;
 }
 const initial: FormState = { team: 0, cutoff: '', window: 10, recut: '', compare: false, opponent: 0,
   reference: 'cutoff', target: 0, v3: false, quality: false, venue: 'desconhecido', context: 'regular',
-  objective: 'equilibrado', strategy: 'equilibrada', blocked: [], notes: '', explanation: 'none' };
+  objective: 'equilibrado', strategy: 'equilibrada', blocked: [], notes: '', explanation: 'none', ai: true };
 const explanationLabels = { none: 'Sem explicação adicional', optional: 'Incluir, se disponível', required: 'Exigir explicação adicional' };
 const venueLabels = { casa: 'Em casa', fora: 'Fora de casa', neutro: 'Campo neutro', desconhecido: 'Ainda não definido' };
 type Result = { kind: 'team'; data: TeamReport } | { kind: 'comparison'; data: Report };
@@ -99,7 +99,7 @@ export default function App() {
     competition_id: teamRequest.competition_id, season_id: teamRequest.season_id, team_id: form.team, opponent_id: form.opponent,
     ...(form.reference === 'match' ? { target_match_id: form.target } : { cutoff_date: form.cutoff }),
     recent_matches_window: form.window, venue, match_context: form.context, strategic_objective: form.objective, notes: form.notes,
-  }, include_v3: form.v3, ...(form.quality ? { data_policy: 'quality_v1' as const } : {}), intended_strategy: form.strategy, blocked_plan_ids: form.blocked, roster: [], engine: 'deterministic', explanation: form.explanation };
+  }, ...(form.ai && capabilities?.tactical_advisor?.configured ? { ai_analysis: 'optional' as const } : {}), include_v3: form.v3, ...(form.quality ? { data_policy: 'quality_v1' as const } : {}), intended_strategy: form.strategy, blocked_plan_ids: form.blocked, roster: [], engine: 'deterministic', explanation: form.explanation };
   const requestKey = ready ? JSON.stringify(form.compare ? { kind: 'comparison', body: pairRequest } : { kind: 'team', body: teamRequest }) : '';
   const debouncedKey = useDebounced(requestKey || null);
   const preview = useRemote(ready ? debouncedKey : null, signal => {
@@ -164,6 +164,8 @@ export default function App() {
               <label htmlFor="opponent">Adversário</label><select id="opponent" value={form.opponent || ''} disabled={!season.data} onChange={e => setForm(f => ({ ...f, opponent: +e.target.value, target: 0 }))}><option value="">{season.loading ? 'Carregando times…' : 'Escolha o adversário'}</option>{teams.filter(t => t.team_id !== form.team).map(t => <option key={t.team_id} value={t.team_id}>{t.name}</option>)}</select>
               <p className="small muted">Times com calendário na mesma competição e temporada.</p>
               {season.error !== undefined && <p className="error" role="alert">{errorMessage(season.error)}</p>}
+              <label className="checkbox compare-toggle"><input type="checkbox" disabled={!capabilities?.tactical_advisor?.configured} checked={form.ai && !!capabilities?.tactical_advisor?.configured} onChange={e => update('ai', e.target.checked)} /><span>Incluir sugestões táticas da IA</span></label>
+              <p className="small muted">{capabilities?.tactical_advisor?.configured ? 'Envia indicadores e contexto ao Gemini. Notas e elenco não são enviados. Sugestões para avaliar no vídeo e no treino.' : 'Para habilitar, configure sua chave e ative o Gemini no .env do backend.'}</p>
               <details className="declarations"><summary>Como será o jogo? (opcional)</summary><p className="small muted">O contexto organiza a leitura dos planos disponíveis, mantendo os indicadores históricos.</p>
                 <label htmlFor="venue">Onde vamos jogar?</label><select id="venue" value={venue} disabled={form.reference === 'match'} onChange={e => update('venue', e.target.value as FormState['venue'])}>{venues.map(v => <option key={v} value={v}>{venueLabels[v]}</option>)}</select>
                 {form.reference === 'match' && <p className="small muted">Mando formal do calendário preenchido automaticamente; não confirma campo neutro.</p>}

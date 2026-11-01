@@ -1,6 +1,6 @@
 import type { components } from './generated/api';
 export type Schema = components['schemas'];
-export type AnalysisRequest = Omit<Schema['AnalysisBody'], 'data_policy'> & Partial<Pick<Schema['AnalysisBody'], 'data_policy'>>;
+export type AnalysisRequest = Omit<Schema['AnalysisBody'], 'data_policy' | 'ai_analysis'> & Partial<Pick<Schema['AnalysisBody'], 'data_policy' | 'ai_analysis'>>;
 export type Report = Schema['ReportBody'];
 export type Coverage = Schema['CoverageBody'];
 export type Capabilities = Schema['CapabilitiesBody'];

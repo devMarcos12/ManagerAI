@@ -1,9 +1,100 @@
 {
   "components": {
     "schemas": {
+      "AdviceOptionBody": {
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "adjust_when": {
+            "title": "Adjust When",
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string"
+          },
+          "risks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Risks",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "video_check": {
+            "title": "Video Check",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "action",
+          "rationale",
+          "video_check",
+          "adjust_when",
+          "risks",
+          "evidence_ids"
+        ],
+        "title": "AdviceOptionBody",
+        "type": "object"
+      },
+      "AdvisorCapability": {
+        "properties": {
+          "configured": {
+            "default": false,
+            "title": "Configured",
+            "type": "boolean"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          }
+        },
+        "title": "AdvisorCapability",
+        "type": "object"
+      },
       "AnalysisBody": {
         "additionalProperties": false,
         "properties": {
+          "ai_analysis": {
+            "default": "none",
+            "enum": [
+              "none",
+              "optional"
+            ],
+            "title": "Ai Analysis",
+            "type": "string"
+          },
           "analysis": {
             "$ref": "#/components/schemas/AnalysisPayload"
           },
@@ -258,6 +349,9 @@
           "storage": {
             "title": "Storage",
             "type": "string"
+          },
+          "tactical_advisor": {
+            "$ref": "#/components/schemas/AdvisorCapability"
           },
           "v3_recuts": {
             "items": {
@@ -1616,6 +1710,16 @@
             ],
             "title": "Abstention Reason"
           },
+          "ai_tactical": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TacticalAdviceBody"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "data_quality": {
             "anyOf": [
               {
@@ -1926,6 +2030,109 @@
           "warnings"
         ],
         "title": "SufficiencyBody",
+        "type": "object"
+      },
+      "TacticalAdviceBody": {
+        "properties": {
+          "cached": {
+            "title": "Cached",
+            "type": "boolean"
+          },
+          "input_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Fingerprint"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/AdviceOptionBody"
+            },
+            "title": "Options",
+            "type": "array"
+          },
+          "policy": {
+            "title": "Policy",
+            "type": "string"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "unavailable",
+              "abstained",
+              "failed",
+              "generated"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          }
+        },
+        "required": [
+          "status",
+          "reason",
+          "provider",
+          "model",
+          "prompt_version",
+          "input_fingerprint",
+          "cached",
+          "summary",
+          "options",
+          "policy"
+        ],
+        "title": "TacticalAdviceBody",
         "type": "object"
       },
       "TeamAnalysisBody": {

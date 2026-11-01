@@ -212,8 +212,43 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AdviceOptionBody */
+        AdviceOptionBody: {
+            /** Action */
+            action: string;
+            /** Adjust When */
+            adjust_when: string;
+            /** Evidence Ids */
+            evidence_ids: string[];
+            /** Rationale */
+            rationale: string;
+            /** Risks */
+            risks: string[];
+            /** Title */
+            title: string;
+            /** Video Check */
+            video_check: string;
+        };
+        /** AdvisorCapability */
+        AdvisorCapability: {
+            /**
+             * Configured
+             * @default false
+             */
+            configured: boolean;
+            /** Model */
+            model?: string | null;
+            /** Provider */
+            provider?: string | null;
+        };
         /** AnalysisBody */
         AnalysisBody: {
+            /**
+             * Ai Analysis
+             * @default none
+             * @enum {string}
+             */
+            ai_analysis: "none" | "optional";
             analysis: components["schemas"]["AnalysisPayload"];
             /** Blocked Plan Ids */
             blocked_plan_ids?: ("R01_PROGRESSAO" | "R02_PRESSAO_ALTA" | "R03_CHANCES" | "V3_ENTRADAS_PASSE" | "V3_CHUTES_AREA")[];
@@ -329,6 +364,7 @@ export interface components {
             shots_prediction: "experimental_not_integrated";
             /** Storage */
             storage: string;
+            tactical_advisor?: components["schemas"]["AdvisorCapability"];
             /** V3 Recuts */
             v3_recuts: [
                 number,
@@ -772,6 +808,7 @@ export interface components {
         ReportBody: {
             /** Abstention Reason */
             abstention_reason: string | null;
+            ai_tactical?: components["schemas"]["TacticalAdviceBody"] | null;
             data_quality?: components["schemas"]["DataQualityBody"] | null;
             display: components["schemas"]["DisplayBody"];
             /** Evidence */
@@ -878,6 +915,32 @@ export interface components {
             team: components["schemas"]["MetricCoverageBody"];
             /** Warnings */
             warnings: string[];
+        };
+        /** TacticalAdviceBody */
+        TacticalAdviceBody: {
+            /** Cached */
+            cached: boolean;
+            /** Input Fingerprint */
+            input_fingerprint: string | null;
+            /** Model */
+            model: string | null;
+            /** Options */
+            options: components["schemas"]["AdviceOptionBody"][];
+            /** Policy */
+            policy: string;
+            /** Prompt Version */
+            prompt_version: string;
+            /** Provider */
+            provider: string | null;
+            /** Reason */
+            reason: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "disabled" | "unavailable" | "abstained" | "failed" | "generated";
+            /** Summary */
+            summary: string | null;
         };
         /** TeamAnalysisBody */
         TeamAnalysisBody: {

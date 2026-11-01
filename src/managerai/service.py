@@ -5,6 +5,7 @@ from .coverage import preview_coverage, report_sufficiency
 from .data_inventory import load_season, team_ids
 from .data_loader import LocalData
 from .explanation import explain, fingerprint
+from .gemini_advisor import tactical_advice
 from .pipeline import analyze
 from .service_schema import ServiceError, ServiceRequest, SERVICE_VERSION
 from .tactical_engines import compare_engines
@@ -37,7 +38,7 @@ def coverage(root, request):
     return asdict(validate_context(root, request))
 
 
-def build_service_report(root, request: ServiceRequest, *, provider=None):
+def build_service_report(root, request: ServiceRequest, *, provider=None, advisor=None):
     validate_context(root, request)
     if request.explainer_model is not None and (provider is None or provider.model != request.explainer_model):
         raise ServiceError("MODEL_UNAVAILABLE", "Modelo solicitado não está configurado; nenhum substituto foi usado.", 503)
@@ -106,6 +107,8 @@ def build_service_report(root, request: ServiceRequest, *, provider=None):
     identity_request = request.to_dict()
     if request.data_policy == "legacy":
         identity_request.pop("data_policy")
+    if request.ai_analysis == 'none':
+        identity_request.pop('ai_analysis', None)
     identity = fingerprint({"request": identity_request, "legacy": legacy,
                             **({"quality_mask": quality["mask_fingerprint"]} if quality else {})})
     projection = {"report_id": identity, "claims": claims}
@@ -133,6 +136,8 @@ def build_service_report(root, request: ServiceRequest, *, provider=None):
     if quality:
         result["data_quality"] = quality
         result["limitations"].extend(quality["limitations"])
+    if request.ai_analysis != 'none':
+        result['ai_tactical'] = tactical_advice(result, advisor)
     return result
 
 
@@ -175,8 +180,22 @@ def render_service_markdown(result):
                       f"n={e['sample_size']}; jogos={e['match_ids']}; numerador={e['numerator']}; denominador={e['denominator']}; "
                       f"datas={[row.get('match_date') for row in e.get('per_match', [])]}; fórmula={e.get('formula_version')}."]
         lines += [""]
+    advice = result.get('ai_tactical')
+    if advice:
+        lines += ['## Análise tática por IA', '', advice['policy'], '', f"Estado: {advice['status']}; motivo: {advice['reason'] or 'nenhum'}.", '']
+        if advice['summary']:
+            lines += [advice['summary'], '']
+        for option in advice['options']:
+            lines += [f"### {option['title']}", '', option['action'], '', option['rationale'], '',
+                      'Riscos: ' + '; '.join(option['risks']), '', 'Conferir no vídeo: ' + option['video_check'], '',
+                      'Reavaliar quando: ' + option['adjust_when'], '']
+            for ref in option['evidence_ids']:
+                evidence = result['evidence'][ref]
+                lines += [f"- {ref}: {evidence['team_name']}; {number(evidence['value'])} {evidence['unit']}; n={evidence['sample_size']}; jogos={evidence['match_ids']}."]
+            lines += ['']
     lines += ["## Explicação", "", f"Estado: {result['explanation']['status']}.", ""]
     lines += [c["text"] for c in result["explanation"]["claims"]]
     lines += ["", "## Limitações", ""] + ["- " + x for x in result["limitations"]]
     lines += ["", f"Fontes e hashes: fingerprint {meta['data_fingerprint']}; lista integral no JSON."]
     return "\n".join(lines) + "\n"
+

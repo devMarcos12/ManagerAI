@@ -1,3 +1,4 @@
+import AIAdvice from './AIAdvice';
 import { useState } from 'react';
 import { api, errorMessage, type Report, type Evidence, type Schema } from './api';
 import { date, number, planLabels } from './format';
@@ -102,6 +103,7 @@ export default function ReportView({ report, changed }: { report: Report; change
         <h4>Inspecionar evidências por métrica</h4>{Object.entries(report.evidence).map(([id, e]) => <EvidenceDetail key={id} id={id} evidence={e} />)}
       </>}</details>
     </section>
+    <AIAdvice report={report} />
     <section className="report-section"><div className="section-heading"><h3>Planos para investigar</h3><span>{report.plans.length} opções condicionais</span></div>
       <p className="muted small">A prioridade reflete preferências declaradas, não confiança, probabilidade de sucesso ou ranking de eficácia.</p>
       {report.ordering.objective_note && <p className="notice">{report.ordering.objective_note}</p>}

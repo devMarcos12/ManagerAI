@@ -12,7 +12,7 @@ export function makeReport(request: AnalysisRequest): Report {
   }
   const profile = (id: number, name: string) => ({team_id:id,team_name:name,period_start:'2020-01-01',period_end:'2020-01-07',match_ids:[1,2,3,4,5],shots:[{id:'synthetic-shot',match_id:1,team_id:id,period:1,x:110,y:40,xg:null}]});
   const metricCoverage = (name: string) => ({team_name:name,sample_sizes:{shots_for:n},minimum_sample_size:n,insufficient_metrics:n<5?['shots_for']:[]});
-  return { schema_version:'2.0.0',report_id:'synthetic-report',report_key:'synthetic-key',request:{...request,data_policy:request.data_policy || 'legacy'},legacy_report:{},evidence,
+  return { schema_version:'2.0.0',report_id:'synthetic-report',report_key:'synthetic-key',request:{...request,ai_analysis:request.ai_analysis || 'none',data_policy:request.data_policy || 'legacy'},legacy_report:{},evidence,
     ...(request.data_policy==='quality_v1' ? {data_quality:{policy_version:'quality-report-1',applied:true,scope:'selected_history_only' as const,full_snapshot_status:'not_checked' as const,spatial_season_certified:false,minimum_matches:5,required_core_metrics:['shots_for'],mask_fingerprint:'synthetic',metrics:[{evidence_id:'team_profile.metrics.shots_for',metric_id:'shots_for',team_id:1,team_name:'Equipe A',family:'shot_counts',original_sample_size:n,usable_sample_size:n,selected_matches:n+1,excluded_match_ids:[99],reason_counts:{not_diagnosed:1}}],reason_labels:{not_diagnosed:'Arquivo de eventos ausente na janela selecionada.'},limitations:['Fixture sintética, sem certificação.']}} : {}),
     display:{competition:'Premier League',season:'2015/2016',cutoff_date:'2020-01-08',team:profile(1,'Equipe A'),opponent:profile(2,'Equipe B'),sources:[{path:'events/1.json',sha256:'synthetic-hash'}],metric_definitions:{}},
     sufficiency:{status:n<5?'amostra insuficiente':'evidência limitada',sufficient:n>=5,minimum_matches:5,warnings:[],team:metricCoverage('Equipe A'),opponent:metricCoverage('Equipe B')},
@@ -49,14 +49,14 @@ export async function openComparison(page: Page) {
   await page.getByText('Como será o jogo? (opcional)',{exact:true}).click();
 }
 
-export interface MockState { analysisStatus?:number; analysisCode?:string; hangAnalysis?:boolean; exportStatus?:number; bootstrapFail?:boolean; configured?:boolean; delayAnalysis?:number; coverageDelay?:(window:number)=>number; requests:AnalysisRequest[]; coverageRequests:AnalysisRequest[]; teamRequests?:TeamRequest[]; teamDelay?:number; index?:typeof coachTeams }
+export interface MockState { analysisStatus?:number; analysisCode?:string; hangAnalysis?:boolean; exportStatus?:number; bootstrapFail?:boolean; configured?:boolean; delayAnalysis?:number; coverageDelay?:(window:number)=>number; requests:AnalysisRequest[]; coverageRequests:AnalysisRequest[]; advisorConfigured?:boolean; advisorReason?:string; teamRequests?:TeamRequest[]; teamDelay?:number; index?:typeof coachTeams }
 export async function mockApi(page: Page, state: MockState = {requests:[],coverageRequests:[]}) {
   await page.route('**/v1/**', async route => {
     const path = new URL(route.request().url()).pathname;
     const fulfill = async (data: unknown, status=200) => { try { await route.fulfill({status,json:data}); } catch { /* Busca cancelada pelo cliente. */ } };
     if (state.bootstrapFail) return route.abort('connectionfailed');
     if (path.endsWith('/health')) return fulfill({status:'ok',service_version:'2.0.0',data_present:true});
-    if (path.endsWith('/capabilities')) return fulfill({...capabilities,llm:{...capabilities.llm,configured:!!state.configured}});
+    if (path.endsWith('/capabilities')) return fulfill({...capabilities,tactical_advisor:{configured:!!state.advisorConfigured,provider:state.advisorConfigured?'gemini':null,model:state.advisorConfigured?'test-model':null},llm:{...capabilities.llm,configured:!!state.configured}});
     if (path.endsWith('/catalog')) return fulfill(catalog);
     if (path.endsWith('/coach/teams')) return fulfill({teams:state.index || coachTeams,warnings:[]});
     if (path.endsWith('/team-coverage')) {
@@ -81,7 +81,7 @@ export async function mockApi(page: Page, state: MockState = {requests:[],covera
       const body=route.request().postDataJSON() as AnalysisRequest;state.requests.push(body);
       if(state.hangAnalysis) return new Promise<void>(()=>{});
       if(state.delayAnalysis) await new Promise(resolve=>setTimeout(resolve,state.delayAnalysis));
-      return state.analysisStatus ? fulfill({code:state.analysisCode||'SYNTHETIC_ERROR',message:'não expor stack trace'},state.analysisStatus) : fulfill(makeReport(body));
+      return state.analysisStatus ? fulfill({code:state.analysisCode||'SYNTHETIC_ERROR',message:'não expor stack trace'},state.analysisStatus) : fulfill({...makeReport(body), ...(body.ai_analysis==='optional'?{ai_tactical:{status:state.advisorReason?'failed':'generated',reason:state.advisorReason||null,provider:'gemini',model:'test-model',prompt_version:'tactical-advice-1',input_fingerprint:'synthetic',cached:false,summary:'Comparar criação e proteção da área.',options:state.advisorReason?[]:[{title:'Investigar proteção da área',action:'Considerar proteção das zonas de finalização.',rationale:'Conferir a produção das equipes.',video_check:'Observar entradas na área.',adjust_when:'Se houver progressões repetidas.',risks:['Pode reduzir a presença ofensiva.'],evidence_ids:['team_profile.metrics.shots_for','opponent_profile.metrics.shots_for']}],policy:'Sugestões exploratórias; sem eficácia esportiva validada.'}}:{})});
     }
     if (path.endsWith('/export')) return state.exportStatus ? fulfill({code:'REPORT_NOT_FOUND'},state.exportStatus) : route.fulfill({status:200,contentType:'application/octet-stream',body:'synthetic export'});
     return fulfill({code:'NOT_FOUND'},404);

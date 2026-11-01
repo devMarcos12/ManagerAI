@@ -58,10 +58,13 @@ class ServiceRequest:
     engine: str = "deterministic"
     explainer_model: str | None = None
     data_policy: str = "legacy"
+    ai_analysis: str = "none"
 
     def __post_init__(self):
         if self.schema_version != SERVICE_VERSION or type(self.include_v3) is not bool:
             raise ServiceError("INVALID_REQUEST", "Versão ou opção V3 inválida.")
+        if self.ai_analysis not in ("none", "optional"):
+            raise ServiceError("INVALID_REQUEST", "Modo de análise por IA inválido.")
         if self.data_policy not in ("legacy", "quality_v1"):
             raise ServiceError("INVALID_DATA_POLICY", "Política de dados desconhecida.")
         if self.data_policy == "quality_v1" and self.include_v3:
@@ -118,4 +121,9 @@ class ServiceRequest:
             raise ServiceError("INVALID_REQUEST", "Campos obrigatórios ausentes ou valores inválidos.") from None
 
     def to_dict(self):
-        return asdict(self)
+        result = asdict(self)
+        # Preservar a identidade/serialização de pedidos anteriores sem análise por IA.
+        if self.ai_analysis == 'none':
+            result.pop('ai_analysis')
+        return result
+

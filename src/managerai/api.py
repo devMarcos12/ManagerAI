@@ -2,7 +2,6 @@
 from collections import deque
 from contextlib import contextmanager
 import json
-import os
 from pathlib import Path
 import secrets
 from threading import BoundedSemaphore, Lock
@@ -17,6 +16,8 @@ from fastapi.responses import JSONResponse, Response
 from .data_inventory import load_season, team_ids
 from .data_loader import DataError, LocalData
 from .explanation import OllamaProvider, canonical
+from .config import backend_environment
+from .gemini_advisor import GeminiAdvisor
 from .service import build_service_report, coverage, render_service_markdown
 from .service_schema import ServiceError, ServiceRequest, SERVICE_VERSION
 from .ui_support import available_catalog
@@ -27,11 +28,14 @@ from .http_schema import (AnalysisBody, ReportBody, ErrorBody, HealthBody, Capab
                           TeamAnalysisBody, TeamPreviewBody, TeamReportBody, CoachCatalogBody)
 
 
-def create_app(*, data_root=None, provider=None, cors_origins=None):
-    root = Path(data_root or os.environ.get("MANAGERAI_DATA_ROOT", "open-data/data")).resolve()
-    if provider is None and os.environ.get("MANAGERAI_OLLAMA_MODEL"):
-        provider = OllamaProvider(os.environ["MANAGERAI_OLLAMA_MODEL"], expected_digest=os.environ.get("MANAGERAI_OLLAMA_DIGEST"))
-    origins = cors_origins if cors_origins is not None else [x for x in os.environ.get("MANAGERAI_CORS_ORIGINS", "").split(",") if x]
+def create_app(*, data_root=None, provider=None, cors_origins=None, advisor=None, env_file=None):
+    env = backend_environment(env_file)
+    if advisor is None and env.get('MANAGERAI_GEMINI_ENABLED', 'false').lower() == 'true' and env.get('GEMINI_API_KEY'):
+        advisor = GeminiAdvisor(env['GEMINI_API_KEY'], env.get('MANAGERAI_GEMINI_MODEL', 'gemini-2.5-flash'))
+    root = Path(data_root or env.get("MANAGERAI_DATA_ROOT", "open-data/data")).resolve()
+    if provider is None and env.get("MANAGERAI_OLLAMA_MODEL"):
+        provider = OllamaProvider(env["MANAGERAI_OLLAMA_MODEL"], expected_digest=env.get("MANAGERAI_OLLAMA_DIGEST"))
+    origins = cors_origins if cors_origins is not None else [x for x in env.get("MANAGERAI_CORS_ORIGINS", "").split(",") if x]
     if "*" in origins:
         raise ValueError("Configure origens CORS explícitas.")
     app = FastAPI(title="ManagerAI Core", version=SERVICE_VERSION,
@@ -93,6 +97,8 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
                 "llm": {"configured": provider is not None, "provider": provider.provider_id if provider else None,
                         "model": provider.model if provider else None, "mode": "validated_claim_selection",
                         "availability": "checked_on_generation"},
+                "tactical_advisor": {"configured": advisor is not None, "provider": advisor.provider_id if advisor else None,
+                                     "model": advisor.model if advisor else None},
                 "fine_tuned_model": "experimental_not_promoted", "shots_prediction": "experimental_not_integrated",
                 "individual_recommendations": False, "v3_recuts": sorted(VALIDATED_RECUTS),
                 "limits": {"request_bytes": 64000, "window": 20, "concurrent_analyses": 1,
@@ -156,7 +162,7 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
     def analyses(body: AnalysisBody):
         request = ServiceRequest.from_dict(body.model_dump())
         with analysis_slot() as now:
-            result = build_service_report(root, request, provider=provider)
+            result = build_service_report(root, request, provider=provider, advisor=advisor)
             result["request"] = body.model_dump()
             result["display"] = display_projection(result)
             key = secrets.token_urlsafe(32)

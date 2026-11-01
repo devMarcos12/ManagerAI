@@ -270,3 +270,48 @@ O panorama individual usa as fórmulas básicas sem `quality_v1`; aplicar a pol�
 por família ao panorama é uma extensão futura separada, não uma certificação.
 Os testes reais de frontend foram adaptados à busca por time, mas não executados
 com StatsBomb nesta máquina. A validação manual pelo usuário permanece prioritária.
+
+## 9. Gemini e .env pessoal
+
+Entrega local sobre `c3a6bbb46f15ca0b49061c80483ac9a818f05d0c`, em 01/11/2026.
+Criados modelo `.env.example`, gerador privado sem sobrescrita e leitura de `.env`
+no backend com precedência do ambiente. `.env`/variantes ignorados; exemplos sem
+credenciais compartilháveis. Cada instalação/backend usa sua própria chave; não
+é autenticação multiusuário. O arquivo local nasceu sem chave e com ativação
+`false`. Nenhuma chave compartilhada em conversa foi copiada para fontes/testes,
+logs, exemplos, artefatos ou publicação.
+
+Gemini acrescenta sugestões exploratórias independentes dos planos determinísticos.
+Só indicadores elegíveis e contexto são enviados; notas/elenco/brutos não entram.
+Formato, citações, amostra por indicador e ausência de algarismos na prosa são
+checados, sem prova semântica ou validação esportiva. Números ficam materializados
+pelas evidências do Core. Bloqueios manuais/amostra insuficiente produzem abstenção.
+Cache volátil, pausa após 429, sem retries, upgrades ou fallback de provedor/modelo.
+A integração não verifica o faturamento Google; o operador precisa confirmar o
+plano gratuito antes de ativar. A chave precisa ser configurada em cada máquina.
+
+Validação nesta entrega:
+
+- Python 3.12.14 com API, fontes: **338 descobertos, 293 aprovados, 45 pulados**,
+  zero falhas/erros. Após acrescentar a integração HTTP/exportação ao teste focal:
+  **13/13 testes Gemini/.env aprovados**; pacote instalado isoladamente:
+  **339 descobertos, 294 aprovados, 45 pulados**, zero falhas/erros.
+- Comandos: `PYTHONPATH=src:tests PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-coach-venv/bin/python -B -m unittest discover -s tests -q`,
+  focal `-m unittest test_gemini -q`, instalado
+  `/tmp/managerai-coach-venv/bin/python -I -B -m unittest discover -s tests -q`.
+- Node 24.22.1, lockfile preservado: tipos, `npm run build`, `npm run types:check`
+  e OpenAPI conferidos. Playwright/Chromium temporário: **27/27 aprovados**, API
+  mockada, incluindo sugestões, referências, desligamento e cota sem repetição.
+- Git `check-ignore` em repositório temporário: cinco variantes de `.env` locais
+  ignoradas, `.env.example` e `frontend/.env.example` compartilháveis. Gerador
+  confirmou arquivo novo com modo 0600 e preservação de conteúdo existente.
+- Erro inicial de identidade legado corrigido preservando a serialização de
+  pedidos sem IA; teste de qualidade voltou a passar sem mudar o fixture/hash.
+  Demais ajustes de preparação: import React e default da fixture HTTP corrigidos.
+
+Logs temporários em `/tmp/managerai-gemini-*.log`. Não houve inferência externa,
+validação da chave real, gasto em API, execução Ollama/treinamento ou integração
+com StatsBomb real. A API instalada foi testada com provedor fictício, incluindo
+exportação JSON igual à resposta e Markdown com sugestões/citações. Pulos não
+contam como aprovação. Validação humana e ensaio com chave nova em projeto
+Google comprovadamente gratuito permanecem pendentes.

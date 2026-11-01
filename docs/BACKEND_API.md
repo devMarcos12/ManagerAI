@@ -201,3 +201,39 @@ MANAGERAI_BACKEND_PYTHON="$PWD/../.venv-web/bin/python" npm run test:real
 Pode-se usar um navegador Chromium já instalado por `PLAYWRIGHT_BROWSER_EXECUTABLE_PATH`. `MANAGERAI_REAL_ARTIFACTS` deve apontar a diretório novo para evidências; padrão temporário `/tmp/managerai-frontend-real`. O teste de ciclo inicia e encerra somente seus servidores adicionais em 8012/5178; não depende de serviços pagos. O teste de LLM é pulado se não estiver configurada; geração só é confirmada pelo status retornado, separado de configuração. O cenário 404 real usa perda da memória em reinício; TTL de 300 s é coberto separadamente por teste do backend com relógio controlado, sem fingir espera de cinco minutos no navegador.
 
 Resultados da entrega, limites e inspeção visual estão nas [evidências da versão](PENDING.md#3-evidências-da-versão-em-uso). Evidência histórica pequena da pesquisa, com disponibilidade/configurações/resultados e hashes conferíveis, em [research_evidence.json](research_evidence.json). `python3 -B scripts/check_research_evidence.py --check` verifica o acervo local quando disponível; ausência de artefatos em outra máquina não bloqueia a interface determinística, nem deve ser apresentada como avaliação conferida naquela máquina.
+
+## Sugestões Gemini e configuração por instalação
+
+O backend carrega `.env` do diretório de início, ou `MANAGERAI_ENV_FILE` explícito,
+com precedência das variáveis exportadas e sem avaliar código/interpolação. Ver
+[setup pessoal](../README.md#gemini-e-chave-pessoal-de-cada-integrante).
+`GEMINI_API_KEY`, `MANAGERAI_GEMINI_MODEL` e `MANAGERAI_GEMINI_ENABLED=true`
+configuram o analisador. Configuração não certifica chave válida, disponibilidade
+ou acesso gratuito; não há chamada de rede no bootstrap/capabilities/coverage.
+O operador precisa verificar o plano da conta antes de habilitar gerações.
+
+`GET /v1/capabilities` acrescenta `tactical_advisor` (`configured`, `provider`,
+`model`), sem credenciais. `POST /v1/analyses` aceita `ai_analysis=none|optional`,
+com padrão `none`. Pedidos antigos mantêm a identidade do relatório sem novo modo
+serializado pelo serviço; HTTP acrescenta o campo com default. Só a comparação
+solicitada com `optional` pode chamar Gemini. `create_app(advisor=..., env_file=...)`
+permite configuração/testes explícitos, sem origem de provedor escolhida pelo cliente.
+
+A resposta acrescenta `ai_tactical` quando solicitado: status `generated`, `failed`,
+`unavailable` ou `abstained`, motivo sanitizado, provedor/modelo, versão do prompt,
+fingerprint, indicação de cache, resumo, opções e limites. Cada opção inclui
+`title`, `action`, `rationale`, `video_check`, `adjust_when`, `risks` e `evidence_ids`.
+As referências precisam existir, ter valor finito, mínimo de cinco jogos e citar
+ambas as equipes; prosa com algarismos/estrutura desconhecida é recusada. Isso não
+valida semanticamente a recomendação. Cada opção é exploratória, para avaliação
+humana, sem alegar melhor decisão, eficácia causal, formação ou escalação ideal.
+
+O envio externo contém um resumo de indicadores elegíveis, datas/identificação do
+recorte e contexto declarado, sem notas, roster, hashes/caminhos de fontes ou eventos
+brutos. Amostra central insuficiente ou bloqueios manuais levam à abstenção sem
+chamada. Falha de chave, 429, timeout, truncamento ou resposta inválida preservam
+indicadores e planos determinísticos, inclusive no Markdown/JSON exportado.
+Uma tentativa por consulta, timeout 45 s, entrada até 28 KB, resposta até 32 KB,
+cache em memória de oito respostas válidas/600 s e pausa de 60 s após 429. Não faz
+upgrade, fallback para modelo/provedor pago ou verificação automática de faturamento.
+Os limites de concorrência/chamadas da API principal continuam aplicados.
