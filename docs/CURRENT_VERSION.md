@@ -72,6 +72,19 @@ A chave pertence à instalação/backend, sem separação multiusuário de crede
 Modelo padrão `gemini-2.5-flash`, configurável; nenhuma geração externa foi
 executada nesta entrega. Resultados de testes em [PENDING](PENDING.md#9-gemini-e-env-pessoal).
 
+### Correção de autenticação HTTP — 01/11/2026
+
+O transporte Groq agora identifica `User-Agent: ManagerAI/0.1` e `Accept:
+application/json`. No teste real sem geração, a mesma chave retornou HTTP 403 no
+cliente Python padrão e HTTP 200 com identificação do ManagerAI em `GET /models`;
+o modelo configurado constou no catálogo retornado. Isso não comprova execução
+de inferência nem corrige permissões específicas de outra instalação.
+
+HTTP 401 mantém `AUTHORIZATION_FAILED`; HTTP 403 passa a
+`PROVIDER_ACCESS_DENIED`, sem afirmar que a chave é inválida. Provedor/modelo
+aparecem também em falhas da IA. Nenhuma credencial é exibida. Evidências e
+validação no [PENDING](PENDING.md#11-correção-do-cliente-http-groq).
+
 ### Groq — 01/11/2026
 
 `groq_advisor.py` acrescenta transporte HTTPS fixo para Groq, com seleção explícita

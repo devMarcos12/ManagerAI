@@ -357,3 +357,29 @@ Sem mudança de métricas, regras, certificação, schemas HTTP ou dados brutos.
 Inferência externa, validação esportiva, treino e integração com dados reais não
 executados. A aplicação não verifica faturamento; manter conta no Free Plan e
 validar manualmente na máquina do usuário antes de uso contínuo.
+
+## 11. Correção do cliente HTTP Groq
+
+Sobre `19c7949e7b9f05566d2825dd737f1be43d438a3c`, em 01/11/2026.
+Diagnóstico com a credencial local, sem geração: `GET /openai/v1/models` retornou
+HTTP 200 com `User-Agent: ManagerAI/0.1`, e incluiu o modelo solicitado. A mesma
+consulta com o User-Agent padrão do Python retornou HTTP 403. Chave, headers de
+autenticação e corpo arbitrário do provedor não foram exibidos ou versionados.
+
+Correção: transporte Groq identifica o cliente e solicita JSON. HTTP 401 e 403
+agora são separados; acesso negado não é apresentado como chave inválida. A UI
+identifica provedor e modelo mesmo em falhas. Sem retries, fallback, geração ou
+alteração de plano/cota. O teste não comprova inferência nem permissões da máquina
+do usuário; é necessário atualizar/reinstalar e reiniciar o backend local.
+
+Validação desta entrega: Python 3.12.14 com API, **345 descobertos, 300 aprovados,
+45 pulados**, zero falhas/erros, nos fontes e pacote instalado isoladamente.
+Testes Groq conferem User-Agent/Accept e distinção 401/403/503. Node 24.22.1:
+build aprovado e **29/29 testes Playwright aprovados**, API mockada, incluindo
+falha 403 com provedor visível e relatório preservado. Logs finais:
+`/tmp/managerai-auth-tests.log`, `/tmp/managerai-auth-installed-tests.log`,
+`/tmp/managerai-auth-build.log` e `/tmp/managerai-auth-browser.log`.
+Comandos: `PYTHONPATH=src:tests PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-groq-venv/bin/python -B -m unittest discover -s tests -q`,
+`/tmp/managerai-groq-venv/bin/python -I -B -m unittest discover -s tests -q`,
+`npm run build` e `npm test` em frontend, com Chromium temporário configurado.
+Sem inferência externa, validação esportiva, treino ou alteração de dados.

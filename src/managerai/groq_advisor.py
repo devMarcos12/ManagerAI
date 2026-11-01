@@ -41,7 +41,8 @@ class GroqAdvisor(GeminiAdvisor):
                 'response_format': {'type': 'json_schema', 'json_schema': {
                     'name': 'tactical_advice', 'strict': True, 'schema': compatible(schema)}}}
         request = Request('https://api.groq.com/openai/v1/chat/completions', canonical(body).encode(),
-                          {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self._api_key})
+                          {'Content-Type': 'application/json', 'Accept': 'application/json',
+                           'User-Agent': 'ManagerAI/0.1', 'Authorization': 'Bearer ' + self._api_key})
         obj = self._send(request)
         choices = obj.get('choices', [])
         if len(choices) != 1 or choices[0].get('finish_reason') != 'stop':

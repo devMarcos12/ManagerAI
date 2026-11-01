@@ -37,6 +37,8 @@ class GroqTests(ServiceFixture):
         request=opener.open.call_args.args[0]
         self.assertEqual(request.full_url,'https://api.groq.com/openai/v1/chat/completions')
         self.assertEqual(request.get_header('Authorization'),'Bearer '+KEY)
+        self.assertEqual(request.get_header('User-agent'),'ManagerAI/0.1')
+        self.assertEqual(request.get_header('Accept'),'application/json')
         body=json.loads(request.data)
         self.assertEqual(body['model'],'openai/gpt-oss-120b')
         self.assertTrue(body['response_format']['json_schema']['strict'])
@@ -70,6 +72,7 @@ class GroqTests(ServiceFixture):
             opener=Mock();opener.open.side_effect=HTTPError('https://api.groq.com',code,KEY,None,None)
             with patch('managerai.gemini_advisor.build_opener',return_value=opener),self.assertRaises(AdvisorFailure) as error:
                 GroqAdvisor(KEY).generate(self.projection())
+            self.assertEqual(error.exception.code,{401:'AUTHORIZATION_FAILED',403:'PROVIDER_ACCESS_DENIED',503:'PROVIDER_OVERLOADED'}[code])
             self.assertNotIn(KEY,str(error.exception))
         response=Mock();response.__enter__=Mock(return_value=response);response.__exit__=Mock(return_value=False)
         response.read.return_value=json.dumps({'choices':[{'finish_reason':'length','message':{'content':json.dumps(valid_answer())}}]}).encode()

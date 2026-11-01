@@ -125,7 +125,9 @@ class GeminiAdvisor:
                 raise AdvisorFailure('RATE_LIMIT') from None
             if exc.code == 503:
                 raise AdvisorFailure('PROVIDER_OVERLOADED') from None
-            raise AdvisorFailure('AUTHORIZATION_FAILED' if exc.code in (401, 403) else 'PROVIDER_ERROR') from None
+            if exc.code == 403:
+                raise AdvisorFailure('PROVIDER_ACCESS_DENIED') from None
+            raise AdvisorFailure('AUTHORIZATION_FAILED' if exc.code == 401 else 'PROVIDER_ERROR') from None
         except (TimeoutError, URLError):
             raise AdvisorFailure('PROVIDER_UNAVAILABLE') from None
         if len(raw) > MAX_BYTES:

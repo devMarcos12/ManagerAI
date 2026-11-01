@@ -258,3 +258,11 @@ Campos HTTP/OpenAPI permanecem iguais; `ai_analysis` continua opt-in. Status 503
 produz motivo sanitizado `PROVIDER_OVERLOADED`, com relatório preservado. Chaves
 não são enviadas ao processo do frontend. O operador confere o Free Plan; nenhum
 recurso habilita faturamento ou verifica a assinatura do provedor automaticamente.
+
+### Autenticação e acesso negado
+
+Groq envia `User-Agent: ManagerAI/0.1` e `Accept: application/json`, além de Bearer
+no header. HTTP 401 mapeia `AUTHORIZATION_FAILED`; HTTP 403 mapeia
+`PROVIDER_ACCESS_DENIED`, sem atribuir automaticamente a causa à chave. A UI
+mostra provedor/modelo nas falhas. Corpos arbitrários do provedor não são
+repassados ao cliente ou registrados, e o relatório é preservado.
