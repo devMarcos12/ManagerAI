@@ -79,41 +79,47 @@ def preview_coverage(data: LocalData, request: AnalysisRequest, season: Season |
     histories, cutoff = select_history(season, request)
 
     def coverage(tid: int) -> TeamCoverage:
-        # Same conservative date policy as select_history (whole cutoff day excluded).
-        prior = sorted((m for m in season.matches if tid in team_ids(m)
-                        and m["match_date"] < cutoff[:10]
-                        and m["match_id"] != request.target_match_id),
-                       key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))
-        selected = histories[tid]
-        mids = tuple(m["match_id"] for m in selected)
-        available = tuple(mid for mid in mids if data.exists("events", mid))
-        missing = tuple(mid for mid in mids if mid not in available)
-        name = season.teams[tid]
-        warnings = []
-        if len(available) < minimum_matches:
-            count_text = ("apenas 1 jogo anterior" if len(available) == 1
-                          else f"apenas {len(available)} jogos anteriores")
-            warnings.append(
-                f"{name}: {count_text} com arquivo de eventos "
-                "na janela; comparação não confiável. A exploração descritiva continua disponível."
-            )
-        if missing:
-            warnings.append(
-                f"{name}: {_matches(len(missing))} do calendário na janela sem arquivo de eventos; "
-                "a janela não será ampliada."
-            )
-        return TeamCoverage(tid, name, len(prior), mids,
-                            tuple(m["match_date"] for m in selected), available, missing,
-                            prior[0]["match_date"] if prior else None,
-                            prior[-1]["match_date"] if prior else None,
-                            selected[0]["match_date"] if selected else None,
-                            selected[-1]["match_date"] if selected else None,
-                            next((m["match_date"] for m in selected if m["match_id"] in available), None),
-                            next((m["match_date"] for m in reversed(selected) if m["match_id"] in available), None),
-                            tuple(warnings))
+        return team_coverage(data, season, tid, histories[tid], cutoff,
+                             minimum_matches, request.target_match_id)
 
     return CoveragePreview(coverage(request.team_id), coverage(request.opponent_id), cutoff,
                            request.recent_matches_window, minimum_matches)
+
+
+def team_coverage(data: LocalData, season: Season, tid: int, selected: list[dict],
+                  cutoff: str, minimum_matches: int = MIN_SAMPLE,
+                  excluded_match_id: int | None = None) -> TeamCoverage:
+    # Same conservative date policy as select_history (whole cutoff day excluded).
+    prior = sorted((m for m in season.matches if tid in team_ids(m)
+                    and m["match_date"] < cutoff[:10]
+                    and m["match_id"] != excluded_match_id),
+                   key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))
+    mids = tuple(m["match_id"] for m in selected)
+    available = tuple(mid for mid in mids if data.exists("events", mid))
+    missing = tuple(mid for mid in mids if mid not in available)
+    name = season.teams[tid]
+    warnings = []
+    if len(available) < minimum_matches:
+        count_text = ("apenas 1 jogo anterior" if len(available) == 1
+                      else f"apenas {len(available)} jogos anteriores")
+        warnings.append(
+            f"{name}: {count_text} com arquivo de eventos "
+            "na janela; comparação não confiável. A exploração descritiva continua disponível."
+        )
+    if missing:
+        warnings.append(
+            f"{name}: {_matches(len(missing))} do calendário na janela sem arquivo de eventos; "
+            "a janela não será ampliada."
+        )
+    return TeamCoverage(tid, name, len(prior), mids,
+                        tuple(m["match_date"] for m in selected), available, missing,
+                        prior[0]["match_date"] if prior else None,
+                        prior[-1]["match_date"] if prior else None,
+                        selected[0]["match_date"] if selected else None,
+                        selected[-1]["match_date"] if selected else None,
+                        next((m["match_date"] for m in selected if m["match_id"] in available), None),
+                        next((m["match_date"] for m in reversed(selected) if m["match_id"] in available), None),
+                        tuple(warnings))
 
 
 @dataclass(frozen=True)

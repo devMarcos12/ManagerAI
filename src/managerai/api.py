@@ -1,5 +1,6 @@
 """API HTTP opcional. Iniciar com uvicorn managerai.api:create_app --factory."""
 from collections import deque
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -20,8 +21,10 @@ from .service import build_service_report, coverage, render_service_markdown
 from .service_schema import ServiceError, ServiceRequest, SERVICE_VERSION
 from .ui_support import available_catalog
 from .v3_schema import VALIDATED_RECUTS
+from .coach_service import TeamRequest, coach_catalog, team_preview, analyze_team
 from .http_schema import (AnalysisBody, ReportBody, ErrorBody, HealthBody, CapabilitiesBody,
-                          CatalogBody, TeamBody, MatchBody, CoverageBody, display_projection)
+                          CatalogBody, TeamBody, MatchBody, CoverageBody, display_projection,
+                          TeamAnalysisBody, TeamPreviewBody, TeamReportBody, CoachCatalogBody)
 
 
 def create_app(*, data_root=None, provider=None, cors_origins=None):
@@ -118,9 +121,8 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
     def preview(body: AnalysisBody):
         return coverage(root, ServiceRequest.from_dict(body.model_dump()))
 
-    @app.post("/v1/analyses", response_model=ReportBody, response_model_exclude_unset=True)
-    def analyses(body: AnalysisBody):
-        request = ServiceRequest.from_dict(body.model_dump())
+    @contextmanager
+    def analysis_slot():
         if not analysis_lock.acquire(blocking=False):
             raise ServiceError("BUSY", "Análise em execução; tente novamente mais tarde.", 429)
         try:
@@ -130,6 +132,30 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
             if len(recent) >= 10:
                 raise ServiceError("RATE_LIMIT", "Limite de análises por minuto atingido.", 429)
             recent.append(now)
+            yield now
+        finally:
+            analysis_lock.release()
+
+    @app.get("/v1/coach/teams", response_model=CoachCatalogBody)
+    def coach_teams():
+        return coach_catalog(root)
+
+    @app.post("/v1/team-coverage", response_model=TeamPreviewBody)
+    def own_preview(body: TeamAnalysisBody):
+        return team_preview(root, TeamRequest(**body.model_dump()))
+
+    @app.post("/v1/team-analyses", response_model=TeamReportBody)
+    def own_analysis(body: TeamAnalysisBody):
+        with analysis_slot():
+            result = analyze_team(root, TeamRequest(**body.model_dump()))
+            if len(canonical(result).encode()) > max_bytes:
+                raise ServiceError("REPORT_TOO_LARGE", "Relatório excede 32 MB; reduza a janela.", 413)
+            return result
+
+    @app.post("/v1/analyses", response_model=ReportBody, response_model_exclude_unset=True)
+    def analyses(body: AnalysisBody):
+        request = ServiceRequest.from_dict(body.model_dump())
+        with analysis_slot() as now:
             result = build_service_report(root, request, provider=provider)
             result["request"] = body.model_dump()
             result["display"] = display_projection(result)
@@ -145,8 +171,6 @@ def create_app(*, data_root=None, provider=None, cors_origins=None):
                     del reports[next(iter(reports))]
                 reports[key] = (time.monotonic(), payload)
             return result
-        finally:
-            analysis_lock.release()
 
     @app.get("/v1/reports/{report_key}", response_model=ReportBody, response_model_exclude_unset=True)
     def report(report_key: str):

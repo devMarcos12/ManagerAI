@@ -8,6 +8,11 @@ export type Catalog = Schema['CatalogBody'];
 export type Team = Schema['TeamBody'];
 export type Match = Schema['MatchBody'];
 export type Evidence = Schema['EvidenceBody'];
+export type CoachTeam = Schema['CoachTeamBody'];
+export type CoachRecut = Schema['CoachRecutBody'];
+export type TeamRequest = Schema['TeamAnalysisBody'];
+export type TeamReport = Schema['TeamReportBody'];
+export type TeamPreview = Schema['TeamPreviewBody'];
 
 const base = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 export class ApiError extends Error {
@@ -54,7 +59,7 @@ async function checkedFetch<T>(path: string, read: (response: Response) => Promi
 async function json<T>(path: string, init: RequestInit = {}, timeout?: number): Promise<T> {
   return checkedFetch(path, response => response.json() as Promise<T>, init, timeout);
 }
-const post = (body: AnalysisRequest, signal?: AbortSignal): RequestInit => ({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal });
+const post = (body: AnalysisRequest | TeamRequest, signal?: AbortSignal): RequestInit => ({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal });
 export const api = {
   bootstrap: async (signal: AbortSignal) => {
     const [health, capabilities, catalog] = await Promise.all([
@@ -67,6 +72,9 @@ export const api = {
     const [teams, matches] = await Promise.all([json<Team[]>('/v1/teams' + query, { signal }), json<Match[]>('/v1/matches' + query, { signal })]);
     return { teams, matches };
   },
+  coachTeams: (signal: AbortSignal) => json<Schema['CoachCatalogBody']>('/v1/coach/teams', { signal }),
+  teamCoverage: (body: TeamRequest, signal: AbortSignal) => json<TeamPreview>('/v1/team-coverage', post(body, signal)),
+  analyzeTeam: (body: TeamRequest) => json<TeamReport>('/v1/team-analyses', post(body), 120000),
   coverage: (body: AnalysisRequest, signal: AbortSignal) => json<Coverage>('/v1/coverage', post(body, signal)),
   analyze: (body: AnalysisRequest) => json<Report>('/v1/analyses', post(body), 120000),
   export: (key: string, format: 'json' | 'markdown') => checkedFetch(`/v1/reports/${encodeURIComponent(key)}/export?format=${format}`, response => response.blob()),

@@ -8,6 +8,17 @@ from .data_loader import DataError
 from .report_schema import AnalysisRequest
 
 
+def history_before(season: Season, team_id: int, cutoff_date: str, window: int,
+                   excluded_match_id: int | None = None) -> list[dict[str, Any]]:
+    """Últimas N partidas do calendário; nunca repõe ausências de eventos."""
+    if team_id not in season.teams:
+        raise DataError("Equipe não pertence à competição/temporada selecionada.")
+    previous = [m for m in season.matches if team_id in team_ids(m)
+                and m["match_date"] < cutoff_date[:10] and m["match_id"] != excluded_match_id]
+    previous.sort(key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))
+    return previous[-window:]
+
+
 def select_history(season: Season, request: AnalysisRequest) -> tuple[dict[int, list[dict[str, Any]]], str]:
     if (request.competition_id, request.season_id) != (season.competition_id, season.season_id):
         raise DataError("Recorte da requisição incompatível com a temporada.")
@@ -25,18 +36,7 @@ def select_history(season: Season, request: AnalysisRequest) -> tuple[dict[int, 
         target_time = None
         cutoff = target_date
 
-    def earlier(m: dict[str, Any]) -> bool:
-        if m["match_id"] == request.target_match_id:
-            return False
-        if m["match_date"] < target_date:
-            return True
-        # Dates have no verified timezone/end-of-match guarantee in this MVP.
-        # Exclude the whole target day, including fixtures with earlier starts.
-        return False
-
-    histories = {}
-    for tid in (request.team_id, request.opponent_id):
-        previous = [m for m in season.matches if tid in team_ids(m) and earlier(m)]
-        previous.sort(key=lambda m: (m["match_date"], m.get("kick_off") or "", m["match_id"]))
-        histories[tid] = previous[-request.recent_matches_window:]
+    histories = {tid: history_before(season, tid, target_date, request.recent_matches_window,
+                                     request.target_match_id)
+                 for tid in (request.team_id, request.opponent_id)}
     return histories, cutoff

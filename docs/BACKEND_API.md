@@ -35,7 +35,47 @@ Contrato OpenAPI real: `GET /openapi.json`; documentação interativa: `/docs`.
 | `GET /v1/reports/{report_key}/export?format=json` | Exportação integral JSON |
 | `GET /v1/reports/{report_key}/export?format=markdown` | Relatório legível em português |
 
-Exemplo mínimo para ambos os POSTs:
+### Consulta por equipe
+
+A entrada do treinador acrescenta três rotas, sem alterar os contratos de comparação:
+
+| Método/caminho | Resultado |
+|---|---|
+| `GET /v1/coach/teams` | Índice global por `team_id`, aliases e recortes separados com datas e presença de eventos; lê somente catálogo/calendários |
+| `POST /v1/team-coverage` | Prévia de uma única equipe, sem ler conteúdo de eventos |
+| `POST /v1/team-analyses` | Panorama `team-overview-1`, sem adversário, planos ou chamada à LLM |
+
+Os dois POSTs individuais recebem o objeto plano:
+
+```json
+{"competition_id":2,"season_id":27,"team_id":36,"cutoff_date":"2016-05-16","recent_matches_window":10}
+```
+
+IDs são positivos; a data ISO canônica é obrigatória e a janela aceita 1–20,
+com padrão dez. Não aceitam `opponent_id`, contexto ou campos extras.
+`profile` preserva os 21 indicadores, numeradores/denominadores e evidências por
+jogo. `coverage`, `sample_status`, `insufficient_metrics`, `warnings`, `limitations`
+e `methodology.sources` acompanham o panorama. Zero jogos é HTTP 200 descritivo,
+com valores nulos e aviso, sem inventar observações. O mínimo operacional usa os
+seis indicadores centrais existentes e não representa confiança probabilística.
+
+A seleção reaproveita `history_before`; agregação usa `build_profiles`, sem
+adversário fictício. Só entra uma temporada e datas estritamente anteriores ao
+corte; falta de arquivo não amplia a janela. O panorama usa `data_policy=legacy`:
+não aplica os filtros `quality_v1` nem a extensão V3, e explicita esse limite.
+Compartilha com a comparação o limite de uma análise concorrente, dez chamadas
+por minuto e saída até 32 MB. Não é retido no armazenamento de relatórios; a
+exportação JSON é feita a partir da resposta já recebida no navegador.
+
+O frontend resolve automaticamente somente um recorte: primeiro um que abranja
+a data, ou o histórico anterior mais recente quando não há sobreposição. Empates
+exigem seleção explícita; nenhum recorte futuro é escolhido automaticamente.
+Data inicial = dia seguinte ao último jogo do calendário do time. O intervalo e
+o aviso de histórico antigo ficam visíveis; nenhuma atualização ao vivo é presumida.
+Calendários inválidos isolados geram avisos no índice sem ocultar equipes de
+outros calendários válidos. Arquivos órfãos de eventos não entram no índice.
+
+Exemplo mínimo para os POSTs de comparação (`/v1/coverage` e `/v1/analyses`):
 
 ```json
 {

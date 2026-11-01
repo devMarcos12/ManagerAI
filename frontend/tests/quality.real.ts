@@ -1,3 +1,4 @@
+import { prepareRealComparison } from './real_selection';
 import { test, expect } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -13,16 +14,11 @@ for(const scenario of [
   {name:'insufficient',team:'220',opponent:'217',target:'267533',window:'1',pressure:1},
 ]) test(`qualidade real: ${scenario.name}`,async({page})=>{
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
-  await page.goto('/');
-  await page.getByLabel('Competição',{exact:true}).selectOption('11');
-  await page.getByLabel('Temporada',{exact:true}).selectOption('27');
-  await page.getByLabel('Minha equipe',{exact:true}).selectOption(scenario.team);
-  await page.getByLabel('Adversário',{exact:true}).selectOption(scenario.opponent);
-  await page.getByLabel('Partida de referência',{exact:true}).selectOption(scenario.target);
+  await prepareRealComparison(page, 11, 27, Number(scenario.team), Number(scenario.opponent), Number(scenario.target));
   await page.getByLabel('Jogos anteriores por equipe').fill(scenario.window);
   await page.getByLabel('Aplicar filtros de qualidade por indicador',{exact:true}).check();
-  await expect(page.getByLabel('Incluir análise por eventos (V3)',{exact:true})).toBeDisabled();
-  const analyze=page.getByRole('button',{name:'Analisar confronto'});await expect(analyze).toBeEnabled();
+  await expect(page.getByLabel('Incluir mapas e indicadores adicionais',{exact:true})).toBeDisabled();
+  const analyze=page.getByRole('button',{name:'Comparar equipes'});await expect(analyze).toBeEnabled();
   const responsePromise=page.waitForResponse(r=>r.url().endsWith('/v1/analyses')&&r.request().method()==='POST');
   const started=Date.now();await analyze.click();const response=await responsePromise;
   expect(response.status()).toBe(200);const report=await response.json();

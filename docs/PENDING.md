@@ -1,12 +1,12 @@
 # ManagerAI — pendências e evidências
 
-Atualização documental de 01/11/2026. Código de referência: [`f9315d9`](https://github.com/devMarcos12/ManagerAI/commit/f9315d91b82a8a3e3a91ecc1504d532c4248ade4). O estado funcional está em [CURRENT_VERSION.md](CURRENT_VERSION.md); este arquivo reúne decisões abertas, evidências essenciais e manifesto de limpeza. Cronologia completa anterior está preservada no Git, conforme §2. Não apresentar testes históricos como execução atual.
+Atualização de 01/11/2026, com entrada por equipe sobre [`cccd25f`](https://github.com/devMarcos12/ManagerAI/commit/cccd25ff352ae5a2b7a85f6249b8c161f86b6a60). O estado funcional está em [CURRENT_VERSION.md](CURRENT_VERSION.md); este arquivo reúne decisões abertas, evidências essenciais e manifesto de limpeza. Cronologia completa anterior está preservada no Git, conforme §2. Não apresentar testes históricos como execução atual.
 
 ## 1. Prioridades
 
 | Ordem | Pendência | Critério para concluir |
 |---|---|---|
-| 1 | Validação manual de `quality_v1` pelo usuário | Após pull/reinstalação, conferir amostras/exclusões, abstenção e exportação no frontend; sem combinar V3 |
+| 1 | Validação do novo fluxo por equipe e de `quality_v1` pelo usuário | Após pull/reinstalação, buscar time, conferir data/recorte, panorama sem adversário, contexto e comparação; depois conferir filtros/exclusões/abstenção/exportações, sem combinar V3 |
 | 2 | CORE-01 no ambiente atual | Provisionar clone completo compatível e executar `verify-data`; os 762 arquivos da La Liga não substituem esse gate |
 | 3 | Orientação e certificação CORE-02 | Revisão independente/vídeo e eventual protocolo prospectivo; não reduzir limiares após observar os resultados |
 | 4 | Avaliação esportiva humana | Avaliadores identificados, rubrica, fontes/vídeo, justificativas e desacordos; medir correção, plausibilidade, clareza e utilidade separadamente |
@@ -223,3 +223,50 @@ Os 59 arquivos aprovados foram removidos; nenhum arquivo rastreado foi excluído
 - Três fixtures congeladas, 102 padrões de ignore e arquivos preexistentes preservados; diff vazio nos fontes/testes/frontend/scripts/dados/evidências rastreados. O único delta versionado é o registro desta conclusão nos dois documentos operacionais.
 
 Verificações completas em `outputs/runs/cleanup_20261101/post_removal_validation.json`. Nenhum build foi executado para evitar recriar os gerados removidos. Esta exclusão é local ao checkout de trabalho; não limpa arquivos ignorados na máquina do usuário por git pull.
+
+## 8. Validação da entrada por equipe
+
+Entrega local de 01/11/2026 sobre `cccd25ff352ae5a2b7a85f6249b8c161f86b6a60`.
+Implementação e validação concluídas. Publicação dos 25 arquivos desta entrega
+no `main` autorizada explicitamente pelo usuário em 01/11/2026.
+Busca global, resolução explícita de recorte, panorama individual e comparação
+opcional implementados. Não houve migração de fórmulas, novos planos táticos,
+certificação, treinamento ou ampliação da base. Nenhum arquivo de dados/evidência
+existente foi alterado. Os três relatórios congelados usados na compatibilidade
+foram obtidos do commit de referência com hashes Git conferidos.
+
+Validação executada nesta entrega, sem reutilizar contagens históricas:
+
+- Python 3.12.14, API em ambiente temporário novo: **326 testes descobertos,
+  281 aprovados, 45 pulados, zero falhas/erros**, tanto nos fontes quanto no pacote
+  instalado isoladamente de uma cópia temporária de empacotamento.
+  Comandos: `PYTHONPATH=src:tests PYTHONDONTWRITEBYTECODE=1 /tmp/managerai-coach-venv/bin/python -B -m unittest discover -s tests -q`
+  e `/tmp/managerai-coach-venv/bin/python -I -B -m unittest discover -s tests -q`.
+  Os 11 novos testes cobrem equivalência individual, corte temporal, ausência sem
+  reposição, nulos, temporadas separadas, catálogo parcial, validação e limites
+  compartilhados da API. Pulos pertencem a opcionais/dados reais indisponíveis.
+- Node 24.22.1, lockfile original: `npm ci`, `npm run build`, `npm run types:check`
+  e exportação/conferência OpenAPI. Sem mudança de dependências do projeto.
+- Playwright 1.64.1 com Chromium 153 temporário: **24/24 testes portáteis
+  aprovados**, API mockada, incluindo sete testes novos do fluxo por equipe.
+  A execução final usa `PLAYWRIGHT_BROWSER_EXECUTABLE_PATH=/tmp/managerai-chromium/chromium MANAGERAI_TEST_OUTPUT=/tmp/managerai-coach-playwright-final npm test`.
+- API instalada + navegador, sem mocks e com fixture sintética identificada:
+  panorama individual HTTP 200, comparação HTTP 200, contexto preservado,
+  mesmo histórico entre panorama/comparação e JSON exportado igual à resposta.
+  Desktop 1440×1000 e celular 390×844, sem erro JavaScript ou transbordamento.
+  Artefatos temporários: `/tmp/managerai-coach-browser-check.json`,
+  `/tmp/managerai-coach-desktop.png` e `/tmp/managerai-coach-mobile.png`.
+
+Falhas de preparação resolvidas antes das execuções finais: pip inicial atualizado
+somente no ambiente temporário; fixtures grandes recuperadas e verificadas por
+hash sem regeneração; teste numérico ajustado para tolerância de ponto flutuante;
+teste de teclado passou a aguardar a interface antes de pressionar Tab. A instalação
+padrão de Chromium não estava disponível; o executável temporário alternativo não
+alterou o lockfile nem as dependências do projeto.
+
+Limites: sem clone StatsBomb completo, integração opt-in com dados reais,
+certificação esportiva, avaliação por treinador, LLM ou treinamento nesta execução.
+O panorama individual usa as fórmulas básicas sem `quality_v1`; aplicar a política
+por família ao panorama é uma extensão futura separada, não uma certificação.
+Os testes reais de frontend foram adaptados à busca por time, mas não executados
+com StatsBomb nesta máquina. A validação manual pelo usuário permanece prioritária.

@@ -1,6 +1,10 @@
 # ManagerAI — estado operacional atual
 
-Estado do código de referência: [`f9315d9`](https://github.com/devMarcos12/ManagerAI/commit/f9315d91b82a8a3e3a91ecc1504d532c4248ade4), em 01/11/2026. Esta consolidação documental não muda a aplicação. Regras de trabalho em [AGENTS.md](../AGENTS.md), prioridades/evidências em [PENDING.md](PENDING.md) e instalação rápida no [README](../README.md). Resultados de testes têm execução e perfil identificados; não são garantia de validade esportiva.
+Atualização de 01/11/2026: entrada por equipe implementada sobre
+[`cccd25f`](https://github.com/devMarcos12/ManagerAI/commit/cccd25ff352ae5a2b7a85f6249b8c161f86b6a60).
+Regras de trabalho em [AGENTS.md](../AGENTS.md), prioridades/evidências em
+[PENDING.md](PENDING.md) e instalação rápida no [README](../README.md).
+Resultados de testes identificam o ambiente e não garantem validade esportiva.
 
 Limpeza aprovada de gerados concluída neste checkout: 59 arquivos de build/metadados e bundle web removidos (693.739 bytes), com rollback conferido. Código, testes, dados e fixtures preservados. Detalhes em [PENDING.md](PENDING.md#6-manifesto-da-limpeza). Arquivos ignorados em outra máquina não são apagados por git pull; um novo build pode recriá-los.
 
@@ -22,6 +26,26 @@ ManagerAI apoia preparação pré-jogo com histórico local StatsBomb Open Data.
 | Tracking/360 analítico e recomendação individual | Não implementados |
 
 Contexto, objetivo, mando e elenco são declarações do treinador, com validações. No legado, não mudam métricas/gatilhos. No serviço, estratégia e objetivo apenas ordenam planos já sustentados por mapas explícitos; restrições podem removê-los. Histórico de atleta/formação não demonstra disponibilidade atual nem adequação tática. Evidência insuficiente produz abstenção.
+
+### Entrada por equipe — 01/11/2026
+
+A web começa por busca global do time, data de corte e janela padrão dez.
+Competição/temporada são identificadas e exibidas; sobreposição exige desempate
+explícito. O panorama individual (`team-overview-1`) reutiliza seleção temporal
+e os 21 indicadores básicos, sem adversário fictício ou planos. Mostra amostra,
+lacunas, fontes, valores ausentes e exportação JSON. Usa política básica `legacy`,
+sem filtros por família/V3/LLM; isso acompanha o resultado. Contexto opcional e
+comparação ficam disponíveis ao adicionar adversário da mesma temporada.
+
+`coach_service.py` fornece índice por equipe, prévia e análise individual;
+`GET /v1/coach/teams`, `POST /v1/team-coverage` e `POST /v1/team-analyses` são
+aditivos ao contrato HTTP 2.0.0. O índice lê somente metadados/presença de arquivos.
+Datas antigas e lacunas aparecem na interface; calendário não comprova situação
+atual. Referência por partida preenche mando formal automaticamente, sem inferir
+campo neutro. Extensão V3, filtros de qualidade, restrições e explicação permanecem
+em opções adicionais da comparação. CLI/Streamlit e fórmulas não foram alterados.
+
+Validação desta entrega e limites do ambiente: [PENDING](PENDING.md#8-validação-da-entrada-por-equipe).
 
 ## 2. Arquitetura e módulos
 

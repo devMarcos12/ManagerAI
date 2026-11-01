@@ -40,18 +40,30 @@ Abra **http://127.0.0.1:5173**. A API usa `127.0.0.1:8011`, um worker; ambos
 permanecem em loopback. Ctrl+C encerra somente os processos criados pelo comando.
 Portas ocupadas causam erro, sem substituir servidores existentes.
 
-O fluxo permite escolher confronto, conferir cobertura, analisar, inspecionar
-indicadores/planos/evidências e exportar JSON/Markdown. V3 só é oferecida em
-recortes certificados. Explicação LLM fica desativada por padrão; opcionalmente,
-configure `MANAGERAI_OLLAMA_MODEL` no servidor antes de iniciar. Não há histórico
-persistente: relatórios no servidor expiram; notas/relatórios não são gravados
-em localStorage. Sem previsão de vitória ou escalação ideal.
+A consulta começa pela **busca do time por nome**, sem exigir liga ou temporada.
+O sistema preenche uma data de corte a partir do histórico disponível e identifica
+um único recorte. O treinador pode ajustar a data e a janela (dez jogos por padrão).
+Temporadas sobrepostas exigem escolha explícita; a tela mostra a competição,
+a temporada, as datas e a presença de arquivos. Dados antigos não são apresentados
+como situação atual.
 
-Na análise básica, a opção **Aplicar filtros de qualidade por indicador**
-mostra a amostra utilizável, as partidas excluídas e seus motivos. O padrão
-continua sem esse filtro. A opção não é combinável com V3 e não certifica
-temporadas; indicadores direcionais permanecem bloqueados fora dos recortes
-certificados. Jogos excluídos não são substituídos por jogos mais antigos.
+**Analisar meu time** gera um panorama individual de ataque, defesa, circulação
+e pressão, com amostras, evidências e exportação JSON. Não exige adversário nem
+produz planos táticos individuais. **Preparar contra um adversário** abre a
+comparação entre equipes da mesma temporada. **Como será o jogo?** reúne mando,
+tipo de partida e prioridade como contexto opcional. O mando formal é preenchido
+ao escolher uma partida histórica; não confirma campo neutro.
+
+Em **Mais opções de análise**, a comparação preserva referência por partida,
+mapas/indicadores adicionais nos recortes certificados, filtros de qualidade,
+estratégia, restrições, notas e explicação opcional. Os filtros são opt-in e não
+combinam com a extensão V3. O panorama individual usa as fórmulas básicas, sem
+essa política de filtros; esse limite acompanha o resultado. Fórmulas e regras
+não mudaram. Os planos e exportações JSON/Markdown da comparação permanecem.
+
+A explicação fica desativada por padrão; configure `MANAGERAI_OLLAMA_MODEL`
+no servidor para disponibilizá-la. Não há histórico persistente nem armazenamento
+de notas/relatórios em localStorage. A análise não prevê vitória ou escalação ideal.
 Após atualizar o código, reinstale o pacote no ambiente usado pelo servidor:
 `.venv-web/bin/python -m pip install '.[api,v3]'`.
 

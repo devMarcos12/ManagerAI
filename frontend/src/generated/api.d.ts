@@ -55,6 +55,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/coach/teams": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Coach Teams */
+        get: operations["coach_teams_v1_coach_teams_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/coverage": {
         parameters: {
             query?: never;
@@ -134,6 +151,40 @@ export interface paths {
         get: operations["export_v1_reports__report_key__export_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/team-analyses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Own Analysis */
+        post: operations["own_analysis_v1_team_analyses_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/team-coverage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Own Preview */
+        post: operations["own_preview_v1_team_coverage_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -311,6 +362,45 @@ export interface components {
             plan_id?: ("R01_PROGRESSAO" | "R02_PRESSAO_ALTA" | "R03_CHANCES" | "V3_ENTRADAS_PASSE" | "V3_CHUTES_AREA") | null;
             /** Text */
             text: string;
+        };
+        /** CoachCatalogBody */
+        CoachCatalogBody: {
+            /** Teams */
+            teams: components["schemas"]["CoachTeamBody"][];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** CoachRecutBody */
+        CoachRecutBody: {
+            /** Calendar Matches */
+            calendar_matches: number;
+            /** Competition Gender */
+            competition_gender: string | null;
+            /** Competition Id */
+            competition_id: number;
+            /** Competition Name */
+            competition_name: string;
+            /** Event Matches */
+            event_matches: number;
+            /** First Date */
+            first_date: string;
+            /** Last Date */
+            last_date: string;
+            /** Season Id */
+            season_id: number;
+            /** Season Name */
+            season_name: string;
+        };
+        /** CoachTeamBody */
+        CoachTeamBody: {
+            /** Aliases */
+            aliases: string[];
+            /** Name */
+            name: string;
+            /** Recuts */
+            recuts: components["schemas"]["CoachRecutBody"][];
+            /** Team Id */
+            team_id: number;
         };
         /** ComparisonBody */
         ComparisonBody: {
@@ -532,6 +622,31 @@ export interface components {
             /** Match Id */
             match_id: number;
         };
+        /** MetricBody */
+        MetricBody: {
+            /** Denominator */
+            denominator: number | null;
+            /** Formula Version */
+            formula_version: string;
+            /** Match Ids */
+            match_ids: number[];
+            /** Median */
+            median: number | null;
+            /** Metric Id */
+            metric_id: string;
+            /** Numerator */
+            numerator: number | null;
+            /** Per Match */
+            per_match: components["schemas"]["PerMatchBody"][];
+            /** Sample Size */
+            sample_size: number;
+            /** Standard Deviation */
+            standard_deviation: number | null;
+            /** Unit */
+            unit: string;
+            /** Value */
+            value: number | null;
+        };
         /** MetricCoverageBody */
         MetricCoverageBody: {
             /** Insufficient Metrics */
@@ -544,6 +659,15 @@ export interface components {
             };
             /** Team Name */
             team_name: string;
+        };
+        /** MetricDefinitionBody */
+        MetricDefinitionBody: {
+            /** Explanation */
+            explanation: string;
+            /** Title */
+            title: string;
+            /** Unit */
+            unit: string;
         };
         /** ModelStatusBody */
         ModelStatusBody: {
@@ -755,6 +879,22 @@ export interface components {
             /** Warnings */
             warnings: string[];
         };
+        /** TeamAnalysisBody */
+        TeamAnalysisBody: {
+            /** Competition Id */
+            competition_id: number;
+            /** Cutoff Date */
+            cutoff_date: string;
+            /**
+             * Recent Matches Window
+             * @default 10
+             */
+            recent_matches_window: number;
+            /** Season Id */
+            season_id: number;
+            /** Team Id */
+            team_id: number;
+        };
         /** TeamBody */
         TeamBody: {
             /** Name */
@@ -790,6 +930,95 @@ export interface components {
             team_id: number;
             /** Team Name */
             team_name: string;
+            /** Warnings */
+            warnings: string[];
+        };
+        /** TeamMethodologyBody */
+        TeamMethodologyBody: {
+            /** Attribution */
+            attribution: string;
+            /** Data Fingerprint */
+            data_fingerprint: string;
+            /**
+             * Data Policy
+             * @constant
+             */
+            data_policy: "legacy";
+            /** Formula Version */
+            formula_version: string;
+            /** Sources */
+            sources: components["schemas"]["SourceBody"][];
+            /** Temporal Policy */
+            temporal_policy: string;
+        };
+        /** TeamPreviewBody */
+        TeamPreviewBody: {
+            /** Cutoff */
+            cutoff: string;
+            /** Minimum Matches */
+            minimum_matches: number;
+            /** Policy */
+            policy: string;
+            /** Requested Window */
+            requested_window: number;
+            team: components["schemas"]["TeamCoverageBody"];
+        };
+        /** TeamProfileBody */
+        TeamProfileBody: {
+            /** Match Ids */
+            match_ids: number[];
+            /** Metrics */
+            metrics: {
+                [key: string]: components["schemas"]["MetricBody"];
+            };
+            /** Period End */
+            period_end: string | null;
+            /** Period Start */
+            period_start: string | null;
+            /** Quality */
+            quality: {
+                [key: string]: number;
+            };
+            /**
+             * Sample Status
+             * @enum {string}
+             */
+            sample_status: "insuficiente" | "limitada";
+            /** Team Id */
+            team_id: number;
+            /** Team Name */
+            team_name: string;
+        };
+        /** TeamReportBody */
+        TeamReportBody: {
+            /** Competition */
+            competition: string;
+            coverage: components["schemas"]["TeamCoverageBody"];
+            /** Insufficient Metrics */
+            insufficient_metrics: string[];
+            /** Limitations */
+            limitations: string[];
+            methodology: components["schemas"]["TeamMethodologyBody"];
+            /** Metric Definitions */
+            metric_definitions: {
+                [key: string]: components["schemas"]["MetricDefinitionBody"];
+            };
+            /** Minimum Matches */
+            minimum_matches: number;
+            profile: components["schemas"]["TeamProfileBody"];
+            request: components["schemas"]["TeamAnalysisBody"];
+            /**
+             * Sample Status
+             * @enum {string}
+             */
+            sample_status: "amostra insuficiente" | "evidência limitada";
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "team-overview-1";
+            /** Season */
+            season: string;
             /** Warnings */
             warnings: string[];
         };
@@ -970,6 +1199,80 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CatalogBody"][];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Request Entity Too Large */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    coach_teams_v1_coach_teams_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CoachCatalogBody"];
                 };
             };
             /** @description Not Found */
@@ -1353,6 +1656,162 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Request Entity Too Large */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    own_analysis_v1_team_analyses_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TeamAnalysisBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TeamReportBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Request Entity Too Large */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    own_preview_v1_team_coverage_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TeamAnalysisBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TeamPreviewBody"];
                 };
             };
             /** @description Not Found */

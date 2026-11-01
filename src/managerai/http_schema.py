@@ -3,6 +3,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from .options import Venue, MatchContext, Objective, Strategy, PlanId, ExplanationMode, Availability
 from .service_schema import ServiceRequest
+from .coach_service import TeamRequest
 
 
 class StrictModel(BaseModel):
@@ -277,6 +278,91 @@ class DisplayProfile(BaseModel):
 class SourceBody(BaseModel):
     path: str
     sha256: str
+
+
+class TeamAnalysisBody(StrictModel):
+    competition_id: int = Field(gt=0)
+    season_id: int = Field(gt=0)
+    team_id: int = Field(gt=0)
+    cutoff_date: str
+    recent_matches_window: int = Field(default=10, ge=1, le=20)
+
+    @model_validator(mode="after")
+    def validate_request(self):
+        TeamRequest(**self.model_dump())
+        return self
+
+
+class CoachRecutBody(BaseModel):
+    competition_id: int
+    season_id: int
+    competition_name: str
+    season_name: str
+    competition_gender: str | None
+    first_date: str
+    last_date: str
+    calendar_matches: int
+    event_matches: int
+
+
+class CoachTeamBody(TeamBody):
+    aliases: list[str]
+    recuts: list[CoachRecutBody]
+
+
+class CoachCatalogBody(BaseModel):
+    teams: list[CoachTeamBody]
+    warnings: list[str]
+
+
+class TeamPreviewBody(BaseModel):
+    team: TeamCoverageBody
+    cutoff: str
+    requested_window: int
+    minimum_matches: int
+    policy: str
+
+
+class TeamProfileBody(BaseModel):
+    team_id: int
+    team_name: str
+    match_ids: list[int]
+    period_start: str | None
+    period_end: str | None
+    sample_status: Literal["insuficiente", "limitada"]
+    metrics: dict[str, MetricBody]
+    quality: dict[str, int]
+
+
+class MetricDefinitionBody(BaseModel):
+    title: str
+    unit: str
+    explanation: str
+
+
+class TeamMethodologyBody(BaseModel):
+    formula_version: str
+    temporal_policy: str
+    data_policy: Literal["legacy"]
+    data_fingerprint: str
+    sources: list[SourceBody]
+    attribution: str
+
+
+class TeamReportBody(BaseModel):
+    schema_version: Literal["team-overview-1"]
+    request: TeamAnalysisBody
+    competition: str
+    season: str
+    profile: TeamProfileBody
+    coverage: TeamCoverageBody
+    metric_definitions: dict[str, MetricDefinitionBody]
+    sample_status: Literal["amostra insuficiente", "evidência limitada"]
+    insufficient_metrics: list[str]
+    minimum_matches: int
+    warnings: list[str]
+    limitations: list[str]
+    methodology: TeamMethodologyBody
 
 
 class DisplayBody(BaseModel):

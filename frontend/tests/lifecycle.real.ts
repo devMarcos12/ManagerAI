@@ -1,3 +1,4 @@
+import { prepareRealComparison } from './real_selection';
 import { test, expect } from '@playwright/test';
 import { spawn, type ChildProcess } from 'node:child_process';
 import { resolve, join } from 'node:path';
@@ -15,10 +16,13 @@ test('API real: validação 422, backend indisponível e relatório perdido apó
     backend=spawn(process.env.MANAGERAI_BACKEND_PYTHON!,backendArgs,{cwd:root,env,stdio:'ignore'});
     frontend=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','5178'],{cwd:process.cwd(),env,stdio:'ignore'});
     await waitReady('http://127.0.0.1:8012/v1/health');await waitReady('http://127.0.0.1:5178');
-    await page.goto('http://127.0.0.1:5178');await page.getByLabel('Minha equipe',{exact:true}).selectOption('36');await page.getByLabel('Adversário',{exact:true}).selectOption('1');await page.getByLabel('Partida de referência',{exact:true}).selectOption('3754314');
-    await page.getByLabel('Mando declarado').selectOption('fora');await expect(page.getByRole('alert')).toContainText('Confira');
-    await expect(page.getByRole('button',{name:'Analisar confronto'})).toBeDisabled();
-    await page.getByLabel('Mando declarado').selectOption('desconhecido');await expect(page.getByRole('button',{name:'Analisar confronto'})).toBeEnabled();await page.getByRole('button',{name:'Analisar confronto'}).click();await expect(page.getByRole('article')).toBeVisible();
+    await prepareRealComparison(page, 2, 27, 36, 1, 3754314, 'http://127.0.0.1:5178');
+    const invalid = await page.request.post('http://127.0.0.1:5178/v1/analyses', {data:{analysis:{competition_id:2,season_id:27,team_id:36,opponent_id:1,target_match_id:3754314,venue:'fora'}}});
+    expect(invalid.status()).toBe(422);
+    await page.getByText('Como será o jogo? (opcional)',{exact:true}).click();
+    await expect(page.getByLabel('Onde vamos jogar?')).toBeDisabled();
+    await expect(page.getByRole('button',{name:'Comparar equipes'})).toBeEnabled();
+    await page.getByRole('button',{name:'Comparar equipes'}).click();await expect(page.getByRole('article')).toBeVisible();
     await stop(backend);
     const unavailable=await context.newPage();await unavailable.goto('http://127.0.0.1:5178');await expect(unavailable.getByRole('heading',{name:'Não foi possível acessar os dados'})).toBeVisible();await unavailable.close();
     backend=spawn(process.env.MANAGERAI_BACKEND_PYTHON!,backendArgs,{cwd:root,env,stdio:'ignore'});await waitReady('http://127.0.0.1:8012/v1/health');

@@ -380,6 +380,124 @@
         "title": "ClaimBody",
         "type": "object"
       },
+      "CoachCatalogBody": {
+        "properties": {
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/CoachTeamBody"
+            },
+            "title": "Teams",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "teams",
+          "warnings"
+        ],
+        "title": "CoachCatalogBody",
+        "type": "object"
+      },
+      "CoachRecutBody": {
+        "properties": {
+          "calendar_matches": {
+            "title": "Calendar Matches",
+            "type": "integer"
+          },
+          "competition_gender": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Competition Gender"
+          },
+          "competition_id": {
+            "title": "Competition Id",
+            "type": "integer"
+          },
+          "competition_name": {
+            "title": "Competition Name",
+            "type": "string"
+          },
+          "event_matches": {
+            "title": "Event Matches",
+            "type": "integer"
+          },
+          "first_date": {
+            "title": "First Date",
+            "type": "string"
+          },
+          "last_date": {
+            "title": "Last Date",
+            "type": "string"
+          },
+          "season_id": {
+            "title": "Season Id",
+            "type": "integer"
+          },
+          "season_name": {
+            "title": "Season Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "competition_id",
+          "season_id",
+          "competition_name",
+          "season_name",
+          "competition_gender",
+          "first_date",
+          "last_date",
+          "calendar_matches",
+          "event_matches"
+        ],
+        "title": "CoachRecutBody",
+        "type": "object"
+      },
+      "CoachTeamBody": {
+        "properties": {
+          "aliases": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Aliases",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "recuts": {
+            "items": {
+              "$ref": "#/components/schemas/CoachRecutBody"
+            },
+            "title": "Recuts",
+            "type": "array"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "team_id",
+          "name",
+          "aliases",
+          "recuts"
+        ],
+        "title": "CoachTeamBody",
+        "type": "object"
+      },
       "ComparisonBody": {
         "properties": {
           "context_priority_tied": {
@@ -1040,6 +1158,110 @@
         "title": "MatchBody",
         "type": "object"
       },
+      "MetricBody": {
+        "properties": {
+          "denominator": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denominator"
+          },
+          "formula_version": {
+            "title": "Formula Version",
+            "type": "string"
+          },
+          "match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Match Ids",
+            "type": "array"
+          },
+          "median": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median"
+          },
+          "metric_id": {
+            "title": "Metric Id",
+            "type": "string"
+          },
+          "numerator": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Numerator"
+          },
+          "per_match": {
+            "items": {
+              "$ref": "#/components/schemas/PerMatchBody"
+            },
+            "title": "Per Match",
+            "type": "array"
+          },
+          "sample_size": {
+            "title": "Sample Size",
+            "type": "integer"
+          },
+          "standard_deviation": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Standard Deviation"
+          },
+          "unit": {
+            "title": "Unit",
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "metric_id",
+          "value",
+          "unit",
+          "sample_size",
+          "match_ids",
+          "numerator",
+          "denominator",
+          "median",
+          "standard_deviation",
+          "per_match",
+          "formula_version"
+        ],
+        "title": "MetricBody",
+        "type": "object"
+      },
       "MetricCoverageBody": {
         "properties": {
           "insufficient_metrics": {
@@ -1072,6 +1294,29 @@
           "insufficient_metrics"
         ],
         "title": "MetricCoverageBody",
+        "type": "object"
+      },
+      "MetricDefinitionBody": {
+        "properties": {
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "unit": {
+            "title": "Unit",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "unit",
+          "explanation"
+        ],
+        "title": "MetricDefinitionBody",
         "type": "object"
       },
       "ModelStatusBody": {
@@ -1683,6 +1928,45 @@
         "title": "SufficiencyBody",
         "type": "object"
       },
+      "TeamAnalysisBody": {
+        "additionalProperties": false,
+        "properties": {
+          "competition_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Competition Id",
+            "type": "integer"
+          },
+          "cutoff_date": {
+            "title": "Cutoff Date",
+            "type": "string"
+          },
+          "recent_matches_window": {
+            "default": 10,
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Recent Matches Window",
+            "type": "integer"
+          },
+          "season_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Season Id",
+            "type": "integer"
+          },
+          "team_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Team Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "competition_id",
+          "season_id",
+          "team_id",
+          "cutoff_date"
+        ],
+        "title": "TeamAnalysisBody",
+        "type": "object"
+      },
       "TeamBody": {
         "properties": {
           "name": {
@@ -1834,6 +2118,241 @@
           "warnings"
         ],
         "title": "TeamCoverageBody",
+        "type": "object"
+      },
+      "TeamMethodologyBody": {
+        "properties": {
+          "attribution": {
+            "title": "Attribution",
+            "type": "string"
+          },
+          "data_fingerprint": {
+            "title": "Data Fingerprint",
+            "type": "string"
+          },
+          "data_policy": {
+            "const": "legacy",
+            "title": "Data Policy",
+            "type": "string"
+          },
+          "formula_version": {
+            "title": "Formula Version",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/SourceBody"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "temporal_policy": {
+            "title": "Temporal Policy",
+            "type": "string"
+          }
+        },
+        "required": [
+          "formula_version",
+          "temporal_policy",
+          "data_policy",
+          "data_fingerprint",
+          "sources",
+          "attribution"
+        ],
+        "title": "TeamMethodologyBody",
+        "type": "object"
+      },
+      "TeamPreviewBody": {
+        "properties": {
+          "cutoff": {
+            "title": "Cutoff",
+            "type": "string"
+          },
+          "minimum_matches": {
+            "title": "Minimum Matches",
+            "type": "integer"
+          },
+          "policy": {
+            "title": "Policy",
+            "type": "string"
+          },
+          "requested_window": {
+            "title": "Requested Window",
+            "type": "integer"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamCoverageBody"
+          }
+        },
+        "required": [
+          "team",
+          "cutoff",
+          "requested_window",
+          "minimum_matches",
+          "policy"
+        ],
+        "title": "TeamPreviewBody",
+        "type": "object"
+      },
+      "TeamProfileBody": {
+        "properties": {
+          "match_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Match Ids",
+            "type": "array"
+          },
+          "metrics": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetricBody"
+            },
+            "title": "Metrics",
+            "type": "object"
+          },
+          "period_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period End"
+          },
+          "period_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period Start"
+          },
+          "quality": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Quality",
+            "type": "object"
+          },
+          "sample_status": {
+            "enum": [
+              "insuficiente",
+              "limitada"
+            ],
+            "title": "Sample Status",
+            "type": "string"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "type": "integer"
+          },
+          "team_name": {
+            "title": "Team Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "team_id",
+          "team_name",
+          "match_ids",
+          "period_start",
+          "period_end",
+          "sample_status",
+          "metrics",
+          "quality"
+        ],
+        "title": "TeamProfileBody",
+        "type": "object"
+      },
+      "TeamReportBody": {
+        "properties": {
+          "competition": {
+            "title": "Competition",
+            "type": "string"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/TeamCoverageBody"
+          },
+          "insufficient_metrics": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Insufficient Metrics",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "methodology": {
+            "$ref": "#/components/schemas/TeamMethodologyBody"
+          },
+          "metric_definitions": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetricDefinitionBody"
+            },
+            "title": "Metric Definitions",
+            "type": "object"
+          },
+          "minimum_matches": {
+            "title": "Minimum Matches",
+            "type": "integer"
+          },
+          "profile": {
+            "$ref": "#/components/schemas/TeamProfileBody"
+          },
+          "request": {
+            "$ref": "#/components/schemas/TeamAnalysisBody"
+          },
+          "sample_status": {
+            "enum": [
+              "amostra insuficiente",
+              "evidência limitada"
+            ],
+            "title": "Sample Status",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "team-overview-1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "season": {
+            "title": "Season",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request",
+          "competition",
+          "season",
+          "profile",
+          "coverage",
+          "metric_definitions",
+          "sample_status",
+          "insufficient_metrics",
+          "minimum_matches",
+          "warnings",
+          "limitations",
+          "methodology"
+        ],
+        "title": "TeamReportBody",
         "type": "object"
       }
     }
@@ -2091,6 +2610,84 @@
           }
         },
         "summary": "Catalog"
+      }
+    },
+    "/v1/coach/teams": {
+      "get": {
+        "operationId": "coach_teams_v1_coach_teams_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoachCatalogBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Coach Teams"
       }
     },
     "/v1/coverage": {
@@ -2551,6 +3148,182 @@
           }
         },
         "summary": "Export"
+      }
+    },
+    "/v1/team-analyses": {
+      "post": {
+        "operationId": "own_analysis_v1_team_analyses_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamAnalysisBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamReportBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Own Analysis"
+      }
+    },
+    "/v1/team-coverage": {
+      "post": {
+        "operationId": "own_preview_v1_team_coverage_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamAnalysisBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamPreviewBody"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Own Preview"
       }
     },
     "/v1/teams": {
